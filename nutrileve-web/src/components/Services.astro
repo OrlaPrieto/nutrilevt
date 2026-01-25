@@ -1,0 +1,61 @@
+---
+const services = [
+  {
+    title: "Nutrición Clínica",
+    description: "Manejo nutricional de diabetes, hipertensión, SOP y otras condiciones de salud.",
+    icon: "🏥",
+    color: "bg-pink-50"
+  },
+  {
+    title: "Control de Peso",
+    description: "Enfoque en recomposición corporal y pérdida de grasa de forma sostenible.",
+    icon: "⚖️",
+    color: "bg-pink-100"
+  },
+  {
+    title: "Nutrición Deportiva",
+    description: "Optimiza tu rendimiento y recuperación con nutrición personalizada para atletas.",
+    icon: "🏃‍♀️",
+    color: "bg-[#FFD1DC]"
+  },
+  {
+    title: "Consulta Presencial",
+    description: "Atención personalizada en nuestro consultorio con tecnología InBody 270.",
+    icon: "📍",
+    color: "bg-pink-50"
+  },
+  {
+    title: "Consulta en Línea",
+    description: "Asesoría nutricional desde la comodidad de tu hogar, sin importar donde estés.",
+    icon: "💻",
+    color: "bg-pink-100"
+  }
+];
+---
+<section id="services" class="py-24 bg-[#FAF9F6]">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <span class="text-[#FF6B9B] font-semibold tracking-wider uppercase text-sm">Nuestros Servicios</span>
+    <h2 class="text-4xl lg:text-5xl font-bold text-slate-900 mt-4 mb-16">
+      Soluciones diseñadas para <span class="italic">ti</span>
+    </h2>
+    
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {services.map(service => (
+        <div class="group p-10 rounded-3xl bg-white border border-pink-50 hover:border-[#FF6B9B] transition-all duration-300 hover:-translate-y-2 shadow-sm hover:shadow-xl hover:shadow-pink-100/50">
+          <div class={`w-16 h-16 ${service.color} rounded-2xl flex items-center justify-center text-3xl mb-8 mx-auto group-hover:scale-110 transition-transform`}>
+            {service.icon}
+          </div>
+          <h3 class="text-2xl font-bold text-slate-900 mb-4">{service.title}</h3>
+          <p class="text-slate-600 leading-relaxed">
+            {service.description}
+          </p>
+          <div class="mt-8">
+            <a href="#" class="text-[#D81B60] font-semibold flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+              Saber más <span>→</span>
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,93 @@
+---
+const reviews = [
+  {
+    name: "Camila Torres",
+    text: "La mejor en todo, siempre apoyándote, guiándote y motivándote a llevar un estilo de vida saludable.",
+    rating: 5,
+    source: "Google Maps"
+  },
+  {
+    name: "Aneth Holguín",
+    text: "Si pudiera darle más estrellas, lo haría. Trato profesional que genera confianza y te motiva a mejorar con planes de alimentación geniales y personalizados.",
+    rating: 5,
+    source: "Google Maps"
+  },
+  {
+    name: "Karen Castillo",
+    text: "Atención súper personalizada y los menús prácticos, deliciosos y consideran gustos personales. Resultados evidentes en poco tiempo.",
+    rating: 5,
+    source: "Google Maps"
+  },
+  {
+    name: "Daniela Durán Estrada",
+    text: "Súper recomendada. Enfoque personalizado para crear hábitos saludables con planes nutricionales balanceados, flexibilidad y explicaciones detalladas.",
+    rating: 5,
+    source: "Google Maps"
+  },
+  {
+    name: "Alejandra Estrada Chávez",
+    text: "Excelente profesional. El acompañamiento emocional y psicológico es clave. Equipo de alta calidad (InBody) y planes que se ajustan a mi ritmo de vida.",
+    rating: 5,
+    source: "Google Maps"
+  },
+  {
+    name: "Ricardo Méndez",
+    text: "El cambio en mi composición corporal fue drástico. El análisis con el InBody me abrió los ojos sobre mi salud real. Muy profesional.",
+    rating: 5,
+    source: "Google Maps"
+  }
+];
+---
+<section id="testimonials" class="py-24 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <span class="text-[#FF6B9B] font-semibold tracking-wider uppercase text-sm">Opiniones</span>
+      <h2 class="text-4xl lg:text-5xl font-bold text-slate-900 mt-4">
+        Lo que nuestros <span class="text-[#D81B60]">pacientes</span> dicen
+      </h2>
+      <div class="flex justify-center items-center gap-2 mt-6">
+        <div class="flex text-yellow-400">
+          {[1, 2, 3, 4, 5].map(() => (
+            <svg class="w-6 h-6 fill-current" viewBox="0 0 20 20">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+            </svg>
+          ))}
+        </div>
+        <span class="font-bold text-slate-900">5.0</span>
+        <a href="https://www.google.com.mx/maps/place/Nutrilev/@28.62717,-106.0834988,17z/data=!4m8!3m7!1s0x86ea5cb3f25fa6ef:0xa371f771acfb7e38!8m2!3d28.62717!4d-106.0809239!9m1!1b1!16s%2Fg%2F11fzpdrqyd?entry=ttu" target="_blank" class="text-slate-500 text-sm hover:underline">basado en reseñas de Google</a>
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {reviews.map((review, index) => (
+        <div class={`p-8 rounded-3xl bg-pink-50/50 border border-pink-100/50 flex flex-col justify-between transition-transform hover:-translate-y-1 ${index >= 9 ? 'hidden lg:flex' : ''}`}>
+          <div>
+            <div class="flex text-yellow-400 mb-4">
+              {[1, 2, 3, 4, 5].map(() => (
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                </svg>
+              ))}
+            </div>
+            <p class="text-slate-700 italic leading-relaxed mb-6">"{review.text}"</p>
+          </div>
+          <div class="flex items-center gap-4">
+            <div class="w-10 h-10 rounded-full bg-[#D81B60] flex items-center justify-center text-white font-bold text-sm">
+              {review.name.charAt(0)}
+            </div>
+            <div>
+              <p class="font-bold text-slate-900 text-sm">{review.name}</p>
+              <p class="text-xs text-slate-500">Paciente Verificado</p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="mt-16 text-center">
+      <a href="https://www.google.com.mx/maps/place/Nutrilev/@28.62717,-106.0834988,17z/data=!4m8!3m7!1s0x86ea5cb3f25fa6ef:0xa371f771acfb7e38!8m2!3d28.62717!4d-106.0809239!9m1!1b1!16s%2Fg%2F11fzpdrqyd?entry=ttu" target="_blank" class="inline-flex items-center gap-2 text-[#D81B60] font-bold hover:underline">
+        Ver todas las reseñas en Google Maps <span>→</span>
+      </a>
+    </div>
+  </div>
+</section>
