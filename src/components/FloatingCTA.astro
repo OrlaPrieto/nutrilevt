@@ -1,0 +1,49 @@
+---
+---
+<a 
+  href="#booking" 
+  class="fixed bottom-6 right-6 z-[60] md:hidden bg-[#D81B60] text-white p-4 rounded-full shadow-2xl shadow-pink-500/40 flex items-center gap-2 animate-bounce-subtle group active:scale-95 transition-all overflow-hidden"
+  aria-label="Agendar Cita"
+>
+  <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:animate-shimmer-fast pointer-events-none"></div>
+  
+  <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+  </svg>
+  <span class="font-bold text-sm pr-1">Agendar</span>
+
+  <!-- Pulse Ring -->
+  <div class="absolute inset-0 rounded-full border-4 border-pink-400 animate-ping-slow opacity-0 group-hover:opacity-100"></div>
+</a>
+
+<style>
+  @keyframes bounce-subtle {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  @keyframes shimmer-fast {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+
+  @keyframes ping-slow {
+    75%, 100% {
+      transform: scale(1.4);
+      opacity: 0;
+    }
+  }
+
+  .animate-bounce-subtle {
+    animation: bounce-subtle 3s infinite ease-in-out;
+  }
+
+  .group:hover .group-hover\:animate-shimmer-fast,
+  .animate-shimmer-fast {
+    animation: shimmer-fast 1.5s infinite linear;
+  }
+
+  .animate-ping-slow {
+    animation: ping-slow 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+  }
+</style>

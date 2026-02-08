@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import FloatingCTA from '../components/FloatingCTA.astro';
 
 interface Props {
   title: string;
@@ -84,6 +85,7 @@ const { title } = Astro.props;
   </head>
   <body class="bg-[#FAF9F6] text-slate-800 font-['Inter',sans-serif]">
     <slot />
+    <FloatingCTA />
   </body>
 </html>
 

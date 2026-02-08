@@ -40,10 +40,37 @@
             <a href="#services" class="text-slate-600 hover:text-[#D81B60] px-3 py-2 text-sm font-medium transition-colors">Servicios</a>
             <a href="#consultation-modes" class="text-slate-600 hover:text-[#D81B60] px-3 py-2 text-sm font-medium transition-colors">Modalidades</a>
             <a href="#testimonials" class="text-slate-600 hover:text-[#D81B60] px-3 py-2 text-sm font-medium transition-colors">Opiniones</a>
-            <a href="#booking" class="bg-[#FF6B9B] text-white px-6 py-2 rounded-full text-sm font-medium hover:bg-[#D81B60] transition-colors shadow-lg shadow-pink-200">Agendar Cita</a>
+            <a 
+              href="#booking" 
+              class="relative bg-[#D81B60] text-white px-7 py-2.5 rounded-full text-sm font-bold transition-all shadow-[0_0_15px_rgba(216,27,96,0.3)] hover:scale-110 active:scale-95 animate-gentle-pulse overflow-hidden group/btn"
+            >
+              <span class="relative z-10">Agendar Cita</span>
+              <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent animate-shimmer-auto pointer-events-none"></div>
+            </a>
           </div>
         </div>
       </div>
     </div>
   </nav>
 </header>
+
+<style>
+  @keyframes gentle-pulse {
+    0%, 100% { transform: scale(1); box-shadow: 0 0 10px rgba(255, 107, 155, 0.4); }
+    50% { transform: scale(1.08); box-shadow: 0 0 25px rgba(216, 27, 96, 0.6); }
+  }
+
+  @keyframes shimmer-auto {
+    0% { transform: translateX(-200%) skewX(-25deg); }
+    20%, 100% { transform: translateX(200%) skewX(-25deg); }
+  }
+
+  .animate-gentle-pulse {
+    animation: gentle-pulse 2s infinite ease-in-out;
+  }
+
+  /* Automatic glint/shimmer every 5 seconds */
+  .animate-shimmer-auto {
+    animation: shimmer-auto 5s infinite cubic-bezier(0.4, 0, 0.2, 1);
+  }
+</style>
