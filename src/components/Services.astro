@@ -2,32 +2,61 @@
 const services = [
   {
     title: "Nutrición Clínica",
-    description: "Manejo nutricional de diabetes, hipertensión, SOP y otras condiciones de salud.",
+    description: "Manejo integral de condiciones metabólicas, digestivas y nutrición en etapas clave de la vida.",
+    details: [
+      "Salud Metabólica y Cardiovascular (Diabetes, Hipertensión, Dislipidemias).",
+      "Salud Digestiva (Colitis, Gastritis, Estreñimiento, Distensión).",
+      "Embarazo y Lactancia (Acompañamiento mamá y bebé).",
+      "Adulto Mayor (Obesidad sarcopénica y requerimientos específicos)."
+    ],
     icon: "🏥",
     color: "bg-pink-50"
   },
   {
-    title: "Control de Peso",
-    description: "Enfoque en recomposición corporal y pérdida de grasa de forma sostenible.",
-    icon: "⚖️",
+    title: "Psiconutrición y TCA",
+    description: "Un abordaje integral que une la ciencia de la nutrición con herramientas terapéuticas.",
+    details: [
+      "Tratamiento para Anorexia, Bulimia y Trastorno por Atracón.",
+      "Manejo de la ansiedad por comer y comedores emocionales.",
+      "Reconciliación con la comida y la imagen corporal (No Dieta).",
+      "Respaldo: Maestría en Psicoterapia Clínica y cursos en TCA."
+    ],
+    icon: "🧠",
     color: "bg-pink-100"
   },
   {
-    title: "Nutrición Deportiva",
-    description: "Optimiza tu rendimiento y recuperación con nutrición personalizada para atletas.",
-    icon: "🏃‍♀️",
+    title: "Salud Hormonal y de la Mujer",
+    description: "Tratamiento integral para el equilibrio hormonal y patologías específicas.",
+    details: [
+      "SOP (Resistencia a la Insulina, acné, hirsutismo, ovulación).",
+      "Hipotiroidismo y Tiroiditis de Hashimoto.",
+      "Manejo de SPM, endometriosis y amenorrea hipotalámica.",
+      "Etapas de transición: Climaterio y Menopausia."
+    ],
+    icon: "🌸",
     color: "bg-[#FFD1DC]"
   },
   {
-    title: "Consulta Presencial",
-    description: "Atención personalizada en nuestro consultorio con tecnología InBody 270.",
-    icon: "📍",
+    title: "Control de Peso",
+    description: "Abordaje médico y conductual para una recomposición corporal saludable y sostenible.",
+    details: [
+      "Tratamiento de Obesidad y Sobrepeso (Enfoque conductual).",
+      "Manejo nutricional de patologías tiroideas (Hipotiroidismo/Hashimoto).",
+      "Prevención y control de Diabetes Tipo 2 y Resistencia a la Insulina.",
+      "Evaluación antropométrica completa y diagnóstico nutricional."
+    ],
+    icon: "⚖️",
     color: "bg-pink-50"
   },
   {
-    title: "Consulta en Línea",
-    description: "Asesoría nutricional desde la comodidad de tu hogar, sin importar donde estés.",
-    icon: "💻",
+    title: "Nutrición Deportiva",
+    description: "Optimiza tu rendimiento y estética corporal con estrategias personalizadas y dieta flexible.",
+    details: [
+      "Planes enfocados al Fitness y estética corporal (Hombres y Mujeres).",
+      "Coaching Nutricional y Dieta Flexible para adherencia total.",
+      "Aumento de masa muscular y pérdida de grasa (Recomposición)."
+    ],
+    icon: "🏃‍♀️",
     color: "bg-pink-100"
   }
 ];
@@ -39,21 +68,32 @@ const services = [
       Soluciones diseñadas para <span class="italic">ti</span>
     </h2>
     
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {services.map(service => (
-        <div class="group p-10 rounded-3xl bg-white border border-pink-50 hover:border-[#FF6B9B] transition-all duration-300 hover:-translate-y-2 shadow-sm hover:shadow-xl hover:shadow-pink-100/50">
+    <div class="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-8">
+      {services.map((service, index) => (
+        <div class={`group p-10 rounded-3xl bg-white border border-pink-50 hover:border-[#FF6B9B] transition-all duration-300 hover:-translate-y-2 shadow-sm hover:shadow-xl hover:shadow-pink-100/50 flex flex-col h-full
+          col-span-1 
+          md:col-span-2 
+          lg:col-span-2
+          ${index === 4 ? 'md:col-start-2 lg:col-start-4' : ''} 
+          ${index === 3 ? 'lg:col-start-2' : ''}
+        `}>
           <div class={`w-16 h-16 ${service.color} rounded-2xl flex items-center justify-center text-3xl mb-8 mx-auto group-hover:scale-110 transition-transform`}>
             {service.icon}
           </div>
           <h3 class="text-2xl font-bold text-slate-900 mb-4">{service.title}</h3>
-          <p class="text-slate-600 leading-relaxed">
+          <p class="text-slate-600 leading-relaxed mb-6 font-medium">
             {service.description}
           </p>
-          <div class="mt-8">
-            <a href="#" class="text-[#D81B60] font-semibold flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-              Saber más <span>→</span>
-            </a>
-          </div>
+          {service.details && (
+            <ul class="text-left text-slate-600 space-y-2 text-sm">
+              {service.details.map(detail => (
+                <li class="flex items-start gap-2">
+                  <span class="text-[#FF6B9B] mt-1">•</span>
+                  <span>{detail}</span>
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
       ))}
     </div>

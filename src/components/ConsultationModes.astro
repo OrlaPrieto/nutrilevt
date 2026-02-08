@@ -1,0 +1,105 @@
+---
+const modes = [
+  {
+    title: "Consulta Presencial",
+    description: "Atención personalizada en nuestro consultorio equipado con la mejor tecnología para tu seguimiento.",
+    image: "/assets/consultation-presencial.png",
+    features: [
+      "Evaluación con tecnología InBody 270.",
+      "Análisis de composición corporal detallado.",
+      "Atención en un entorno profesional y seguro.",
+      "Seguimiento presencial para mayor adherencia."
+    ],
+    icon: "📍",
+    theme: "from-pink-50 to-white"
+  },
+  {
+    title: "Consulta en Línea",
+    description: "La misma calidad de atención profesional desde la comodidad de tu hogar, sin importar tu ubicación.",
+    image: "/assets/consultation-online.png",
+    features: [
+      "Videollamada personalizada por Zoom o WhatsApp.",
+      "Material digital y herramientas de seguimiento.",
+      "Flexibilidad de horarios para tu rutina.",
+      "Ideal para seguimiento constante fuera de la ciudad."
+    ],
+    icon: "💻",
+    theme: "from-rose-50 to-white"
+  }
+];
+---
+<section id="consultation-modes" class="py-32 bg-white relative overflow-hidden">
+  <!-- Subtle Background Decorations -->
+  <div class="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-96 h-96 bg-pink-50/50 rounded-full blur-3xl pointer-events-none"></div>
+  <div class="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/2 w-[30rem] h-[30rem] bg-rose-50/40 rounded-full blur-[100px] pointer-events-none"></div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="text-center mb-20">
+      <span class="inline-block px-4 py-1.5 rounded-full bg-pink-50 text-[#FF6B9B] font-bold tracking-wider uppercase text-xs mb-4">
+        Flexibilidad para ti
+      </span>
+      <h2 class="text-4xl lg:text-6xl font-bold text-slate-900 mt-4 tracking-tight">
+        Modalidades de <span class="bg-clip-text text-transparent bg-gradient-to-r from-[#D81B60] to-[#FF6B9B]">Consulta</span>
+      </h2>
+      <p class="mt-6 text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed">
+        Elige la modalidad que mejor se adapte a tu estilo de vida y comienza tu transformación hoy mismo.
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-12 xl:gap-20">
+      {modes.map(mode => (
+        <div class="group relative">
+          <!-- Main Card -->
+          <div class={`relative h-full rounded-[3rem] p-8 sm:p-12 bg-gradient-to-br ${mode.theme} border border-pink-100/50 transition-all duration-700 group-hover:shadow-[0_40px_80px_-15px_rgba(255,182,193,0.3)] group-hover:-translate-y-2 overflow-hidden`}>
+            
+            <!-- Image Container -->
+            <div class="relative h-64 sm:h-80 rounded-[2rem] overflow-hidden mb-12 shadow-2xl">
+              <img 
+                src={mode.image} 
+                alt={mode.title} 
+                class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+              
+              <!-- Floating Icon -->
+              <div class="absolute bottom-6 left-6 w-16 h-16 bg-white/90 backdrop-blur-md rounded-2xl flex items-center justify-center text-3xl shadow-lg border border-white/20">
+                {mode.icon}
+              </div>
+            </div>
+
+            <div class="relative z-10">
+              <h3 class="text-3xl sm:text-4xl font-bold text-slate-900 mb-6">{mode.title}</h3>
+              <p class="text-lg text-slate-600 leading-relaxed mb-10 min-h-[4.5rem]">
+                {mode.description}
+              </p>
+              
+              <ul class="space-y-5 mb-14">
+                {mode.features.map(feature => (
+                  <li class="flex items-center gap-4 text-slate-700 font-medium">
+                    <div class="w-7 h-7 rounded-full bg-white flex items-center justify-center flex-shrink-0 shadow-sm border border-pink-100 group-hover:bg-[#D81B60] group-hover:border-[#D81B60] transition-colors duration-500">
+                      <svg class="w-4 h-4 text-[#D81B60] group-hover:text-white transition-colors duration-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
+                      </svg>
+                    </div>
+                    <span>{feature}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <a 
+                href="#booking" 
+                class="inline-flex items-center gap-4 py-4 px-10 rounded-2xl bg-slate-900 text-white font-bold text-lg hover:bg-[#D81B60] transition-all duration-300 shadow-xl shadow-slate-200 hover:shadow-[#D81B60]/20"
+              >
+                Agendar ahora
+                <span class="group-hover:translate-x-1 transition-transform">→</span>
+              </a>
+            </div>
+
+            <!-- Subtle Grain Overlay -->
+            <div class="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
