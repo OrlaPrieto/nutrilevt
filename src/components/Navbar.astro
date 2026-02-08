@@ -25,24 +25,42 @@
   </div>
   
   <!-- Main Nav -->
-  <nav class="bg-white/90 backdrop-blur-md border-b border-pink-100">
+  <nav class="bg-white/95 backdrop-blur-md border-b border-pink-100 relative">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex justify-center md:justify-between items-center h-20 md:h-32">
-        <div class="flex-shrink-0 flex items-center justify-center w-full md:w-auto">
+      <div class="flex justify-between items-center h-20 md:h-32">
+        <div class="flex-shrink-0">
           <a href="/" class="block">
-            <img src="/assets/logo-final.jpg" alt="Nutrilev Logo" class="h-16 md:h-28 w-auto object-contain mx-auto" />
+            <img src="/assets/logo-final.jpg" alt="Nutrilev Logo" class="h-14 md:h-24 w-auto object-contain" />
           </a>
         </div>
-        <div class="hidden md:block">
-          <div class="ml-10 flex items-baseline space-x-8">
-            <a href="#" class="text-slate-600 hover:text-[#D81B60] px-3 py-2 text-sm font-medium transition-colors">Inicio</a>
-            <a href="#about" class="text-slate-600 hover:text-[#D81B60] px-3 py-2 text-sm font-medium transition-colors">Sobre mí</a>
-            <a href="#services" class="text-slate-600 hover:text-[#D81B60] px-3 py-2 text-sm font-medium transition-colors">Servicios</a>
-            <a href="#consultation-modes" class="text-slate-600 hover:text-[#D81B60] px-3 py-2 text-sm font-medium transition-colors">Modalidades</a>
-            <a href="#testimonials" class="text-slate-600 hover:text-[#D81B60] px-3 py-2 text-sm font-medium transition-colors">Opiniones</a>
+
+        <!-- Mobile Menu Button -->
+        <div class="md:hidden">
+          <button 
+            id="mobile-menu-button" 
+            class="text-slate-600 hover:text-[#D81B60] p-2 focus:outline-none transition-colors"
+            aria-label="Menu"
+          >
+            <svg id="hamburger-icon" class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+            <svg id="close-icon" class="w-8 h-8 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Desktop Navigation -->
+        <div class="hidden md:flex items-center space-x-1">
+          <a href="#" class="text-slate-600 hover:text-[#D81B60] px-4 py-2 text-sm font-semibold transition-colors">Inicio</a>
+          <a href="#about" class="text-slate-600 hover:text-[#D81B60] px-4 py-2 text-sm font-semibold transition-colors">Sobre mí</a>
+          <a href="#services" class="text-slate-600 hover:text-[#D81B60] px-4 py-2 text-sm font-semibold transition-colors">Servicios</a>
+          <a href="#consultation-modes" class="text-slate-600 hover:text-[#D81B60] px-4 py-2 text-sm font-semibold transition-colors">Modalidades</a>
+          <a href="#testimonials" class="text-slate-600 hover:text-[#D81B60] px-4 py-2 text-sm font-semibold transition-colors">Opiniones</a>
+          <div class="ml-4">
             <a 
               href="#booking" 
-              class="relative bg-[#D81B60] text-white px-7 py-2.5 rounded-full text-sm font-bold transition-all shadow-[0_0_15px_rgba(216,27,96,0.3)] hover:scale-110 active:scale-95 animate-gentle-pulse overflow-hidden group/btn"
+              class="relative inline-block bg-[#D81B60] text-white px-7 py-2.5 rounded-full text-sm font-bold transition-all shadow-[0_0_15px_rgba(216,27,96,0.3)] hover:scale-110 active:scale-95 animate-gentle-pulse overflow-hidden group/btn"
             >
               <span class="relative z-10">Agendar Cita</span>
               <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent animate-shimmer-auto pointer-events-none"></div>
@@ -52,7 +70,64 @@
       </div>
     </div>
   </nav>
+
+  <!-- Mobile Menu Overlay -->
+  <div 
+    id="mobile-menu" 
+    class="fixed inset-0 top-[120px] md:hidden bg-[#FFFFFF] z-50 transform translate-x-full transition-transform duration-300 ease-in-out border-t border-pink-50"
+  >
+    <div class="flex flex-col items-center justify-start h-full pt-12 space-y-8 px-6 text-center">
+      <a href="#" class="mobile-link text-2xl font-bold text-slate-800 hover:text-[#D81B60] transition-colors">Inicio</a>
+      <a href="#about" class="mobile-link text-2xl font-bold text-slate-800 hover:text-[#D81B60] transition-colors">Sobre mí</a>
+      <a href="#services" class="mobile-link text-2xl font-bold text-slate-800 hover:text-[#D81B60] transition-colors">Servicios</a>
+      <a href="#consultation-modes" class="mobile-link text-2xl font-bold text-slate-800 hover:text-[#D81B60] transition-colors">Modalidades</a>
+      <a href="#testimonials" class="mobile-link text-2xl font-bold text-slate-800 hover:text-[#D81B60] transition-colors">Opiniones</a>
+      <div class="pt-6 w-full">
+        <a 
+          href="#booking" 
+          class="mobile-link block w-full bg-[#D81B60] text-white py-5 rounded-2xl text-xl font-bold shadow-xl shadow-pink-100 active:scale-95 transition-transform"
+        >
+          Agendar Cita
+        </a>
+      </div>
+    </div>
+  </div>
 </header>
+
+<script>
+  const mobileMenuButton = document.getElementById('mobile-menu-button');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const hamburgerIcon = document.getElementById('hamburger-icon');
+  const closeIcon = document.getElementById('close-icon');
+  const mobileLinks = document.querySelectorAll('.mobile-link');
+
+  function toggleMenu() {
+    const isOpened = !mobileMenu?.classList.contains('translate-x-full');
+    
+    if (isOpened) {
+      mobileMenu?.classList.add('translate-x-full');
+      hamburgerIcon?.classList.remove('hidden');
+      closeIcon?.classList.add('hidden');
+      document.body.style.overflow = '';
+    } else {
+      mobileMenu?.classList.remove('translate-x-full');
+      hamburgerIcon?.classList.add('hidden');
+      closeIcon?.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+
+  mobileMenuButton?.addEventListener('click', toggleMenu);
+
+  mobileLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu?.classList.add('translate-x-full');
+      hamburgerIcon?.classList.remove('hidden');
+      closeIcon?.classList.add('hidden');
+      document.body.style.overflow = '';
+    });
+  });
+</script>
 
 <style>
   @keyframes gentle-pulse {
