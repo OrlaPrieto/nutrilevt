@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import FloatingCTA from '../components/FloatingCTA.astro';
+import SpeedInsights from '@vercel/speed-insights/astro';
 
 interface Props {
   title: string;
@@ -92,6 +93,7 @@ const {
   <body class="bg-bg-base text-slate-800 font-['Inter',sans-serif]">
     <slot />
     <FloatingCTA />
+    <SpeedInsights />
   </body>
 </html>
 
