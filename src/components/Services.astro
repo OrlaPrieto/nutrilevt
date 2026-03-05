@@ -34,7 +34,7 @@ const services = [
       "Etapas de transición: Climaterio y Menopausia."
     ],
     icon: "🌸",
-    color: "bg-[#FFD1DC]"
+    color: "bg-accent-light"
   },
   {
     title: "Control de Peso",
@@ -61,16 +61,16 @@ const services = [
   }
 ];
 ---
-<section id="services" class="py-24 bg-[#FAF9F6]">
+<section id="services" class="py-24 bg-bg-base">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-    <span class="text-[#FF6B9B] font-semibold tracking-wider uppercase text-sm">Nuestros Servicios</span>
+    <span class="text-accent font-semibold tracking-wider uppercase text-sm">Nuestros Servicios</span>
     <h2 class="text-4xl lg:text-5xl font-bold text-slate-900 mt-4 mb-16">
       Soluciones diseñadas para <span class="italic">ti</span>
     </h2>
     
     <div class="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-8">
       {services.map((service, index) => (
-        <div class={`group p-10 rounded-3xl bg-white border border-pink-50 hover:border-[#FF6B9B] transition-all duration-300 hover:-translate-y-2 shadow-sm hover:shadow-xl hover:shadow-pink-100/50 flex flex-col h-full
+        <div class={`group p-10 rounded-3xl bg-white border border-pink-50 hover:border-accent transition-all duration-300 hover:-translate-y-2 shadow-sm hover:shadow-xl hover:shadow-pink-100/50 flex flex-col h-full
           col-span-1 
           md:col-span-2 
           lg:col-span-2
@@ -88,7 +88,7 @@ const services = [
             <ul class="text-left text-slate-600 space-y-2 text-sm">
               {service.details.map(detail => (
                 <li class="flex items-start gap-2">
-                  <span class="text-[#FF6B9B] mt-1">•</span>
+                  <span class="text-accent mt-1">•</span>
                   <span>{detail}</span>
                 </li>
               ))}

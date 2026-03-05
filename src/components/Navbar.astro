@@ -1,69 +1,140 @@
 ---
+import { Image } from "astro:assets";
+import logoImg from "../assets/logo-final.jpg";
+import WhatsAppIcon from "./icons/WhatsAppIcon.astro";
+import InstagramIcon from "./icons/InstagramIcon.astro";
+import FacebookIcon from "./icons/FacebookIcon.astro";
 ---
+
 <header class="fixed top-0 left-0 w-full z-50">
   <!-- Top Bar -->
-  <div class="bg-[#D81B60] text-white py-2 px-4 sm:px-6 lg:px-8">
-    <div class="max-w-7xl mx-auto flex justify-between items-center text-xs sm:text-sm font-medium">
+  <div class="bg-primary text-white py-2 px-4 sm:px-6 lg:px-8">
+    <div
+      class="max-w-7xl mx-auto flex justify-between items-center text-xs sm:text-sm font-medium"
+    >
       <div class="hidden sm:block uppercase tracking-wider">
         Nutrición Clínica Especializada
       </div>
       <div class="flex items-center gap-6 ml-auto sm:ml-0">
-        <a href="https://wa.me/526143958598" target="_blank" class="flex items-center gap-1.5 hover:text-pink-200 transition-colors">
-          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.067 2.877 1.215 3.076.149.198 2.095 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        <a
+          href="https://wa.me/526143958598"
+          target="_blank"
+          class="flex items-center gap-1.5 hover:text-pink-200 transition-colors"
+        >
+          <WhatsAppIcon class="w-4 h-4" />
           <span class="hidden xs:inline">WhatsApp</span>
         </a>
-        <a href="https://www.instagram.com/nutrilev_especializada" target="_blank" class="flex items-center gap-1.5 hover:text-pink-200 transition-colors">
-          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.058-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        <a
+          href="https://www.instagram.com/nutrilev_especializada"
+          target="_blank"
+          class="flex items-center gap-1.5 hover:text-pink-200 transition-colors"
+        >
+          <InstagramIcon class="w-4 h-4" />
           <span class="hidden xs:inline">Instagram</span>
         </a>
-        <a href="https://www.facebook.com/profile.php?id=100064033451986" target="_blank" class="flex items-center gap-1.5 hover:text-pink-200 transition-colors">
-          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        <a
+          href="https://www.facebook.com/profile.php?id=100064033451986"
+          target="_blank"
+          class="flex items-center gap-1.5 hover:text-pink-200 transition-colors"
+        >
+          <FacebookIcon class="w-4 h-4" />
           <span class="hidden xs:inline">Facebook</span>
         </a>
       </div>
     </div>
   </div>
-  
+
   <!-- Main Nav -->
   <nav class="bg-white/95 backdrop-blur-md border-b border-pink-100 relative">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center h-20 md:h-32">
         <div class="flex-shrink-0">
           <a href="/" class="block">
-            <img src="/assets/logo-final.jpg" alt="Nutrilev Logo" class="h-14 md:h-24 w-auto object-contain" />
+            <Image
+              src={logoImg}
+              alt="Nutrilev Logo"
+              class="h-14 md:h-24 w-auto object-contain"
+            />
           </a>
         </div>
 
         <!-- Mobile Menu Button -->
         <div class="md:hidden">
-          <button 
-            id="mobile-menu-button" 
-            class="text-slate-600 hover:text-[#D81B60] p-2 focus:outline-none transition-colors"
+          <button
+            id="mobile-menu-button"
+            class="text-slate-600 hover:text-primary p-2 focus:outline-none transition-colors"
             aria-label="Menu"
+            aria-expanded="false"
+            aria-controls="mobile-menu"
           >
-            <svg id="hamburger-icon" class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            <svg
+              id="hamburger-icon"
+              class="w-8 h-8"
+              aria-hidden="true"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"></path>
             </svg>
-            <svg id="close-icon" class="w-8 h-8 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            <svg
+              id="close-icon"
+              class="w-8 h-8 hidden"
+              aria-hidden="true"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M6 18L18 6M6 6l12 12"></path>
             </svg>
           </button>
         </div>
 
         <!-- Desktop Navigation -->
         <div class="hidden md:flex items-center space-x-1">
-          <a href="#" class="text-slate-600 hover:text-[#D81B60] px-4 py-2 text-sm font-semibold transition-colors">Inicio</a>
-          <a href="#about" class="text-slate-600 hover:text-[#D81B60] px-4 py-2 text-sm font-semibold transition-colors">Sobre mí</a>
-          <a href="#services" class="text-slate-600 hover:text-[#D81B60] px-4 py-2 text-sm font-semibold transition-colors">Servicios</a>
-          <a href="#consultation-modes" class="text-slate-600 hover:text-[#D81B60] px-4 py-2 text-sm font-semibold transition-colors">Modalidades</a>
-          <a href="#testimonials" class="text-slate-600 hover:text-[#D81B60] px-4 py-2 text-sm font-semibold transition-colors">Opiniones</a>
+          <a
+            href="#"
+            class="text-slate-600 hover:text-primary px-4 py-2 text-sm font-semibold transition-colors"
+            >Inicio</a
+          >
+          <a
+            href="#about"
+            class="text-slate-600 hover:text-primary px-4 py-2 text-sm font-semibold transition-colors"
+            >Sobre mí</a
+          >
+          <a
+            href="#services"
+            class="text-slate-600 hover:text-primary px-4 py-2 text-sm font-semibold transition-colors"
+            >Servicios</a
+          >
+          <a
+            href="#consultation-modes"
+            class="text-slate-600 hover:text-primary px-4 py-2 text-sm font-semibold transition-colors"
+            >Modalidades</a
+          >
+          <a
+            href="#testimonials"
+            class="text-slate-600 hover:text-primary px-4 py-2 text-sm font-semibold transition-colors"
+            >Opiniones</a
+          >
           <div class="ml-4">
-            <a 
-              href="#booking" 
-              class="relative inline-block bg-[#D81B60] text-white px-7 py-2.5 rounded-full text-sm font-bold transition-all shadow-[0_0_15px_rgba(216,27,96,0.3)] hover:scale-110 active:scale-95 animate-gentle-pulse overflow-hidden group/btn"
+            <a
+              href="#booking"
+              class="relative inline-block bg-primary text-white px-7 py-2.5 rounded-full text-sm font-bold transition-all shadow-[0_0_15px_rgba(216,27,96,0.3)] hover:scale-110 active:scale-95 animate-gentle-pulse overflow-hidden group/btn"
             >
               <span class="relative z-10">Agendar Cita</span>
-              <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent animate-shimmer-auto pointer-events-none"></div>
+              <div
+                class="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent animate-shimmer-auto pointer-events-none"
+              >
+              </div>
             </a>
           </div>
         </div>
@@ -72,20 +143,42 @@
   </nav>
 
   <!-- Mobile Menu Overlay -->
-  <div 
-    id="mobile-menu" 
+  <div
+    id="mobile-menu"
     class="fixed inset-0 top-[120px] md:hidden bg-[#FFFFFF] z-50 transform translate-x-full transition-transform duration-300 ease-in-out border-t border-pink-50"
   >
-    <div class="flex flex-col items-center justify-start h-full pt-12 space-y-8 px-6 text-center">
-      <a href="#" class="mobile-link text-2xl font-bold text-slate-800 hover:text-[#D81B60] transition-colors">Inicio</a>
-      <a href="#about" class="mobile-link text-2xl font-bold text-slate-800 hover:text-[#D81B60] transition-colors">Sobre mí</a>
-      <a href="#services" class="mobile-link text-2xl font-bold text-slate-800 hover:text-[#D81B60] transition-colors">Servicios</a>
-      <a href="#consultation-modes" class="mobile-link text-2xl font-bold text-slate-800 hover:text-[#D81B60] transition-colors">Modalidades</a>
-      <a href="#testimonials" class="mobile-link text-2xl font-bold text-slate-800 hover:text-[#D81B60] transition-colors">Opiniones</a>
+    <div
+      class="flex flex-col items-center justify-start h-full pt-12 space-y-8 px-6 text-center"
+    >
+      <a
+        href="#"
+        class="mobile-link text-2xl font-bold text-slate-800 hover:text-primary transition-colors"
+        >Inicio</a
+      >
+      <a
+        href="#about"
+        class="mobile-link text-2xl font-bold text-slate-800 hover:text-primary transition-colors"
+        >Sobre mí</a
+      >
+      <a
+        href="#services"
+        class="mobile-link text-2xl font-bold text-slate-800 hover:text-primary transition-colors"
+        >Servicios</a
+      >
+      <a
+        href="#consultation-modes"
+        class="mobile-link text-2xl font-bold text-slate-800 hover:text-primary transition-colors"
+        >Modalidades</a
+      >
+      <a
+        href="#testimonials"
+        class="mobile-link text-2xl font-bold text-slate-800 hover:text-primary transition-colors"
+        >Opiniones</a
+      >
       <div class="pt-6 w-full">
-        <a 
-          href="#booking" 
-          class="mobile-link block w-full bg-[#D81B60] text-white py-5 rounded-2xl text-xl font-bold shadow-xl shadow-pink-100 active:scale-95 transition-transform"
+        <a
+          href="#booking"
+          class="mobile-link block w-full bg-primary text-white py-5 rounded-2xl text-xl font-bold shadow-xl shadow-pink-100 active:scale-95 transition-transform"
         >
           Agendar Cita
         </a>
@@ -95,49 +188,63 @@
 </header>
 
 <script>
-  const mobileMenuButton = document.getElementById('mobile-menu-button');
-  const mobileMenu = document.getElementById('mobile-menu');
-  const hamburgerIcon = document.getElementById('hamburger-icon');
-  const closeIcon = document.getElementById('close-icon');
-  const mobileLinks = document.querySelectorAll('.mobile-link');
+  const mobileMenuButton = document.getElementById("mobile-menu-button");
+  const mobileMenu = document.getElementById("mobile-menu");
+  const hamburgerIcon = document.getElementById("hamburger-icon");
+  const closeIcon = document.getElementById("close-icon");
+  const mobileLinks = document.querySelectorAll(".mobile-link");
 
   function toggleMenu() {
-    const isOpened = !mobileMenu?.classList.contains('translate-x-full');
-    
+    const isOpened = !mobileMenu?.classList.contains("translate-x-full");
+
     if (isOpened) {
-      mobileMenu?.classList.add('translate-x-full');
-      hamburgerIcon?.classList.remove('hidden');
-      closeIcon?.classList.add('hidden');
-      document.body.style.overflow = '';
+      mobileMenu?.classList.add("translate-x-full");
+      hamburgerIcon?.classList.remove("hidden");
+      closeIcon?.classList.add("hidden");
+      document.body.style.overflow = "";
+      mobileMenuButton?.setAttribute("aria-expanded", "false");
     } else {
-      mobileMenu?.classList.remove('translate-x-full');
-      hamburgerIcon?.classList.add('hidden');
-      closeIcon?.classList.remove('hidden');
-      document.body.style.overflow = 'hidden';
+      mobileMenu?.classList.remove("translate-x-full");
+      hamburgerIcon?.classList.add("hidden");
+      closeIcon?.classList.remove("hidden");
+      document.body.style.overflow = "hidden";
+      mobileMenuButton?.setAttribute("aria-expanded", "true");
     }
   }
 
-  mobileMenuButton?.addEventListener('click', toggleMenu);
+  mobileMenuButton?.addEventListener("click", toggleMenu);
 
-  mobileLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      mobileMenu?.classList.add('translate-x-full');
-      hamburgerIcon?.classList.remove('hidden');
-      closeIcon?.classList.add('hidden');
-      document.body.style.overflow = '';
+  mobileLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      mobileMenu?.classList.add("translate-x-full");
+      hamburgerIcon?.classList.remove("hidden");
+      closeIcon?.classList.add("hidden");
+      document.body.style.overflow = "";
     });
   });
 </script>
 
 <style>
   @keyframes gentle-pulse {
-    0%, 100% { transform: scale(1); box-shadow: 0 0 10px rgba(255, 107, 155, 0.4); }
-    50% { transform: scale(1.08); box-shadow: 0 0 25px rgba(216, 27, 96, 0.6); }
+    0%,
+    100% {
+      transform: scale(1);
+      box-shadow: 0 0 10px rgba(255, 107, 155, 0.4);
+    }
+    50% {
+      transform: scale(1.08);
+      box-shadow: 0 0 25px rgba(216, 27, 96, 0.6);
+    }
   }
 
   @keyframes shimmer-auto {
-    0% { transform: translateX(-200%) skewX(-25deg); }
-    20%, 100% { transform: translateX(200%) skewX(-25deg); }
+    0% {
+      transform: translateX(-200%) skewX(-25deg);
+    }
+    20%,
+    100% {
+      transform: translateX(200%) skewX(-25deg);
+    }
   }
 
   .animate-gentle-pulse {

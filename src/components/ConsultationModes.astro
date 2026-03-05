@@ -1,9 +1,13 @@
 ---
+import { Image } from 'astro:assets';
+import consultationImg from '../assets/consultation.jpg';
+import consultationOnlineImg from '../assets/consultation-online.png';
+
 const modes = [
   {
     title: "Consulta Presencial",
     description: "Atención personalizada en nuestro consultorio equipado con la mejor tecnología para tu seguimiento.",
-    image: "/assets/consultation.jpg",
+    image: consultationImg,
     features: [
       "Evaluación con tecnología InBody 270.",
       "Análisis de composición corporal detallado.",
@@ -16,7 +20,7 @@ const modes = [
   {
     title: "Consulta en Línea",
     description: "La misma calidad de atención profesional desde la comodidad de tu hogar, sin importar tu ubicación.",
-    image: "/assets/consultation-online.png",
+    image: consultationOnlineImg,
     features: [
       "Videollamada personalizada por Zoom o WhatsApp.",
       "Material digital y herramientas de seguimiento.",
@@ -35,11 +39,11 @@ const modes = [
 
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
     <div class="text-center mb-20">
-      <span class="inline-block px-4 py-1.5 rounded-full bg-pink-50 text-[#FF6B9B] font-bold tracking-wider uppercase text-xs mb-4">
+      <span class="inline-block px-4 py-1.5 rounded-full bg-pink-50 text-accent font-bold tracking-wider uppercase text-xs mb-4">
         Flexibilidad para ti
       </span>
       <h2 class="text-4xl lg:text-6xl font-bold text-slate-900 mt-4 tracking-tight">
-        Modalidades de <span class="bg-clip-text text-transparent bg-gradient-to-r from-[#D81B60] to-[#FF6B9B]">Consulta</span>
+        Modalidades de <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">Consulta</span>
       </h2>
       <p class="mt-6 text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed">
         Elige la modalidad que mejor se adapte a tu estilo de vida y comienza tu transformación hoy mismo.
@@ -54,7 +58,7 @@ const modes = [
             
             <!-- Image Container -->
             <div class="relative h-64 sm:h-80 rounded-[2rem] overflow-hidden mb-12 shadow-2xl">
-              <img 
+              <Image 
                 src={mode.image} 
                 alt={mode.title} 
                 class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
@@ -76,8 +80,8 @@ const modes = [
               <ul class="space-y-5 mb-14">
                 {mode.features.map(feature => (
                   <li class="flex items-center gap-4 text-slate-700 font-medium">
-                    <div class="w-7 h-7 rounded-full bg-white flex items-center justify-center flex-shrink-0 shadow-sm border border-pink-100 group-hover:bg-[#D81B60] group-hover:border-[#D81B60] transition-colors duration-500">
-                      <svg class="w-4 h-4 text-[#D81B60] group-hover:text-white transition-colors duration-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <div class="w-7 h-7 rounded-full bg-white flex items-center justify-center flex-shrink-0 shadow-sm border border-pink-100 group-hover:bg-primary group-hover:border-primary transition-colors duration-500">
+                      <svg class="w-4 h-4 text-primary group-hover:text-white transition-colors duration-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
                       </svg>
                     </div>
@@ -88,7 +92,7 @@ const modes = [
 
               <a 
                 href="#booking" 
-                class="inline-flex items-center gap-4 py-4 px-10 rounded-2xl bg-slate-900 text-white font-bold text-lg hover:bg-[#D81B60] transition-all duration-300 shadow-xl shadow-slate-200 hover:shadow-[#D81B60]/20"
+                class="inline-flex items-center gap-4 py-4 px-10 rounded-2xl bg-slate-900 text-white font-bold text-lg hover:bg-primary transition-all duration-300 shadow-xl shadow-slate-200 hover:shadow-primary/20"
               >
                 Agendar ahora
                 <span class="group-hover:translate-x-1 transition-transform">→</span>
