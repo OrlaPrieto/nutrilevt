@@ -1,0 +1,362 @@
+---
+// Pricing.astro
+// Sección de precios con cards elegantes
+
+const plans = [
+  {
+    icon: "✨",
+    name: "Primera Consulta",
+    price: "Desde $600",
+    currency: "MXN",
+    tag: null,
+    description: "Evaluación integral para conocerte y diseñar tu camino.",
+    features: [
+      "Historial clínico y alimentario completo",
+      "Análisis InBody 270 (presencial)",
+      "Diagnóstico nutricional personalizado",
+      "Plan de alimentación inicial",
+      "Metas y seguimiento definidos",
+    ],
+    cta: "Agendar primera consulta",
+    highlight: false,
+  },
+  {
+    icon: "🌸",
+    name: "Consulta de Seguimiento",
+    price: "Desde $450",
+    currency: "MXN",
+    tag: "Más popular",
+    description: "Revisión de avances y ajuste de tu plan nutricional.",
+    features: [
+      "Evaluación de evolución y cambios",
+      "Re-análisis de composición corporal",
+      "Ajuste y optimización del plan",
+      "Resolución de dudas y coaching",
+      "Material digital actualizado",
+    ],
+    cta: "Agendar seguimiento",
+    highlight: true,
+  },
+  {
+    icon: "✨",
+    name: "Paquete Mensual",
+    price: "Consultar",
+    currency: "",
+    tag: "Mejor inversión",
+    description: "Acompañamiento continuo para máximos resultados.",
+    features: [
+      "2–4 consultas en el mes",
+      "Seguimiento por WhatsApp",
+      "Plan nutricional actualizado",
+      "Análisis InBody incluido",
+      "Precio especial por volumen",
+    ],
+    cta: "Preguntar por paquete",
+    highlight: false,
+  },
+];
+---
+
+<section id="pricing" class="pricing-section">
+  <div class="pricing-container">
+    <div class="pricing-header">
+      <span class="pricing-eyebrow">Inversión en tu salud</span>
+      <h2 class="pricing-title">Tarifas y Servicios</h2>
+      <p class="pricing-subtitle">
+        Precios referenciales. Agenda tu cita y te daremos información exacta
+        según tu caso.
+      </p>
+    </div>
+
+    <div class="pricing-grid">
+      {
+        plans.map((plan) => (
+          <div class={`pricing-card ${plan.highlight ? "highlight" : ""}`}>
+            {plan.tag && <span class="pricing-tag">{plan.tag}</span>}
+            <div class="pricing-card-top">
+              <span class="pricing-icon">{plan.icon}</span>
+              <h3 class="pricing-name">{plan.name}</h3>
+              <div class="pricing-price-block">
+                <span class="pricing-price">{plan.price}</span>
+                {plan.currency && (
+                  <span class="pricing-currency">{plan.currency}</span>
+                )}
+              </div>
+              <p class="pricing-desc">{plan.description}</p>
+            </div>
+            <ul class="pricing-features">
+              {plan.features.map((f) => (
+                <li>
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <circle
+                      cx="8"
+                      cy="8"
+                      r="8"
+                      fill="var(--color-accent)"
+                      fill-opacity="0.15"
+                    />
+                    <path
+                      d="M5 8l2 2 4-4"
+                      stroke="var(--color-primary)"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                  {f}
+                </li>
+              ))}
+            </ul>
+            <a
+              href="https://forms.gle/fTbGLx5JtzZ38Tot7"
+              target="_blank"
+              class={`pricing-btn ${
+                plan.highlight ? "btn-primary" : "btn-outline"
+              }`}
+            >
+              {plan.cta}
+            </a>
+          </div>
+        ))
+      }
+    </div>
+
+    <p class="pricing-note">
+      💬 ¿Tienes dudas sobre qué opción es para ti?
+      <a
+        href="https://wa.me/526143958598?text=Hola%20Velvet%2C%20quisiera%20informaci%C3%B3n%20sobre%20precios%20de%20Nutrilev"
+        target="_blank">Escríbenos por WhatsApp</a
+      >
+      y te orientamos sin compromiso.
+    </p>
+  </div>
+</section>
+
+<style>
+  .pricing-section {
+    padding: 96px 24px;
+    background: linear-gradient(
+      180deg,
+      #fff 0%,
+      var(--color-accent-lighter) 100%
+    );
+  }
+
+  .pricing-container {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .pricing-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .pricing-eyebrow {
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-primary);
+    margin-bottom: 12px;
+  }
+
+  .pricing-title {
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0 0 16px;
+  }
+
+  .pricing-subtitle {
+    font-size: 1.05rem;
+    color: #666;
+    line-height: 1.6;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+    align-items: stretch;
+  }
+
+  .pricing-card {
+    background: #fff;
+    border: 1.5px solid #e8e8e8;
+    border-radius: 20px;
+    padding: 36px 32px;
+    position: relative;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .pricing-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 25px 50px -12px rgba(216, 27, 96, 0.15);
+    border-color: rgba(216, 27, 96, 0.2);
+  }
+
+  .pricing-card.highlight {
+    border-color: var(--color-accent);
+    box-shadow: 0 8px 32px rgba(216, 27, 96, 0.15);
+    transform: scale(1.03);
+  }
+
+  .pricing-card.highlight:hover {
+    transform: scale(1.03) translateY(-4px);
+  }
+
+  .pricing-tag {
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--color-primary);
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 5px 16px;
+    border-radius: 50px;
+    white-space: nowrap;
+  }
+
+  .pricing-card-top {
+    text-align: center;
+    margin-bottom: 28px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  .pricing-icon {
+    font-size: 2.2rem;
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  .pricing-name {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0 0 12px;
+  }
+
+  .pricing-price-block {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 6px;
+    margin-bottom: 10px;
+  }
+
+  .pricing-price {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--color-primary);
+  }
+
+  .pricing-currency {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #888;
+  }
+
+  .pricing-desc {
+    font-size: 0.92rem;
+    color: #777;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .pricing-features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex: 1;
+  }
+
+  .pricing-features li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 0.93rem;
+    color: #444;
+    line-height: 1.45;
+  }
+
+  .pricing-features svg {
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .pricing-btn {
+    display: block;
+    text-align: center;
+    padding: 14px 20px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.93rem;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    margin-top: auto;
+  }
+
+  .btn-primary {
+    background: var(--color-primary);
+    color: #fff;
+    box-shadow: 0 4px 14px rgba(216, 27, 96, 0.3);
+  }
+
+  .btn-primary:hover {
+    background: var(--color-primary-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(216, 27, 96, 0.4);
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--color-primary);
+    border: 1.5px solid var(--color-accent);
+  }
+
+  .btn-outline:hover {
+    background: var(--color-accent-lighter);
+    transform: translateY(-1px);
+  }
+
+  .pricing-note {
+    text-align: center;
+    font-size: 0.95rem;
+    color: #666;
+    margin-top: 48px;
+  }
+
+  .pricing-note a {
+    color: var(--color-primary);
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .pricing-note a:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 768px) {
+    .pricing-card.highlight {
+      transform: scale(1);
+    }
+    .pricing-card.highlight:hover {
+      transform: translateY(-4px);
+    }
+  }
+</style>

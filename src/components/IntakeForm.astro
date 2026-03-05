@@ -1,0 +1,1501 @@
+---
+// IntakeForm.astro
+---
+
+<!-- Flatpickr CSS -->
+<link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
+/>
+<style is:global>
+    /* Flatpickr Custom Theme */
+    .flatpickr-calendar {
+        background: #fff;
+        box-shadow: 0 10px 25px -5px rgba(216, 27, 96, 0.1),
+            0 8px 10px -6px rgba(216, 27, 96, 0.1) !important;
+        border: 1px solid #fce7f3 !important;
+        border-radius: 1.5rem !important;
+        padding: 0.5rem;
+    }
+    .flatpickr-day.selected,
+    .flatpickr-day.startRange,
+    .flatpickr-day.endRange,
+    .flatpickr-day.selected.prevMonthDay,
+    .flatpickr-day.selected.nextMonthDay,
+    .flatpickr-day.startRange.prevMonthDay,
+    .flatpickr-day.startRange.nextMonthDay,
+    .flatpickr-day.endRange.prevMonthDay,
+    .flatpickr-day.endRange.nextMonthDay {
+        background: #d81b60 !important;
+        border-color: #d81b60 !important;
+        color: #fff !important;
+        border-radius: 0.75rem !important;
+    }
+    .flatpickr-day:hover {
+        background: #fce7f3 !important;
+        border-color: #fce7f3 !important;
+    }
+    .flatpickr-months .flatpickr-month {
+        color: #0f172a !important;
+        fill: #0f172a !important;
+    }
+    .flatpickr-current-month .flatpickr-monthDropdown-months {
+        font-weight: 700 !important;
+    }
+    .flatpickr-weekday {
+        color: #64748b !important;
+        font-weight: 600 !important;
+    }
+</style>
+
+<div
+    id="intake-form-container"
+    class="max-w-4xl mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden border border-pink-50 relative"
+>
+    <!-- Progress Bar -->
+    <div class="h-2 bg-pink-50 w-full overflow-hidden">
+        <div
+            id="form-progress"
+            class="h-full bg-primary transition-all duration-500 w-[14%]"
+        >
+        </div>
+    </div>
+
+    <form id="clinical-form" class="p-8 sm:p-12" novalidate>
+        <!-- Step 1: Personal Data Part 1 -->
+        <div class="form-step active" data-step="1">
+            <div class="text-center mb-10">
+                <span
+                    class="text-primary font-bold text-sm uppercase tracking-wider"
+                    >Paso 1 de 7</span
+                >
+                <h3 class="text-3xl font-bold text-slate-900 mt-2">
+                    Datos Personales
+                </h3>
+                <p class="text-slate-500 mt-2">
+                    Comencemos con tu información básica.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="md:col-span-2">
+                    <label
+                        class="block text-sm font-semibold text-slate-700 mb-2"
+                        >Correo electrónico *</label
+                    >
+                    <input
+                        type="email"
+                        name="email"
+                        required
+                        class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
+                        placeholder="tu@email.com"
+                    />
+                </div>
+                <div class="relative group">
+                    <label
+                        class="block text-sm font-semibold text-slate-700 mb-2"
+                        >Fecha de hoy *</label
+                    >
+                    <div class="relative">
+                        <input
+                            type="text"
+                            id="fecha_hoy"
+                            name="fecha_hoy"
+                            required
+                            readonly
+                            class="w-full px-4 py-3 pl-11 rounded-xl border border-slate-200 bg-slate-50 cursor-pointer outline-none transition-all modern-date-input"
+                            placeholder="Seleccionar fecha"
+                        />
+                        <div
+                            class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                class="w-5 h-5"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                ><rect
+                                    x="3"
+                                    y="4"
+                                    width="18"
+                                    height="18"
+                                    rx="2"
+                                    ry="2"></rect><line
+                                    x1="16"
+                                    y1="2"
+                                    x2="16"
+                                    y2="6"></line><line
+                                    x1="8"
+                                    y1="2"
+                                    x2="8"
+                                    y2="6"></line><line
+                                    x1="3"
+                                    y1="10"
+                                    x2="21"
+                                    y2="10"></line>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <label
+                        class="block text-sm font-semibold text-slate-700 mb-2"
+                        >Nombre completo: *</label
+                    >
+                    <input
+                        type="text"
+                        name="nombre"
+                        required
+                        class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
+                        placeholder="Nombre Apellido"
+                    />
+                </div>
+                <div class="relative group">
+                    <label
+                        class="block text-sm font-semibold text-slate-700 mb-2"
+                        >Fecha de nacimiento: *</label
+                    >
+                    <div class="relative">
+                        <input
+                            type="text"
+                            id="fecha_nacimiento"
+                            name="fecha_nacimiento"
+                            required
+                            class="w-full px-4 py-3 pl-11 rounded-xl border border-slate-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all modern-date-input"
+                            placeholder="Selecciona tu fecha"
+                        />
+                        <div
+                            class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-primary transition-colors pointer-events-none"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                class="w-5 h-5"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                ><rect
+                                    x="3"
+                                    y="4"
+                                    width="18"
+                                    height="18"
+                                    rx="2"
+                                    ry="2"></rect><line
+                                    x1="16"
+                                    y1="2"
+                                    x2="16"
+                                    y2="6"></line><line
+                                    x1="8"
+                                    y1="2"
+                                    x2="8"
+                                    y2="6"></line><line
+                                    x1="3"
+                                    y1="10"
+                                    x2="21"
+                                    y2="10"></line>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <label
+                        class="block text-sm font-semibold text-slate-700 mb-2"
+                        >Edad: *</label
+                    >
+                    <input
+                        type="number"
+                        id="edad"
+                        name="edad"
+                        required
+                        readonly
+                        class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 cursor-not-allowed outline-none transition-all"
+                        placeholder="Se calcula automáticamente"
+                    />
+                </div>
+                <div class="md:col-span-2">
+                    <label
+                        class="block text-sm font-semibold text-slate-700 mb-2"
+                        >Dirección</label
+                    >
+                    <input
+                        type="text"
+                        name="direccion"
+                        class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
+                        placeholder="Calle, Número, Colonia"
+                    />
+                </div>
+                <div>
+                    <label
+                        class="block text-sm font-semibold text-slate-700 mb-2"
+                        >Teléfono: *</label
+                    >
+                    <input
+                        type="tel"
+                        id="telefono"
+                        name="telefono"
+                        required
+                        class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
+                        placeholder="(555)-5555555"
+                    />
+                </div>
+                <div>
+                    <label
+                        class="block text-sm font-semibold text-slate-700 mb-2"
+                        >Estatura: *</label
+                    >
+                    <input
+                        type="text"
+                        id="estatura"
+                        name="estatura"
+                        required
+                        class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
+                        placeholder="1.90"
+                    />
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 2: Personal Data Part 2 -->
+        <div class="form-step" data-step="2">
+            <div class="text-center mb-10">
+                <span
+                    class="text-primary font-bold text-sm uppercase tracking-wider"
+                    >Paso 2 de 7</span
+                >
+                <h3 class="text-3xl font-bold text-slate-900 mt-2">
+                    Perfil y Motivo
+                </h3>
+                <p class="text-slate-500 mt-2">
+                    Cuéntanos más sobre ti y por qué vienes.
+                </p>
+            </div>
+
+            <div class="space-y-8">
+                <div>
+                    <label
+                        class="block text-sm font-semibold text-slate-700 mb-3"
+                        >Género *</label
+                    >
+                    <div class="grid grid-cols-2 gap-3">
+                        {
+                            [
+                                "Femenino",
+                                "Masculino",
+                                "Prefiero no decirlo",
+                                "No binario",
+                            ].map((opt) => (
+                                <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-100 hover:border-primary/30 cursor-pointer transition-all">
+                                    <input
+                                        type="radio"
+                                        name="genero"
+                                        value={opt}
+                                        required
+                                        class="w-5 h-5 text-primary focus:ring-primary"
+                                    />
+                                    <span class="text-sm text-slate-600">
+                                        {opt}
+                                    </span>
+                                </label>
+                            ))
+                        }
+                    </div>
+                </div>
+
+                <div>
+                    <label
+                        class="block text-sm font-semibold text-slate-700 mb-3"
+                        >Estado Civil *</label
+                    >
+                    <div class="grid grid-cols-3 gap-3">
+                        {
+                            ["Soltero", "Casado", "Prefiero no decirlo"].map(
+                                (opt) => (
+                                    <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-100 hover:border-primary/30 cursor-pointer transition-all">
+                                        <input
+                                            type="radio"
+                                            name="estado_civil"
+                                            value={opt}
+                                            required
+                                            class="w-5 h-5 text-primary focus:ring-primary"
+                                        />
+                                        <span class="text-sm text-slate-600">
+                                            {opt}
+                                        </span>
+                                    </label>
+                                )
+                            )
+                        }
+                    </div>
+                </div>
+
+                <div>
+                    <label
+                        class="block text-sm font-semibold text-slate-700 mb-2"
+                        >Motivos de consulta *</label
+                    >
+                    <textarea
+                        name="motivos_consulta"
+                        required
+                        rows="3"
+                        class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all resize-none"
+                        placeholder="Describe brevemente tus objetivos..."
+                    ></textarea>
+                </div>
+
+                <div>
+                    <label
+                        class="block text-sm font-semibold text-slate-700 mb-3"
+                        >¿De parte de quien tiene recomendaciones sobre mis
+                        servicios? *</label
+                    >
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                        {
+                            [
+                                "Amig@",
+                                "Familiar",
+                                "Prefiero no decirlo",
+                                "Facebook",
+                                "Instagram",
+                                "Google",
+                                "Pagina web NUTRILEV",
+                            ].map((opt) => (
+                                <label class="flex items-center gap-2 p-2 rounded-lg border border-slate-50 hover:bg-slate-50 cursor-pointer transition-all">
+                                    <input
+                                        type="radio"
+                                        name="recomendacion_fuente"
+                                        value={opt}
+                                        required
+                                        class="w-4 h-4 text-primary focus:ring-primary"
+                                    />
+                                    <span class="text-xs text-slate-600">
+                                        {opt}
+                                    </span>
+                                </label>
+                            ))
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 3: Medical Background -->
+        <div class="form-step" data-step="3">
+            <div class="text-center mb-10">
+                <span
+                    class="text-primary font-bold text-sm uppercase tracking-wider"
+                    >Paso 3 de 7</span
+                >
+                <h3 class="text-3xl font-bold text-slate-900 mt-2">
+                    Antecedentes Médicos
+                </h3>
+                <p class="text-slate-500 mt-2">
+                    Información clínica importante.
+                </p>
+            </div>
+
+            <div class="space-y-8">
+                <div>
+                    <label
+                        class="block text-sm font-semibold text-slate-700 mb-3"
+                        >Antecedentes personales patológicos: Seleccionar si
+                        presenta alguna de las siguientes condiciones. *</label
+                    >
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                        {
+                            [
+                                "Diarrea",
+                                "Estreñimiento",
+                                "Gastritis",
+                                "Úlceras",
+                                "Nauseas",
+                                "Pirosis",
+                                "Vomito",
+                                "Colitis",
+                                "Dentadura",
+                                "Otros",
+                                "Prefiero no decirlo",
+                                "Ninguno",
+                            ].map((opt) => (
+                                <label class="flex items-center gap-2 p-2 rounded-lg border border-slate-50 hover:bg-slate-50 cursor-pointer">
+                                    <input
+                                        type="checkbox"
+                                        name="antecedentes_patologicos"
+                                        value={opt}
+                                        required
+                                        class="w-4 h-4 text-primary rounded"
+                                    />
+                                    <span class="text-xs text-slate-600">
+                                        {opt}
+                                    </span>
+                                </label>
+                            ))
+                        }
+                    </div>
+                </div>
+
+                <div>
+                    <label
+                        class="block text-sm font-semibold text-slate-700 mb-3"
+                        >Toma: *</label
+                    >
+                    <div class="flex flex-wrap gap-4">
+                        {
+                            [
+                                "Laxantes",
+                                "Diuréticos",
+                                "Antiácidos",
+                                "Analgésicos",
+                                "Ninguno",
+                            ].map((opt) => (
+                                <label class="flex items-center gap-2 px-3 py-2 rounded-full border border-slate-100 hover:border-primary/20 cursor-pointer">
+                                    <input
+                                        type="checkbox"
+                                        name="toma_medicamentos"
+                                        value={opt}
+                                        required
+                                        class="w-4 h-4 text-primary rounded"
+                                    />
+                                    <span class="text-sm text-slate-600">
+                                        {opt}
+                                    </span>
+                                </label>
+                            ))
+                        }
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <label
+                            class="block text-sm font-semibold text-slate-700 mb-2"
+                            >Enfermedades diagnosticada:</label
+                        >
+                        <textarea
+                            name="enfermedades"
+                            rows="2"
+                            class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:border-primary outline-none transition-all resize-none"
+                            placeholder="Detalla si aplica..."></textarea>
+                    </div>
+                    <div>
+                        <label
+                            class="block text-sm font-semibold text-slate-700 mb-2"
+                            >¿Tratamiento farmacológico? (Medicamentos)</label
+                        >
+                        <textarea
+                            name="medicamentos"
+                            rows="2"
+                            class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:border-primary outline-none transition-all resize-none"
+                            placeholder="Nombre y dosis si los conoces..."
+                        ></textarea>
+                    </div>
+                </div>
+
+                <div>
+                    <label
+                        class="block text-sm font-semibold text-slate-700 mb-2"
+                        >¿Le han practicado alguna cirugía? ¿Cuál? ¿Hace cuánto
+                        tiempo? *</label
+                    >
+                    <textarea
+                        name="cirugias"
+                        required
+                        rows="2"
+                        class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:border-primary outline-none transition-all resize-none"
+                    ></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 4: Family & Lifestyle -->
+        <div class="form-step" data-step="4">
+            <div class="text-center mb-10">
+                <span
+                    class="text-primary font-bold text-sm uppercase tracking-wider"
+                    >Paso 4 de 7</span
+                >
+                <h3 class="text-3xl font-bold text-slate-900 mt-2">
+                    Familia y Hábitos
+                </h3>
+                <p class="text-slate-500 mt-2">Entorno y rutinas diarias.</p>
+            </div>
+
+            <div class="space-y-8">
+                <div>
+                    <label
+                        class="block text-sm font-semibold text-slate-700 mb-3"
+                        >¿Alguien de tu familia presenta alguna enfermedad?
+                        (Madre, padre, hermanos, tios) *</label
+                    >
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                        {
+                            [
+                                "Diabetes",
+                                "Hipertensión",
+                                "Cáncer",
+                                "Cardiopatías",
+                                "Obesidad",
+                                "Colesterol",
+                                "Triglicéridos",
+                                "Otra",
+                                "Ninguna",
+                            ].map((opt) => (
+                                <label class="flex items-center gap-2 p-2 rounded-lg border border-slate-50 hover:bg-slate-50 cursor-pointer">
+                                    <input
+                                        type="checkbox"
+                                        name="antecedentes_familiares"
+                                        value={opt}
+                                        required
+                                        class="w-4 h-4 text-primary rounded"
+                                    />
+                                    <span class="text-xs text-slate-600">
+                                        {opt}
+                                    </span>
+                                </label>
+                            ))
+                        }
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <label
+                            class="block text-sm font-semibold text-slate-700 mb-3"
+                            >¿Bebidas alcohólicas? *</label
+                        >
+                        <div class="space-y-2">
+                            {
+                                [
+                                    "Si",
+                                    "No",
+                                    "Lo deje",
+                                    "Social (1 vez a la semana)",
+                                    "Frecuente (2 veces a la semana)",
+                                    "Muy frencuente (mas de 3 veces a la semana)",
+                                ].map((opt) => (
+                                    <label class="flex items-center gap-3 p-2 rounded-lg border border-slate-50 hover:bg-slate-50 cursor-pointer">
+                                        <input
+                                            type="radio"
+                                            name="alcohol"
+                                            value={opt}
+                                            required
+                                            class="w-4 h-4 text-primary"
+                                        />
+                                        <span class="text-xs text-slate-600">
+                                            {opt}
+                                        </span>
+                                    </label>
+                                ))
+                            }
+                        </div>
+                    </div>
+                    <div>
+                        <label
+                            class="block text-sm font-semibold text-slate-700 mb-3"
+                            >¿Cigarros? *</label
+                        >
+                        <div class="space-y-2">
+                            {
+                                [
+                                    "Si",
+                                    "No",
+                                    "Lo deje",
+                                    "Social (1 vez a la semana)",
+                                    "Frecuente (1 vez al dia)",
+                                    "Muy frencuente (mas de 2 veces al dia)",
+                                ].map((opt) => (
+                                    <label class="flex items-center gap-3 p-2 rounded-lg border border-slate-50 hover:bg-slate-50 cursor-pointer">
+                                        <input
+                                            type="radio"
+                                            name="tabaco"
+                                            value={opt}
+                                            required
+                                            class="w-4 h-4 text-primary"
+                                        />
+                                        <span class="text-xs text-slate-600">
+                                            {opt}
+                                        </span>
+                                    </label>
+                                ))
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <label
+                        class="block text-sm font-semibold text-slate-700 mb-3"
+                        >Horas de sueño al día: *</label
+                    >
+                    <div class="flex flex-wrap gap-3">
+                        {
+                            [
+                                "Menos de 5 horas",
+                                "6 horas",
+                                "7 a 8 horas",
+                                "Màs de 8 horas",
+                                "Màs de 10 horas",
+                            ].map((opt) => (
+                                <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-100 hover:border-primary/20 cursor-pointer transition-all">
+                                    <input
+                                        type="radio"
+                                        name="sueno"
+                                        value={opt}
+                                        required
+                                        class="w-4 h-4 text-primary"
+                                    />
+                                    <span class="text-sm text-slate-600">
+                                        {opt}
+                                    </span>
+                                </label>
+                            ))
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 5: Physical Activity & Work -->
+        <div class="form-step" data-step="5">
+            <div class="text-center mb-10">
+                <span
+                    class="text-primary font-bold text-sm uppercase tracking-wider"
+                    >Paso 5 de 7</span
+                >
+                <h3 class="text-3xl font-bold text-slate-900 mt-2">
+                    Actividad y Trabajo
+                </h3>
+                <p class="text-slate-500 mt-2">Tu movimiento y occupation.</p>
+            </div>
+
+            <div class="space-y-8">
+                <div>
+                    <label
+                        class="block text-sm font-semibold text-slate-700 mb-3"
+                        >Actividad física: ¿Realiza actividad física? *</label
+                    >
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                        {
+                            [
+                                "No",
+                                "1 vez a la semana",
+                                "De lunes a viernes",
+                                "De lunes a domingo",
+                                "3 veces a la semana",
+                            ].map((opt) => (
+                                <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-100 hover:bg-slate-50 cursor-pointer">
+                                    <input
+                                        type="radio"
+                                        name="hace_ejercicio"
+                                        value={opt}
+                                        required
+                                        class="w-4 h-4 text-primary"
+                                    />
+                                    <span class="text-sm text-slate-600">
+                                        {opt}
+                                    </span>
+                                </label>
+                            ))
+                        }
+                        <div
+                            class="flex items-center gap-3 p-2 rounded-xl border border-slate-100 italic"
+                        >
+                            <span class="text-xs text-slate-400"
+                                >Si es otra, especifica debajo</span
+                            >
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <label
+                        class="block text-sm font-semibold text-slate-700 mb-2"
+                        >Actividad física: ¿Qué actividad física se hace?
+                        ¿Cuánto tiempo cada sesión? ¿Desde hace cuánto tiempo?</label
+                    >
+                    <input
+                        type="text"
+                        name="ejercicio_detalles"
+                        class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:border-primary outline-none transition-all"
+                        placeholder="Ej. Natación, 45 min, 6 meses"
+                    />
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <label
+                            class="block text-sm font-semibold text-slate-700 mb-2"
+                            >Profesión / Ocupación: ¿A que se dedica?</label
+                        >
+                        <textarea
+                            name="profesion"
+                            rows="2"
+                            class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:border-primary outline-none transition-all resize-none"
+                        ></textarea>
+                    </div>
+                    <div>
+                        <label
+                            class="block text-sm font-semibold text-slate-700 mb-2"
+                            >Profesión / Ocupación: ¿Su actividad es sentado
+                            (a), parado (a), caminando, etc.? ¿Cuál es su
+                            horario laboral?</label
+                        >
+                        <textarea
+                            name="tipo_actividad_horario"
+                            rows="2"
+                            class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:border-primary outline-none transition-all resize-none"
+                        ></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 6: Nutritional Habits 1 -->
+        <div class="form-step" data-step="6">
+            <div class="text-center mb-10">
+                <span
+                    class="text-primary font-bold text-sm uppercase tracking-wider"
+                    >Paso 6 de 7</span
+                >
+                <h3 class="text-3xl font-bold text-slate-900 mt-2">
+                    Hábitos Nutricionales
+                </h3>
+                <p class="text-slate-500 mt-2">Día a día con la comida.</p>
+            </div>
+
+            <div class="space-y-8">
+                <div>
+                    <label
+                        class="block text-sm font-semibold text-slate-700 mb-2 italic"
+                        >Diario de actividades 24 hrs. Coloque por favor la hora
+                        en que hace sus comidas y que es lo que comió el día de
+                        ayer, con cantidades, sin omitir bebidas y alimentos. *</label
+                    >
+                    <textarea
+                        name="diario_24h"
+                        required
+                        rows="4"
+                        class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:border-primary outline-none transition-all resize-none"
+                        placeholder="Desayuno (8 am): ... Comida: ... Cena: ..."
+                    ></textarea>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <label
+                            class="block text-sm font-semibold text-slate-700 mb-3"
+                            >¿Tiene estudios de laboratorio (Sangre) recientes
+                            (menos de 6 meses)? *</label
+                        >
+                        <div class="space-y-2">
+                            {
+                                ["Si", "No", "Hace mas de 6 meses"].map(
+                                    (opt) => (
+                                        <label class="flex items-center gap-3 p-2 rounded-lg border border-slate-50 hover:bg-slate-50 cursor-pointer">
+                                            <input
+                                                type="radio"
+                                                name="laboratorios"
+                                                value={opt}
+                                                required
+                                                class="w-4 h-4 text-primary"
+                                            />
+                                            <span class="text-xs text-slate-600">
+                                                {opt}
+                                            </span>
+                                        </label>
+                                    )
+                                )
+                            }
+                        </div>
+                    </div>
+                    <div>
+                        <label
+                            class="block text-sm font-semibold text-slate-700 mb-3"
+                            >¿Cuántas comidas hace al día? *</label
+                        >
+                        <div class="space-y-2">
+                            {
+                                [
+                                    "1 al dia",
+                                    "2 al dia",
+                                    "3 al dia",
+                                    "5 al dia",
+                                ].map((opt) => (
+                                    <label class="flex items-center gap-3 p-2 rounded-lg border border-slate-50 hover:bg-slate-50 cursor-pointer transition-all">
+                                        <input
+                                            type="radio"
+                                            name="comidas_dia"
+                                            value={opt}
+                                            required
+                                            class="w-4 h-4 text-primary"
+                                        />
+                                        <span class="text-xs text-slate-600">
+                                            {opt}
+                                        </span>
+                                    </label>
+                                ))
+                            }
+                            <div
+                                class="flex items-center gap-2 p-1 border-b border-pink-50"
+                            >
+                                <input
+                                    type="text"
+                                    name="comidas_dia_otro"
+                                    class="w-full bg-transparent text-xs outline-none"
+                                    placeholder="Otro: Especifique aquí"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 7: Final Details -->
+        <div class="form-step" data-step="7">
+            <div class="text-center mb-10">
+                <span
+                    class="text-primary font-bold text-sm uppercase tracking-wider"
+                    >Paso 7 de 7</span
+                >
+                <h3 class="text-3xl font-bold text-slate-900 mt-2">
+                    Detalles Finales
+                </h3>
+                <p class="text-slate-500 mt-2">
+                    Última información nutricional.
+                </p>
+            </div>
+
+            <div class="space-y-8">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <label
+                            class="block text-sm font-semibold text-slate-700 mb-3"
+                            >¿Cuántas veces a la semana se come comida comprada?
+                            *</label
+                        >
+                        <div class="space-y-2">
+                            {
+                                ["1", "2", "3", "5", "Ninguna"].map((opt) => (
+                                    <label class="flex items-center gap-3 p-2 rounded-lg border border-slate-50 hover:bg-slate-50 cursor-pointer">
+                                        <input
+                                            type="radio"
+                                            name="comida_comprada"
+                                            value={opt}
+                                            required
+                                            class="w-4 h-4 text-primary"
+                                        />
+                                        <span class="text-xs text-slate-600">
+                                            {opt}
+                                        </span>
+                                    </label>
+                                ))
+                            }
+                            <div
+                                class="flex items-center gap-2 p-1 border-b border-pink-50"
+                            >
+                                <input
+                                    type="text"
+                                    name="comida_comprada_otro"
+                                    class="w-full bg-transparent text-xs outline-none"
+                                    placeholder="Otros: Especifique aquí"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <label
+                            class="block text-sm font-semibold text-slate-700 mb-3"
+                            >¿Quién prepara sus alimentos? *</label
+                        >
+                        <div class="space-y-2">
+                            {
+                                [
+                                    "Yo",
+                                    "Espos@",
+                                    "Madre",
+                                    "Padre",
+                                    "Comida comprada",
+                                ].map((opt) => (
+                                    <label class="flex items-center gap-3 p-2 rounded-lg border border-slate-50 hover:bg-slate-50 cursor-pointer">
+                                        <input
+                                            type="radio"
+                                            name="quien_cocina"
+                                            value={opt}
+                                            required
+                                            class="w-4 h-4 text-primary"
+                                        />
+                                        <span class="text-xs text-slate-600">
+                                            {opt}
+                                        </span>
+                                    </label>
+                                ))
+                            }
+                            <div
+                                class="flex items-center gap-2 p-1 border-b border-pink-50"
+                            >
+                                <input
+                                    type="text"
+                                    name="quien_cocina_otro"
+                                    class="w-full bg-transparent text-xs outline-none"
+                                    placeholder="Otros: Especifique aquí"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <label
+                            class="block text-sm font-semibold text-slate-700 mb-2"
+                            >Alimentos preferidos: *</label
+                        >
+                        <textarea
+                            name="alimentos_preferidos"
+                            required
+                            rows="2"
+                            class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:border-primary outline-none transition-all resize-none"
+                            placeholder="Los que no pueden faltar..."
+                        ></textarea>
+                    </div>
+                    <div>
+                        <label
+                            class="block text-sm font-semibold text-slate-700 mb-2"
+                            >Alimentos que no le agradan: *</label
+                        >
+                        <textarea
+                            name="alimentos_no_agradan"
+                            required
+                            rows="2"
+                            class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:border-primary outline-none transition-all resize-none"
+                            placeholder="Por malestar o gusto propio..."
+                        ></textarea>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <label
+                            class="block text-sm font-semibold text-slate-700 mb-3"
+                            >¿Toma algún suplemento o complemento? *</label
+                        >
+                        <div class="flex gap-4">
+                            {
+                                ["Si", "No"].map((opt) => (
+                                    <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-100 hover:border-primary/20 cursor-pointer transition-all flex-1 text-center">
+                                        <input
+                                            type="radio"
+                                            name="suplementos_si_no"
+                                            value={opt}
+                                            required
+                                            class="w-4 h-4 text-primary"
+                                        />
+                                        <span class="text-sm text-slate-600">
+                                            {opt}
+                                        </span>
+                                    </label>
+                                ))
+                            }
+                        </div>
+                        <textarea
+                            name="suplementos_cuales"
+                            rows="2"
+                            class="mt-4 w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:border-primary outline-none transition-all resize-none"
+                            placeholder="¿Cuáles suplementos?"></textarea>
+                    </div>
+                    <div>
+                        <label
+                            class="block text-sm font-semibold text-slate-700 mb-3"
+                            >¿Ha llevado alguna dieta especial? *</label
+                        >
+                        <div class="grid grid-cols-2 gap-2">
+                            {
+                                [
+                                    "Si",
+                                    "No",
+                                    "Con Otro nutriòlogo",
+                                    "Internet",
+                                ].map((opt) => (
+                                    <label class="flex items-center gap-2 p-2 rounded-lg border border-slate-50 hover:bg-slate-50 cursor-pointer">
+                                        <input
+                                            type="radio"
+                                            name="dieta_especial"
+                                            value={opt}
+                                            required
+                                            class="w-4 h-4 text-primary"
+                                        />
+                                        <span class="text-xs text-slate-600">
+                                            {opt}
+                                        </span>
+                                    </label>
+                                ))
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <!-- Button Navigation -->
+    <div
+        class="px-8 sm:px-12 py-6 border-t border-pink-50 bg-white/50 backdrop-blur-sm"
+    >
+        <div class="flex gap-4">
+            <button
+                type="button"
+                id="prev-btn"
+                class="hidden flex-1 px-8 py-4 rounded-2xl font-bold text-slate-500 border border-slate-200 hover:bg-slate-50 transition-all"
+                >Anterior</button
+            >
+            <button
+                type="button"
+                id="next-btn"
+                class="flex-1 px-8 py-4 rounded-2xl font-bold bg-primary text-white shadow-lg shadow-pink-100 hover:scale-105 active:scale-95 transition-all"
+                >Siguiente</button
+            >
+            <button
+                type="submit"
+                id="submit-btn"
+                class="hidden flex-1 px-8 py-4 rounded-2xl font-bold bg-gradient-to-r from-primary to-accent text-white shadow-xl shadow-pink-200 hover:scale-105 active:scale-95 transition-all"
+                >Enviar Historia Clínica</button
+            >
+        </div>
+    </div>
+
+    <!-- Success Message -->
+    <div
+        id="success-screen"
+        class="hidden absolute inset-0 bg-white flex flex-col items-center justify-center p-12 text-center z-20"
+    >
+        <div
+            class="w-24 h-24 bg-pink-50 rounded-full flex items-center justify-center text-4xl mb-6 text-primary animate-bounce"
+        >
+            ✓
+        </div>
+        <h3 class="text-3xl font-bold text-slate-900 mb-4">
+            ¡Historia Clínica Recibida!
+        </h3>
+        <p class="text-slate-600 mb-8 max-w-sm">
+            Toda tu información ha sido enviada con éxito. El último paso es
+            agendar tu cita por WhatsApp.
+        </p>
+        <a
+            id="whatsapp-schedule-btn"
+            href="https://wa.me/526143958598?text=Hola%2C%20acabo%20de%20llenar%20mi%20historia%20cl%C3%ADnica%20y%20me%20gustar%C3%ADa%20agendar%20una%20cita."
+            target="_blank"
+            class="bg-[#25D366] text-white px-8 py-3 rounded-full font-bold shadow-lg hover:scale-105 transition-transform flex items-center justify-center gap-2"
+        >
+            <span>Agendar Cita por WhatsApp</span>
+        </a>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div
+        id="loading-overlay"
+        class="hidden absolute inset-0 bg-white/80 backdrop-blur-sm flex items-center justify-center z-30"
+    >
+        <div
+            class="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin"
+        >
+        </div>
+    </div>
+</div>
+
+<style>
+    .form-step {
+        display: none;
+        animation: fadeIn 0.4s ease-out forwards;
+    }
+    .form-step.active {
+        display: block;
+    }
+
+    /* Modern Date Input Theming */
+    .modern-date-input::-webkit-calendar-picker-indicator {
+        background: transparent;
+        bottom: 0;
+        color: transparent;
+        cursor: pointer;
+        height: auto;
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: auto;
+    }
+
+    .modern-date-input {
+        position: relative;
+        height: 52px; /* Fixed height for consistent centering */
+        -webkit-appearance: none; /* Reset native styling for better control */
+        appearance: none;
+    }
+
+    .modern-date-input:focus {
+        border-color: #d81b60;
+        box-shadow: 0 0 0 2px rgba(216, 27, 96, 0.1);
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Slider Animations for Steps */
+    .form-step {
+        display: none;
+    }
+
+    .form-step.active {
+        display: block;
+        animation: slide-next 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+
+    .form-step.slide-prev {
+        animation: slide-prev 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+
+    @keyframes slide-next {
+        from {
+            opacity: 0;
+            transform: translateX(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes slide-prev {
+        from {
+            opacity: 0;
+            transform: translateX(-30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+</style>
+
+<!-- Flatpickr JS -->
+<script is:inline src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script is:inline src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/es.js"
+></script>
+
+<script>
+    let currentStep = 1;
+    const totalSteps = 7;
+    const form = document.getElementById("clinical-form") as HTMLFormElement;
+    const steps = document.querySelectorAll(".form-step");
+    const prevBtn = document.getElementById("prev-btn");
+    const nextBtn = document.getElementById("next-btn");
+    const submitBtn = document.getElementById("submit-btn");
+    const progressBar = document.getElementById("form-progress");
+    const successScreen = document.getElementById("success-screen");
+    const loadingOverlay = document.getElementById("loading-overlay");
+
+    // Initialize Flatpickr for "Fecha de hoy"
+    const todayInput = document.getElementById("fecha_hoy") as HTMLInputElement;
+    if (todayInput) {
+        // @ts-ignore
+        flatpickr(todayInput, {
+            locale: "es",
+            dateFormat: "Y-m-d",
+            defaultDate: "today",
+            clickOpens: false,
+        });
+    }
+
+    // Initialize Flatpickr for "Fecha de nacimiento"
+    const birthDateInput = document.getElementById(
+        "fecha_nacimiento"
+    ) as HTMLInputElement;
+    if (birthDateInput) {
+        // @ts-ignore
+        flatpickr(birthDateInput, {
+            locale: "es",
+            dateFormat: "Y-m-d",
+            maxDate: "today",
+            disableMobile: "true",
+            onChange: function (selectedDates: Date[], dateStr: string) {
+                const edadInput = document.getElementById(
+                    "edad"
+                ) as HTMLInputElement;
+                if (dateStr && edadInput) {
+                    const birthDate = new Date(dateStr);
+                    const today = new Date();
+                    let age = today.getFullYear() - birthDate.getFullYear();
+                    const monthDiff = today.getMonth() - birthDate.getMonth();
+
+                    if (
+                        monthDiff < 0 ||
+                        (monthDiff === 0 &&
+                            today.getDate() < birthDate.getDate())
+                    ) {
+                        age--;
+                    }
+                    edadInput.value = age >= 0 ? age.toString() : "0";
+                }
+            },
+        });
+    }
+
+    // Phone Mask: (XXX)-XXXXXXX
+    const phoneInput = document.getElementById("telefono") as HTMLInputElement;
+    if (phoneInput) {
+        phoneInput.addEventListener("input", (e) => {
+            let value = phoneInput.value.replace(/\D/g, "");
+            if (value.length > 10) value = value.slice(0, 10);
+
+            let formatted = "";
+            if (value.length > 0) {
+                formatted = "(" + value.slice(0, 3);
+                if (value.length >= 3) {
+                    formatted += ")-";
+                    if (value.length > 3) {
+                        formatted += value.slice(3);
+                    }
+                }
+            }
+            phoneInput.value = formatted;
+        });
+    }
+
+    // Height Mask: X.XX
+    const heightInput = document.getElementById("estatura") as HTMLInputElement;
+    if (heightInput) {
+        heightInput.addEventListener("input", (e) => {
+            let value = heightInput.value.replace(/[^\d.]/g, "");
+            if (value.includes(".")) {
+                const parts = value.split(".");
+                value = parts[0] + "." + parts.slice(1).join("").slice(0, 2);
+            }
+            if (value.length > 4) value = value.slice(0, 4);
+            heightInput.value = value;
+        });
+    }
+
+    // VARIABLE CLAVE: SUSTITUIR POR LA URL DE GOOGLE APPS SCRIPT
+    const SCRIPT_URL =
+        "https://script.google.com/macros/s/AKfycbz2AGLzvmFcnLlPdoaESgSpMqmiZbiNkx6iz44M6NmHcxYdyQNQBcpzjY793bnIxnbsGA/exec";
+
+    function updateForm(direction: "next" | "prev" = "next") {
+        steps.forEach((step) => {
+            const stepValue = step.getAttribute("data-step");
+            if (stepValue) {
+                const stepNum = parseInt(stepValue);
+                const isActive = stepNum === currentStep;
+                step.classList.toggle("active", isActive);
+
+                if (isActive) {
+                    step.classList.remove("slide-prev");
+                    if (direction === "prev") {
+                        step.classList.add("slide-prev");
+                    }
+                }
+            }
+        });
+
+        if (progressBar) {
+            progressBar.style.width = `${(currentStep / totalSteps) * 100}%`;
+        }
+
+        prevBtn?.classList.toggle("hidden", currentStep === 1);
+        nextBtn?.classList.toggle("hidden", currentStep === totalSteps);
+        submitBtn?.classList.toggle("hidden", currentStep !== totalSteps);
+
+        // Scroll al inicio del container para mejor visibilidad
+        const container = document.getElementById("intake-form-container");
+        if (container) {
+            const rect = container.getBoundingClientRect();
+            const scrollTop =
+                window.pageYOffset || document.documentElement.scrollTop;
+            window.scrollTo({
+                top: rect.top + scrollTop - 100,
+                behavior: "smooth",
+            });
+        }
+    }
+
+    function clearErrors(stepIndex: number) {
+        const step = steps[stepIndex];
+        step.querySelectorAll(".error-message").forEach((el) => el.remove());
+        step.querySelectorAll(".border-red-400").forEach((el) =>
+            el.classList.remove("border-red-400")
+        );
+    }
+
+    function validateStep(stepIndex: number) {
+        const currentStepEl = steps[stepIndex];
+        clearErrors(stepIndex);
+
+        const requiredInputs = currentStepEl.querySelectorAll("[required]");
+        const processedGroups = new Set();
+        let isValid = true;
+
+        requiredInputs.forEach((input: any) => {
+            let errorMsg = "";
+            const name = input.getAttribute("name");
+
+            if (input.type === "radio" || input.type === "checkbox") {
+                if (processedGroups.has(name)) return;
+                processedGroups.add(name);
+
+                const checked = currentStepEl.querySelector(
+                    `input[name="${name}"]:checked`
+                );
+                if (!checked) errorMsg = "Este campo es obligatorio";
+            } else if (!input.value.trim()) {
+                errorMsg = "Este campo es obligatorio";
+            } else if (input.type === "email") {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(input.value.trim())) {
+                    errorMsg = "Ingresa un correo electrónico válido";
+                }
+            } else if (input.id === "telefono") {
+                const phoneRegex = /^\(\d{3}\)-\d{7}$/;
+                if (!phoneRegex.test(input.value.trim())) {
+                    errorMsg = "Usa el formato (222)-2437640";
+                }
+            } else if (input.id === "estatura") {
+                const heightRegex = /^\d\.\d{2}$/;
+                if (!heightRegex.test(input.value.trim())) {
+                    errorMsg = "Usa el formato 1.90";
+                }
+            } else if (input.id === "fecha_nacimiento") {
+                const selectedDate = new Date(input.value);
+                const today = new Date();
+                today.setHours(0, 0, 0, 0);
+                if (selectedDate > today) {
+                    errorMsg = "La fecha no puede ser futura";
+                }
+            }
+
+            if (errorMsg) {
+                isValid = false;
+                input.classList.add("border-red-400");
+
+                if (!currentStepEl.querySelector(`.error-${name}`)) {
+                    const error = document.createElement("p");
+                    error.className = `text-red-500 text-xs mt-1 error-message error-${name}`;
+                    error.innerText = errorMsg;
+
+                    if (input.type === "radio" || input.type === "checkbox") {
+                        input.closest(".grid")?.after(error) ||
+                            input.closest(".flex")?.after(error) ||
+                            input.parentElement?.after(error);
+                    } else {
+                        input.after(error);
+                    }
+                }
+            }
+        });
+
+        return isValid;
+    }
+
+    nextBtn?.addEventListener("click", () => {
+        if (validateStep(currentStep - 1)) {
+            if (currentStep < totalSteps) {
+                currentStep++;
+                updateForm("next");
+            }
+        }
+    });
+
+    prevBtn?.addEventListener("click", () => {
+        if (currentStep > 1) {
+            currentStep--;
+            updateForm("prev");
+        }
+    });
+
+    form?.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        if (!validateStep(currentStep - 1)) return;
+
+        loadingOverlay?.classList.remove("hidden");
+        const formData = new FormData(form);
+        const data: any = {};
+
+        // Recolectar datos manejando valores múltiples para el mismo nombre (ej. checkboxes)
+        formData.forEach((value, key) => {
+            if (data[key]) {
+                if (Array.isArray(data[key])) {
+                    data[key].push(value);
+                } else {
+                    data[key] = [data[key], value];
+                }
+            } else {
+                data[key] = value;
+            }
+        });
+
+        // Convertir arrays a strings separados por coma para Google Sheets
+        Object.keys(data).forEach((key) => {
+            if (Array.isArray(data[key])) {
+                data[key] = data[key].join(", ");
+            }
+        });
+
+        // Manejar casos de "Otros" despuès de combinar
+        if (data["comidas_dia_otro"]) {
+            data["comidas_dia"] =
+                data["comidas_dia"] + " - " + data["comidas_dia_otro"];
+        }
+        if (data["comida_comprada_otro"]) {
+            data["comida_comprada"] =
+                data["comida_comprada"] + " - " + data["comida_comprada_otro"];
+        }
+        if (data["quien_cocina_otro"]) {
+            data["quien_cocina"] =
+                data["quien_cocina"] + " - " + data["quien_cocina_otro"];
+        }
+
+        try {
+            if (
+                (SCRIPT_URL as string) ===
+                "ESCRIBE_AQUI_TU_URL_DE_GOOGLE_APPS_SCRIPT"
+            ) {
+                console.warn("Configura SCRIPT_URL para enviar datos reales.");
+                await new Promise((r) => setTimeout(r, 1500));
+                successScreen?.classList.remove("hidden");
+            } else {
+                await fetch(SCRIPT_URL, {
+                    method: "POST",
+                    mode: "no-cors",
+                    body: JSON.stringify(data),
+                    headers: { "Content-Type": "application/json" },
+                });
+                successScreen?.classList.remove("hidden");
+            }
+
+            // Personalizar mensaje de WhatsApp con el nombre del paciente
+            const whatsappBtn = document.getElementById(
+                "whatsapp-schedule-btn"
+            ) as HTMLAnchorElement;
+            if (whatsappBtn && data.nombre) {
+                const encodedName = encodeURIComponent(data.nombre);
+                whatsappBtn.href = `https://wa.me/526143958598?text=Hola%2C%20soy%20${encodedName}.%20Acabo%20de%20llenar%20mi%20historia%20cl%C3%ADnica%20y%20me%20gustar%C3%ADa%20agendar%20una%20cita.`;
+            }
+        } catch (error) {
+            alert("Hubo un error al enviar. Por favor intenta de nuevo.");
+        } finally {
+            loadingOverlay?.classList.add("hidden");
+        }
+    });
+</script>

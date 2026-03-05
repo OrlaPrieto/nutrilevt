@@ -45,7 +45,10 @@ import FacebookIcon from "./icons/FacebookIcon.astro";
   </div>
 
   <!-- Main Nav -->
-  <nav class="bg-white/95 backdrop-blur-md border-b border-pink-100 relative">
+  <nav
+    id="main-nav"
+    class="bg-white/40 backdrop-blur-md border-b border-transparent relative transition-all duration-300"
+  >
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center h-20 md:h-32">
         <div class="flex-shrink-0">
@@ -105,25 +108,33 @@ import FacebookIcon from "./icons/FacebookIcon.astro";
             class="text-slate-600 hover:text-primary px-4 py-2 text-sm font-semibold transition-colors"
             >Inicio</a
           >
-          <a
-            href="#about"
-            class="text-slate-600 hover:text-primary px-4 py-2 text-sm font-semibold transition-colors"
-            >Sobre mí</a
-          >
+
           <a
             href="#services"
             class="text-slate-600 hover:text-primary px-4 py-2 text-sm font-semibold transition-colors"
             >Servicios</a
           >
           <a
+            href="#pricing"
+            class="text-slate-600 hover:text-primary px-4 py-2 text-sm font-semibold transition-colors"
+            >Precios</a
+          >
+
+          <a
             href="#consultation-modes"
             class="text-slate-600 hover:text-primary px-4 py-2 text-sm font-semibold transition-colors"
             >Modalidades</a
           >
+
           <a
-            href="#testimonials"
+            href="#faq"
             class="text-slate-600 hover:text-primary px-4 py-2 text-sm font-semibold transition-colors"
-            >Opiniones</a
+            >FAQ</a
+          >
+          <a
+            href="#historia-clinica"
+            class="text-slate-600 hover:text-primary px-4 py-2 text-sm font-semibold transition-colors"
+            >Historial</a
           >
           <div class="ml-4">
             <a
@@ -155,25 +166,33 @@ import FacebookIcon from "./icons/FacebookIcon.astro";
         class="mobile-link text-2xl font-bold text-slate-800 hover:text-primary transition-colors"
         >Inicio</a
       >
-      <a
-        href="#about"
-        class="mobile-link text-2xl font-bold text-slate-800 hover:text-primary transition-colors"
-        >Sobre mí</a
-      >
+
       <a
         href="#services"
         class="mobile-link text-2xl font-bold text-slate-800 hover:text-primary transition-colors"
         >Servicios</a
       >
       <a
+        href="#pricing"
+        class="mobile-link text-2xl font-bold text-slate-800 hover:text-primary transition-colors"
+        >Precios</a
+      >
+
+      <a
         href="#consultation-modes"
         class="mobile-link text-2xl font-bold text-slate-800 hover:text-primary transition-colors"
         >Modalidades</a
       >
+
       <a
-        href="#testimonials"
+        href="#faq"
         class="mobile-link text-2xl font-bold text-slate-800 hover:text-primary transition-colors"
-        >Opiniones</a
+        >FAQ</a
+      >
+      <a
+        href="#historia-clinica"
+        class="mobile-link text-2xl font-bold text-slate-800 hover:text-primary transition-colors"
+        >Llenar Historial</a
       >
       <div class="pt-6 w-full">
         <a
@@ -221,6 +240,36 @@ import FacebookIcon from "./icons/FacebookIcon.astro";
       closeIcon?.classList.add("hidden");
       document.body.style.overflow = "";
     });
+  });
+
+  // Dynamic Navbar on Scroll
+  const mainNav = document.getElementById("main-nav");
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 20) {
+      mainNav?.classList.add(
+        "bg-white/90",
+        "backdrop-blur-xl",
+        "shadow-md",
+        "border-pink-100/50"
+      );
+      mainNav?.classList.remove(
+        "bg-white/40",
+        "backdrop-blur-md",
+        "border-transparent"
+      );
+    } else {
+      mainNav?.classList.remove(
+        "bg-white/90",
+        "backdrop-blur-xl",
+        "shadow-md",
+        "border-pink-100/50"
+      );
+      mainNav?.classList.add(
+        "bg-white/40",
+        "backdrop-blur-md",
+        "border-transparent"
+      );
+    }
   });
 </script>
 

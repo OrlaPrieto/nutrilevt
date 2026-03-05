@@ -1,0 +1,37 @@
+---
+import IntakeForm from "./IntakeForm.astro";
+---
+
+<section
+    id="historia-clinica"
+    class="py-24 bg-slate-50 relative overflow-hidden"
+>
+    <!-- Decorative Circles -->
+    <div
+        class="absolute -top-24 -left-24 w-96 h-96 bg-accent-lighter rounded-full mix-blend-multiply filter blur-3xl opacity-50"
+    >
+    </div>
+    <div
+        class="absolute -bottom-24 -right-24 w-96 h-96 bg-pink-100 rounded-full mix-blend-multiply filter blur-3xl opacity-50"
+    >
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="text-center mb-16">
+            <span
+                class="text-primary font-bold tracking-wider uppercase text-sm"
+                >Registro de Paciente</span
+            >
+            <h2 class="text-4xl lg:text-6xl font-bold text-slate-900 mt-4 mb-6">
+                Tu Historia <span class="italic text-primary">Clínica</span>
+            </h2>
+            <p class="text-xl text-slate-600 max-w-2xl mx-auto">
+                Por favor, responde con honestidad y detalle. Esta información
+                es fundamental para diseñar un plan que realmente funcione para
+                ti.
+            </p>
+        </div>
+
+        <IntakeForm />
+    </div>
+</section>

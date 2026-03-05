@@ -6,8 +6,13 @@ import About from "../components/About.astro";
 import Equipment from "../components/Equipment.astro";
 import Services from "../components/Services.astro";
 import ConsultationModes from "../components/ConsultationModes.astro";
-import Testimonials from "../components/Testimonials.astro";
+import TestimonialsImproved from "../components/TestimonialsImproved.astro";
 import Footer from "../components/Footer.astro";
+import WhatsAppFloat from "../components/WhatsAppFloat.astro";
+import FAQ from "../components/FAQ.astro";
+import Pricing from "../components/Pricing.astro";
+import BeforeAfter from "../components/BeforeAfter.astro";
+import HistorySection from "../components/HistorySection.astro";
 import { Image } from "astro:assets";
 import experienceImg from "../assets/experience-nutrilev.jpg";
 import WhatsAppIcon from "../components/icons/WhatsAppIcon.astro";
@@ -20,6 +25,7 @@ import FacebookIcon from "../components/icons/FacebookIcon.astro";
   description="Atención nutricional especializada con enfoque clínico y humano en Chihuahua. Transforma tu salud con planes personalizados y tecnología InBody 270."
 >
   <Navbar />
+  <WhatsAppFloat />
   <main>
     <Hero />
     <About />
@@ -65,7 +71,10 @@ import FacebookIcon from "../components/icons/FacebookIcon.astro";
     <Equipment />
     <Services />
     <ConsultationModes />
-    <Testimonials />
+    <Pricing />
+    <BeforeAfter />
+    <TestimonialsImproved />
+    <FAQ />
     <section
       id="booking"
       class="py-24 bg-gradient-to-tr from-accent to-primary text-white"
@@ -82,7 +91,7 @@ import FacebookIcon from "../components/icons/FacebookIcon.astro";
           <p
             class="text-lg opacity-80 italic underline decoration-pink-300 underline-offset-4 font-light"
           >
-            Este es el primer paso para gendar tu cita.
+            Este es el primer paso para agendar tu cita.
           </p>
           <div
             class="inline-flex items-center gap-2 bg-white/10 px-4 py-1 rounded-full text-sm border border-white/20"
@@ -95,11 +104,10 @@ import FacebookIcon from "../components/icons/FacebookIcon.astro";
           class="flex flex-col sm:flex-row items-center justify-center gap-6"
         >
           <a
-            href="https://forms.gle/fTbGLx5JtzZ38Tot7"
-            target="_blank"
+            href="#historia-clinica"
             class="bg-white text-primary px-12 py-5 rounded-full font-bold text-lg hover:scale-105 transition-transform shadow-2xl flex items-center gap-2"
           >
-            <span>Ir al formulario de contacto</span>
+            <span>Iniciar Historia Clínica</span>
           </a>
         </div>
         <div
@@ -108,7 +116,7 @@ import FacebookIcon from "../components/icons/FacebookIcon.astro";
           <a
             href="https://wa.me/526143958598"
             target="_blank"
-            class="hover:scale-110 transition-transform hover:text-green-400"
+            class="hover:scale-110 transition-transform hover:text-accent"
             aria-label="WhatsApp"
           >
             <WhatsAppIcon class="w-10 h-10" />
@@ -124,7 +132,7 @@ import FacebookIcon from "../components/icons/FacebookIcon.astro";
           <a
             href="https://www.instagram.com/nutrilev_especializada"
             target="_blank"
-            class="hover:scale-110 transition-transform hover:text-pink-400"
+            class="hover:scale-110 transition-transform hover:text-accent"
             aria-label="Instagram"
           >
             <InstagramIcon class="w-10 h-10" />
@@ -132,6 +140,55 @@ import FacebookIcon from "../components/icons/FacebookIcon.astro";
         </div>
       </div>
     </section>
+    <HistorySection />
   </main>
   <Footer />
 </Layout>
+
+<script>
+  // Scroll Reveal Animation Logic
+  const observerOptions = {
+    root: null,
+    rootMargin: "0px",
+    threshold: 0.1,
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("reveal-visible");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll("section, .reveal-item").forEach((el) => {
+    el.classList.add("reveal-hidden");
+    observer.observe(el);
+  });
+</script>
+
+<style is:global>
+  /* Global Reveal Styles */
+  .reveal-hidden {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .reveal-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Delay for sequential items if needed */
+  .reveal-delay-1 {
+    transition-delay: 0.1s;
+  }
+  .reveal-delay-2 {
+    transition-delay: 0.2s;
+  }
+  .reveal-delay-3 {
+    transition-delay: 0.3s;
+  }
+</style>

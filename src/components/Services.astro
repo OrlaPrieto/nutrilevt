@@ -2,100 +2,116 @@
 const services = [
   {
     title: "Nutrición Clínica",
-    description: "Manejo integral de condiciones metabólicas, digestivas y nutrición en etapas clave de la vida.",
+    description:
+      "Manejo integral de condiciones metabólicas, digestivas y nutrición en etapas clave de la vida.",
     details: [
       "Salud Metabólica y Cardiovascular (Diabetes, Hipertensión, Dislipidemias).",
       "Salud Digestiva (Colitis, Gastritis, Estreñimiento, Distensión).",
       "Embarazo y Lactancia (Acompañamiento mamá y bebé).",
-      "Adulto Mayor (Obesidad sarcopénica y requerimientos específicos)."
+      "Adulto Mayor (Obesidad sarcopénica y requerimientos específicos).",
     ],
     icon: "🏥",
-    color: "bg-pink-50"
+    color: "bg-pink-50",
   },
   {
     title: "Psiconutrición y TCA",
-    description: "Un abordaje integral que une la ciencia de la nutrición con herramientas terapéuticas.",
+    description:
+      "Un abordaje integral que une la ciencia de la nutrición con herramientas terapéuticas.",
     details: [
       "Tratamiento para Anorexia, Bulimia y Trastorno por Atracón.",
       "Manejo de la ansiedad por comer y comedores emocionales.",
       "Reconciliación con la comida y la imagen corporal (No Dieta).",
-      "Respaldo: Maestría en Psicoterapia Clínica y cursos en TCA."
+      "Respaldo: Maestría en Psicoterapia Clínica y cursos en TCA.",
     ],
     icon: "🧠",
-    color: "bg-pink-100"
+    color: "bg-pink-100",
   },
   {
     title: "Salud Hormonal y de la Mujer",
-    description: "Tratamiento integral para el equilibrio hormonal y patologías específicas.",
+    description:
+      "Tratamiento integral para el equilibrio hormonal y patologías específicas.",
     details: [
       "SOP (Resistencia a la Insulina, acné, hirsutismo, ovulación).",
       "Hipotiroidismo y Tiroiditis de Hashimoto.",
       "Manejo de SPM, endometriosis y amenorrea hipotalámica.",
-      "Etapas de transición: Climaterio y Menopausia."
+      "Etapas de transición: Climaterio y Menopausia.",
     ],
     icon: "🌸",
-    color: "bg-accent-light"
+    color: "bg-accent-light",
   },
   {
     title: "Control de Peso",
-    description: "Abordaje médico y conductual para una recomposición corporal saludable y sostenible.",
+    description:
+      "Abordaje médico y conductual para una recomposición corporal saludable y sostenible.",
     details: [
       "Tratamiento de Obesidad y Sobrepeso (Enfoque conductual).",
       "Manejo nutricional de patologías tiroideas (Hipotiroidismo/Hashimoto).",
       "Prevención y control de Diabetes Tipo 2 y Resistencia a la Insulina.",
-      "Evaluación antropométrica completa y diagnóstico nutricional."
+      "Evaluación antropométrica completa y diagnóstico nutricional.",
     ],
     icon: "⚖️",
-    color: "bg-pink-50"
+    color: "bg-pink-50",
   },
   {
     title: "Nutrición Deportiva",
-    description: "Optimiza tu rendimiento y estética corporal con estrategias personalizadas y dieta flexible.",
+    description:
+      "Optimiza tu rendimiento y estética corporal con estrategias personalizadas y dieta flexible.",
     details: [
       "Planes enfocados al Fitness y estética corporal (Hombres y Mujeres).",
       "Coaching Nutricional y Dieta Flexible para adherencia total.",
-      "Aumento de masa muscular y pérdida de grasa (Recomposición)."
+      "Aumento de masa muscular y pérdida de grasa (Recomposición).",
     ],
     icon: "🏃‍♀️",
-    color: "bg-pink-100"
-  }
+    color: "bg-pink-100",
+  },
 ];
 ---
+
 <section id="services" class="py-24 bg-bg-base">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-    <span class="text-accent font-semibold tracking-wider uppercase text-sm">Nuestros Servicios</span>
+    <span class="text-accent font-semibold tracking-wider uppercase text-sm"
+      >Nuestros Servicios</span
+    >
     <h2 class="text-4xl lg:text-5xl font-bold text-slate-900 mt-4 mb-16">
       Soluciones diseñadas para <span class="italic">ti</span>
     </h2>
-    
+
     <div class="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-8">
-      {services.map((service, index) => (
-        <div class={`group p-10 rounded-3xl bg-white border border-pink-50 hover:border-accent transition-all duration-300 hover:-translate-y-2 shadow-sm hover:shadow-xl hover:shadow-pink-100/50 flex flex-col h-full
+      {
+        services.map((service, index) => (
+          <div
+            class={`group p-10 rounded-3xl bg-white border border-pink-50 hover:border-accent transition-all duration-500 hover:-translate-y-3 shadow-sm hover:shadow-2xl hover:shadow-pink-100/50 flex flex-col h-full
           col-span-1 
           md:col-span-2 
           lg:col-span-2
-          ${index === 4 ? 'md:col-start-2 lg:col-start-4' : ''} 
-          ${index === 3 ? 'lg:col-start-2' : ''}
-        `}>
-          <div class={`w-16 h-16 ${service.color} rounded-2xl flex items-center justify-center text-3xl mb-8 mx-auto group-hover:scale-110 transition-transform`}>
-            {service.icon}
+          ${index === 4 ? "md:col-start-2 lg:col-start-4" : ""} 
+          ${index === 3 ? "lg:col-start-2" : ""}
+        `}
+          >
+            <div
+              class={`w-16 h-16 ${service.color} rounded-2xl flex items-center justify-center text-3xl mb-8 mx-auto group-hover:scale-110 transition-transform`}
+            >
+              {service.icon}
+            </div>
+            <h3 class="text-2xl font-bold text-slate-900 mb-4">
+              {service.title}
+            </h3>
+            <p class="text-slate-600 leading-relaxed mb-6 font-medium">
+              {service.description}
+            </p>
+            {service.details && (
+              <ul class="text-left text-slate-600 space-y-2 text-sm">
+                {service.details.map((detail) => (
+                  <li class="flex items-start gap-2">
+                    <span class="text-accent mt-1">•</span>
+                    <span>{detail}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
-          <h3 class="text-2xl font-bold text-slate-900 mb-4">{service.title}</h3>
-          <p class="text-slate-600 leading-relaxed mb-6 font-medium">
-            {service.description}
-          </p>
-          {service.details && (
-            <ul class="text-left text-slate-600 space-y-2 text-sm">
-              {service.details.map(detail => (
-                <li class="flex items-start gap-2">
-                  <span class="text-accent mt-1">•</span>
-                  <span>{detail}</span>
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
-      ))}
+        ))
+      }
     </div>
   </div>
 </section>

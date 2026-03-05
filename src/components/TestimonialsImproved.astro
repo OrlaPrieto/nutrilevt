@@ -1,0 +1,377 @@
+---
+// TestimonialsImproved.astro
+// Sección de testimonios mejorada con avatares, fecha, rating y diseño visual enriquecido
+
+const testimonials = [
+  {
+    name: "Camila Torres",
+    initials: "CT",
+    color: "#d4a5c9",
+    service: "Control de Peso",
+    rating: 5,
+    date: "Enero 2025",
+    text: "La mejor en todo, siempre apoyándote, guiándote y motivándote a llevar un estilo de vida saludable. Mi relación con la comida cambió completamente.",
+    highlight: "Mi relación con la comida cambió completamente.",
+  },
+  {
+    name: "Aneth Holguín",
+    initials: "AH",
+    color: "#a5c4d4",
+    service: "Nutrición Clínica",
+    rating: 5,
+    date: "Noviembre 2024",
+    text: "Si pudiera darle más estrellas, lo haría. Trato profesional que genera confianza y te motiva a mejorar con planes de alimentación geniales y personalizados.",
+    highlight: "Si pudiera darle más estrellas, lo haría.",
+  },
+  {
+    name: "Karen Castillo",
+    initials: "KC",
+    color: "#c4d4a5",
+    service: "Psiconutrición",
+    rating: 5,
+    date: "Octubre 2024",
+    text: "Atención súper personalizada y los menús prácticos, deliciosos y consideran gustos personales. Resultados evidentes en poco tiempo.",
+    highlight: "Resultados evidentes en poco tiempo.",
+  },
+  {
+    name: "Daniela Durán",
+    initials: "DD",
+    color: "#d4c4a5",
+    service: "Salud Hormonal",
+    rating: 5,
+    date: "Septiembre 2024",
+    text: "Súper recomendada. Enfoque personalizado para crear hábitos saludables con planes nutricionales balanceados, flexibilidad y explicaciones detalladas.",
+    highlight: "Enfoque personalizado para crear hábitos saludables.",
+  },
+  {
+    name: "Alejandra Estrada",
+    initials: "AE",
+    color: "#c4a5d4",
+    service: "Psiconutrición",
+    rating: 5,
+    date: "Agosto 2024",
+    text: "Excelente profesional. El acompañamiento emocional y psicológico es clave. Equipo de alta calidad (InBody) y planes que se ajustan a mi ritmo de vida.",
+    highlight: "El acompañamiento emocional y psicológico es clave.",
+  },
+  {
+    name: "Ricardo Méndez",
+    initials: "RM",
+    color: "#FFD1DC",
+    service: "Nutrición Deportiva",
+    rating: 5,
+    date: "Julio 2024",
+    text: "El cambio en mi composición corporal fue drástico. El análisis con el InBody me abrió los ojos sobre mi salud real. Muy profesional y comprometida.",
+    highlight: "El cambio en mi composición corporal fue drástico.",
+  },
+];
+
+const stars = (n: number) => "★".repeat(n) + "☆".repeat(5 - n);
+---
+
+<section id="testimonials" class="testimonials-section">
+  <div class="testimonials-container">
+    <div class="testimonials-header">
+      <span class="testimonials-eyebrow">Opiniones reales</span>
+      <h2 class="testimonials-title">Lo que dicen nuestros pacientes</h2>
+
+      <div class="rating-summary">
+        <div class="rating-stars-big">★★★★★</div>
+        <div class="rating-info">
+          <span class="rating-number">5.0</span>
+          <span class="rating-label">basado en reseñas de Google</span>
+        </div>
+        <a
+          href="https://www.google.com.mx/maps/place/Nutrilev/@28.62717,-106.0834988,17z"
+          target="_blank"
+          class="google-badge"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24"
+            ><path
+              fill="#4285F4"
+              d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+            ></path><path
+              fill="#34A853"
+              d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+            ></path><path
+              fill="#FBBC05"
+              d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
+            ></path><path
+              fill="#EA4335"
+              d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+            ></path>
+          </svg>
+          Ver todas las reseñas
+        </a>
+      </div>
+    </div>
+
+    <div class="testimonials-grid">
+      {
+        testimonials.map((t, i) => (
+          <div class="testimonial-card" style={`--avatar-color: ${t.color}`}>
+            <div class="testimonial-top">
+              <div class="testimonial-avatar" style={`background: ${t.color}`}>
+                {t.initials}
+              </div>
+              <div class="testimonial-meta">
+                <strong class="testimonial-name">{t.name}</strong>
+                <span class="testimonial-service">{t.service}</span>
+              </div>
+              <div class="testimonial-google-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24">
+                  <path
+                    fill="#4285F4"
+                    d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+                  />
+                  <path
+                    fill="#34A853"
+                    d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+                  />
+                  <path
+                    fill="#FBBC05"
+                    d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
+                  />
+                  <path
+                    fill="#EA4335"
+                    d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+                  />
+                </svg>
+              </div>
+            </div>
+
+            <div class="testimonial-stars">{"★".repeat(t.rating)}</div>
+
+            <blockquote class="testimonial-text">"{t.text}"</blockquote>
+
+            <div class="testimonial-footer">
+              <span class="testimonial-date">📅 {t.date}</span>
+              <span class="testimonial-verified">✓ Paciente Verificado</span>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="testimonials-cta">
+      <a
+        href="https://www.google.com.mx/maps/place/Nutrilev/@28.62717,-106.0834988,17z"
+        target="_blank"
+        class="reviews-link"
+      >
+        Ver todas las reseñas en Google Maps →
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .testimonials-section {
+    padding: 96px 24px;
+    background: #fff;
+  }
+
+  .testimonials-container {
+    max-width: 1140px;
+    margin: 0 auto;
+  }
+
+  .testimonials-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .testimonials-eyebrow {
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-primary);
+    margin-bottom: 12px;
+  }
+
+  .testimonials-title {
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0 0 28px;
+  }
+
+  .rating-summary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .rating-stars-big {
+    font-size: 1.6rem;
+    color: #f59e0b;
+    letter-spacing: 2px;
+  }
+
+  .rating-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+  }
+
+  .rating-number {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #1a1a1a;
+    line-height: 1;
+  }
+
+  .rating-label {
+    font-size: 0.82rem;
+    color: #888;
+  }
+
+  .google-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #fff;
+    border: 1.5px solid #e0e0e0;
+    border-radius: 50px;
+    padding: 8px 16px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #444;
+    text-decoration: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .google-badge:hover {
+    border-color: #4285f4;
+    box-shadow: 0 2px 12px rgba(66, 133, 244, 0.15);
+  }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+  }
+
+  .testimonial-card {
+    background: #fafaf8;
+    border: 1.5px solid #ececec;
+    border-radius: 18px;
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s;
+  }
+
+  .testimonial-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 32px rgba(0, 0, 0, 0.07);
+    border-color: var(--avatar-color);
+  }
+
+  .testimonial-top {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .testimonial-avatar {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: #fff;
+    flex-shrink: 0;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  }
+
+  .testimonial-meta {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .testimonial-name {
+    font-size: 0.97rem;
+    color: #1a1a1a;
+    font-weight: 700;
+  }
+
+  .testimonial-service {
+    font-size: 0.78rem;
+    color: var(--color-primary);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .testimonial-google-icon {
+    opacity: 0.6;
+  }
+
+  .testimonial-stars {
+    font-size: 1rem;
+    color: #f59e0b;
+    letter-spacing: 1px;
+  }
+
+  .testimonial-text {
+    font-size: 0.95rem;
+    color: #444;
+    line-height: 1.7;
+    margin: 0;
+    font-style: normal;
+    flex: 1;
+  }
+
+  .testimonial-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 12px;
+    border-top: 1px solid #efefef;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .testimonial-date {
+    font-size: 0.78rem;
+    color: #aaa;
+  }
+
+  .testimonial-verified {
+    font-size: 0.78rem;
+    color: var(--color-primary);
+    font-weight: 600;
+  }
+
+  .testimonials-cta {
+    text-align: center;
+    margin-top: 48px;
+  }
+
+  .reviews-link {
+    display: inline-block;
+    color: var(--color-primary);
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    border-bottom: 2px solid var(--color-accent);
+    padding-bottom: 2px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .reviews-link:hover {
+    color: var(--color-primary-hover);
+    border-color: var(--color-primary-hover);
+  }
+</style>
