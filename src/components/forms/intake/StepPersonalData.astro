@@ -1,0 +1,269 @@
+---
+// src/components/forms/intake/StepPersonalData.astro
+---
+
+<!-- Step 1: Personal Data Part 1 -->
+<div class="form-step active" data-step="1">
+    <div class="text-center mb-10">
+        <span class="text-primary font-bold text-sm uppercase tracking-wider"
+            >Paso 1 de 7</span
+        >
+        <h3 class="text-3xl font-bold text-slate-900 mt-2">Datos Personales</h3>
+        <p class="text-slate-500 mt-2">Comencemos con tu información básica.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6">
+        <div class="md:col-span-2">
+            <label class="block text-sm font-semibold text-slate-700 mb-2"
+                >Correo electrónico *</label
+            >
+            <input
+                type="email"
+                name="email"
+                required
+                class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
+                placeholder="tu@email.com"
+            />
+        </div>
+        <div class="relative group">
+            <label class="block text-sm font-semibold text-slate-700 mb-2"
+                >Fecha de hoy *</label
+            >
+            <div class="relative">
+                <input
+                    type="text"
+                    id="fecha_hoy"
+                    name="fecha_hoy"
+                    required
+                    readonly
+                    class="w-full px-4 py-3 pl-11 rounded-xl border border-slate-200 bg-slate-50 cursor-pointer outline-none transition-all modern-date-input"
+                    placeholder="Seleccionar fecha"
+                />
+                <div
+                    class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none"
+                >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="w-5 h-5"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    >
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"
+                        ></rect>
+                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <div>
+            <label class="block text-sm font-semibold text-slate-700 mb-2"
+                >Nombre completo: *</label
+            >
+            <input
+                type="text"
+                name="nombre"
+                required
+                class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
+                placeholder="Nombre Apellido"
+            />
+        </div>
+        <div class="relative group">
+            <label class="block text-sm font-semibold text-slate-700 mb-2"
+                >Fecha de nacimiento: *</label
+            >
+            <div class="relative">
+                <input
+                    type="text"
+                    id="fecha_nacimiento"
+                    name="fecha_nacimiento"
+                    required
+                    class="w-full px-4 py-3 pl-11 rounded-xl border border-slate-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all modern-date-input"
+                    placeholder="Selecciona tu fecha"
+                />
+                <div
+                    class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-primary transition-colors pointer-events-none"
+                >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="w-5 h-5"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    >
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"
+                        ></rect>
+                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <div>
+            <label class="block text-sm font-semibold text-slate-700 mb-2"
+                >Edad: *</label
+            >
+            <input
+                type="number"
+                id="edad"
+                name="edad"
+                required
+                readonly
+                class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 cursor-not-allowed outline-none transition-all"
+                placeholder="Se calcula automáticamente"
+            />
+        </div>
+        <div class="md:col-span-2">
+            <label class="block text-sm font-semibold text-slate-700 mb-2"
+                >Dirección</label
+            >
+            <input
+                type="text"
+                name="direccion"
+                class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
+                placeholder="Calle, Número, Colonia"
+            />
+        </div>
+        <div>
+            <label class="block text-sm font-semibold text-slate-700 mb-2"
+                >Teléfono: *</label
+            >
+            <input
+                type="tel"
+                id="telefono"
+                name="telefono"
+                required
+                class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
+                placeholder="(555)-5555555"
+            />
+        </div>
+        <div>
+            <label class="block text-sm font-semibold text-slate-700 mb-2"
+                >Estatura: *</label
+            >
+            <input
+                type="text"
+                id="estatura"
+                name="estatura"
+                required
+                class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
+                placeholder="1.90"
+            />
+        </div>
+    </div>
+</div>
+
+<!-- Step 2: Personal Data Part 2 -->
+<div class="form-step" data-step="2">
+    <div class="text-center mb-10">
+        <span class="text-primary font-bold text-sm uppercase tracking-wider"
+            >Paso 2 de 7</span
+        >
+        <h3 class="text-3xl font-bold text-slate-900 mt-2">Perfil y Motivo</h3>
+        <p class="text-slate-500 mt-2">
+            Cuéntanos más sobre ti y por qué vienes.
+        </p>
+    </div>
+
+    <div class="space-y-8">
+        <div>
+            <label class="block text-sm font-semibold text-slate-700 mb-3"
+                >Género *</label
+            >
+            <div class="grid grid-cols-2 gap-3">
+                {
+                    [
+                        "Femenino",
+                        "Masculino",
+                        "Prefiero no decirlo",
+                        "No binario",
+                    ].map((opt) => (
+                        <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-100 hover:border-primary/30 cursor-pointer transition-all">
+                            <input
+                                type="radio"
+                                name="genero"
+                                value={opt}
+                                required
+                                class="w-5 h-5 text-primary focus:ring-primary"
+                            />
+                            <span class="text-sm text-slate-600">{opt}</span>
+                        </label>
+                    ))
+                }
+            </div>
+        </div>
+
+        <div>
+            <label class="block text-sm font-semibold text-slate-700 mb-3"
+                >Estado Civil *</label
+            >
+            <div class="grid grid-cols-3 gap-3">
+                {
+                    ["Soltero", "Casado", "Prefiero no decirlo"].map((opt) => (
+                        <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-100 hover:border-primary/30 cursor-pointer transition-all">
+                            <input
+                                type="radio"
+                                name="estado_civil"
+                                value={opt}
+                                required
+                                class="w-5 h-5 text-primary focus:ring-primary"
+                            />
+                            <span class="text-sm text-slate-600">{opt}</span>
+                        </label>
+                    ))
+                }
+            </div>
+        </div>
+
+        <div>
+            <label class="block text-sm font-semibold text-slate-700 mb-2"
+                >Motivos de consulta *</label
+            >
+            <textarea
+                name="motivos_consulta"
+                required
+                rows="3"
+                class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all resize-none"
+                placeholder="Describe brevemente tus objetivos..."></textarea>
+        </div>
+
+        <div>
+            <label class="block text-sm font-semibold text-slate-700 mb-3"
+                >¿De parte de quien tiene recomendaciones sobre mis servicios? *</label
+            >
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                {
+                    [
+                        "Amig@",
+                        "Familiar",
+                        "Prefiero no decirlo",
+                        "Facebook",
+                        "Instagram",
+                        "Google",
+                        "Pagina web NUTRILEV",
+                    ].map((opt) => (
+                        <label class="flex items-center gap-2 p-2 rounded-lg border border-slate-50 hover:bg-slate-50 cursor-pointer transition-all">
+                            <input
+                                type="radio"
+                                name="recomendacion_fuente"
+                                value={opt}
+                                required
+                                class="w-4 h-4 text-primary focus:ring-primary"
+                            />
+                            <span class="text-xs text-slate-600">{opt}</span>
+                        </label>
+                    ))
+                }
+            </div>
+        </div>
+    </div>
+</div>

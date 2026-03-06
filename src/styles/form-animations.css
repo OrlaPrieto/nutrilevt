@@ -1,0 +1,82 @@
+/* Form Step Animations for Nutrilev */
+.form-step {
+    display: none;
+    animation: fadeIn 0.4s ease-out forwards;
+}
+
+.form-step.active {
+    display: block;
+}
+
+/* Modern Date Input Theming */
+.modern-date-input::-webkit-calendar-picker-indicator {
+    background: transparent;
+    bottom: 0;
+    color: transparent;
+    cursor: pointer;
+    height: auto;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: auto;
+}
+
+.modern-date-input {
+    position: relative;
+    height: 52px;
+    /* Fixed height for consistent centering */
+    -webkit-appearance: none;
+    /* Reset native styling for better control */
+    appearance: none;
+}
+
+.modern-date-input:focus {
+    border-color: #d81b60;
+    box-shadow: 0 0 0 2px rgba(216, 27, 96, 0.1);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Slider Animations for Steps */
+.form-step.active {
+    animation: slide-next 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.form-step.slide-prev {
+    animation: slide-prev 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes slide-next {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slide-prev {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}

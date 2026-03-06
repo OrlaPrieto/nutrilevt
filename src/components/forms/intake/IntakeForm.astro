@@ -1,0 +1,94 @@
+---
+// src/components/forms/intake/IntakeForm.astro
+import StepPersonalData from "./StepPersonalData.astro";
+import StepHealthBackground from "./StepHealthBackground.astro";
+import StepHabits from "./StepHabits.astro";
+import StepFinalDetails from "./StepFinalDetails.astro";
+import SuccessScreen from "./SuccessScreen.astro";
+---
+
+<!-- Flatpickr CSS -->
+<link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
+/>
+
+<style is:global>
+    @import "../../../styles/flatpickr-theme.css";
+</style>
+
+<div
+    id="intake-form-container"
+    class="max-w-4xl mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden border border-pink-50 relative"
+>
+    <!-- Progress Bar -->
+    <div class="h-2 bg-pink-50 w-full overflow-hidden">
+        <div
+            id="form-progress"
+            class="h-full bg-primary transition-all duration-500 w-[14%]"
+        >
+        </div>
+    </div>
+
+    <form id="clinical-form" class="p-8 sm:p-12" novalidate>
+        <StepPersonalData />
+        <StepHealthBackground />
+        <StepHabits />
+        <StepFinalDetails />
+
+        <!-- Button Navigation -->
+        <div
+            class="px-8 sm:px-12 py-6 border-t border-pink-50 bg-white/50 backdrop-blur-sm"
+        >
+            <div class="flex gap-4">
+                <button
+                    type="button"
+                    id="prev-btn"
+                    class="hidden flex-1 px-8 py-4 rounded-2xl font-bold text-slate-500 border border-slate-200 hover:bg-slate-50 transition-all"
+                    >Anterior</button
+                >
+                <button
+                    type="button"
+                    id="next-btn"
+                    class="flex-1 px-8 py-4 rounded-2xl font-bold bg-primary text-white shadow-lg shadow-pink-100 hover:scale-105 active:scale-95 transition-all"
+                    >Siguiente</button
+                >
+                <button
+                    type="submit"
+                    id="submit-btn"
+                    class="hidden flex-1 px-8 py-4 rounded-2xl font-bold bg-gradient-to-r from-primary to-accent text-white shadow-xl shadow-pink-200 hover:scale-105 active:scale-95 transition-all"
+                    >Enviar Historia Clínica</button
+                >
+            </div>
+        </div>
+    </form>
+
+    <SuccessScreen />
+
+    <!-- Loading Overlay -->
+    <div
+        id="loading-overlay"
+        class="hidden absolute inset-0 bg-white/80 backdrop-blur-sm flex items-center justify-center z-30"
+    >
+        <div
+            class="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin"
+        >
+        </div>
+    </div>
+</div>
+
+<style is:global>
+    @import "../../../styles/form-animations.css";
+</style>
+
+<!-- Flatpickr JS -->
+<script is:inline src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script is:inline src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/es.js"
+></script>
+
+<script>
+    import { initIntakeForm } from "../../../scripts/intake-form";
+
+    // Initialize the form logic
+    initIntakeForm();
+</script>

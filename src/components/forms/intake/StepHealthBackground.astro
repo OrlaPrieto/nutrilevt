@@ -1,0 +1,257 @@
+---
+// src/components/forms/intake/StepHealthBackground.astro
+---
+
+<!-- Step 3: Medical Background -->
+<div class="form-step" data-step="3">
+    <div class="text-center mb-10">
+        <span class="text-primary font-bold text-sm uppercase tracking-wider"
+            >Paso 3 de 7</span
+        >
+        <h3 class="text-3xl font-bold text-slate-900 mt-2">
+            Antecedentes Médicos
+        </h3>
+        <p class="text-slate-500 mt-2">Información clínica importante.</p>
+    </div>
+
+    <div class="space-y-8">
+        <div>
+            <label class="block text-sm font-semibold text-slate-700 mb-3"
+                >Antecedentes personales patológicos: Seleccionar si presenta
+                alguna de las siguientes condiciones. *</label
+            >
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                {
+                    [
+                        "Diarrea",
+                        "Estreñimiento",
+                        "Gastritis",
+                        "Úlceras",
+                        "Nauseas",
+                        "Pirosis",
+                        "Vomito",
+                        "Colitis",
+                        "Dentadura",
+                        "Otros",
+                        "Prefiero no decirlo",
+                        "Ninguno",
+                    ].map((opt) => (
+                        <label class="flex items-center gap-2 p-2 rounded-lg border border-slate-50 hover:bg-slate-50 cursor-pointer">
+                            <input
+                                type="checkbox"
+                                name="antecedentes_patologicos"
+                                value={opt}
+                                required
+                                class="w-4 h-4 text-primary rounded"
+                            />
+                            <span class="text-xs text-slate-600">{opt}</span>
+                        </label>
+                    ))
+                }
+            </div>
+        </div>
+
+        <div>
+            <label class="block text-sm font-semibold text-slate-700 mb-3"
+                >Toma: *</label
+            >
+            <div class="flex flex-wrap gap-4">
+                {
+                    [
+                        "Laxantes",
+                        "Diuréticos",
+                        "Antiácidos",
+                        "Analgésicos",
+                        "Ninguno",
+                    ].map((opt) => (
+                        <label class="flex items-center gap-2 px-3 py-2 rounded-full border border-slate-100 hover:border-primary/20 cursor-pointer">
+                            <input
+                                type="checkbox"
+                                name="toma_medicamentos"
+                                value={opt}
+                                required
+                                class="w-4 h-4 text-primary rounded"
+                            />
+                            <span class="text-sm text-slate-600">{opt}</span>
+                        </label>
+                    ))
+                }
+            </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6">
+            <div>
+                <label class="block text-sm font-semibold text-slate-700 mb-2"
+                    >Enfermedades diagnosticada:</label
+                >
+                <textarea
+                    name="enfermedades"
+                    rows="2"
+                    class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:border-primary outline-none transition-all resize-none"
+                    placeholder="Detalla si aplica..."></textarea>
+            </div>
+            <div>
+                <label class="block text-sm font-semibold text-slate-700 mb-2"
+                    >¿Tratamiento farmacológico? (Medicamentos)</label
+                >
+                <textarea
+                    name="medicamentos"
+                    rows="2"
+                    class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:border-primary outline-none transition-all resize-none"
+                    placeholder="Nombre y dosis si los conoces..."></textarea>
+            </div>
+        </div>
+
+        <div>
+            <label class="block text-sm font-semibold text-slate-700 mb-2"
+                >¿Le han practicado alguna cirugía? ¿Cuál? ¿Hace cuánto tiempo?
+                *</label
+            >
+            <textarea
+                name="cirugias"
+                required
+                rows="2"
+                class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:border-primary outline-none transition-all resize-none"
+            ></textarea>
+        </div>
+    </div>
+</div>
+
+<!-- Step 4: Family & Lifestyle -->
+<div class="form-step" data-step="4">
+    <div class="text-center mb-10">
+        <span class="text-primary font-bold text-sm uppercase tracking-wider"
+            >Paso 4 de 7</span
+        >
+        <h3 class="text-3xl font-bold text-slate-900 mt-2">
+            Familia y Hábitos
+        </h3>
+        <p class="text-slate-500 mt-2">Entorno y rutinas diarias.</p>
+    </div>
+
+    <div class="space-y-8">
+        <div>
+            <label class="block text-sm font-semibold text-slate-700 mb-3"
+                >¿Alguien de tu familia presenta alguna enfermedad? (Madre,
+                padre, hermanos, tios) *</label
+            >
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                {
+                    [
+                        "Diabetes",
+                        "Hipertensión",
+                        "Cáncer",
+                        "Cardiopatías",
+                        "Obesidad",
+                        "Colesterol",
+                        "Triglicéridos",
+                        "Otra",
+                        "Ninguna",
+                    ].map((opt) => (
+                        <label class="flex items-center gap-2 p-2 rounded-lg border border-slate-50 hover:bg-slate-50 cursor-pointer">
+                            <input
+                                type="checkbox"
+                                name="antecedentes_familiares"
+                                value={opt}
+                                required
+                                class="w-4 h-4 text-primary rounded"
+                            />
+                            <span class="text-xs text-slate-600">{opt}</span>
+                        </label>
+                    ))
+                }
+            </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+            <div>
+                <label class="block text-sm font-semibold text-slate-700 mb-3"
+                    >¿Bebidas alcohólicas? *</label
+                >
+                <div class="space-y-2">
+                    {
+                        [
+                            "Si",
+                            "No",
+                            "Lo deje",
+                            "Social (1 vez a la semana)",
+                            "Frecuente (2 veces a la semana)",
+                            "Muy frencuente (mas de 3 veces a la semana)",
+                        ].map((opt) => (
+                            <label class="flex items-center gap-3 p-2 rounded-lg border border-slate-50 hover:bg-slate-50 cursor-pointer">
+                                <input
+                                    type="radio"
+                                    name="alcohol"
+                                    value={opt}
+                                    required
+                                    class="w-4 h-4 text-primary"
+                                />
+                                <span class="text-xs text-slate-600">
+                                    {opt}
+                                </span>
+                            </label>
+                        ))
+                    }
+                </div>
+            </div>
+            <div>
+                <label class="block text-sm font-semibold text-slate-700 mb-3"
+                    >¿Cigarros? *</label
+                >
+                <div class="space-y-2">
+                    {
+                        [
+                            "Si",
+                            "No",
+                            "Lo deje",
+                            "Social (1 vez a la semana)",
+                            "Frecuente (1 vez al dia)",
+                            "Muy frencuente (mas de 2 veces al dia)",
+                        ].map((opt) => (
+                            <label class="flex items-center gap-3 p-2 rounded-lg border border-slate-50 hover:bg-slate-50 cursor-pointer">
+                                <input
+                                    type="radio"
+                                    name="tabaco"
+                                    value={opt}
+                                    required
+                                    class="w-4 h-4 text-primary"
+                                />
+                                <span class="text-xs text-slate-600">
+                                    {opt}
+                                </span>
+                            </label>
+                        ))
+                    }
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <label class="block text-sm font-semibold text-slate-700 mb-3"
+                >Horas de sueño al día: *</label
+            >
+            <div class="flex flex-wrap gap-3">
+                {
+                    [
+                        "Menos de 5 horas",
+                        "6 horas",
+                        "7 a 8 horas",
+                        "Màs de 8 horas",
+                        "Màs de 10 horas",
+                    ].map((opt) => (
+                        <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-100 hover:border-primary/20 cursor-pointer transition-all">
+                            <input
+                                type="radio"
+                                name="sueno"
+                                value={opt}
+                                required
+                                class="w-4 h-4 text-primary"
+                            />
+                            <span class="text-sm text-slate-600">{opt}</span>
+                        </label>
+                    ))
+                }
+            </div>
+        </div>
+    </div>
+</div>

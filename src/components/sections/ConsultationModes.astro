@@ -1,7 +1,7 @@
 ---
 import { Image } from 'astro:assets';
-import consultationImg from '../assets/consultation.jpg';
-import consultationOnlineImg from '../assets/consultation-online.png';
+import consultationImg from '../../assets/consultation.jpg';
+import consultationOnlineImg from '../../assets/consultation-online.png';
 
 const modes = [
   {
@@ -32,6 +32,7 @@ const modes = [
   }
 ];
 ---
+
 <section id="consultation-modes" class="py-32 bg-white relative overflow-hidden">
   <!-- Subtle Background Decorations -->
   <div class="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-96 h-96 bg-pink-50/50 rounded-full blur-3xl pointer-events-none"></div>
@@ -60,7 +61,7 @@ const modes = [
             <div class="relative h-64 sm:h-80 rounded-[2rem] overflow-hidden mb-12 shadow-2xl">
               <Image 
                 src={mode.image} 
-                alt={mode.title} 
+                alt={mode.title}
                 class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
               />
               <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
@@ -76,7 +77,7 @@ const modes = [
               <p class="text-lg text-slate-600 leading-relaxed mb-10 min-h-[4.5rem]">
                 {mode.description}
               </p>
-              
+
               <ul class="space-y-5 mb-14">
                 {mode.features.map(feature => (
                   <li class="flex items-center gap-4 text-slate-700 font-medium">
@@ -90,10 +91,7 @@ const modes = [
                 ))}
               </ul>
 
-              <a 
-                href="#booking" 
-                class="inline-flex items-center gap-4 py-4 px-10 rounded-2xl bg-slate-900 text-white font-bold text-lg hover:bg-primary transition-all duration-300 shadow-xl shadow-slate-200 hover:shadow-primary/20"
-              >
+              <a href="#booking" class="inline-flex items-center gap-4 py-4 px-10 rounded-2xl bg-slate-900 text-white font-bold text-lg hover:bg-primary transition-all duration-300 shadow-xl shadow-slate-200 hover:shadow-primary/20">
                 Agendar ahora
                 <span class="group-hover:translate-x-1 transition-transform">→</span>
               </a>
