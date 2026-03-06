@@ -8,3 +8,26 @@
   --color-accent-lighter: #FFF0F5;
   --color-bg-base: #FAF9F6;
 }
+
+@layer base {
+
+  /* Global focus-visible styles for keyboard navigation accessibility */
+  *:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+}
+
+@layer utilities {
+  .fade-in-section {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    will-change: opacity, visibility;
+  }
+
+  .fade-in-section.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+}

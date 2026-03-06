@@ -1,3 +1,14 @@
+export interface IntakeFormData {
+    [key: string]: string | string[] | undefined;
+    nombre?: string;
+    comidas_dia?: string;
+    comida_comprada?: string;
+    quien_cocina?: string;
+    comidas_dia_otro?: string;
+    comida_comprada_otro?: string;
+    quien_cocina_otro?: string;
+}
+
 export function initIntakeForm() {
     let currentStep = 1;
     const totalSteps = 7;
@@ -7,7 +18,6 @@ export function initIntakeForm() {
     const nextBtn = document.getElementById("next-btn");
     const submitBtn = document.getElementById("submit-btn");
     const progressBar = document.getElementById("form-progress");
-    const successScreen = document.getElementById("success-screen");
     const loadingOverlay = document.getElementById("loading-overlay");
 
     if (!form) return;
@@ -143,10 +153,13 @@ export function initIntakeForm() {
             const rect = container.getBoundingClientRect();
             const scrollTop =
                 window.pageYOffset || document.documentElement.scrollTop;
-            window.scrollTo({
-                top: rect.top + scrollTop - 100,
-                behavior: "smooth",
-            });
+            // Only auto-scroll on steps beyond the first to avoid jumping on page load
+            if (currentStep > 1) {
+                window.scrollTo({
+                    top: rect.top + scrollTop - 100,
+                    behavior: "smooth",
+                });
+            }
         }
     }
 
@@ -254,37 +267,38 @@ export function initIntakeForm() {
 
         loadingOverlay?.classList.remove("hidden");
         const formData = new FormData(form);
-        const data: any = {};
+        const data: IntakeFormData = {};
 
         formData.forEach((value, key) => {
+            const strValue = value.toString();
             if (data[key]) {
                 if (Array.isArray(data[key])) {
-                    data[key].push(value);
+                    (data[key] as string[]).push(strValue);
                 } else {
-                    data[key] = [data[key], value];
+                    data[key] = [data[key] as string, strValue];
                 }
             } else {
-                data[key] = value;
+                data[key] = strValue;
             }
         });
 
         Object.keys(data).forEach((key) => {
             if (Array.isArray(data[key])) {
-                data[key] = data[key].join(", ");
+                data[key] = (data[key] as string[]).join(", ");
             }
         });
 
         if (data["comidas_dia_otro"]) {
             data["comidas_dia"] =
-                data["comidas_dia"] + " - " + data["comidas_dia_otro"];
+                (data["comidas_dia"] as string || "") + " - " + (data["comidas_dia_otro"] as string);
         }
         if (data["comida_comprada_otro"]) {
             data["comida_comprada"] =
-                data["comida_comprada"] + " - " + data["comida_comprada_otro"];
+                (data["comida_comprada"] as string || "") + " - " + (data["comida_comprada_otro"] as string);
         }
         if (data["quien_cocina_otro"]) {
             data["quien_cocina"] =
-                data["quien_cocina"] + " - " + data["quien_cocina_otro"];
+                (data["quien_cocina"] as string || "") + " - " + (data["quien_cocina_otro"] as string);
         }
 
         try {
@@ -294,15 +308,14 @@ export function initIntakeForm() {
                 body: JSON.stringify(data),
                 headers: { "Content-Type": "application/json" },
             });
-            successScreen?.classList.remove("hidden");
 
-            const whatsappBtn = document.getElementById(
-                "whatsapp-schedule-btn"
-            ) as HTMLAnchorElement;
-            if (whatsappBtn && data.nombre) {
-                const encodedName = encodeURIComponent(data.nombre);
-                whatsappBtn.href = `https://wa.me/526143958598?text=Hola%2C%20soy%20${encodedName}.%20Acabo%20de%20llenar%20mi%20historia%20cl%C3%ADnica%20y%20me%20gustar%C3%ADa%20agendar%20una%20cita.`;
+            // Redirect to dedicated success page, pass name for personalization
+            let queryParams = "";
+            if (data.nombre) {
+                queryParams = `?nombre=${encodeURIComponent(data.nombre)}`;
             }
+            window.location.assign(`/gracias${queryParams}`);
+
         } catch (error) {
             alert("Hubo un error al enviar. Por favor intenta de nuevo.");
         } finally {
