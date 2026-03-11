@@ -1,3 +1,5 @@
+import { supabase } from "../lib/supabase";
+
 export interface IntakeFormData {
     [key: string]: string | string[] | undefined;
     nombre?: string;
@@ -120,8 +122,7 @@ export function initIntakeForm() {
         });
     }
 
-    const SCRIPT_URL =
-        "https://script.google.com/macros/s/AKfycbz2AGLzvmFcnLlPdoaESgSpMqmiZbiNkx6iz44M6NmHcxYdyQNQBcpzjY793bnIxnbsGA/exec";
+    const TABLE_NAME = "patients";
 
     function updateForm(direction: "next" | "prev" = "next") {
         steps.forEach((step) => {
@@ -302,21 +303,19 @@ export function initIntakeForm() {
         }
 
         try {
-            await fetch(SCRIPT_URL, {
-                method: "POST",
-                mode: "no-cors",
-                body: JSON.stringify(data),
-                headers: { "Content-Type": "application/json" },
-            });
+            const { error } = await supabase.from(TABLE_NAME).insert([data]);
+
+            if (error) throw error;
 
             // Redirect to dedicated success page, pass name for personalization
             let queryParams = "";
             if (data.nombre) {
-                queryParams = `?nombre=${encodeURIComponent(data.nombre)}`;
+                queryParams = `?nombre=${encodeURIComponent(data.nombre as string)}`;
             }
             window.location.assign(`/gracias${queryParams}`);
 
         } catch (error) {
+            console.error("Error submitting to Supabase:", error);
             alert("Hubo un error al enviar. Por favor intenta de nuevo.");
         } finally {
             loadingOverlay?.classList.add("hidden");
