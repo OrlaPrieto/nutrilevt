@@ -30,4 +30,47 @@
     opacity: 1;
     transform: none;
   }
+
+  .shadow-glow {
+    box-shadow: 0 0 15px rgba(216, 27, 96, 0.3);
+  }
+
+  .shadow-glow-lg {
+    box-shadow: 0 0 30px rgba(216, 27, 96, 0.4);
+  }
+
+  .bg-mesh {
+    background-color: #FAF9F6;
+    background-image: 
+      radial-gradient(at 0% 0%, rgba(216, 27, 96, 0.05) 0px, transparent 50%),
+      radial-gradient(at 100% 0%, rgba(255, 107, 155, 0.08) 0px, transparent 50%),
+      radial-gradient(at 100% 100%, rgba(216, 27, 96, 0.05) 0px, transparent 50%),
+      radial-gradient(at 0% 100%, rgba(255, 107, 155, 0.08) 0px, transparent 50%);
+  }
+
+  @keyframes shimmer {
+    0% { transform: translateX(-150%) skewX(-25deg); }
+    100% { transform: translateX(150%) skewX(-25deg); }
+  }
+
+  .animate-shimmer {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .animate-shimmer::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(
+      to right,
+      transparent,
+      rgba(255, 255, 255, 0.3),
+      transparent
+    );
+    animation: shimmer 3s infinite;
+  }
 }
