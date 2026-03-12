@@ -1,0 +1,128 @@
+/* src/styles/form-controls.css */
+
+.selection-grid {
+    display: grid;
+    gap: 0.75rem;
+}
+
+.selection-card {
+    position: relative;
+    cursor: pointer;
+    display: block;
+    user-select: none;
+}
+
+.selection-card input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.card-content {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 1rem;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.selection-card:hover .card-content {
+    background: #ffffff;
+    border-color: var(--color-primary);
+    box-shadow: 0 4px 12px rgba(var(--color-primary-rgb), 0.05);
+}
+
+/* Radio Checked State */
+.selection-card input:checked ~ .card-content {
+    background: #ffffff;
+    border-color: var(--color-primary);
+    border-width: 2px;
+    box-shadow: 0 8px 20px rgba(var(--color-primary-rgb), 0.1);
+}
+
+/* Radio Custom Indicator */
+.radio-indicator {
+    width: 1.25rem;
+    height: 1.25rem;
+    border: 2px solid #cbd5e1;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.2s;
+}
+
+.selection-card input:checked ~ .card-content .radio-indicator {
+    border-color: var(--color-primary);
+    background: var(--color-primary);
+}
+
+.radio-indicator::after {
+    content: '';
+    width: 0.5rem;
+    height: 0.5rem;
+    background: white;
+    border-radius: 50%;
+    transform: scale(0);
+    transition: transform 0.2s;
+}
+
+.selection-card input:checked ~ .card-content .radio-indicator::after {
+    transform: scale(1);
+}
+
+/* Checkbox Custom Indicator */
+.checkbox-indicator {
+    width: 1.25rem;
+    height: 1.25rem;
+    border: 2px solid #cbd5e1;
+    border-radius: 0.375rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.2s;
+}
+
+.selection-card input:checked ~ .card-content .checkbox-indicator {
+    border-color: var(--color-primary);
+    background: var(--color-primary);
+}
+
+.checkbox-indicator svg {
+    width: 0.875rem;
+    height: 0.875rem;
+    color: white;
+    transform: scale(0);
+    transition: transform 0.2s;
+}
+
+.selection-card input:checked ~ .card-content .checkbox-indicator svg {
+    transform: scale(1);
+}
+
+/* Text styles inside card */
+.card-label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #475569;
+    transition: color 0.2s;
+}
+
+.selection-card input:checked ~ .card-content .card-label {
+    color: var(--color-primary);
+    font-weight: 600;
+}
+
+/* Mobile optimizations */
+@media (max-width: 640px) {
+    .card-content {
+        padding: 0.75rem;
+    }
+}

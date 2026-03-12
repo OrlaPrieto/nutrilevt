@@ -176,26 +176,28 @@
 
     <div class="space-y-8">
         <div>
-            <label class="block text-sm font-semibold text-slate-700 mb-3"
+            <label class="block text-sm font-semibold text-slate-700 mb-4"
                 >Género *</label
             >
-            <div class="grid grid-cols-2 gap-3">
+            <div class="grid grid-cols-2 gap-4">
                 {
                     [
                         "Femenino",
                         "Masculino",
-                        "Prefiero no decirlo",
                         "No binario",
+                        "Prefiero no decirlo",
                     ].map((opt) => (
-                        <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-100 hover:border-primary/30 cursor-pointer transition-all">
+                        <label class="selection-card">
                             <input
                                 type="radio"
                                 name="genero"
                                 value={opt}
                                 required
-                                class="w-5 h-5 text-primary focus:ring-primary"
                             />
-                            <span class="text-sm text-slate-600">{opt}</span>
+                            <div class="card-content">
+                                <div class="radio-indicator"></div>
+                                <span class="card-label">{opt}</span>
+                            </div>
                         </label>
                     ))
                 }
@@ -203,67 +205,122 @@
         </div>
 
         <div>
-            <label class="block text-sm font-semibold text-slate-700 mb-3"
+            <label class="block text-sm font-semibold text-slate-700 mb-4"
                 >Estado Civil *</label
             >
-            <div class="grid grid-cols-3 gap-3">
+            <div class="grid grid-cols-3 gap-4">
                 {
-                    ["Soltero", "Casado", "Prefiero no decirlo"].map((opt) => (
-                        <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-100 hover:border-primary/30 cursor-pointer transition-all">
+                    ["Soltero", "Casado", "Otro"].map((opt) => (
+                        <label class="selection-card">
                             <input
                                 type="radio"
                                 name="estado_civil"
                                 value={opt}
                                 required
-                                class="w-5 h-5 text-primary focus:ring-primary"
                             />
-                            <span class="text-sm text-slate-600">{opt}</span>
+                            <div class="card-content">
+                                <div class="radio-indicator"></div>
+                                <span class="card-label">{opt}</span>
+                            </div>
                         </label>
                     ))
                 }
             </div>
         </div>
 
+        <div class="grid md:grid-cols-2 gap-6">
+            <div>
+                <label class="block text-sm font-semibold text-slate-700 mb-2"
+                    >Peso habitual (kg):</label
+                >
+                <input
+                    type="number"
+                    step="0.1"
+                    name="peso_habitual"
+                    class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary outline-none transition-all"
+                    placeholder="Ej: 75"
+                />
+            </div>
+            <div>
+                <label class="block text-sm font-semibold text-slate-700 mb-2"
+                    >Peso meta (kg):</label
+                >
+                <input
+                    type="number"
+                    step="0.1"
+                    name="peso_meta"
+                    class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary outline-none transition-all"
+                    placeholder="Ej: 70"
+                />
+            </div>
+            <div class="md:col-span-2">
+                <label class="block text-sm font-semibold text-slate-700 mb-2"
+                    >¿Has tenido cambios de peso significativos recientemente? ¿Por qué?</label
+                >
+                <input
+                    type="text"
+                    name="cambios_peso_detalle"
+                    class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary outline-none transition-all"
+                    placeholder="Ej: Subí 5kg por estrés hace 3 meses..."
+                />
+            </div>
+        </div>
+
         <div>
             <label class="block text-sm font-semibold text-slate-700 mb-2"
-                >Motivos de consulta *</label
+                >Motivos de consulta y metas principales *</label
             >
             <textarea
                 name="motivos_consulta"
                 required
                 rows="3"
                 class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all resize-none"
-                placeholder="Describe brevemente tus objetivos..."></textarea>
+                placeholder="¿Qué esperas lograr con este plan alimenticio?"></textarea>
         </div>
 
         <div>
-            <label class="block text-sm font-semibold text-slate-700 mb-3"
-                >¿De parte de quien tiene recomendaciones sobre mis servicios? *</label
+            <label class="block text-sm font-semibold text-slate-700 mb-4"
+                >¿De parte de quién tiene recomendaciones sobre mis servicios? *</label
             >
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
                 {
                     [
-                        "Amig@",
+                        "Amigo/a",
                         "Familiar",
-                        "Prefiero no decirlo",
                         "Facebook",
                         "Instagram",
                         "Google",
-                        "Pagina web NUTRILEV",
+                        "Página Nutrilev",
+                        "Otro"
                     ].map((opt) => (
-                        <label class="flex items-center gap-2 p-2 rounded-lg border border-slate-50 hover:bg-slate-50 cursor-pointer transition-all">
+                        <label class="selection-card">
                             <input
                                 type="radio"
                                 name="recomendacion_fuente"
                                 value={opt}
                                 required
-                                class="w-4 h-4 text-primary focus:ring-primary"
                             />
-                            <span class="text-xs text-slate-600">{opt}</span>
+                            <div class="card-content">
+                                <div class="radio-indicator"></div>
+                                <span class="card-label !text-[10px] sm:!text-xs">{opt}</span>
+                            </div>
                         </label>
                     ))
                 }
             </div>
+        </div>
+
+        <!-- Conditional Female Health Section -->
+        <div id="female-health-section" class="hidden premium-card bg-pink-50/30 p-6 rounded-2xl border border-pink-100/50">
+            <label class="block text-sm font-bold text-primary mb-3 uppercase tracking-wider"
+                >Salud Femenina (Opcional)</label
+            >
+            <p class="text-xs text-slate-500 mb-4 italic">Esta información nos ayuda a entender cambios metabólicos por ciclo menstrual.</p>
+            <textarea
+                name="salud_femenina_ciclo"
+                rows="2"
+                class="w-full px-4 py-3 rounded-xl border border-white bg-white/50 focus:border-primary focus:bg-white outline-none transition-all resize-none text-sm"
+                placeholder="¿Tu ciclo es regular? ¿Padeces inflamación o antojos fuertes antes del periodo?"></textarea>
         </div>
     </div>
 </div>

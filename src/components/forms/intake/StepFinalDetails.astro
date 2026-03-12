@@ -12,77 +12,34 @@
     </div>
 
     <div class="space-y-8">
-        <div class="grid md:grid-cols-2 gap-8">
-            <div>
-                <label class="block text-sm font-semibold text-slate-700 mb-3"
-                    >¿Cuántas veces a la semana se come comida comprada? *</label
-                >
-                <div class="space-y-2">
-                    {
-                        ["1", "2", "3", "5", "Ninguna"].map((opt) => (
-                            <label class="flex items-center gap-3 p-2 rounded-lg border border-slate-50 hover:bg-slate-50 cursor-pointer">
-                                <input
-                                    type="radio"
-                                    name="comida_comprada"
-                                    value={opt}
-                                    required
-                                    class="w-4 h-4 text-primary"
-                                />
-                                <span class="text-xs text-slate-600">
-                                    {opt}
-                                </span>
-                            </label>
-                        ))
-                    }
-                    <div
-                        class="flex items-center gap-2 p-1 border-b border-pink-50"
-                    >
-                        <input
-                            type="text"
-                            name="comida_comprada_otro"
-                            class="w-full bg-transparent text-xs outline-none"
-                            placeholder="Otros: Especifique aquí"
-                        />
-                    </div>
-                </div>
-            </div>
-            <div>
-                <label class="block text-sm font-semibold text-slate-700 mb-3"
-                    >¿Quién prepara sus alimentos? *</label
-                >
-                <div class="space-y-2">
-                    {
-                        [
-                            "Yo",
-                            "Espos@",
-                            "Madre",
-                            "Padre",
-                            "Comida comprada",
-                        ].map((opt) => (
-                            <label class="flex items-center gap-3 p-2 rounded-lg border border-slate-50 hover:bg-slate-50 cursor-pointer">
-                                <input
-                                    type="radio"
-                                    name="quien_cocina"
-                                    value={opt}
-                                    required
-                                    class="w-4 h-4 text-primary"
-                                />
-                                <span class="text-xs text-slate-600">
-                                    {opt}
-                                </span>
-                            </label>
-                        ))
-                    }
-                    <div
-                        class="flex items-center gap-2 p-1 border-b border-pink-50"
-                    >
-                        <input
-                            type="text"
-                            name="quien_cocina_otro"
-                            class="w-full bg-transparent text-xs outline-none"
-                            placeholder="Otros: Especifique aquí"
-                        />
-                    </div>
+        <div class="premium-card bg-slate-50/50 p-6 rounded-2xl border border-slate-100/50">
+            <label class="block text-sm font-semibold text-slate-700 mb-4"
+                >¿Cuántas veces a la semana se consume comida comprada? *</label
+            >
+            <div class="grid grid-cols-2 sm:grid-cols-5 gap-3">
+                {
+                    ["1", "2", "3", "5+", "Ninguna"].map((opt) => (
+                        <label class="selection-card">
+                            <input
+                                type="radio"
+                                name="comida_comprada"
+                                value={opt}
+                                required
+                            />
+                            <div class="card-content !p-2">
+                                <div class="radio-indicator"></div>
+                                <span class="card-label">{opt}</span>
+                            </div>
+                        </label>
+                    ))
+                }
+                <div class="col-span-2 sm:col-span-5 mt-2">
+                    <input
+                        type="text"
+                        name="comida_comprada_otro"
+                        class="w-full px-4 py-3 rounded-xl border border-white bg-white/70 focus:border-primary focus:bg-white outline-none transition-all text-xs"
+                        placeholder="Otros (ej. fines de semana)..."
+                    />
                 </div>
             </div>
         </div>
@@ -110,60 +67,106 @@
                     class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:border-primary outline-none transition-all resize-none"
                     placeholder="Por malestar o gusto propio..."></textarea>
             </div>
+            <div class="md:col-span-2">
+                <label class="block text-sm font-semibold text-slate-700 mb-2"
+                    >Alergias o intolerancias alimentarias: *</label
+                >
+                <textarea
+                    name="alergias_alimentarias"
+                    required
+                    rows="2"
+                    class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:border-primary outline-none transition-all resize-none"
+                    placeholder="Especificar alimentos y tipo de reacción..."></textarea>
+            </div>
         </div>
 
         <div class="grid md:grid-cols-2 gap-8">
             <div>
-                <label class="block text-sm font-semibold text-slate-700 mb-3"
-                    >¿Toma algún suplemento o complemento? *</label
+                <label class="block text-sm font-semibold text-slate-700 mb-4"
+                    >¿Ha llevado alguna dieta especial anteriormente? *</label
                 >
-                <div class="flex gap-4">
+                <div class="grid grid-cols-2 gap-3">
                     {
                         ["Si", "No"].map((opt) => (
-                            <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-100 hover:border-primary/20 cursor-pointer transition-all flex-1 text-center">
+                            <label class="selection-card">
+                                <input
+                                    type="radio"
+                                    name="dieta_especial"
+                                    value={opt}
+                                    required
+                                />
+                                <div class="card-content">
+                                    <div class="radio-indicator"></div>
+                                    <span class="card-label">{opt}</span>
+                                </div>
+                            </label>
+                        ))
+                    }
+                </div>
+            </div>
+
+            <div>
+                <label class="block text-sm font-semibold text-slate-700 mb-4"
+                    >¿Toma algún suplemento o complemento alimenticio? *</label
+                >
+                <div class="grid grid-cols-2 gap-3">
+                    {
+                        ["Si", "No"].map((opt) => (
+                            <label class="selection-card">
                                 <input
                                     type="radio"
                                     name="suplementos_si_no"
                                     value={opt}
                                     required
-                                    class="w-4 h-4 text-primary"
                                 />
-                                <span class="text-sm text-slate-600">
-                                    {opt}
-                                </span>
+                                <div class="card-content">
+                                    <div class="radio-indicator"></div>
+                                    <span class="card-label">{opt}</span>
+                                </div>
                             </label>
                         ))
                     }
                 </div>
-                <textarea
-                    name="suplementos_cuales"
-                    rows="2"
-                    class="mt-4 w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:border-primary outline-none transition-all resize-none"
-                    placeholder="¿Cuáles suplementos?"></textarea>
+                <div id="supplements-details-container" class="hidden animate-fade-in mt-4">
+                    <textarea
+                        name="suplementos_cuales"
+                        rows="2"
+                        class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:border-primary outline-none transition-all resize-none"
+                        placeholder="Ej: Multivitamínico, Omega 3, Proteína..."></textarea>
+                </div>
             </div>
-            <div>
-                <label class="block text-sm font-semibold text-slate-700 mb-3"
-                    >¿Ha llevado alguna dieta especial? *</label
+
+            <div class="md:col-span-2">
+                <label class="block text-sm font-semibold text-slate-700 mb-4"
+                    >¿Quién prepara sus alimentos? *</label
                 >
-                <div class="grid grid-cols-2 gap-2">
+                <div class="grid grid-cols-2 sm:grid-cols-5 gap-3">
                     {
-                        ["Si", "No", "Con Otro nutriòlogo", "Internet"].map(
+                        ["Yo", "Espos@", "Madre", "Padre", "Comida comprada"].map(
                             (opt) => (
-                                <label class="flex items-center gap-2 p-2 rounded-lg border border-slate-50 hover:bg-slate-50 cursor-pointer">
+                                <label class="selection-card">
                                     <input
                                         type="radio"
-                                        name="dieta_especial"
+                                        name="quien_cocina"
                                         value={opt}
                                         required
-                                        class="w-4 h-4 text-primary"
                                     />
-                                    <span class="text-xs text-slate-600">
-                                        {opt}
-                                    </span>
+                                    <div class="card-content !p-2">
+                                        <div class="radio-indicator"></div>
+                                        <span class="card-label !text-[10px] sm:!text-xs">{opt}</span>
+                                    </div>
                                 </label>
                             )
                         )
                     }
+                    <div class="col-span-2 sm:col-span-5 mt-2">
+                        <input
+                            type="text"
+                            name="quien_cocina_otro"
+                            class="w-full px-4 py-3 rounded-xl border border-slate-200 text-xs focus:border-primary outline-none transition-all"
+                            placeholder="Otros: Especifique aquí"
+                        />
+                    </div>
                 </div>
             </div>
         </div>

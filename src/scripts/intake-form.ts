@@ -124,6 +124,32 @@ export function initIntakeForm() {
 
     const TABLE_NAME = "patients";
 
+    // Conditional Logic: Female Health
+    const femaleHealthSection = document.getElementById("female-health-section");
+    const genderRadios = document.querySelectorAll('input[name="genero"]');
+    
+    genderRadios.forEach(radio => {
+        radio.addEventListener('change', (e) => {
+            if (femaleHealthSection) {
+                const target = e.target as HTMLInputElement;
+                femaleHealthSection.classList.toggle('hidden', target.value !== 'Femenino');
+            }
+        });
+    });
+
+    // Conditional Logic: Supplements
+    const supplementsSection = document.getElementById("supplements-details-container");
+    const supplementsRadios = document.querySelectorAll('input[name="suplementos_si_no"]');
+
+    supplementsRadios.forEach(radio => {
+        radio.addEventListener('change', (e) => {
+            if (supplementsSection) {
+                const target = e.target as HTMLInputElement;
+                supplementsSection.classList.toggle('hidden', target.value !== 'Si');
+            }
+        });
+    });
+
     function updateForm(direction: "next" | "prev" = "next") {
         steps.forEach((step) => {
             const stepValue = step.getAttribute("data-step");
@@ -303,7 +329,10 @@ export function initIntakeForm() {
         }
 
         try {
-            const { error } = await supabase.from(TABLE_NAME).insert([data]);
+            // Use upsert to update the record if the email already exists
+            const { error } = await supabase
+                .from(TABLE_NAME)
+                .upsert(data, { onConflict: 'email' });
 
             if (error) throw error;
 
