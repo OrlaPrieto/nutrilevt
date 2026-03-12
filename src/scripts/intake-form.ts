@@ -47,6 +47,47 @@ export function initIntakeForm() {
             dateFormat: "Y-m-d",
             maxDate: "today",
             disableMobile: "true",
+            monthSelectorType: "dropdown",
+            animate: true,
+            onReady: function(selectedDates: Date[], dateStr: string, instance: any) {
+                const yearInput = instance.calendarContainer.querySelector('.numInput.cur-year') as HTMLInputElement;
+                if (yearInput) {
+                    const yearSelect = document.createElement('select');
+                    yearSelect.className = 'flatpickr-monthDropdown-years';
+                    yearSelect.style.cssText = 'appearance: none; background: transparent; border: none; font-weight: 600; color: #d81b60; cursor: pointer; padding: 6px 10px; border-radius: 12px; transition: all 0.2s;';
+                    
+                    const currentYear = new Date().getFullYear();
+                    const startYear = currentYear - 100;
+                    const endYear = currentYear;
+
+                    for (let y = endYear; y >= startYear; y--) {
+                        const opt = document.createElement('option');
+                        opt.value = y.toString();
+                        opt.textContent = y.toString();
+                        if (y === instance.currentYear) opt.selected = true;
+                        yearSelect.appendChild(opt);
+                    }
+
+                    yearSelect.addEventListener('change', (e) => {
+                        const target = e.target as HTMLSelectElement;
+                        instance.changeYear(parseInt(target.value));
+                    });
+
+                    // Replace the input with the select
+                    if (yearInput.parentNode) {
+                        // Hide original input wrapper
+                        const wrapper = yearInput.parentNode as HTMLElement;
+                        wrapper.style.display = 'none';
+                        // Insert select after the wrapper
+                        wrapper.parentNode?.insertBefore(yearSelect, wrapper.nextSibling);
+
+                        // Sync select when year changes externally (e.g., month navigation)
+                        instance.config.onYearChange.push(() => {
+                            yearSelect.value = instance.currentYear.toString();
+                        });
+                    }
+                }
+            },
             onChange: function (selectedDates: Date[], dateStr: string) {
                 const edadInput = document.getElementById(
                     "edad"
