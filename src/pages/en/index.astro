@@ -1,24 +1,24 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import Navbar from "../components/sections/Navbar.astro";
-import Hero from "../components/sections/Hero.astro";
-import About from "../components/sections/About.astro";
-import Equipment from "../components/sections/Equipment.astro";
-import Services from "../components/sections/Services.astro";
-import ConsultationModes from "../components/sections/ConsultationModes.astro";
-import TestimonialsImproved from "../components/sections/TestimonialsImproved.astro";
-import Footer from "../components/sections/Footer.astro";
-import WhatsAppFloat from "../components/ui/WhatsAppFloat.astro";
-import FAQ from "../components/sections/FAQ.astro";
-import Pricing from "../components/sections/Pricing.astro";
-import BeforeAfter from "../components/sections/BeforeAfter.astro";
-import HistorySection from "../components/sections/HistorySection.astro";
+import Layout from "../../layouts/Layout.astro";
+import Navbar from "../../components/sections/Navbar.astro";
+import Hero from "../../components/sections/Hero.astro";
+import About from "../../components/sections/About.astro";
+import Equipment from "../../components/sections/Equipment.astro";
+import Services from "../../components/sections/Services.astro";
+import ConsultationModes from "../../components/sections/ConsultationModes.astro";
+import TestimonialsImproved from "../../components/sections/TestimonialsImproved.astro";
+import Footer from "../../components/sections/Footer.astro";
+import WhatsAppFloat from "../../components/ui/WhatsAppFloat.astro";
+import FAQ from "../../components/sections/FAQ.astro";
+import Pricing from "../../components/sections/Pricing.astro";
+import BeforeAfter from "../../components/sections/BeforeAfter.astro";
+import HistorySection from "../../components/sections/HistorySection.astro";
 import { Image } from "astro:assets";
-import experienceImg from "../assets/experience-nutrilev.jpg";
-import WhatsAppIcon from "../components/ui/icons/WhatsAppIcon.astro";
-import InstagramIcon from "../components/ui/icons/InstagramIcon.astro";
-import FacebookIcon from "../components/ui/icons/FacebookIcon.astro";
-import { getLangFromUrl, useTranslations } from "../i18n/utils";
+import experienceImg from "../../assets/experience-nutrilev.jpg";
+import WhatsAppIcon from "../../components/ui/icons/WhatsAppIcon.astro";
+import InstagramIcon from "../../components/ui/icons/InstagramIcon.astro";
+import FacebookIcon from "../../components/ui/icons/FacebookIcon.astro";
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -26,8 +26,9 @@ const langPath = lang === "es" ? "" : `/${lang}`;
 ---
 
 <Layout
-  title={t('site.title')}
-  description={t('site.description')}
+  title="Clinical Nutrition Specialist"
+  description="Specialized nutritional care with a clinical and human approach in Chihuahua. Transform your health with personalized plans and InBody 270 technology."
+  lang="en"
 >
   <Navbar />
   <WhatsAppFloat />
@@ -43,11 +44,11 @@ const langPath = lang === "es" ? "" : `/${lang}`;
               >{t('experience.badge')}</span
             >
             <h2 class="text-4xl lg:text-5xl font-bold text-slate-900 mt-4 mb-8">
-              {t('experience.title').split(lang === 'es' ? 'mejor salud' : 'better health').map((part, i, arr) => (
+              {t('experience.title').split('better health').map((part, i, arr) => (
                 <>
                   {part}
                   {i < arr.length - 1 && (
-                    <span class="italic bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">{lang === 'es' ? 'mejor salud' : 'better health'}</span>
+                    <span class="italic bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">better health</span>
                   )}
                 </>
               ))}

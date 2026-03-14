@@ -2,31 +2,35 @@
 import { ViewTransitions } from 'astro:transitions';
 import '../styles/global.css';
 import FloatingCTA from '../components/ui/FloatingCTA.astro';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
 
 interface Props {
   title: string;
   description?: string;
   image?: string;
+  lang?: 'es' | 'en';
 }
 
 const { 
+  lang = getLangFromUrl(Astro.url) as 'es' | 'en', 
   title,
-  description = "Nutrilev Especializada - Nutrición Clínica y Psiconutrición en Chihuahua. Planes personalizados, control de peso, diabetes y recomposición corporal con tecnología InBody 270.",
+  description = useTranslations(lang)('site.descriptionDefault'),
   image = "/assets/logo-final.jpg"
 } = Astro.props;
 
+const t = useTranslations(lang);
 const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://nutrilev.com');
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/png" href="/favicon2.png" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="keywords" content="nutriologa chihuahua, nutricion clinica, psiconutricion, inbody 270 chihuahua, control de peso chihuahua, nutricion deportiva, lactancia materna" />
+    <meta name="keywords" content={t('site.keywords')} />
     <link rel="canonical" href={canonicalURL} />
     
     <!-- View Transitions -->
@@ -49,7 +53,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://nutrilev
     <meta name="generator" content={Astro.generator} />
     
     <!-- Local Business Schema -->
-    <script type="application/ld+json">
+    <script type="application/ld+json" is:inline set:html={`
       {
         "@context": "https://schema.org",
         "@type": "Nutritionist",
@@ -89,6 +93,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://nutrilev
           "https://www.instagram.com/nutrilev_especializada"
         ]
       }
+    `}>
     </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">

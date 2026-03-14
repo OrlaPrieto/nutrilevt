@@ -4,6 +4,10 @@ import StepPersonalData from "./StepPersonalData.astro";
 import StepHealthBackground from "./StepHealthBackground.astro";
 import StepHabits from "./StepHabits.astro";
 import StepFinalDetails from "./StepFinalDetails.astro";
+import { getLangFromUrl, useTranslations } from "../../../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <!-- Flatpickr CSS -->
@@ -45,19 +49,19 @@ import StepFinalDetails from "./StepFinalDetails.astro";
                     type="button"
                     id="prev-btn"
                     class="hidden flex-1 px-8 py-4 rounded-2xl font-bold text-slate-500 border border-slate-200 hover:bg-slate-50 transition-all"
-                    >Anterior</button
+                    >{t('intake.prev')}</button
                 >
                 <button
                     type="button"
                     id="next-btn"
                     class="flex-1 px-8 py-4 rounded-2xl font-bold bg-primary text-white shadow-lg shadow-pink-100 hover:scale-105 active:scale-95 transition-all"
-                    >Siguiente</button
+                    >{t('intake.next')}</button
                 >
                 <button
                     type="submit"
                     id="submit-btn"
                     class="hidden flex-1 px-8 py-4 rounded-2xl font-bold bg-gradient-to-r from-primary to-accent text-white shadow-xl shadow-pink-200 hover:scale-105 active:scale-95 transition-all"
-                    >Enviar Historia Clínica</button
+                    >{t('intake.submit')}</button
                 >
             </div>
         </div>
@@ -87,6 +91,7 @@ import StepFinalDetails from "./StepFinalDetails.astro";
 <script>
     import { initIntakeForm } from "../../../scripts/intake-form";
 
-    // Initialize the form logic
-    initIntakeForm();
+    document.addEventListener('astro:page-load', () => {
+        initIntakeForm();
+    });
 </script>

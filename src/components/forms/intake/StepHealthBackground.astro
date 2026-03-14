@@ -1,64 +1,50 @@
 ---
 // src/components/forms/intake/StepHealthBackground.astro
+import { getLangFromUrl, useTranslations } from "../../../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <!-- Step 3: Medical Background -->
 <div class="form-step" data-step="3">
     <div class="text-center mb-10">
         <span class="text-primary font-bold text-sm uppercase tracking-wider"
-            >Paso 3 de 7</span
+            >{t('intake.step')} 3 {t('intake.of')} 7</span
         >
-        <h3 class="text-3xl font-bold text-slate-900 mt-2">
-            Antecedentes Médicos
-        </h3>
-        <p class="text-slate-500 mt-2">Información clínica importante.</p>
+        <h3 class="text-3xl font-bold text-slate-900 mt-2">{t('intake.step3.title')}</h3>
+        <p class="text-slate-500 mt-2">{t('intake.step3.subtitle')}</p>
     </div>
 
     <div class="space-y-8">
         <div>
             <label class="block text-sm font-semibold text-slate-700 mb-4"
-                >Antecedentes personales patológicos: Seleccionar si presenta
-                alguna de las siguientes condiciones. *</label
+                >{t('intake.field.pathological')}</label
             >
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
                 {
                     [
-                        "Diarrea",
-                        "Estreñimiento",
-                        "Gastritis",
-                        "Úlceras",
-                        "Nauseas",
-                        "Pirosis",
-                        "Vomito",
-                        "Colitis",
-                        "Dentadura",
-                        "Otros",
-                        "Ninguno",
+                        { value: "Diarrea", label: t('intake.pathological.diarrhea') },
+                        { value: "Estreñimiento", label: t('intake.pathological.constipation') },
+                        { value: "Gastritis", label: t('intake.pathological.gastritis') },
+                        { value: "Úlceras", label: t('intake.pathological.ulcers') },
+                        { value: "Nauseas", label: t('intake.pathological.nausea') },
+                        { value: "Pirosis", label: t('intake.pathological.pyrosis') },
+                        { value: "Vomito", label: t('intake.pathological.vomiting') },
+                        { value: "Colitis", label: t('intake.pathological.colitis') },
+                        { value: "Dentadura", label: t('intake.pathological.denture') },
+                        { value: "Otros", label: t('intake.pathological.others') },
+                        { value: "Ninguno", label: t('intake.pathological.none') },
                     ].map((opt) => (
                         <label class="selection-card">
                             <input
                                 type="checkbox"
                                 name="antecedentes_patologicos"
-                                value={opt}
-                                required
+                                value={opt.value}
                             />
                             <div class="card-content">
-                                <div class="checkbox-indicator">
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        viewBox="0 0 24 24"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        stroke-width="4"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                    >
-                                        <polyline points="20 6 9 17 4 12" />
-                                    </svg>
-                                </div>
-                                <span class="card-label !text-[10px] sm:!text-[11px]">
-                                    {opt}
-                                </span>
+                                <div class="checkbox-indicator"></div>
+                                <span class="card-label !text-xs">{opt.label}</span>
                             </div>
                         </label>
                     ))
@@ -68,29 +54,26 @@
 
         <div>
             <label class="block text-sm font-semibold text-slate-700 mb-4"
-                >¿Toma alguno de los siguientes? *</label
+                >{t('intake.field.medicationsCheck')}</label
             >
-            <div class="grid grid-cols-2 sm:grid-cols-5 gap-3">
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
                 {
                     [
-                        "Laxantes",
-                        "Diuréticos",
-                        "Antiácidos",
-                        "Analgésicos",
-                        "Ninguno",
+                        { value: "Laxantes", label: t('intake.meds.laxatives') },
+                        { value: "Diuréticos", label: t('intake.meds.diuretics') },
+                        { value: "Antiácidos", label: t('intake.meds.antacids') },
+                        { value: "Analgésicos", label: t('intake.meds.analgesics') },
+                        { value: "Ninguno", label: t('intake.meds.none') },
                     ].map((opt) => (
                         <label class="selection-card">
                             <input
                                 type="checkbox"
-                                name="toma_medicamentos"
-                                value={opt}
-                                required
+                                name="medicamentos_uso"
+                                value={opt.value}
                             />
-                            <div class="card-content !p-2">
-                                <div class="checkbox-indicator">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                                </div>
-                                <span class="card-label !text-[10px] sm:!text-[11px]">{opt}</span>
+                            <div class="card-content">
+                                <div class="checkbox-indicator"></div>
+                                <span class="card-label !text-xs">{opt.label}</span>
                             </div>
                         </label>
                     ))
@@ -99,98 +82,80 @@
         </div>
 
         <div class="grid md:grid-cols-2 gap-6">
-            <div>
+            <div class="md:col-span-2">
                 <label class="block text-sm font-semibold text-slate-700 mb-2"
-                    >Enfermedades diagnosticada:</label
+                    >{t('intake.field.diseases')}</label
+                >
+                <input
+                    type="text"
+                    name="enfermedades_diagnosticadas"
+                    class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary outline-none transition-all"
+                    placeholder={t('intake.field.diseasesPlaceholder')}
+                />
+            </div>
+            <div class="md:col-span-2">
+                <label class="block text-sm font-semibold text-slate-700 mb-2"
+                    >{t('intake.field.treatment')}</label
+                >
+                <input
+                    type="text"
+                    name="tratamiento_farmacologico"
+                    class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary outline-none transition-all"
+                    placeholder={t('intake.field.treatmentPlaceholder')}
+                />
+            </div>
+            <div class="md:col-span-2">
+                <label class="block text-sm font-semibold text-slate-700 mb-2"
+                    >{t('intake.field.surgeries')}</label
                 >
                 <textarea
-                    name="enfermedades"
+                    name="cirugias_detalle"
+                    required
                     rows="2"
-                    class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:border-primary outline-none transition-all resize-none"
-                    placeholder="Detalla si aplica..."></textarea>
+                    class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all resize-none text-sm"
+                ></textarea>
             </div>
-            <div>
-                <label class="block text-sm font-semibold text-slate-700 mb-2"
-                    >¿Tratamiento farmacológico? (Medicamentos)</label
-                >
-                <textarea
-                    name="medicamentos"
-                    rows="2"
-                    class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:border-primary outline-none transition-all resize-none"
-                    placeholder="Nombre y dosis si los conoces..."></textarea>
-            </div>
-        </div>
-
-        <div>
-            <label class="block text-sm font-semibold text-slate-700 mb-2"
-                >¿Le han practicado alguna cirugía? ¿Cuál? ¿Hace cuánto tiempo?
-                *</label
-            >
-            <textarea
-                name="cirugias"
-                required
-                rows="2"
-                class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:border-primary outline-none transition-all resize-none"
-            ></textarea>
         </div>
     </div>
 </div>
 
-<!-- Step 4: Family & Lifestyle -->
+<!-- Step 4: Family & Habits -->
 <div class="form-step" data-step="4">
     <div class="text-center mb-10">
         <span class="text-primary font-bold text-sm uppercase tracking-wider"
-            >Paso 4 de 7</span
+            >{t('intake.step')} 4 {t('intake.of')} 7</span
         >
-        <h3 class="text-3xl font-bold text-slate-900 mt-2">
-            Familia y Hábitos
-        </h3>
-        <p class="text-slate-500 mt-2">Entorno y rutinas diarias.</p>
+        <h3 class="text-3xl font-bold text-slate-900 mt-2">{t('intake.step4.title')}</h3>
+        <p class="text-slate-500 mt-2">{t('intake.step4.subtitle')}</p>
     </div>
 
     <div class="space-y-8">
         <div>
             <label class="block text-sm font-semibold text-slate-700 mb-4"
-                >¿Alguien de tu familia presenta alguna enfermedad? (Madre,
-                padre, hermanos, tios) *</label
+                >{t('intake.field.familyHistory')}</label
             >
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
                 {
                     [
-                        "Diabetes",
-                        "Hipertensión",
-                        "Cáncer",
-                        "Cardiopatías",
-                        "Obesidad",
-                        "Colesterol",
-                        "Triglicéridos",
-                        "Otra",
-                        "Ninguna",
+                        { value: "Diabetes", label: t('intake.family.diabetes') },
+                        { value: "Hipertensión", label: t('intake.family.hypertension') },
+                        { value: "Cáncer", label: t('intake.family.cancer') },
+                        { value: "Cardiopatías", label: t('intake.family.heart') },
+                        { value: "Obesidad", label: t('intake.family.obesity') },
+                        { value: "Colesterol", label: t('intake.family.cholesterol') },
+                        { value: "Triglicéridos", label: t('intake.family.triglycerides') },
+                        { value: "Otra", label: t('intake.family.other') },
+                        { value: "Ninguna", label: t('intake.family.none') },
                     ].map((opt) => (
                         <label class="selection-card">
                             <input
                                 type="checkbox"
                                 name="antecedentes_familiares"
-                                value={opt}
-                                required
+                                value={opt.value}
                             />
-                            <div class="card-content !p-2">
-                                <div class="checkbox-indicator">
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        viewBox="0 0 24 24"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        stroke-width="4"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                    >
-                                        <polyline points="20 6 9 17 4 12" />
-                                    </svg>
-                                </div>
-                                <span class="card-label !text-[10px] sm:!text-[11px]">
-                                    {opt}
-                                </span>
+                            <div class="card-content">
+                                <div class="checkbox-indicator"></div>
+                                <span class="card-label !text-xs">{opt.label}</span>
                             </div>
                         </label>
                     ))
@@ -201,51 +166,48 @@
         <div class="grid md:grid-cols-2 gap-8">
             <div>
                 <label class="block text-sm font-semibold text-slate-700 mb-4"
-                    >¿Bebidas alcohólicas? *</label
+                    >{t('intake.field.alcohol')}</label
                 >
-                <div class="selection-grid">
+                <div class="space-y-2">
                     {
-                        ["No", "Social", "Frecuente", "Muy frecuente"].map(
-                            (opt) => (
-                                <label class="selection-card">
-                                    <input
-                                        type="radio"
-                                        name="alcohol"
-                                        value={opt}
-                                        required
-                                    />
-                                    <div class="card-content">
-                                        <div class="radio-indicator" />
-                                        <span class="card-label">{opt}</span>
-                                    </div>
-                                </label>
-                            )
-                        )
+                        [
+                            { value: "No", label: t('intake.habits.no') },
+                            { value: "Social", label: t('intake.habits.social') },
+                            { value: "Frecuente", label: t('intake.habits.frequent') },
+                            { value: "Muy frecuente", label: t('intake.habits.veryFrequent') }
+                        ].map((opt) => (
+                            <label class="selection-card h-auto py-3">
+                                <input type="radio" name="alcohol_consumo" value={opt.value} required />
+                                <div class="card-content">
+                                    <div class="radio-indicator"></div>
+                                    <span class="card-label">{opt.label}</span>
+                                </div>
+                            </label>
+                        ))
                     }
                 </div>
             </div>
+
             <div>
                 <label class="block text-sm font-semibold text-slate-700 mb-4"
-                    >¿Cigarros? *</label
+                    >{t('intake.field.smoking')}</label
                 >
-                <div class="selection-grid">
+                <div class="grid grid-cols-2 gap-3">
                     {
-                        ["No", "Social", "Frecuente", "Muy frecuente"].map(
-                            (opt) => (
-                                <label class="selection-card">
-                                    <input
-                                        type="radio"
-                                        name="tabaco"
-                                        value={opt}
-                                        required
-                                    />
-                                    <div class="card-content">
-                                        <div class="radio-indicator" />
-                                        <span class="card-label">{opt}</span>
-                                    </div>
-                                </label>
-                            )
-                        )
+                         [
+                            { value: "No", label: t('intake.habits.no') },
+                            { value: "Social", label: t('intake.habits.social') },
+                            { value: "Frecuente", label: t('intake.habits.frequent') },
+                            { value: "Muy frecuente", label: t('intake.habits.veryFrequent') }
+                        ].map((opt) => (
+                        <label class="selection-card h-auto py-3">
+                            <input type="radio" name="tabaquismo" value={opt.value} required />
+                            <div class="card-content">
+                                <div class="radio-indicator"></div>
+                                <span class="card-label !text-[10px]">{opt.label}</span>
+                            </div>
+                        </label>
+                    ))
                     }
                 </div>
             </div>
@@ -253,26 +215,23 @@
 
         <div>
             <label class="block text-sm font-semibold text-slate-700 mb-4"
-                >Horas de sueño al día: *</label
+                >{t('intake.field.sleep')}</label
             >
-            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 {
-                    ["Menos de 5-6h", "7 a 8 horas", "Más de 8-10h"].map(
-                        (opt) => (
-                            <label class="selection-card">
-                                <input
-                                    type="radio"
-                                    name="sueno"
-                                    value={opt}
-                                    required
-                                />
-                                <div class="card-content">
-                                    <div class="radio-indicator" />
-                                    <span class="card-label">{opt}</span>
-                                </div>
-                            </label>
-                        )
-                    )
+                    [
+                        { value: "Menos de 5-6h", label: t('intake.sleep.less6') },
+                        { value: "7 a 8 horas", label: t('intake.sleep.7to8') },
+                        { value: "Más de 8-10h", label: t('intake.sleep.more8') }
+                    ].map((opt) => (
+                        <label class="selection-card h-auto py-4">
+                            <input type="radio" name="horas_sueno" value={opt.value} required />
+                            <div class="card-content text-center">
+                                <div class="radio-indicator mx-auto mb-2"></div>
+                                <span class="card-label block w-full">{opt.label}</span>
+                            </div>
+                        </label>
+                    ))
                 }
             </div>
         </div>

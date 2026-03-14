@@ -1,103 +1,63 @@
 ---
 // src/components/forms/intake/StepFinalDetails.astro
+import { getLangFromUrl, useTranslations } from "../../../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
+<!-- Step 7: Final Details -->
 <div class="form-step" data-step="7">
     <div class="text-center mb-10">
         <span class="text-primary font-bold text-sm uppercase tracking-wider"
-            >Paso 7 de 7</span
+            >{t('intake.step')} 7 {t('intake.of')} 7</span
         >
-        <h3 class="text-3xl font-bold text-slate-900 mt-2">Detalles Finales</h3>
-        <p class="text-slate-500 mt-2">Última información nutricional.</p>
+        <h3 class="text-3xl font-bold text-slate-900 mt-2">{t('intake.step7.title')}</h3>
+        <p class="text-slate-500 mt-2">{t('intake.step7.subtitle')}</p>
     </div>
 
     <div class="space-y-8">
-        <div class="premium-card bg-slate-50/50 p-6 rounded-2xl border border-slate-100/50">
+        <div>
             <label class="block text-sm font-semibold text-slate-700 mb-4"
-                >¿Cuántas veces a la semana se consume comida comprada? *</label
+                >{t('intake.field.preparesMeals')}</label
             >
-            <div class="grid grid-cols-2 sm:grid-cols-5 gap-3">
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
                 {
-                    ["1", "2", "3", "5+", "Ninguna"].map((opt) => (
-                        <label class="selection-card">
-                            <input
-                                type="radio"
-                                name="comida_comprada"
-                                value={opt}
-                                required
-                            />
-                            <div class="card-content !p-2">
+                    [
+                        { value: "Yo", label: t('intake.prepares.me') },
+                        { value: "Familia", label: t('intake.prepares.family') },
+                        { value: "Restaurante", label: t('intake.prepares.restaurant') },
+                        { value: "Otro", label: t('intake.prepares.other') }
+                    ].map((opt) => (
+                        <label class="selection-card h-auto py-3 px-4">
+                            <input type="radio" name="quien_prepara_comida" value={opt.value} required />
+                            <div class="card-content">
                                 <div class="radio-indicator"></div>
-                                <span class="card-label">{opt}</span>
+                                <span class="card-label text-sm">{opt.label}</span>
                             </div>
                         </label>
                     ))
                 }
-                <div class="col-span-2 sm:col-span-5 mt-2">
-                    <input
-                        type="text"
-                        name="comida_comprada_otro"
-                        class="w-full px-4 py-3 rounded-xl border border-white bg-white/70 focus:border-primary focus:bg-white outline-none transition-all text-xs"
-                        placeholder="Otros (ej. fines de semana)..."
-                    />
-                </div>
-            </div>
-        </div>
-
-        <div class="grid md:grid-cols-2 gap-6">
-            <div>
-                <label class="block text-sm font-semibold text-slate-700 mb-2"
-                    >Alimentos preferidos: *</label
-                >
-                <textarea
-                    name="alimentos_preferidos"
-                    required
-                    rows="2"
-                    class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:border-primary outline-none transition-all resize-none"
-                    placeholder="Los que no pueden faltar..."></textarea>
-            </div>
-            <div>
-                <label class="block text-sm font-semibold text-slate-700 mb-2"
-                    >Alimentos que no le agradan: *</label
-                >
-                <textarea
-                    name="alimentos_no_agradan"
-                    required
-                    rows="2"
-                    class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:border-primary outline-none transition-all resize-none"
-                    placeholder="Por malestar o gusto propio..."></textarea>
-            </div>
-            <div class="md:col-span-2">
-                <label class="block text-sm font-semibold text-slate-700 mb-2"
-                    >Alergias o intolerancias alimentarias: *</label
-                >
-                <textarea
-                    name="alergias_alimentarias"
-                    required
-                    rows="2"
-                    class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:border-primary outline-none transition-all resize-none"
-                    placeholder="Especificar alimentos y tipo de reacción..."></textarea>
             </div>
         </div>
 
         <div class="grid md:grid-cols-2 gap-8">
             <div>
                 <label class="block text-sm font-semibold text-slate-700 mb-4"
-                    >¿Ha llevado alguna dieta especial anteriormente? *</label
+                    >{t('intake.field.appetite')}</label
                 >
                 <div class="grid grid-cols-2 gap-3">
                     {
-                        ["Si", "No"].map((opt) => (
-                            <label class="selection-card">
-                                <input
-                                    type="radio"
-                                    name="dieta_especial"
-                                    value={opt}
-                                    required
-                                />
+                        [
+                            { value: "Bueno", label: t('intake.appetite.good') },
+                            { value: "Regular", label: t('intake.appetite.fair') },
+                            { value: "Malo", label: t('intake.appetite.bad') }
+                        ].map((opt) => (
+                            <label class="selection-card h-auto py-3">
+                                <input type="radio" name="apetito_calidad" value={opt.value} required />
                                 <div class="card-content">
                                     <div class="radio-indicator"></div>
-                                    <span class="card-label">{opt}</span>
+                                    <span class="card-label text-sm">{opt.label}</span>
                                 </div>
                             </label>
                         ))
@@ -107,68 +67,51 @@
 
             <div>
                 <label class="block text-sm font-semibold text-slate-700 mb-4"
-                    >¿Toma algún suplemento o complemento alimenticio? *</label
+                    >{t('intake.field.anxietyTime')}</label
                 >
-                <div class="grid grid-cols-2 gap-3">
-                    {
-                        ["Si", "No"].map((opt) => (
-                            <label class="selection-card">
-                                <input
-                                    type="radio"
-                                    name="suplementos_si_no"
-                                    value={opt}
-                                    required
-                                />
-                                <div class="card-content">
-                                    <div class="radio-indicator"></div>
-                                    <span class="card-label">{opt}</span>
-                                </div>
-                            </label>
-                        ))
-                    }
-                </div>
-                <div id="supplements-details-container" class="hidden animate-fade-in mt-4">
-                    <textarea
-                        name="suplementos_cuales"
-                        rows="2"
-                        class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:border-primary outline-none transition-all resize-none"
-                        placeholder="Ej: Multivitamínico, Omega 3, Proteína..."></textarea>
-                </div>
+                <select name="anclaje_ansiedad_momento" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary outline-none text-sm transition-all" required>
+                    <option value="" disabled selected>{t('intake.anxiety.select')}</option>
+                    <option value="Mañana">{t('intake.anxiety.morning')}</option>
+                    <option value="Tarde">{t('intake.anxiety.afternoon')}</option>
+                    <option value="Noche">{t('intake.anxiety.night')}</option>
+                    <option value="Todo el día">{t('intake.anxiety.allDay')}</option>
+                    <option value="Ninguno">{t('intake.anxiety.none')}</option>
+                </select>
             </div>
+        </div>
 
+        <div class="grid md:grid-cols-2 gap-6">
             <div class="md:col-span-2">
-                <label class="block text-sm font-semibold text-slate-700 mb-4"
-                    >¿Quién prepara sus alimentos? *</label
+                <label class="block text-sm font-semibold text-slate-700 mb-2"
+                    >{t('intake.field.foodAllergies')}</label
                 >
-                <div class="grid grid-cols-2 sm:grid-cols-5 gap-3">
-                    {
-                        ["Yo", "Espos@", "Madre", "Padre", "Comida comprada"].map(
-                            (opt) => (
-                                <label class="selection-card">
-                                    <input
-                                        type="radio"
-                                        name="quien_cocina"
-                                        value={opt}
-                                        required
-                                    />
-                                    <div class="card-content !p-2">
-                                        <div class="radio-indicator"></div>
-                                        <span class="card-label !text-[10px] sm:!text-xs">{opt}</span>
-                                    </div>
-                                </label>
-                            )
-                        )
-                    }
-                    <div class="col-span-2 sm:col-span-5 mt-2">
-                        <input
-                            type="text"
-                            name="quien_cocina_otro"
-                            class="w-full px-4 py-3 rounded-xl border border-slate-200 text-xs focus:border-primary outline-none transition-all"
-                            placeholder="Otros: Especifique aquí"
-                        />
-                    </div>
-                </div>
+                <input type="text" name="alergias_alimentarias" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary outline-none text-sm" placeholder={t('intake.field.foodAllergiesPlaceholder')} />
             </div>
+            <div class="md:col-span-2">
+                <label class="block text-sm font-semibold text-slate-700 mb-2"
+                    >{t('intake.field.dislikedFoods')}</label
+                >
+                <input type="text" name="alimentos_disgusto" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary outline-none text-sm" placeholder={t('intake.field.dislikedFoodsPlaceholder')} />
+            </div>
+            <div class="md:col-span-2">
+                <label class="block text-sm font-semibold text-slate-700 mb-2"
+                    >{t('intake.field.supplements')}</label
+                >
+                <input type="text" name="suplementos_vitamina" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary outline-none text-sm" placeholder={t('intake.field.supplementsPlaceholder')} />
+            </div>
+        </div>
+
+        <div class="premium-card p-6 bg-primary/5 border border-primary/10 rounded-2xl">
+            <h4 class="text-sm font-bold text-primary mb-2 uppercase tracking-tight">{t('intake.field.privacy')}</h4>
+            <p class="text-[10px] leading-relaxed text-slate-500 mb-4 italic">
+                {t('intake.field.privacyDesc')}
+            </p>
+            <label class="flex items-center gap-3 cursor-pointer group">
+                <input type="checkbox" name="privacidad_acepto" required class="w-5 h-5 rounded border-slate-300 text-primary focus:ring-primary transition-all" />
+                <span class="text-xs font-semibold text-slate-700 group-hover:text-primary transition-colors">
+                    {t('intake.field.privacyCheck')}
+                </span>
+            </label>
         </div>
     </div>
 </div>

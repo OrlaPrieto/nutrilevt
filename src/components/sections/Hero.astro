@@ -1,11 +1,16 @@
 ---
 import { Image } from "astro:assets";
 import heroImg from "../../assets/hands-strawberries.jpg";
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const langPath = lang === "es" ? "" : `/${lang}`;
 ---
 
 <section
   id="inicio"
-  class="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-mesh fade-in-section pt-32 lg:pt-48"
+  class="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-mesh fade-in-section pt-32 lg:pt-48 pb-12 lg:pb-16"
   aria-label="Presentación principal"
 >
   <!-- Background Blobs -->
@@ -16,26 +21,38 @@ import heroImg from "../../assets/hands-strawberries.jpg";
     <div class="lg:flex lg:items-center lg:gap-16">
       <div class="lg:w-1/2 mb-12 lg:mb-0">
         <h1
-          class="text-6xl lg:text-8xl font-bold text-slate-900 leading-[1.1] mb-8 font-serif"
-        >
-          Nutrición <span class="italic text-primary">consciente</span> para una
-          vida plena.
+         class="text-5xl lg:text-7xl font-bold text-slate-900 leading-[1.1] mb-8 tracking-tight">
+          {t('hero.title').split(lang === 'es' ? 'consciente' : 'Conscious').map((part, i, arr) => (
+            <>
+              {part}
+              {i < arr.length - 1 && (
+                <span class="italic bg-clip-text text-transparent bg-gradient-to-r from-primary via-accent to-primary animate-gradient-x">
+                  {lang === 'es' ? 'consciente' : 'Conscious'}
+                </span>
+              )}
+            </>
+          ))}
         </h1>
         <p class="text-xl lg:text-2xl text-slate-600 mb-10 max-w-xl leading-relaxed">
-          Transforma tu relación con la comida mediante un enfoque <span class="text-primary font-medium">especializado</span> y personalizado que se adapta a tu estilo de vida.
+          {t('hero.subtitle').split(lang === 'es' ? 'especializado' : 'specialized').map((part, i, arr) => (
+            <>
+              {part}
+              {i < arr.length - 1 && <span class="text-primary font-medium">{lang === 'es' ? 'especializado' : 'specialized'}</span>}
+            </>
+          ))}
         </p>
         <div class="flex flex-col sm:flex-row gap-5">
           <a
-            href="#services"
+            href={`${langPath}#services`}
             class="bg-primary text-white px-10 py-5 rounded-full font-bold text-center hover:scale-105 active:scale-95 transition-all shadow-glow hover:shadow-glow-lg animate-shimmer"
           >
-            Descubre nuestros servicios
+            {t('hero.cta.services')}
           </a>
           <a
-            href="#about"
+            href={`${langPath}#about`}
             class="border-2 border-primary/20 text-primary px-10 py-5 rounded-full font-bold text-center hover:bg-primary/5 hover:border-primary/40 transition-all flex items-center justify-center gap-2"
           >
-            Conoce más <span class="text-lg">→</span>
+            {t('hero.cta.about')} <span class="text-lg">→</span>
           </a>
         </div>
         <div class="mt-14 flex items-center gap-6">
@@ -51,8 +68,8 @@ import heroImg from "../../assets/hands-strawberries.jpg";
             }
           </div>
           <div class="flex flex-col">
-            <span class="text-slate-900 font-bold text-lg">+500 vidas</span>
-            <span class="text-slate-500 text-sm">transformadas con éxito</span>
+            <span class="text-slate-900 font-bold text-lg">{t('hero.stats.lives')}</span>
+            <span class="text-slate-500 text-sm">{t('hero.stats.desc')}</span>
           </div>
         </div>
       </div>
@@ -73,10 +90,10 @@ import heroImg from "../../assets/hands-strawberries.jpg";
           </div>
 
           <!-- Float Badge -->
-          <div class="absolute -bottom-6 -left-6 bg-white p-5 rounded-2xl shadow-2xl animate-float max-w-[180px] hidden sm:block">
+          <div class="absolute -bottom-6 -left-6 bg-white p-5 rounded-2xl shadow-2xl animate-float max-w-[180px] hidden sm:block z-20">
             <div class="flex items-center gap-3">
               <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center text-green-600">✓</div>
-              <p class="text-xs font-bold text-slate-800">Planes 100% Personalizados</p>
+              <p class="text-xs font-bold text-slate-800">{t('hero.badge')}</p>
             </div>
           </div>
         </div>

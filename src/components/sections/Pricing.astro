@@ -1,57 +1,43 @@
 ---
 // Pricing.astro
 // Sección de precios con cards elegantes
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 
 const plans = [
   {
     icon: "✨",
-    name: "Primera Consulta",
-    price: "Desde $600",
+    name: t('pricing.p1.name'),
+    price: t('pricing.p1.price'),
     currency: "MXN",
     tag: null,
-    description: "Evaluación integral para conocerte y diseñar tu camino.",
-    features: [
-      "Historial clínico y alimentario completo",
-      "Análisis InBody 270 (presencial)",
-      "Diagnóstico nutricional personalizado",
-      "Plan de alimentación inicial",
-      "Metas y seguimiento definidos",
-    ],
-    cta: "Agendar primera consulta",
+    description: t('pricing.p1.desc'),
+    features: t('pricing.p1.features').split('|'),
+    cta: t('pricing.p1.cta'),
     highlight: false,
   },
   {
     icon: "🌸",
-    name: "Consulta de Seguimiento",
-    price: "Desde $450",
+    name: t('pricing.p2.name'),
+    price: t('pricing.p2.price'),
     currency: "MXN",
-    tag: "Más popular",
-    description: "Revisión de avances y ajuste de tu plan nutricional.",
-    features: [
-      "Evaluación de evolución y cambios",
-      "Re-análisis de composición corporal",
-      "Ajuste y optimización del plan",
-      "Resolución de dudas y coaching",
-      "Material digital actualizado",
-    ],
-    cta: "Agendar seguimiento",
+    tag: t('pricing.p2.tag'),
+    description: t('pricing.p2.desc'),
+    features: t('pricing.p2.features').split('|'),
+    cta: t('pricing.p2.cta'),
     highlight: true,
   },
   {
     icon: "✨",
-    name: "Paquete Mensual",
-    price: "Consultar",
+    name: t('pricing.p3.name'),
+    price: t('pricing.p3.price'),
     currency: "",
-    tag: "Mejor inversión",
-    description: "Acompañamiento continuo para máximos resultados.",
-    features: [
-      "2–4 consultas en el mes",
-      "Seguimiento por WhatsApp",
-      "Plan nutricional actualizado",
-      "Análisis InBody incluido",
-      "Precio especial por volumen",
-    ],
-    cta: "Preguntar por paquete",
+    tag: t('pricing.p3.tag'),
+    description: t('pricing.p3.desc'),
+    features: t('pricing.p3.features').split('|'),
+    cta: t('pricing.p3.cta'),
     highlight: false,
   },
 ];
@@ -60,11 +46,19 @@ const plans = [
 <section id="pricing" class="pricing-section">
   <div class="pricing-container">
     <div class="pricing-header">
-      <span class="pricing-eyebrow">Inversión en tu salud</span>
-      <h2 class="pricing-title">Tarifas y Servicios</h2>
+      <span class="pricing-eyebrow">{t('pricing.label')}</span>
+      <h2 class="pricing-title">
+        {t('pricing.title').split(lang === 'es' ? 'Servicios' : 'Services').map((part, i, arr) => (
+          <>
+            {part}
+            {i < arr.length - 1 && (
+              <span class="italic bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">{lang === 'es' ? 'Servicios' : 'Services'}</span>
+            )}
+          </>
+        ))}
+      </h2>
       <p class="pricing-subtitle">
-        Precios referenciales. Agenda tu cita y te daremos información exacta
-        según tu caso.
+        {t('pricing.subtitle')}
       </p>
     </div>
 
@@ -122,24 +116,20 @@ const plans = [
     </div>
 
     <p class="pricing-note">
-      💬 ¿Tienes dudas sobre qué opción es para ti?
+      💬 {t('pricing.note')}
       <a
         href="https://wa.me/526143958598?text=Hola%20Velvet%2C%20quisiera%20informaci%C3%B3n%20sobre%20precios%20de%20Nutrilev"
-        target="_blank">Escríbenos por WhatsApp</a
+        target="_blank">{t('pricing.whatsapp')}</a
       >
-      y te orientamos sin compromiso.
+      {lang === 'es' ? 'y te orientamos sin compromiso.' : 'and we will guide you without obligation.'}
     </p>
   </div>
 </section>
 
 <style>
   .pricing-section {
-    padding: 96px 24px;
-    background: linear-gradient(
-      180deg,
-      #fff 0%,
-      var(--color-accent-lighter) 100%
-    );
+    padding: 80px 24px;
+    background: #fff;
   }
 
   .pricing-container {

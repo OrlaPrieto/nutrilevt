@@ -1,67 +1,71 @@
 ---
 // TestimonialsImproved.astro
 // Sección de testimonios mejorada con avatares, fecha, rating y diseño visual enriquecido
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 
 const testimonials = [
   {
-    name: "Camila Torres",
+    name: t('testimonials.t1.name'),
     initials: "CT",
     color: "#d4a5c9",
-    service: "Control de Peso",
+    service: t('services.weight.title'),
     rating: 5,
-    date: "Enero 2025",
-    text: "La mejor en todo, siempre apoyándote, guiándote y motivándote a llevar un estilo de vida saludable. Mi relación con la comida cambió completamente.",
-    highlight: "Mi relación con la comida cambió completamente.",
+    date: lang === 'es' ? "Enero 2025" : "January 2025",
+    text: t('testimonials.t1.text'),
+    highlight: t('testimonials.t1.highlight'),
   },
   {
-    name: "Aneth Holguín",
+    name: t('testimonials.t2.name'),
     initials: "AH",
     color: "#a5c4d4",
-    service: "Nutrición Clínica",
+    service: t('services.clinical.title'),
     rating: 5,
-    date: "Noviembre 2024",
-    text: "Si pudiera darle más estrellas, lo haría. Trato profesional que genera confianza y te motiva a mejorar con planes de alimentación geniales y personalizados.",
-    highlight: "Si pudiera darle más estrellas, lo haría.",
+    date: lang === 'es' ? "Noviembre 2024" : "November 2024",
+    text: t('testimonials.t2.text'),
+    highlight: t('testimonials.t2.highlight'),
   },
   {
-    name: "Karen Castillo",
-    initials: "KC",
+    name: t('testimonials.t3.name'),
+    initials: "AH",
     color: "#c4d4a5",
-    service: "Psiconutrición",
+    service: t('services.psycho.title'),
     rating: 5,
-    date: "Octubre 2024",
-    text: "Atención súper personalizada y los menús prácticos, deliciosos y consideran gustos personales. Resultados evidentes en poco tiempo.",
-    highlight: "Resultados evidentes en poco tiempo.",
+    date: lang === 'es' ? "Octubre 2024" : "October 2024",
+    text: t('testimonials.t3.text'),
+    highlight: t('testimonials.t3.highlight'),
   },
   {
-    name: "Daniela Durán",
+    name: t('testimonials.t4.name'),
     initials: "DD",
     color: "#d4c4a5",
-    service: "Salud Hormonal",
+    service: t('services.hormone.title'),
     rating: 5,
-    date: "Septiembre 2024",
-    text: "Súper recomendada. Enfoque personalizado para crear hábitos saludables con planes nutricionales balanceados, flexibilidad y explicaciones detalladas.",
-    highlight: "Enfoque personalizado para crear hábitos saludables.",
+    date: lang === 'es' ? "Septiembre 2024" : "September 2024",
+    text: t('testimonials.t4.text'),
+    highlight: t('testimonials.t4.highlight'),
   },
   {
-    name: "Alejandra Estrada",
+    name: t('testimonials.t5.name'),
     initials: "AE",
     color: "#c4a5d4",
-    service: "Psiconutrición",
+    service: t('services.psycho.title'),
     rating: 5,
-    date: "Agosto 2024",
-    text: "Excelente profesional. El acompañamiento emocional y psicológico es clave. Equipo de alta calidad (InBody) y planes que se ajustan a mi ritmo de vida.",
-    highlight: "El acompañamiento emocional y psicológico es clave.",
+    date: lang === 'es' ? "Agosto 2024" : "August 2024",
+    text: t('testimonials.t5.text'),
+    highlight: t('testimonials.t5.highlight'),
   },
   {
-    name: "Ricardo Méndez",
+    name: t('testimonials.t6.name'),
     initials: "RM",
     color: "#FFD1DC",
-    service: "Nutrición Deportiva",
+    service: t('services.sports.title'),
     rating: 5,
-    date: "Julio 2024",
-    text: "El cambio en mi composición corporal fue drástico. El análisis con el InBody me abrió los ojos sobre mi salud real. Muy profesional y comprometida.",
-    highlight: "El cambio en mi composición corporal fue drástico.",
+    date: lang === 'es' ? "Julio 2024" : "July 2024",
+    text: t('testimonials.t6.text'),
+    highlight: t('testimonials.t6.highlight'),
   },
 ];
 
@@ -71,14 +75,23 @@ const stars = (n: number) => "★".repeat(n) + "☆".repeat(5 - n);
 <section id="testimonials" class="testimonials-section">
   <div class="testimonials-container">
     <div class="testimonials-header">
-      <span class="testimonials-eyebrow">Opiniones reales</span>
-      <h2 class="testimonials-title">Lo que dicen nuestros pacientes</h2>
+      <span class="testimonials-eyebrow">{t('testimonials.label')}</span>
+      <h2 class="testimonials-title">
+        {t('testimonials.title').split('Google').map((part, i, arr) => (
+          <>
+            {part}
+            {i < arr.length - 1 && (
+              <span class="italic bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">Google</span>
+            )}
+          </>
+        ))}
+      </h2>
 
       <div class="rating-summary">
         <div class="rating-stars-big">★★★★★</div>
         <div class="rating-info">
           <span class="rating-number">5.0</span>
-          <span class="rating-label">basado en reseñas de Google</span>
+          <span class="rating-label">{t('testimonials.google')}</span>
         </div>
         <a
           href="https://www.google.com.mx/maps/place/Nutrilev/@28.62717,-106.0834988,17z"
@@ -100,22 +113,22 @@ const stars = (n: number) => "★".repeat(n) + "☆".repeat(5 - n);
               d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
             ></path>
           </svg>
-          Ver todas las reseñas
+          {t('testimonials.viewAll')}
         </a>
       </div>
     </div>
 
     <div class="testimonials-grid">
       {
-        testimonials.map((t, i) => (
-          <div class="testimonial-card" style={`--avatar-color: ${t.color}`}>
+        testimonials.map((testimonial, i) => (
+          <div class="testimonial-card" style={`--avatar-color: ${testimonial.color}`}>
             <div class="testimonial-top">
-              <div class="testimonial-avatar" style={`background: ${t.color}`}>
-                {t.initials}
+              <div class="testimonial-avatar" style={`background: ${testimonial.color}`}>
+                {testimonial.initials}
               </div>
               <div class="testimonial-meta">
-                <strong class="testimonial-name">{t.name}</strong>
-                <span class="testimonial-service">{t.service}</span>
+                <strong class="testimonial-name">{testimonial.name}</strong>
+                <span class="testimonial-service">{testimonial.service}</span>
               </div>
               <div class="testimonial-google-icon">
                 <svg width="16" height="16" viewBox="0 0 24 24">
@@ -139,13 +152,13 @@ const stars = (n: number) => "★".repeat(n) + "☆".repeat(5 - n);
               </div>
             </div>
 
-            <div class="testimonial-stars">{"★".repeat(t.rating)}</div>
+            <div class="testimonial-stars">{"★".repeat(testimonial.rating)}</div>
 
-            <blockquote class="testimonial-text">"{t.text}"</blockquote>
+            <blockquote class="testimonial-text">"{testimonial.text}"</blockquote>
 
             <div class="testimonial-footer">
-              <span class="testimonial-date">📅 {t.date}</span>
-              <span class="testimonial-verified">✓ Paciente Verificado</span>
+              <span class="testimonial-date">📅 {testimonial.date}</span>
+              <span class="testimonial-verified">✓ {t('testimonials.verified')}</span>
             </div>
           </div>
         ))
@@ -158,7 +171,7 @@ const stars = (n: number) => "★".repeat(n) + "☆".repeat(5 - n);
         target="_blank"
         class="reviews-link"
       >
-        Ver todas las reseñas en Google Maps →
+        {t('testimonials.viewGoogle')} →
       </a>
     </div>
   </div>
@@ -166,7 +179,7 @@ const stars = (n: number) => "★".repeat(n) + "☆".repeat(5 - n);
 
 <style>
   .testimonials-section {
-    padding: 96px 24px;
+    padding: 80px 24px;
     background: #fff;
   }
 

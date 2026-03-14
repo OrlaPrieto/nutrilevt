@@ -1,9 +1,13 @@
 ---
 import { Image } from "astro:assets";
 import nutritionistImg from "../../assets/nutritionist-strawberry.jpg";
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
-<section id="about" class="py-24 bg-white fade-in-section">
+<section id="about" class="py-16 lg:py-20 bg-white fade-in-section">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="lg:flex lg:items-center gap-16">
       <div class="lg:w-1/2 order-2 lg:order-1">
@@ -16,32 +20,33 @@ import nutritionistImg from "../../assets/nutritionist-strawberry.jpg";
           <div
             class="absolute -bottom-8 -right-8 bg-white p-6 rounded-2xl shadow-xl border border-pink-50 max-w-xs transition-transform hover:-translate-y-2"
           >
-            <p class="text-primary font-bold text-3xl mb-1">10+</p>
+            <p class="text-primary font-bold text-3xl mb-1">{t('about.badge.years')}</p>
             <p class="text-slate-600 text-sm font-medium">
-              Años de experiencia clínica transformando hábitos.
+              {t('about.badge.desc')}
             </p>
           </div>
         </div>
       </div>
       <div class="lg:w-1/2 order-1 lg:order-2 mb-16 lg:mb-0">
         <span class="text-accent font-semibold tracking-wider uppercase text-sm"
-          >Sobre mí</span
+          >{t('about.label')}</span
         >
         <h2 class="text-4xl lg:text-5xl font-bold text-slate-900 mt-4 mb-8">
-          Hola, soy <span class="text-primary">Velvet De la Cruz</span>,
-          Nutrióloga y Psicoterapeuta.
+          {t('about.title').split('Velvet De la Cruz').map((part, i, arr) => (
+            <>
+              {part}
+              {i < arr.length - 1 && (
+                <span class="italic bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">Velvet De la Cruz</span>
+              )}
+            </>
+          ))}
         </h2>
         <div class="space-y-6 text-lg text-slate-600 leading-relaxed">
           <p>
-            Fundadora de Nutrilev. Mi trayectoria profesional comenzó en 2015, y
-            desde entonces me he dedicado a la atención clínica personalizada y
-            a la docencia universitaria, formando a las futuras generaciones de
-            nutriólogos.
+            {t('about.p1')}
           </p>
           <p>
-            Creo firmemente en la actualización constante para ofrecerte lo
-            mejor. Cuento con formación especializada en áreas clave para tu
-            salud:
+            {t('about.p2')}
           </p>
           <ul class="space-y-4 pt-4">
             <li class="flex items-start gap-3">
@@ -50,8 +55,7 @@ import nutritionistImg from "../../assets/nutritionist-strawberry.jpg";
                 >✓</span
               >
               <span
-                ><strong>Psiconutrición:</strong> Manejo de trastornos de la conducta
-                alimentaria y obesidad desde la raíz emocional.</span
+                ><strong>{t('about.expertise.psiconutricion.title')}</strong> {t('about.expertise.psiconutricion.desc')}</span
               >
             </li>
             <li class="flex items-start gap-3">
@@ -60,8 +64,7 @@ import nutritionistImg from "../../assets/nutritionist-strawberry.jpg";
                 >✓</span
               >
               <span
-                ><strong>Salud Clínica:</strong> Prevención y tratamiento de Diabetes
-                Tipo 2 y patologías tiroideas.</span
+                ><strong>{t('about.expertise.salud.title')}</strong> {t('about.expertise.salud.desc')}</span
               >
             </li>
             <li class="flex items-start gap-3">
@@ -70,8 +73,7 @@ import nutritionistImg from "../../assets/nutritionist-strawberry.jpg";
                 >✓</span
               >
               <span
-                ><strong>Etapas de Vida:</strong> Asesoría avanzada en Lactancia
-                Materna y nutrición materno-infantil.</span
+                ><strong>{t('about.expertise.etapas.title')}</strong> {t('about.expertise.etapas.desc')}</span
               >
             </li>
             <li class="flex items-start gap-3">
@@ -80,14 +82,12 @@ import nutritionistImg from "../../assets/nutritionist-strawberry.jpg";
                 >✓</span
               >
               <span
-                ><strong>Deporte:</strong> Nutrición aplicada al fitness y recomposición
-                corporal.</span
+                ><strong>{t('about.expertise.deporte.title')}</strong> {t('about.expertise.deporte.desc')}</span
               >
             </li>
           </ul>
           <p class="pt-4 font-medium italic text-slate-800">
-            En mi consulta encontrarás un espacio seguro, profesional y
-            totalmente enfocado en tus metas.
+            {t('about.p3')}
           </p>
         </div>
       </div>

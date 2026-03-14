@@ -1,32 +1,36 @@
 ---
 // BeforeAfter.astro
 // Sección de resultados y transformaciones con InBody data
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 
 const results = [
   {
     initials: "MR",
     color: "#a5c4d4",
     name: "María R.",
-    age: "34 años",
-    service: "Control de Peso + Psiconutrición",
-    duration: "4 meses",
+    ageNum: 34,
+    service: `${t('services.weight.title')} + ${t('services.psycho.title')}`,
+    durationNum: 4,
     before: {
       weight: "82 kg",
       fat: "38%",
       muscle: "44 kg",
-      visceral: "Nivel 9",
+      visceral: 9,
     },
     after: {
       weight: "68 kg",
       fat: "24%",
       muscle: "47 kg",
-      visceral: "Nivel 4",
+      visceral: 4,
     },
     changes: [
-      "-14 kg de peso",
-      "-14% grasa corporal",
-      "+3 kg músculo",
-      "Grasa visceral normalizada",
+      `-14 kg ${t('beforeAfter.weight').toLowerCase()}`,
+      `-14% ${t('beforeAfter.fat').toLowerCase()}`,
+      `+3 kg ${t('beforeAfter.muscle').toLowerCase()}`,
+      t('beforeAfter.quote'), // This is actually a change in the original, I'll use literal strings or specific keys
     ],
     quote: "Por primera vez en años, disfruto comer sin culpa.",
   },
@@ -34,57 +38,104 @@ const results = [
     initials: "JP",
     color: "#FFD1DC",
     name: "Jorge P.",
-    age: "41 años",
-    service: "Nutrición Deportiva",
-    duration: "3 meses",
+    ageNum: 41,
+    service: t('services.sports.title'),
+    durationNum: 3,
     before: {
       weight: "78 kg",
       fat: "22%",
       muscle: "58 kg",
-      visceral: "Nivel 7",
+      visceral: 7,
     },
     after: {
       weight: "81 kg",
       fat: "14%",
       muscle: "66 kg",
-      visceral: "Nivel 3",
+      visceral: 3,
     },
-    changes: [
-      "+3 kg (recomposición)",
-      "-8% grasa corporal",
-      "+8 kg músculo",
-      "Rendimiento deportivo ↑",
-    ],
-    quote:
-      "El InBody me mostró que no se trata del peso, sino de la composición.",
+    changes: [],
+    quote: "El InBody me mostró que no se trata del peso, sino de la composición.",
   },
   {
     initials: "LC",
     color: "#d4a5c9",
     name: "Laura C.",
-    age: "28 años",
-    service: "Salud Hormonal (SOP)",
-    duration: "5 meses",
+    ageNum: 28,
+    service: `${t('services.hormone.title')} (SOP)`,
+    durationNum: 5,
     before: {
       weight: "74 kg",
       fat: "35%",
       muscle: "45 kg",
-      visceral: "Nivel 8",
+      visceral: 8,
     },
     after: {
       weight: "63 kg",
       fat: "22%",
       muscle: "47 kg",
-      visceral: "Nivel 3",
+      visceral: 3,
     },
-    changes: [
+    changes: [],
+    quote: "Mi SOP mejoró muchísimo. Nunca pensé que la nutrición fuera tan clave.",
+  },
+];
+
+// Refined changes and quotes based on language
+const localizedData = [
+  {
+    ...results[0],
+    age: `${results[0].ageNum} ${t('beforeAfter.yearsOld')}`,
+    duration: `${results[0].durationNum} ${t('beforeAfter.months')}`,
+    changes: lang === 'es' ? [
+      "-14 kg de peso",
+      "-14% grasa corporal",
+      "+3 kg músculo",
+      "Grasa visceral normalizada",
+    ] : [
+      "-14 kg weight",
+      "-14% body fat",
+      "+3 kg muscle",
+      "Normalized visceral fat",
+    ],
+    quote: lang === 'es' ? "Por primera vez en años, disfruto comer sin culpa." : "For the first time in years, I enjoy eating without guilt.",
+  },
+  {
+    ...results[1],
+    age: `${results[1].ageNum} ${t('beforeAfter.yearsOld')}`,
+    duration: `${results[1].durationNum} ${t('beforeAfter.months')}`,
+    changes: lang === 'es' ? [
+      "+3 kg (recomposición)",
+      "-8% grasa corporal",
+      "+8 kg músculo",
+      "Rendimiento deportivo ↑",
+    ] : [
+      "+3 kg (recomposition)",
+      "-8% body fat",
+      "+8 kg muscle",
+      "Sports performance ↑",
+    ],
+    quote: lang === 'es' ?
+      "El InBody me mostró que no se trata del peso, sino de la composición." :
+      "The InBody showed me that it's not about weight, but about composition.",
+  },
+  {
+    ...results[2],
+    age: `${results[2].ageNum} ${t('beforeAfter.yearsOld')}`,
+    duration: `${results[2].durationNum} ${t('beforeAfter.months')}`,
+    changes: lang === 'es' ? [
       "-11 kg de peso",
       "Ciclos menstruales regulares",
       "-13% grasa corporal",
       "Resistencia a insulina revertida",
+    ] : [
+      "-11 kg weight",
+      "Regular menstrual cycles",
+      "-13% body fat",
+      "Insulin resistance reversed",
     ],
-    quote:
-      "Mi SOP mejoró muchísimo. Nunca pensé que la nutrición fuera tan clave.",
+    quote: lang === 'es' ?
+      "Mi SOP mejoró muchísimo. Nunca pensé que la nutrición fuera tan clave." :
+      "My PCOS improved a lot. I never thought nutrition was so key.",
   },
 ];
 ---
@@ -92,21 +143,28 @@ const results = [
 <section id="results" class="results-section">
   <div class="results-container">
     <div class="results-header">
-      <span class="results-eyebrow">Resultados reales</span>
-      <h2 class="results-title">Transformaciones con InBody</h2>
+      <span class="results-eyebrow">{t('beforeAfter.eyebrow')}</span>
+      <h2 class="results-title">
+        {t('beforeAfter.title').split('InBody').map((part, i, arr) => (
+          <>
+            {part}
+            {i < arr.length - 1 && (
+              <span class="italic bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">InBody</span>
+            )}
+          </>
+        ))}
+      </h2>
       <p class="results-subtitle">
-        Más allá de la báscula. Así es como el análisis de composición corporal
-        revela el verdadero progreso de nuestros pacientes.
+        {t('beforeAfter.subtitle')}
       </p>
       <p class="results-disclaimer">
-        * Resultados individuales. Los datos son representativos y han sido
-        modificados para proteger la privacidad de los pacientes.
+        {t('beforeAfter.disclaimer')}
       </p>
     </div>
 
     <div class="results-grid">
       {
-        results.map((r) => (
+        localizedData.map((r) => (
           <div class="result-card" style={`--card-color: ${r.color}`}>
             <div class="result-header">
               <div class="result-avatar" style={`background: ${r.color}`}>
@@ -118,30 +176,30 @@ const results = [
                   {r.age} · {r.service}
                 </span>
                 <span class="result-duration">
-                  ⏱ {r.duration} de tratamiento
+                  ⏱ {r.duration}
                 </span>
               </div>
             </div>
 
             <div class="result-comparison">
               <div class="result-col before-col">
-                <span class="col-label before-label">ANTES</span>
+                <span class="col-label before-label">{t('beforeAfter.before')}</span>
                 <div class="metrics">
                   <div class="metric">
-                    <span class="metric-label">Peso</span>
+                    <span class="metric-label">{t('beforeAfter.weight')}</span>
                     <span class="metric-value">{r.before.weight}</span>
                   </div>
                   <div class="metric">
-                    <span class="metric-label">% Grasa</span>
+                    <span class="metric-label">{t('beforeAfter.fat')}</span>
                     <span class="metric-value">{r.before.fat}</span>
                   </div>
                   <div class="metric">
-                    <span class="metric-label">Músculo</span>
+                    <span class="metric-label">{t('beforeAfter.muscle')}</span>
                     <span class="metric-value">{r.before.muscle}</span>
                   </div>
                   <div class="metric">
-                    <span class="metric-label">Visceral</span>
-                    <span class="metric-value">{r.before.visceral}</span>
+                    <span class="metric-label">{t('beforeAfter.visceral')}</span>
+                    <span class="metric-value">{t('beforeAfter.level')} {r.before.visceral}</span>
                   </div>
                 </div>
               </div>
@@ -149,23 +207,23 @@ const results = [
               <div class="result-arrow">→</div>
 
               <div class="result-col after-col">
-                <span class="col-label after-label">DESPUÉS</span>
+                <span class="col-label after-label">{t('beforeAfter.after')}</span>
                 <div class="metrics">
                   <div class="metric">
-                    <span class="metric-label">Peso</span>
+                    <span class="metric-label">{t('beforeAfter.weight')}</span>
                     <span class="metric-value after">{r.after.weight}</span>
                   </div>
                   <div class="metric">
-                    <span class="metric-label">% Grasa</span>
+                    <span class="metric-label">{t('beforeAfter.fat')}</span>
                     <span class="metric-value after">{r.after.fat}</span>
                   </div>
                   <div class="metric">
-                    <span class="metric-label">Músculo</span>
+                    <span class="metric-label">{t('beforeAfter.muscle')}</span>
                     <span class="metric-value after">{r.after.muscle}</span>
                   </div>
                   <div class="metric">
-                    <span class="metric-label">Visceral</span>
-                    <span class="metric-value after">{r.after.visceral}</span>
+                    <span class="metric-label">{t('beforeAfter.visceral')}</span>
+                    <span class="metric-value after">{t('beforeAfter.level')} {r.after.visceral}</span>
                   </div>
                 </div>
               </div>
@@ -202,13 +260,13 @@ const results = [
     </div>
 
     <div class="results-cta">
-      <p>¿Listo para ver tus propios resultados con InBody?</p>
+      <p>{t('beforeAfter.ctaText')}</p>
       <a
         href="https://forms.gle/fTbGLx5JtzZ38Tot7"
         target="_blank"
         class="results-btn"
       >
-        Agendar mi evaluación
+        {t('beforeAfter.ctaButton')}
       </a>
     </div>
   </div>
@@ -216,12 +274,8 @@ const results = [
 
 <style>
   .results-section {
-    padding: 96px 24px;
-    background: linear-gradient(
-      180deg,
-      var(--color-accent-lighter) 0%,
-      #fff 100%
-    );
+    padding: 80px 24px;
+    background: var(--color-accent-lighter);
   }
 
   .results-container {

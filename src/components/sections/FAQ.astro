@@ -1,51 +1,39 @@
 ---
 // FAQ.astro
 // Sección de preguntas frecuentes con acordeón animado
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 
 const faqs = [
-  {
-    q: "¿Qué incluye la primera consulta?",
-    a: "La primera consulta incluye una evaluación completa de tu historial clínico y alimentario, análisis de composición corporal con el InBody 270 (en modalidad presencial), establecimiento de metas personalizadas y un plan de alimentación inicial adaptado a tu estilo de vida.",
-  },
-  {
-    q: "¿Cuánto tiempo dura cada sesión?",
-    a: "La primera consulta tiene una duración aproximada de 60 a 75 minutos, ya que hacemos una evaluación integral. Las consultas de seguimiento duran entre 45 y 60 minutos, dependiendo de tu evolución y dudas.",
-  },
-  {
-    q: "¿La consulta en línea es igual de efectiva que la presencial?",
-    a: "Sí. La consulta en línea ofrece la misma calidad de atención nutricional y psicológica. La única diferencia es que el análisis con InBody 270 solo está disponible de forma presencial. Para seguimiento continuo, la modalidad online es ideal.",
-  },
-  {
-    q: "¿Qué tipo de planes de alimentación maneja Nutrilev?",
-    a: "Trabajamos con planes personalizados basados en tus preferencias, metas y condición de salud. Usamos enfoques como dieta flexible, alimentación intuitiva y planes estructurados, siempre evitando restricciones extremas o dietas de moda.",
-  },
-  {
-    q: "¿Tratan trastornos de la conducta alimentaria (TCA)?",
-    a: "Sí. Velvet De la Cruz tiene formación especializada en Psiconutrición y cuenta con Maestría en Psicoterapia Clínica. Manejamos anorexia, bulimia, trastorno por atracón y comedores emocionales con un enfoque integral y seguro.",
-  },
-  {
-    q: "¿Puedo agendar si tengo diabetes, hipotiroidismo u otra condición médica?",
-    a: "Absolutamente. La nutrición clínica especializada es precisamente para eso. Trabajamos en coordinación con tu médico tratante cuando es necesario, y contamos con experiencia en diabetes tipo 2, hipotiroidismo, SOP, Hashimoto y más.",
-  },
-  {
-    q: "¿Con qué frecuencia debo asistir a consulta?",
-    a: "Depende de tus metas y condición. En general, se recomienda una consulta de seguimiento cada 2 a 4 semanas. Para casos clínicos más complejos, podría ser más frecuente al inicio del tratamiento.",
-  },
-  {
-    q: "¿Cuál es la política de cancelación o reagendado?",
-    a: "Puedes cancelar o reagendar tu cita con al menos 24 horas de anticipación sin ningún cargo. Te pedimos que nos avises por WhatsApp para poder ofrecerle ese espacio a otro paciente.",
-  },
+  { q: t('faq.q1'), a: t('faq.a1') },
+  { q: t('faq.q2'), a: t('faq.a2') },
+  { q: t('faq.q3'), a: t('faq.a3') },
+  { q: t('faq.q4'), a: t('faq.a4') },
+  { q: t('faq.q5'), a: t('faq.a5') },
+  { q: t('faq.q6'), a: t('faq.a6') },
+  { q: t('faq.q7'), a: t('faq.a7') },
+  { q: t('faq.q8'), a: t('faq.a8') },
 ];
 ---
 
 <section id="faq" class="faq-section">
   <div class="faq-container">
     <div class="faq-header">
-      <span class="faq-eyebrow">Resolvemos tus dudas</span>
-      <h2 class="faq-title">Preguntas Frecuentes</h2>
+      <span class="faq-eyebrow">{t('faq.label')}</span>
+      <h2 class="faq-title">
+        {t('faq.title').split(lang === 'es' ? 'Frecuentes' : 'Questions').map((part, i, arr) => (
+          <>
+            {part}
+            {i < arr.length - 1 && (
+              <span class="italic bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">{lang === 'es' ? 'Frecuentes' : 'Questions'}</span>
+            )}
+          </>
+        ))}
+      </h2>
       <p class="faq-subtitle">
-        Todo lo que necesitas saber antes de dar el primer paso hacia tu
-        bienestar.
+        {t('faq.subtitle')}
       </p>
     </div>
 
@@ -76,7 +64,7 @@ const faqs = [
     </div>
 
     <div class="faq-cta">
-      <p>¿Tienes otra pregunta?</p>
+      <p>{t('faq.other')}</p>
       <a
         href="https://wa.me/526143958598?text=Hola%2C%20tengo%20una%20pregunta%20sobre%20los%20servicios%20de%20Nutrilev"
         target="_blank"
@@ -93,7 +81,7 @@ const faqs = [
             d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
           ></path>
         </svg>
-        Escríbenos por WhatsApp
+        {t('faq.whatsapp')}
       </a>
     </div>
   </div>
@@ -101,8 +89,8 @@ const faqs = [
 
 <style>
   .faq-section {
-    padding: 96px 24px;
-    background: #fafaf8;
+    padding: 80px 24px;
+    background: #f8fafc;
   }
 
   .faq-container {

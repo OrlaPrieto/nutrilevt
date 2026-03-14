@@ -1,10 +1,14 @@
 ---
 import IntakeForm from "../forms/intake/IntakeForm.astro";
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <section
-    id="historia-clinica"
-    class="py-24 bg-gradient-to-br from-white to-pink-50 relative overflow-hidden fade-in-section"
+    id="clinical-history"
+    class="py-16 lg:py-20 bg-white relative overflow-hidden fade-in-section"
 >
     <!-- Decorative background elements -->
     <div
@@ -20,15 +24,20 @@ import IntakeForm from "../forms/intake/IntakeForm.astro";
         <div class="text-center mb-16">
             <span
                 class="text-primary font-bold tracking-wider uppercase text-sm"
-                >Registro de Paciente</span
+                >{t('history.label')}</span
             >
             <h2 class="text-4xl lg:text-6xl font-bold text-slate-900 mt-4 mb-6">
-                Tu Historia <span class="italic text-primary">Clínica</span>
+                {t('history.title').split(lang === 'es' ? 'Clínica' : 'History').map((part, i, arr) => (
+                    <>
+                        {part}
+                        {i < arr.length - 1 && (
+                          <span class="italic bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">{lang === 'es' ? 'Clínica' : 'History'}</span>
+                        )}
+                    </>
+                ))}
             </h2>
             <p class="text-xl text-slate-600 max-w-2xl mx-auto">
-                Por favor, responde con honestidad y detalle. Esta información
-                es fundamental para diseñar un plan que realmente funcione para
-                ti.
+                {t('history.subtitle')}
             </p>
         </div>
 

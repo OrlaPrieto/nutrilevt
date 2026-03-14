@@ -1,33 +1,37 @@
 ---
 // src/components/forms/intake/StepPersonalData.astro
+import { getLangFromUrl, useTranslations } from "../../../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <!-- Step 1: Personal Data Part 1 -->
 <div class="form-step active" data-step="1">
     <div class="text-center mb-10">
         <span class="text-primary font-bold text-sm uppercase tracking-wider"
-            >Paso 1 de 7</span
+            >{t('intake.step')} 1 {t('intake.of')} 7</span
         >
-        <h3 class="text-3xl font-bold text-slate-900 mt-2">Datos Personales</h3>
-        <p class="text-slate-500 mt-2">Comencemos con tu información básica.</p>
+        <h3 class="text-3xl font-bold text-slate-900 mt-2">{t('intake.step1.title')}</h3>
+        <p class="text-slate-500 mt-2">{t('intake.step1.subtitle')}</p>
     </div>
 
     <div class="grid md:grid-cols-2 gap-6">
         <div class="md:col-span-2">
             <label class="block text-sm font-semibold text-slate-700 mb-2"
-                >Correo electrónico *</label
+                >{t('intake.field.email')}</label
             >
             <input
                 type="email"
                 name="email"
                 required
                 class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
-                placeholder="tu@email.com"
+                placeholder={t('intake.field.emailPlaceholder')}
             />
         </div>
         <div class="relative group">
             <label class="block text-sm font-semibold text-slate-700 mb-2"
-                >Fecha de hoy *</label
+                >{t('intake.field.today')}</label
             >
             <div class="relative">
                 <input
@@ -37,7 +41,7 @@
                     required
                     readonly
                     class="w-full px-4 py-3.5 pl-12 rounded-2xl border border-slate-200 bg-slate-50 shadow-sm cursor-pointer outline-none transition-all modern-date-input hover:border-primary/50 focus:border-primary focus:ring-4 focus:ring-primary/10"
-                    placeholder="Seleccionar fecha"
+                    placeholder={t('intake.field.todayPlaceholder')}
                 />
                 <div
                     class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none group-focus-within:text-primary transition-colors"
@@ -63,19 +67,19 @@
         </div>
         <div>
             <label class="block text-sm font-semibold text-slate-700 mb-2"
-                >Nombre completo: *</label
+                >{t('intake.field.name')}</label
             >
             <input
                 type="text"
                 name="nombre"
                 required
                 class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
-                placeholder="Nombre Apellido"
+                placeholder={t('intake.field.namePlaceholder')}
             />
         </div>
         <div class="relative group">
             <label class="block text-sm font-semibold text-slate-700 mb-2"
-                >Fecha de nacimiento: *</label
+                >{t('intake.field.birth')}</label
             >
             <div class="relative">
                 <input
@@ -84,7 +88,7 @@
                     name="fecha_nacimiento"
                     required
                     class="w-full px-4 py-3.5 pl-12 rounded-2xl border border-slate-200 shadow-sm focus:border-primary focus:ring-4 focus:ring-primary/10 outline-none transition-all modern-date-input hover:border-primary/30"
-                    placeholder="Seleccionada tu fecha"
+                    placeholder={t('intake.field.birthPlaceholder')}
                 />
                 <div
                     class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-primary transition-colors pointer-events-none"
@@ -110,7 +114,7 @@
         </div>
         <div>
             <label class="block text-sm font-semibold text-slate-700 mb-2"
-                >Edad: *</label
+                >{t('intake.field.age')}</label
             >
             <input
                 type="number"
@@ -119,23 +123,23 @@
                 required
                 readonly
                 class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 cursor-not-allowed outline-none transition-all"
-                placeholder="Se calcula automáticamente"
+                placeholder={t('intake.field.agePlaceholder')}
             />
         </div>
         <div class="md:col-span-2">
             <label class="block text-sm font-semibold text-slate-700 mb-2"
-                >Dirección</label
+                >{t('intake.field.address')}</label
             >
             <input
                 type="text"
                 name="direccion"
                 class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
-                placeholder="Calle, Número, Colonia"
+                placeholder={t('intake.field.addressPlaceholder')}
             />
         </div>
         <div>
             <label class="block text-sm font-semibold text-slate-700 mb-2"
-                >Teléfono: *</label
+                >{t('intake.field.phone')}</label
             >
             <input
                 type="tel"
@@ -143,20 +147,21 @@
                 name="telefono"
                 required
                 class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
-                placeholder="(555)-5555555"
+                placeholder={t('intake.field.phonePlaceholder')}
             />
         </div>
         <div>
             <label class="block text-sm font-semibold text-slate-700 mb-2"
-                >Estatura: *</label
+                >{t('intake.field.stature')}</label
             >
             <input
-                type="text"
+                type="number"
+                step="0.01"
                 id="estatura"
                 name="estatura"
                 required
                 class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
-                placeholder="1.90"
+                placeholder={t('intake.field.staturePlaceholder')}
             />
         </div>
     </div>
@@ -166,37 +171,37 @@
 <div class="form-step" data-step="2">
     <div class="text-center mb-10">
         <span class="text-primary font-bold text-sm uppercase tracking-wider"
-            >Paso 2 de 7</span
+            >{t('intake.step')} 2 {t('intake.of')} 7</span
         >
-        <h3 class="text-3xl font-bold text-slate-900 mt-2">Perfil y Motivo</h3>
+        <h3 class="text-3xl font-bold text-slate-900 mt-2">{t('intake.step2.title')}</h3>
         <p class="text-slate-500 mt-2">
-            Cuéntanos más sobre ti y por qué vienes.
+            {t('intake.step2.subtitle')}
         </p>
     </div>
 
     <div class="space-y-8">
         <div>
             <label class="block text-sm font-semibold text-slate-700 mb-4"
-                >Género *</label
+                >{t('intake.field.gender')}</label
             >
             <div class="grid grid-cols-2 gap-4">
                 {
                     [
-                        "Femenino",
-                        "Masculino",
-                        "No binario",
-                        "Prefiero no decirlo",
+                        { value: "Femenino", label: t('intake.gender.female') },
+                        { value: "Masculino", label: t('intake.gender.male') },
+                        { value: "No binario", label: t('intake.gender.nonbinary') },
+                        { value: "Prefiero no decirlo", label: t('intake.gender.nodisclose') },
                     ].map((opt) => (
                         <label class="selection-card">
                             <input
                                 type="radio"
                                 name="genero"
-                                value={opt}
+                                value={opt.value}
                                 required
                             />
                             <div class="card-content">
                                 <div class="radio-indicator"></div>
-                                <span class="card-label">{opt}</span>
+                                <span class="card-label">{opt.label}</span>
                             </div>
                         </label>
                     ))
@@ -206,21 +211,25 @@
 
         <div>
             <label class="block text-sm font-semibold text-slate-700 mb-4"
-                >Estado Civil *</label
+                >{t('intake.field.civil')}</label
             >
             <div class="grid grid-cols-3 gap-4">
                 {
-                    ["Soltero", "Casado", "Otro"].map((opt) => (
+                    [
+                        { value: "Soltero", label: t('intake.civil.single') },
+                        { value: "Casado", label: t('intake.civil.married') },
+                        { value: "Otro", label: t('intake.civil.other') }
+                    ].map((opt) => (
                         <label class="selection-card">
                             <input
                                 type="radio"
                                 name="estado_civil"
-                                value={opt}
+                                value={opt.value}
                                 required
                             />
                             <div class="card-content">
                                 <div class="radio-indicator"></div>
-                                <span class="card-label">{opt}</span>
+                                <span class="card-label">{opt.label}</span>
                             </div>
                         </label>
                     ))
@@ -231,7 +240,7 @@
         <div class="grid md:grid-cols-2 gap-6">
             <div>
                 <label class="block text-sm font-semibold text-slate-700 mb-2"
-                    >Peso habitual (kg):</label
+                    >{t('intake.field.usualWeight')}</label
                 >
                 <input
                     type="number"
@@ -243,7 +252,7 @@
             </div>
             <div>
                 <label class="block text-sm font-semibold text-slate-700 mb-2"
-                    >Peso meta (kg):</label
+                    >{t('intake.field.targetWeight')}</label
                 >
                 <input
                     type="number"
@@ -255,54 +264,54 @@
             </div>
             <div class="md:col-span-2">
                 <label class="block text-sm font-semibold text-slate-700 mb-2"
-                    >¿Has tenido cambios de peso significativos recientemente? ¿Por qué?</label
+                    >{t('intake.field.weightChanges')}</label
                 >
                 <input
                     type="text"
                     name="cambios_peso_detalle"
                     class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary outline-none transition-all"
-                    placeholder="Ej: Subí 5kg por estrés hace 3 meses..."
+                    placeholder={t('intake.field.weightChangesPlaceholder')}
                 />
             </div>
         </div>
 
         <div>
             <label class="block text-sm font-semibold text-slate-700 mb-2"
-                >Motivos de consulta y metas principales *</label
+                >{t('intake.field.motives')}</label
             >
             <textarea
                 name="motivos_consulta"
                 required
                 rows="3"
                 class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all resize-none"
-                placeholder="¿Qué esperas lograr con este plan alimenticio?"></textarea>
+                placeholder={t('intake.field.motivesPlaceholder')}></textarea>
         </div>
 
         <div>
             <label class="block text-sm font-semibold text-slate-700 mb-4"
-                >¿De parte de quién tiene recomendaciones sobre mis servicios? *</label
+                >{t('intake.field.referral')}</label
             >
             <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
                 {
                     [
-                        "Amigo/a",
-                        "Familiar",
-                        "Facebook",
-                        "Instagram",
-                        "Google",
-                        "Página Nutrilev",
-                        "Otro"
+                        { value: "Amigo/a", label: t('intake.referral.friend') },
+                        { value: "Familiar", label: t('intake.referral.family') },
+                        { value: "Facebook", label: t('intake.referral.facebook') },
+                        { value: "Instagram", label: t('intake.referral.instagram') },
+                        { value: "Google", label: t('intake.referral.google') },
+                        { value: "Página Nutrilev", label: t('intake.referral.web') },
+                        { value: "Otro", label: t('intake.referral.other') }
                     ].map((opt) => (
                         <label class="selection-card">
                             <input
                                 type="radio"
                                 name="recomendacion_fuente"
-                                value={opt}
+                                value={opt.value}
                                 required
                             />
                             <div class="card-content">
                                 <div class="radio-indicator"></div>
-                                <span class="card-label !text-[10px] sm:!text-xs">{opt}</span>
+                                <span class="card-label !text-[10px] sm:!text-xs">{opt.label}</span>
                             </div>
                         </label>
                     ))
@@ -313,14 +322,14 @@
         <!-- Conditional Female Health Section -->
         <div id="female-health-section" class="hidden premium-card bg-pink-50/30 p-6 rounded-2xl border border-pink-100/50">
             <label class="block text-sm font-bold text-primary mb-3 uppercase tracking-wider"
-                >Salud Femenina (Opcional)</label
+                >{t('intake.field.femaleHealth')}</label
             >
-            <p class="text-xs text-slate-500 mb-4 italic">Esta información nos ayuda a entender cambios metabólicos por ciclo menstrual.</p>
+            <p class="text-xs text-slate-500 mb-4 italic">{t('intake.field.femaleHealthDesc')}</p>
             <textarea
                 name="salud_femenina_ciclo"
                 rows="2"
                 class="w-full px-4 py-3 rounded-xl border border-white bg-white/50 focus:border-primary focus:bg-white outline-none transition-all resize-none text-sm"
-                placeholder="¿Tu ciclo es regular? ¿Padeces inflamación o antojos fuertes antes del periodo?"></textarea>
+                placeholder={t('intake.field.femaleHealthPlaceholder')}></textarea>
         </div>
     </div>
 </div>

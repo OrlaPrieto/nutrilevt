@@ -2,38 +2,32 @@
 import { Image } from 'astro:assets';
 import consultationImg from '../../assets/consultation.jpg';
 import consultationOnlineImg from '../../assets/consultation-online.png';
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 
 const modes = [
   {
-    title: "Consulta Presencial",
-    description: "Atención personalizada en nuestro consultorio equipado con la mejor tecnología para tu seguimiento.",
+    title: t('modes.inperson.title'),
+    description: t('modes.inperson.desc'),
     image: consultationImg,
-    features: [
-      "Evaluación con tecnología InBody 270.",
-      "Análisis de composición corporal detallado.",
-      "Atención en un entorno profesional y seguro.",
-      "Seguimiento presencial para mayor adherencia."
-    ],
+    features: t('modes.inperson.features').split('|'),
     icon: "📍",
     theme: "from-pink-50 to-white"
   },
   {
-    title: "Consulta en Línea",
-    description: "La misma calidad de atención profesional desde la comodidad de tu hogar, sin importar tu ubicación.",
+    title: t('modes.online.title'),
+    description: t('modes.online.desc'),
     image: consultationOnlineImg,
-    features: [
-      "Videollamada personalizada por Zoom o WhatsApp.",
-      "Material digital y herramientas de seguimiento.",
-      "Flexibilidad de horarios para tu rutina.",
-      "Ideal para seguimiento constante fuera de la ciudad."
-    ],
+    features: t('modes.online.features').split('|'),
     icon: "💻",
     theme: "from-rose-50 to-white"
   }
 ];
 ---
 
-<section id="consultation-modes" class="py-32 bg-white relative overflow-hidden fade-in-section">
+<section id="consultation-modes" class="py-16 lg:py-20 bg-slate-50 relative overflow-hidden fade-in-section">
   <!-- Subtle Background Decorations -->
   <div class="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-96 h-96 bg-pink-50/50 rounded-full blur-3xl pointer-events-none"></div>
   <div class="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/2 w-[30rem] h-[30rem] bg-rose-50/40 rounded-full blur-[100px] pointer-events-none"></div>
@@ -41,13 +35,18 @@ const modes = [
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
     <div class="text-center mb-20">
       <span class="inline-block px-4 py-1.5 rounded-full bg-pink-50 text-accent font-bold tracking-wider uppercase text-xs mb-4">
-        Flexibilidad para ti
+        {t('modes.label')}
       </span>
       <h2 class="text-4xl lg:text-6xl font-bold text-slate-900 mt-4 tracking-tight">
-        Modalidades de <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">Consulta</span>
+        {t('modes.title').split(lang === 'es' ? 'Consulta' : 'Consultation').map((part, i, arr) => (
+          <>
+            {part}
+            {i < arr.length - 1 && <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">{lang === 'es' ? 'Consulta' : 'Consultation'}</span>}
+          </>
+        ))}
       </h2>
       <p class="mt-6 text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed">
-        Elige la modalidad que mejor se adapte a tu estilo de vida y comienza tu transformación hoy mismo.
+        {t('modes.subtitle')}
       </p>
     </div>
 
@@ -92,7 +91,7 @@ const modes = [
               </ul>
 
               <a href="#booking" class="inline-flex items-center gap-4 py-4 px-10 rounded-2xl bg-slate-900 text-white font-bold text-lg hover:bg-primary transition-all duration-300 shadow-xl shadow-slate-200 hover:shadow-primary/20">
-                Agendar ahora
+                {t('modes.cta')}
                 <span class="group-hover:translate-x-1 transition-transform">→</span>
               </a>
             </div>

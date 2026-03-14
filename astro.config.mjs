@@ -12,5 +12,12 @@ export default defineConfig({
   },
 
   site: 'https://nutrilev.com', // Replace with the actual domain later
+  i18n: {
+    defaultLocale: 'es',
+    locales: ['es', 'en'],
+    routing: {
+      prefixDefaultLocale: false
+    }
+  },
   integrations: [sitemap()]
 });

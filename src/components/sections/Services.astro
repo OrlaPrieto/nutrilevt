@@ -1,80 +1,63 @@
 ---
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
 const services = [
   {
-    title: "Nutrición Clínica",
-    description:
-      "Manejo integral de condiciones metabólicas, digestivas y nutrición en etapas clave de la vida.",
-    details: [
-      "Salud Metabólica y Cardiovascular (Diabetes, Hipertensión, Dislipidemias).",
-      "Salud Digestiva (Colitis, Gastritis, Estreñimiento, Distensión).",
-      "Embarazo y Lactancia (Acompañamiento mamá y bebé).",
-      "Adulto Mayor (Obesidad sarcopénica y requerimientos específicos).",
-    ],
+    title: t('services.clinical.title'),
+    description: t('services.clinical.desc'),
+    details: t('services.clinical.details').split('|'),
     icon: "🏥",
     color: "bg-pink-50",
   },
   {
-    title: "Psiconutrición y TCA",
-    description:
-      "Un abordaje integral que une la ciencia de la nutrición con herramientas terapéuticas.",
-    details: [
-      "Tratamiento para Anorexia, Bulimia y Trastorno por Atracón.",
-      "Manejo de la ansiedad por comer y comedores emocionales.",
-      "Reconciliación con la comida y la imagen corporal (No Dieta).",
-      "Respaldo: Maestría en Psicoterapia Clínica y cursos en TCA.",
-    ],
+    title: t('services.psycho.title'),
+    description: t('services.psycho.desc'),
+    details: t('services.psycho.details').split('|'),
     icon: "🧠",
     color: "bg-pink-100",
   },
   {
-    title: "Salud Hormonal y de la Mujer",
-    description:
-      "Tratamiento integral para el equilibrio hormonal y patologías específicas.",
-    details: [
-      "SOP (Resistencia a la Insulina, acné, hirsutismo, ovulación).",
-      "Hipotiroidismo y Tiroiditis de Hashimoto.",
-      "Manejo de SPM, endometriosis y amenorrea hipotalámica.",
-      "Etapas de transición: Climaterio y Menopausia.",
-    ],
+    title: t('services.hormone.title'),
+    description: t('services.hormone.desc'),
+    details: t('services.hormone.details').split('|'),
     icon: "🌸",
     color: "bg-accent-light",
   },
   {
-    title: "Control de Peso",
-    description:
-      "Abordaje médico y conductual para una recomposición corporal saludable y sostenible.",
-    details: [
-      "Tratamiento de Obesidad y Sobrepeso (Enfoque conductual).",
-      "Manejo nutricional de patologías tiroideas (Hipotiroidismo/Hashimoto).",
-      "Prevención y control de Diabetes Tipo 2 y Resistencia a la Insulina.",
-      "Evaluación antropométrica completa y diagnóstico nutricional.",
-    ],
+    title: t('services.weight.title'),
+    description: t('services.weight.desc'),
+    details: t('services.weight.details').split('|'),
     icon: "⚖️",
     color: "bg-pink-50",
   },
   {
-    title: "Nutrición Deportiva",
-    description:
-      "Optimiza tu rendimiento y estética corporal con estrategias personalizadas y dieta flexible.",
-    details: [
-      "Planes enfocados al Fitness y estética corporal (Hombres y Mujeres).",
-      "Coaching Nutricional y Dieta Flexible para adherencia total.",
-      "Aumento de masa muscular y pérdida de grasa (Recomposición).",
-    ],
+    title: t('services.sports.title'),
+    description: t('services.sports.desc'),
+    details: t('services.sports.details').split('|'),
     icon: "🏃‍♀️",
     color: "bg-pink-100",
   },
 ];
 ---
 
-<section id="servicios" class="py-24 bg-rose-50/30 fade-in-section">
+<section id="services" class="py-16 lg:py-20 bg-rose-50/30 fade-in-section">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-16">
       <span class="text-accent font-semibold tracking-wider uppercase text-sm"
-        >Nuestros Servicios</span
+        >{t('services.label')}</span
       >
       <h2 class="text-4xl lg:text-5xl font-bold text-slate-900 mt-4">
-        Soluciones diseñadas para <span class="italic">ti</span>
+        {t('services.title').split(lang === 'es' ? 'ti' : 'you').map((part, i, arr) => (
+          <>
+            {part}
+            {i < arr.length - 1 && (
+              <span class="italic bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">{lang === 'es' ? 'ti' : 'you'}</span>
+            )}
+          </>
+        ))}
       </h2>
     </div>
 

@@ -12,6 +12,33 @@ export interface IntakeFormData {
 }
 
 export function initIntakeForm() {
+    // Detect language from URL
+    const isEnglish = window.location.pathname.startsWith('/en');
+    const lang = isEnglish ? 'en' : 'es';
+
+    const translations = {
+        es: {
+            required: "Este campo es obligatorio",
+            invalidEmail: "Ingresa un correo electrónico válido",
+            phoneFormat: "Usa el formato (222)-2437640",
+            heightFormat: "Usa el formato 1.90",
+            futureDate: "La fecha no puede ser futura",
+            errorSubmit: "Hubo un error al enviar. Por favor intenta de nuevo.",
+            flatpickrLocale: "es"
+        },
+        en: {
+            required: "This field is required",
+            invalidEmail: "Enter a valid email address",
+            phoneFormat: "Use format (222)-2437640",
+            heightFormat: "Use format 1.75",
+            futureDate: "Date cannot be in the future",
+            errorSubmit: "There was an error submitting. Please try again.",
+            flatpickrLocale: "en"
+        }
+    };
+
+    const t = translations[lang];
+
     let currentStep = 1;
     const totalSteps = 7;
     const form = document.getElementById("clinical-form") as HTMLFormElement;
@@ -29,7 +56,7 @@ export function initIntakeForm() {
     if (todayInput) {
         // @ts-ignore
         flatpickr(todayInput, {
-            locale: "es",
+            locale: t.flatpickrLocale,
             dateFormat: "Y-m-d",
             defaultDate: "today",
             clickOpens: false,
@@ -43,7 +70,7 @@ export function initIntakeForm() {
     if (birthDateInput) {
         // @ts-ignore
         flatpickr(birthDateInput, {
-            locale: "es",
+            locale: t.flatpickrLocale,
             dateFormat: "Y-m-d",
             maxDate: "today",
             disableMobile: "true",
@@ -89,10 +116,10 @@ export function initIntakeForm() {
                 }
             },
             onChange: function (selectedDates: Date[], dateStr: string) {
-                const edadInput = document.getElementById(
+                const ageInput = document.getElementById(
                     "edad"
                 ) as HTMLInputElement;
-                if (dateStr && edadInput) {
+                if (dateStr && ageInput) {
                     const birthDate = new Date(dateStr);
                     const today = new Date();
                     let age = today.getFullYear() - birthDate.getFullYear();
@@ -105,7 +132,7 @@ export function initIntakeForm() {
                     ) {
                         age--;
                     }
-                    edadInput.value = age >= 0 ? age.toString() : "0";
+                    ageInput.value = age >= 0 ? age.toString() : "0";
                 }
             },
         });
@@ -258,30 +285,30 @@ export function initIntakeForm() {
                 const checked = currentStepEl.querySelector(
                     `input[name="${name}"]:checked`
                 );
-                if (!checked) errorMsg = "Este campo es obligatorio";
+                if (!checked) errorMsg = t.required;
             } else if (!input.value.trim()) {
-                errorMsg = "Este campo es obligatorio";
+                errorMsg = t.required;
             } else if (input.type === "email") {
                 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
                 if (!emailRegex.test(input.value.trim())) {
-                    errorMsg = "Ingresa un correo electrónico válido";
+                    errorMsg = t.invalidEmail;
                 }
             } else if (input.id === "telefono") {
                 const phoneRegex = /^\(\d{3}\)-\d{7}$/;
                 if (!phoneRegex.test(input.value.trim())) {
-                    errorMsg = "Usa el formato (222)-2437640";
+                    errorMsg = t.phoneFormat;
                 }
             } else if (input.id === "estatura") {
                 const heightRegex = /^\d\.\d{2}$/;
                 if (!heightRegex.test(input.value.trim())) {
-                    errorMsg = "Usa el formato 1.90";
+                    errorMsg = t.heightFormat;
                 }
             } else if (input.id === "fecha_nacimiento") {
                 const selectedDate = new Date(input.value);
                 const today = new Date();
                 today.setHours(0, 0, 0, 0);
                 if (selectedDate > today) {
-                    errorMsg = "La fecha no puede ser futura";
+                    errorMsg = t.futureDate;
                 }
             }
 
@@ -380,13 +407,15 @@ export function initIntakeForm() {
             // Redirect to dedicated success page, pass name for personalization
             let queryParams = "";
             if (data.nombre) {
-                queryParams = `?nombre=${encodeURIComponent(data.nombre as string)}`;
+                queryParams = `?name=${encodeURIComponent(data.nombre as string)}`;
             }
-            window.location.assign(`/gracias${queryParams}`);
+            // Use localized thank you page
+            const redirectPath = isEnglish ? '/en/thank-you' : '/thank-you';
+            window.location.assign(`${redirectPath}${queryParams}`);
 
         } catch (error) {
             console.error("Error submitting to Supabase:", error);
-            alert("Hubo un error al enviar. Por favor intenta de nuevo.");
+            alert(t.errorSubmit);
         } finally {
             loadingOverlay?.classList.add("hidden");
         }
