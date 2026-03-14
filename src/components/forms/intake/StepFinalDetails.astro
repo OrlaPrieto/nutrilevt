@@ -17,27 +17,50 @@ const t = useTranslations(lang);
     </div>
 
     <div class="space-y-8">
-        <div>
-            <label class="block text-sm font-semibold text-slate-700 mb-4"
-                >{t('intake.field.preparesMeals')}</label
-            >
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                {
-                    [
-                        { value: "Yo", label: t('intake.prepares.me') },
-                        { value: "Familia", label: t('intake.prepares.family') },
-                        { value: "Restaurante", label: t('intake.prepares.restaurant') },
-                        { value: "Otro", label: t('intake.prepares.other') }
-                    ].map((opt) => (
-                        <label class="selection-card h-auto py-3 px-4">
-                            <input type="radio" name="quien_prepara_comida" value={opt.value} required />
-                            <div class="card-content">
-                                <div class="radio-indicator"></div>
-                                <span class="card-label text-sm">{opt.label}</span>
-                            </div>
-                        </label>
-                    ))
-                }
+        <div class="space-y-4">
+            <div>
+                <label class="block text-sm font-semibold text-slate-700 mb-4"
+                    >{t('intake.field.preparesMeals')}</label
+                >
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                    {
+                        [
+                            { value: "Yo", label: t('intake.prepares.me') },
+                            { value: "Familia", label: t('intake.prepares.family') },
+                            { value: "Restaurante", label: t('intake.prepares.restaurant') },
+                            { value: "Otro", label: t('intake.prepares.other') }
+                        ].map((opt) => (
+                            <label class="selection-card h-auto py-3 px-4">
+                                <input type="radio" name="quien_cocina" value={opt.value} required />
+                                <div class="card-content">
+                                    <div class="radio-indicator"></div>
+                                    <span class="card-label text-sm">{opt.label}</span>
+                                </div>
+                            </label>
+                        ))
+                    }
+                </div>
+                <input type="text" name="quien_cocina_otro" class="mt-3 w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary outline-none text-xs hidden-until-needed" placeholder={t('intake.mealsPerDay.placeholder')} />
+            </div>
+
+            <div>
+                <label class="block text-sm font-semibold text-slate-700 mb-4"
+                    >{t('intake.field.boughtFood')}</label
+                >
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                    {
+                        ["1", "2", "3", "Más"].map((opt) => (
+                            <label class="selection-card h-auto py-3 px-4">
+                                <input type="radio" name="comida_comprada" value={opt} required />
+                                <div class="card-content">
+                                    <div class="radio-indicator"></div>
+                                    <span class="card-label text-sm">{opt}</span>
+                                </div>
+                            </label>
+                        ))
+                    }
+                </div>
+                <input type="text" name="comida_comprada_otro" class="mt-3 w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary outline-none text-xs hidden-until-needed" placeholder={t('intake.field.boughtFoodPlaceholder')} />
             </div>
         </div>
 
@@ -83,21 +106,51 @@ const t = useTranslations(lang);
         <div class="grid md:grid-cols-2 gap-6">
             <div class="md:col-span-2">
                 <label class="block text-sm font-semibold text-slate-700 mb-2"
+                    >{t('intake.field.preferredFoods')}</label
+                >
+                <input type="text" name="alimentos_preferidos" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary outline-none text-sm" placeholder={t('intake.field.preferredFoodsPlaceholder')} />
+            </div>
+            <div class="md:col-span-2">
+                <label class="block text-sm font-semibold text-slate-700 mb-2"
+                    >{t('intake.field.dislikedFoods')}</label
+                >
+                <input type="text" name="alimentos_no_agradan" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary outline-none text-sm" placeholder={t('intake.field.dislikedFoodsPlaceholder')} />
+            </div>
+            <div class="md:col-span-2">
+                <label class="block text-sm font-semibold text-slate-700 mb-2"
                     >{t('intake.field.foodAllergies')}</label
                 >
                 <input type="text" name="alergias_alimentarias" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary outline-none text-sm" placeholder={t('intake.field.foodAllergiesPlaceholder')} />
             </div>
             <div class="md:col-span-2">
                 <label class="block text-sm font-semibold text-slate-700 mb-2"
-                    >{t('intake.field.dislikedFoods')}</label
+                    >{t('intake.field.pastDiets')}</label
                 >
-                <input type="text" name="alimentos_disgusto" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary outline-none text-sm" placeholder={t('intake.field.dislikedFoodsPlaceholder')} />
+                <input type="text" name="dieta_especial" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary outline-none text-sm" placeholder={t('intake.field.weightChangesPlaceholder')} />
             </div>
             <div class="md:col-span-2">
-                <label class="block text-sm font-semibold text-slate-700 mb-2"
+                <label class="block text-sm font-semibold text-slate-700 mb-4"
                     >{t('intake.field.supplements')}</label
                 >
-                <input type="text" name="suplementos_vitamina" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary outline-none text-sm" placeholder={t('intake.field.supplementsPlaceholder')} />
+                <div class="flex gap-4 mb-3">
+                    {
+                        [
+                            { value: "Si", label: t('intake.labs.yes') },
+                            { value: "No", label: t('intake.labs.no') }
+                        ].map((opt) => (
+                            <label class="selection-card h-auto py-3 px-8">
+                                <input type="radio" name="suplementos_si_no" value={opt.value} required />
+                                <div class="card-content">
+                                    <div class="radio-indicator"></div>
+                                    <span class="card-label text-sm">{opt.label}</span>
+                                </div>
+                            </label>
+                        ))
+                    }
+                </div>
+                <div id="supplements-details-container" class="hidden">
+                    <input type="text" name="suplementos_cuales" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary outline-none text-sm" placeholder={t('intake.field.supplementsPlaceholder')} />
+                </div>
             </div>
         </div>
 

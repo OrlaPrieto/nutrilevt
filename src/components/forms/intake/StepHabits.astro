@@ -33,7 +33,7 @@ const t = useTranslations(lang);
                         <label class="selection-card h-auto py-3">
                             <input
                                 type="radio"
-                                name="actividad_fisica_realiza"
+                                name="hace_ejercicio"
                                 value={opt.value}
                                 required
                             />
@@ -52,7 +52,7 @@ const t = useTranslations(lang);
                 >{t('intake.field.exerciseDetails')}</label
             >
             <textarea
-                name="actividad_fisica_detalle"
+                name="ejercicio_detalles"
                 rows="2"
                 class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary outline-none transition-all resize-none text-sm"
                 placeholder={t('intake.field.exerciseDetailsPlaceholder')}></textarea>
@@ -75,7 +75,7 @@ const t = useTranslations(lang);
                 >
                 <input
                     type="text"
-                    name="actividad_laboral_tipo"
+                    name="tipo_actividad_horario"
                     class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary outline-none transition-all"
                 />
             </div>
@@ -101,27 +101,27 @@ const t = useTranslations(lang);
             <div class="grid gap-4">
                 <div class="flex flex-col sm:flex-row sm:items-center gap-4">
                     <span class="text-xs font-bold text-primary sm:w-32 uppercase">{t('intake.meal.breakfast')}</span>
-                    <input type="text" name="recordatorio_desayuno" class="flex-1 px-4 py-2.5 rounded-xl border border-white bg-white shadow-sm focus:border-primary outline-none text-sm" placeholder={t('intake.meal.breakfastPlaceholder')} />
+                    <input type="text" name="diario_desayuno" class="flex-1 px-4 py-2.5 rounded-xl border border-white bg-white shadow-sm focus:border-primary outline-none text-sm" placeholder={t('intake.meal.breakfastPlaceholder')} />
                 </div>
                 <div class="flex flex-col sm:flex-row sm:items-center gap-4">
                     <span class="text-xs font-bold text-primary sm:w-32 uppercase">{t('intake.meal.morningSnack')}</span>
-                    <input type="text" name="recordatorio_colacion_mat" class="flex-1 px-4 py-2.5 rounded-xl border border-white bg-white shadow-sm focus:border-primary outline-none text-sm" placeholder={t('intake.meal.morningSnackPlaceholder')} />
+                    <input type="text" name="diario_colacion_mat" class="flex-1 px-4 py-2.5 rounded-xl border border-white bg-white shadow-sm focus:border-primary outline-none text-sm" placeholder={t('intake.meal.morningSnackPlaceholder')} />
                 </div>
                 <div class="flex flex-col sm:flex-row sm:items-center gap-4">
                     <span class="text-xs font-bold text-primary sm:w-32 uppercase">{t('intake.meal.lunch')}</span>
-                    <input type="text" name="recordatorio_comida" class="flex-1 px-4 py-2.5 rounded-xl border border-white bg-white shadow-sm focus:border-primary outline-none text-sm" placeholder={t('intake.meal.lunchPlaceholder')} />
+                    <input type="text" name="diario_comida" class="flex-1 px-4 py-2.5 rounded-xl border border-white bg-white shadow-sm focus:border-primary outline-none text-sm" placeholder={t('intake.meal.lunchPlaceholder')} />
                 </div>
                 <div class="flex flex-col sm:flex-row sm:items-center gap-4">
                     <span class="text-xs font-bold text-primary sm:w-32 uppercase">{t('intake.meal.afternoonSnack')}</span>
-                    <input type="text" name="recordatorio_colacion_vesp" class="flex-1 px-4 py-2.5 rounded-xl border border-white bg-white shadow-sm focus:border-primary outline-none text-sm" placeholder={t('intake.meal.afternoonSnackPlaceholder')} />
+                    <input type="text" name="diario_colacion_vesp" class="flex-1 px-4 py-2.5 rounded-xl border border-white bg-white shadow-sm focus:border-primary outline-none text-sm" placeholder={t('intake.meal.afternoonSnackPlaceholder')} />
                 </div>
                 <div class="flex flex-col sm:flex-row sm:items-center gap-4">
                     <span class="text-xs font-bold text-primary sm:w-32 uppercase">{t('intake.meal.dinner')}</span>
-                    <input type="text" name="recordatorio_cena" class="flex-1 px-4 py-2.5 rounded-xl border border-white bg-white shadow-sm focus:border-primary outline-none text-sm" placeholder={t('intake.meal.dinnerPlaceholder')} />
+                    <input type="text" name="diario_cena" class="flex-1 px-4 py-2.5 rounded-xl border border-white bg-white shadow-sm focus:border-primary outline-none text-sm" placeholder={t('intake.meal.dinnerPlaceholder')} />
                 </div>
                 <div class="flex flex-col sm:flex-row sm:items-center gap-4">
                     <span class="text-xs font-bold text-primary sm:w-32 uppercase">{t('intake.meal.extras')}</span>
-                    <input type="text" name="recordatorio_extras" class="flex-1 px-4 py-2.5 rounded-xl border border-white bg-white shadow-sm focus:border-primary outline-none text-sm" placeholder={t('intake.meal.extrasPlaceholder')} />
+                    <input type="text" name="diario_extras" class="flex-1 px-4 py-2.5 rounded-xl border border-white bg-white shadow-sm focus:border-primary outline-none text-sm" placeholder={t('intake.meal.extrasPlaceholder')} />
                 </div>
             </div>
         </div>
@@ -139,7 +139,7 @@ const t = useTranslations(lang);
                             { value: "Hace mas de 6 meses", label: t('intake.labs.old') }
                         ].map((opt) => (
                             <label class="selection-card h-auto py-3 px-4">
-                                <input type="radio" name="estudios_laboratorio" value={opt.value} required />
+                                <input type="radio" name="laboratorios" value={opt.value} required />
                                 <div class="card-content">
                                     <div class="radio-indicator"></div>
                                     <span class="card-label text-sm">{opt.label}</span>
@@ -158,7 +158,7 @@ const t = useTranslations(lang);
                     {
                         ["1", "2", "3", "4", "5", "Otro"].map((opt) => (
                             <label class="flex-1 min-w-[60px]">
-                                <input type="radio" name="comidas_al_dia" value={opt} class="peer hidden" required />
+                                <input type="radio" name="comidas_dia" value={opt} class="peer hidden" required />
                                 <div class="peer-checked:bg-primary peer-checked:text-white border border-slate-200 rounded-xl py-3 text-center text-sm font-bold text-slate-600 transition-all cursor-pointer hover:border-primary/50">
                                     {opt}
                                 </div>
@@ -166,7 +166,7 @@ const t = useTranslations(lang);
                         ))
                     }
                 </div>
-                <input type="text" name="comidas_al_dia_otro" class="mt-3 w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary outline-none text-xs hidden-until-needed" placeholder={t('intake.mealsPerDay.placeholder')} />
+                <input type="text" name="comidas_dia_otro" class="mt-3 w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary outline-none text-xs hidden-until-needed" placeholder={t('intake.mealsPerDay.placeholder')} />
             </div>
         </div>
     </div>

@@ -218,6 +218,25 @@ export function initIntakeForm() {
         });
     });
 
+    // Conditional Logic: "Otro" fields
+    const setupConditionalField = (radioName: string, containerName: string = "") => {
+        const radios = document.querySelectorAll(`input[name="${radioName}"]`);
+        const otherInput = document.querySelector(`input[name="${radioName}_otro"]`) as HTMLInputElement;
+        
+        radios.forEach(radio => {
+            radio.addEventListener('change', (e) => {
+                if (otherInput) {
+                    const target = e.target as HTMLInputElement;
+                    otherInput.classList.toggle('hidden-until-needed', target.value !== 'Otro' && target.value !== 'Más' && target.value !== 'Hace mas de 6 meses');
+                }
+            });
+        });
+    };
+
+    setupConditionalField('comidas_dia');
+    setupConditionalField('quien_cocina');
+    setupConditionalField('comida_comprada');
+
     function updateForm(direction: "next" | "prev" = "next") {
         steps.forEach((step) => {
             const stepValue = step.getAttribute("data-step");
@@ -383,18 +402,19 @@ export function initIntakeForm() {
             }
         });
 
-        if (data["comidas_dia_otro"]) {
-            data["comidas_dia"] =
-                (data["comidas_dia"] as string || "") + " - " + (data["comidas_dia_otro"] as string);
+        // Consolidate notes from fields not in schema
+        let extraNotes = "";
+        if (data["apetito_calidad"]) extraNotes += `Apetito: ${data["apetito_calidad"]}. `;
+        if (data["anclaje_ansiedad_momento"]) extraNotes += `Ansiedad: ${data["anclaje_ansiedad_momento"]}. `;
+        
+        if (extraNotes) {
+            data["notas"] = (data["notas"] as string || "") + " " + extraNotes;
         }
-        if (data["comida_comprada_otro"]) {
-            data["comida_comprada"] =
-                (data["comida_comprada"] as string || "") + " - " + (data["comida_comprada_otro"] as string);
-        }
-        if (data["quien_cocina_otro"]) {
-            data["quien_cocina"] =
-                (data["quien_cocina"] as string || "") + " - " + (data["quien_cocina_otro"] as string);
-        }
+
+        // Clean up internal/extra fields not in schema
+        delete data["apetito_calidad"];
+        delete data["anclaje_ansiedad_momento"];
+        delete data["privacidad_acepto"];
 
         try {
             // Use upsert to update the record if the email already exists
