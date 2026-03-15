@@ -1,5 +1,6 @@
 ---
 import { ViewTransitions } from 'astro:transitions';
+import SpeedInsights from "@vercel/speed-insights/astro"
 import '../styles/global.css';
 import FloatingCTA from '../components/ui/FloatingCTA.astro';
 import { getLangFromUrl, useTranslations } from '../i18n/utils';
@@ -103,6 +104,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://nutrilev
   <body class="bg-bg-base text-slate-800 font-['Inter',sans-serif]">
     <slot />
     <FloatingCTA />
+    <SpeedInsights />
 
     <script>
       document.addEventListener('astro:page-load', () => {
