@@ -31,6 +31,20 @@
     transform: none;
   }
 
+  @media (prefers-reduced-motion: reduce) {
+    .fade-in-section {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+
+  /* No-JS Fallback */
+  :root.no-js .fade-in-section {
+    opacity: 1;
+    transform: none;
+  }
+
   .shadow-glow {
     box-shadow: 0 0 15px rgba(216, 27, 96, 0.3);
   }

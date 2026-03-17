@@ -2,72 +2,13 @@
 // TestimonialsImproved.astro
 // Sección de testimonios mejorada con avatares, fecha, rating y diseño visual enriquecido
 import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+import { getGoogleReviews } from "../../lib/googleReviews";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-const testimonials = [
-  {
-    name: t('testimonials.t1.name'),
-    initials: "CT",
-    color: "#d4a5c9",
-    service: t('services.weight.title'),
-    rating: 5,
-    date: lang === 'es' ? "Enero 2025" : "January 2025",
-    text: t('testimonials.t1.text'),
-    highlight: t('testimonials.t1.highlight'),
-  },
-  {
-    name: t('testimonials.t2.name'),
-    initials: "AH",
-    color: "#a5c4d4",
-    service: t('services.clinical.title'),
-    rating: 5,
-    date: lang === 'es' ? "Noviembre 2024" : "November 2024",
-    text: t('testimonials.t2.text'),
-    highlight: t('testimonials.t2.highlight'),
-  },
-  {
-    name: t('testimonials.t3.name'),
-    initials: "AH",
-    color: "#c4d4a5",
-    service: t('services.psycho.title'),
-    rating: 5,
-    date: lang === 'es' ? "Octubre 2024" : "October 2024",
-    text: t('testimonials.t3.text'),
-    highlight: t('testimonials.t3.highlight'),
-  },
-  {
-    name: t('testimonials.t4.name'),
-    initials: "DD",
-    color: "#d4c4a5",
-    service: t('services.hormone.title'),
-    rating: 5,
-    date: lang === 'es' ? "Septiembre 2024" : "September 2024",
-    text: t('testimonials.t4.text'),
-    highlight: t('testimonials.t4.highlight'),
-  },
-  {
-    name: t('testimonials.t5.name'),
-    initials: "AE",
-    color: "#c4a5d4",
-    service: t('services.psycho.title'),
-    rating: 5,
-    date: lang === 'es' ? "Agosto 2024" : "August 2024",
-    text: t('testimonials.t5.text'),
-    highlight: t('testimonials.t5.highlight'),
-  },
-  {
-    name: t('testimonials.t6.name'),
-    initials: "RM",
-    color: "#FFD1DC",
-    service: t('services.sports.title'),
-    rating: 5,
-    date: lang === 'es' ? "Julio 2024" : "July 2024",
-    text: t('testimonials.t6.text'),
-    highlight: t('testimonials.t6.highlight'),
-  },
-];
+const { reviews, stats } = await getGoogleReviews(lang);
+const displayReviews = reviews.slice(0, 6);
 
 const stars = (n: number) => "★".repeat(n) + "☆".repeat(5 - n);
 ---
@@ -90,8 +31,8 @@ const stars = (n: number) => "★".repeat(n) + "☆".repeat(5 - n);
       <div class="rating-summary">
         <div class="rating-stars-big">★★★★★</div>
         <div class="rating-info">
-          <span class="rating-number">5.0</span>
-          <span class="rating-label">{t('testimonials.google')}</span>
+          <span class="rating-number">{stats.rating.toFixed(1)}</span>
+          <span class="rating-label">{stats.userRatingsTotal} {t('testimonials.google')}</span>
         </div>
         <a
           href="https://www.google.com.mx/maps/place/Nutrilev/@28.62717,-106.0834988,17z"
@@ -120,7 +61,7 @@ const stars = (n: number) => "★".repeat(n) + "☆".repeat(5 - n);
 
     <div class="testimonials-grid">
       {
-        testimonials.map((testimonial, i) => (
+        displayReviews.map((testimonial: any, i: number) => (
           <div class="testimonial-card" style={`--avatar-color: ${testimonial.color}`}>
             <div class="testimonial-top">
               <div class="testimonial-avatar" style={`background: ${testimonial.color}`}>
@@ -278,6 +219,7 @@ const stars = (n: number) => "★".repeat(n) + "☆".repeat(5 - n);
     flex-direction: column;
     gap: 14px;
     transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s;
+    height: 380px; /* Fixed height for all cards */
   }
 
   .testimonial-card:hover {
@@ -344,6 +286,23 @@ const stars = (n: number) => "★".repeat(n) + "☆".repeat(5 - n);
     margin: 0;
     font-style: normal;
     flex: 1;
+    overflow-y: auto; /* Scroll for long text */
+    padding-right: 8px;
+  }
+
+  /* Custom scrollbar for premium look */
+  .testimonial-text::-webkit-scrollbar {
+    width: 4px;
+  }
+  .testimonial-text::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .testimonial-text::-webkit-scrollbar-thumb {
+    background: #e0e0e0;
+    border-radius: 10px;
+  }
+  .testimonial-text::-webkit-scrollbar-thumb:hover {
+    background: var(--color-primary);
   }
 
   .testimonial-footer {

@@ -1,5 +1,5 @@
 ---
-import { ViewTransitions } from 'astro:transitions';
+import { ClientRouter } from 'astro:transitions';
 import SpeedInsights from "@vercel/speed-insights/astro"
 import '../styles/global.css';
 import FloatingCTA from '../components/ui/FloatingCTA.astro';
@@ -24,8 +24,11 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://nutrilev
 ---
 
 <!doctype html>
-<html lang={lang}>
+<html lang={lang} class="no-js">
   <head>
+    <script is:inline>
+      document.documentElement.classList.remove('no-js');
+    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/png" href="/favicon2.png" />
@@ -35,7 +38,11 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://nutrilev
     <link rel="canonical" href={canonicalURL} />
     
     <!-- View Transitions -->
-    <ViewTransitions />
+    <ClientRouter />
+    
+    <!-- Performance: Resource Hints -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
@@ -107,14 +114,14 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://nutrilev
     <SpeedInsights />
 
     <script>
-      document.addEventListener('astro:page-load', () => {
+      const setupObserver = () => {
         const observerOptions = {
           root: null,
-          rootMargin: '0px',
-          threshold: 0.15
+          rootMargin: '0px 0px -50px 0px',
+          threshold: 0.05 // Lower threshold for better reliability
         };
 
-        const observer = new IntersectionObserver((entries, observer) => {
+        const observer = new IntersectionObserver((entries) => {
           entries.forEach(entry => {
             if (entry.isIntersecting) {
               entry.target.classList.add('is-visible');
@@ -123,10 +130,23 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://nutrilev
           });
         }, observerOptions);
 
-        document.querySelectorAll('.fade-in-section').forEach(element => {
-          observer.observe(element);
+        const sections = document.querySelectorAll('.fade-in-section');
+        sections.forEach(element => {
+          // Check if already in view (fallback)
+          const rect = element.getBoundingClientRect();
+          if (rect.top < window.innerHeight && rect.bottom > 0) {
+            element.classList.add('is-visible');
+          } else {
+            observer.observe(element);
+          }
         });
-      });
+      };
+
+      // Run on initial load
+      setupObserver();
+      
+      // Run on every view transition
+      document.addEventListener('astro:page-load', setupObserver);
     </script>
   </body>
 </html>
