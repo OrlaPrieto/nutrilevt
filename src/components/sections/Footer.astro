@@ -1,6 +1,6 @@
 ---
 import { Image } from "astro:assets";
-import logoImg from "../../assets/logo-final.jpg";
+import logoImg from "../../assets/logo_nutrilev_final_2.png";
 import WhatsAppIcon from "../ui/icons/WhatsAppIcon.astro";
 import InstagramIcon from "../ui/icons/InstagramIcon.astro";
 import FacebookIcon from "../ui/icons/FacebookIcon.astro";
@@ -19,53 +19,61 @@ const langPath = lang === "es" ? "" : `/${lang}`;
           <Image
             src={logoImg}
             alt="Nutrilev Logo"
-            class="h-32 w-auto object-contain bg-white rounded-lg p-1"
+            class="h-32 w-auto object-contain bg-white rounded-lg p-2"
           />
         </a>
         <p class="text-slate-400 max-w-md text-lg leading-relaxed">
-          {t('footer.desc')}
+          {t("footer.desc")}
         </p>
       </div>
       <div>
         <h4 class="font-bold text-white mb-6 uppercase tracking-wider text-sm">
-          {t('footer.linksLabel')}
+          {t("footer.linksLabel")}
         </h4>
         <ul class="space-y-4 text-slate-400">
           <li>
-            <a href={`${langPath}/`} class="hover:text-accent transition-colors">{t('nav.inicio')}</a>
-          </li>
-          <li>
-            <a href={`${langPath}/#about`} class="hover:text-accent transition-colors"
-              >{t('about.label')}</a
+            <a href={`${langPath}/`} class="hover:text-accent transition-colors"
+              >{t("nav.inicio")}</a
             >
           </li>
           <li>
-            <a href={`${langPath}/#services`} class="hover:text-accent transition-colors"
-              >{t('nav.servicios')}</a
+            <a
+              href={`${langPath}/#about`}
+              class="hover:text-accent transition-colors">{t("about.label")}</a
+            >
+          </li>
+          <li>
+            <a
+              href={`${langPath}/#services`}
+              class="hover:text-accent transition-colors"
+              >{t("nav.servicios")}</a
             >
           </li>
           <li>
             <a
               href={`${langPath}/#consultation-modes`}
-              class="hover:text-accent transition-colors">{t('modes.label')}</a
+              class="hover:text-accent transition-colors">{t("modes.label")}</a
             >
           </li>
           <li>
             <a
               href={`${langPath}/#clinical-history`}
-              class="hover:text-accent transition-colors">{t('history.label')}</a
+              class="hover:text-accent transition-colors"
+              >{t("history.label")}</a
             >
           </li>
           <li>
-            <a href={`${langPath}/#testimonials`} class="hover:text-accent transition-colors"
-              >{t('testimonials.label')}</a
+            <a
+              href={`${langPath}/#testimonials`}
+              class="hover:text-accent transition-colors"
+              >{t("testimonials.label")}</a
             >
           </li>
         </ul>
       </div>
       <div>
         <h4 class="font-bold text-white mb-6 uppercase tracking-wider text-sm">
-          {t('footer.contactLabel')}
+          {t("footer.contactLabel")}
         </h4>
         <ul class="space-y-4 text-slate-400">
           <li>nutrilev@outlook.es</li>
@@ -76,7 +84,7 @@ const langPath = lang === "es" ? "" : `/${lang}`;
     <div
       class="pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4 text-slate-500 text-sm"
     >
-      <p>© 2026 Nutrilev Especializada. {t('footer.rights')}</p>
+      <p>© 2026 Nutrilev Especializada. {t("footer.rights")}</p>
       <div class="flex gap-6">
         <a
           href="https://www.instagram.com/nutrilev_especializada"

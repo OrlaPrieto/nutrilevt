@@ -1,6 +1,6 @@
 ---
 import { Image } from "astro:assets";
-import logoImg from "../../assets/logo-final.jpg";
+import logoImg from "../../assets/logo_nutrilev_final_2.png";
 import WhatsAppIcon from "../ui/icons/WhatsAppIcon.astro";
 import InstagramIcon from "../ui/icons/InstagramIcon.astro";
 import FacebookIcon from "../ui/icons/FacebookIcon.astro";
@@ -19,7 +19,11 @@ const langPath = lang === "es" ? "" : `/${lang}`;
       class="max-w-7xl mx-auto flex justify-between items-center text-xs sm:text-sm font-medium"
     >
       <div class="hidden sm:block uppercase tracking-wider">
-        {lang === 'es' ? 'Nutrición Clínica Especializada' : 'Specialized Clinical Nutrition'}
+        {
+          lang === "es"
+            ? "Nutrición Clínica Especializada"
+            : "Specialized Clinical Nutrition"
+        }
       </div>
       <div class="flex items-center gap-4 ml-auto sm:ml-0">
         <LanguagePicker />
@@ -64,7 +68,7 @@ const langPath = lang === "es" ? "" : `/${lang}`;
             <Image
               src={logoImg}
               alt="Nutrilev Logo"
-              class="h-14 md:h-24 w-auto object-contain"
+              class="h-16 md:h-24 w-auto object-contain"
             />
           </a>
         </div>
@@ -114,32 +118,32 @@ const langPath = lang === "es" ? "" : `/${lang}`;
           <a
             href={`${langPath}/`}
             class="text-slate-600 hover:text-primary px-4 py-2 text-sm font-semibold transition-colors"
-            >{t('nav.inicio')}</a
+            >{t("nav.inicio")}</a
           >
 
           <a
             href={`${langPath}/#services`}
             class="text-slate-600 hover:text-primary px-4 py-2 text-sm font-semibold transition-colors"
-            >{t('nav.servicios')}</a
+            >{t("nav.servicios")}</a
           >
 
           <a
             href={`${langPath}/#consultation-modes`}
             class="text-slate-600 hover:text-primary px-4 py-2 text-sm font-semibold transition-colors"
-            >{t('nav.modalidades')}</a
+            >{t("nav.modalidades")}</a
           >
 
           <a
             href={`${langPath}/#clinical-history`}
             class="text-slate-600 hover:text-primary px-4 py-2 text-sm font-semibold transition-colors"
-            >{t('nav.historial')}</a
+            >{t("nav.historial")}</a
           >
           <div class="ml-4">
             <a
               href={`${langPath}/#booking`}
               class="relative inline-block bg-primary text-white px-8 py-3 rounded-full text-sm font-bold transition-all shadow-glow hover:shadow-glow-lg hover:scale-110 active:scale-95 animate-gentle-pulse animate-shimmer"
             >
-              <span class="relative z-10">{t('nav.agendar')}</span>
+              <span class="relative z-10">{t("nav.agendar")}</span>
             </a>
           </div>
         </div>
@@ -158,32 +162,32 @@ const langPath = lang === "es" ? "" : `/${lang}`;
       <a
         href={`${langPath}/`}
         class="mobile-link text-2xl font-bold text-slate-800 hover:text-primary transition-colors"
-        >{t('nav.inicio')}</a
+        >{t("nav.inicio")}</a
       >
 
       <a
         href={`${langPath}/#services`}
         class="mobile-link text-2xl font-bold text-slate-800 hover:text-primary transition-colors"
-        >{t('nav.servicios')}</a
+        >{t("nav.servicios")}</a
       >
 
       <a
         href={`${langPath}/#consultation-modes`}
         class="mobile-link text-2xl font-bold text-slate-800 hover:text-primary transition-colors"
-        >{t('nav.modalidades')}</a
+        >{t("nav.modalidades")}</a
       >
 
       <a
         href={`${langPath}/#clinical-history`}
         class="mobile-link text-2xl font-bold text-slate-800 hover:text-primary transition-colors"
-        >{t('nav.historial')}</a
+        >{t("nav.historial")}</a
       >
       <div class="pt-6 w-full">
         <a
           href={`${langPath}/#booking`}
           class="mobile-link block w-full bg-primary text-white py-5 rounded-2xl text-xl font-bold shadow-xl shadow-pink-100 active:scale-95 transition-transform"
         >
-          {t('nav.agendar')}
+          {t("nav.agendar")}
         </a>
       </div>
     </div>
@@ -235,24 +239,24 @@ const langPath = lang === "es" ? "" : `/${lang}`;
           "bg-white/90",
           "backdrop-blur-xl",
           "shadow-md",
-          "border-pink-100/50"
+          "border-pink-100/50",
         );
         mainNav?.classList.remove(
           "bg-white/40",
           "backdrop-blur-md",
-          "border-transparent"
+          "border-transparent",
         );
       } else {
         mainNav?.classList.remove(
           "bg-white/90",
           "backdrop-blur-xl",
           "shadow-md",
-          "border-pink-100/50"
+          "border-pink-100/50",
         );
         mainNav?.classList.add(
           "bg-white/40",
           "backdrop-blur-md",
-          "border-transparent"
+          "border-transparent",
         );
       }
     };
@@ -262,7 +266,7 @@ const langPath = lang === "es" ? "" : `/${lang}`;
     handleScroll();
   }
 
-  document.addEventListener('astro:page-load', initNavbar);
+  document.addEventListener("astro:page-load", initNavbar);
 </script>
 
 <style>
