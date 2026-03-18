@@ -9,6 +9,9 @@ import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const langPath = lang === "es" ? "" : `/${lang}`;
+
+import pkg from "../../../package.json";
+const version = pkg.version;
 ---
 
 <footer id="contact" class="bg-slate-900 text-white py-20">
@@ -84,7 +87,10 @@ const langPath = lang === "es" ? "" : `/${lang}`;
     <div
       class="pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4 text-slate-500 text-sm"
     >
-      <p>© 2026 Nutrilev Especializada. {t("footer.rights")}</p>
+      <div class="flex flex-col items-center md:items-start gap-1">
+        <p>© 2026 Nutrilev Especializada. {t("footer.rights")}</p>
+        <span class="text-[10px] opacity-50 font-mono tracking-tighter">BUILD v{version}</span>
+      </div>
       <div class="flex gap-6">
         <a
           href="https://www.instagram.com/nutrilev_especializada"

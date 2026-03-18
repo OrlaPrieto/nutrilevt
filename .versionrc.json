@@ -1,0 +1,14 @@
+{
+  "types": [
+    {"type": "feat", "section": "Features"},
+    {"type": "fix", "section": "Bug Fixes"},
+    {"type": "chore", "section": "Maintenance"},
+    {"type": "docs", "section": "Documentation"},
+    {"type": "style", "section": "Styles"},
+    {"type": "refactor", "section": "Refactoring"},
+    {"type": "perf", "section": "Performance"},
+    {"type": "test", "section": "Tests"}
+  ],
+  "commitUrlFormat": "https://github.com/OrlaPrieto/nutrilevt/commit/{{hash}}",
+  "compareUrlFormat": "https://github.com/OrlaPrieto/nutrilevt/compare/{{previousTag}}...{{currentTag}}"
+}
