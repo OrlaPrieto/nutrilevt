@@ -60,6 +60,7 @@ export function initIntakeForm() {
             dateFormat: "Y-m-d",
             defaultDate: "today",
             clickOpens: false,
+            disableMobile: true,
         });
     }
 
@@ -73,7 +74,7 @@ export function initIntakeForm() {
             locale: t.flatpickrLocale,
             dateFormat: "Y-m-d",
             maxDate: "today",
-            disableMobile: "true",
+            disableMobile: true,
             monthSelectorType: "dropdown",
             animate: true,
             onReady: function(selectedDates: Date[], dateStr: string, instance: any) {
@@ -81,7 +82,7 @@ export function initIntakeForm() {
                 if (yearInput) {
                     const yearSelect = document.createElement('select');
                     yearSelect.className = 'flatpickr-monthDropdown-years';
-                    yearSelect.style.cssText = 'appearance: none; background: transparent; border: none; font-weight: 600; color: #d81b60; cursor: pointer; padding: 6px 10px; border-radius: 12px; transition: all 0.2s;';
+                    yearSelect.style.cssText = 'appearance: none; background: transparent; border: none; font-weight: 600; color: #d81b60; cursor: pointer; padding: 6px 12px; border-radius: 12px; transition: all 0.2s;';
                     
                     const currentYear = new Date().getFullYear();
                     const startYear = currentYear - 100;
