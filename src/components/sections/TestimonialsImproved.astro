@@ -13,7 +13,7 @@ const displayReviews = reviews.slice(0, 6);
 const stars = (n: number) => "★".repeat(n) + "☆".repeat(5 - n);
 ---
 
-<section id="testimonials" class="testimonials-section">
+<section id="testimonials" class="testimonials-section overflow-hidden">
   <div class="testimonials-container">
     <div class="testimonials-header">
       <span class="testimonials-eyebrow">{t('testimonials.label')}</span>
@@ -206,7 +206,7 @@ const stars = (n: number) => "★".repeat(n) + "☆".repeat(5 - n);
 
   .testimonials-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 20px;
   }
 
