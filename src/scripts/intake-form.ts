@@ -175,19 +175,35 @@ export function initIntakeForm() {
             let cursorPosition = input.selectionStart || 0;
             let oldLength = input.value.length;
 
-            let value = input.value.replace(/[^\d.]/g, "");
+            let value = input.value.replace(/,/g, ".").replace(/[^\d.]/g, "");
             if (value.includes(".")) {
                 const parts = value.split(".");
                 value = parts[0] + "." + parts.slice(1).join("").slice(0, 2);
             }
             if (value.length > 4) value = value.slice(0, 4);
 
-            input.value = value;
+            let displayValue = value ? value + " m" : "";
+            input.value = displayValue;
 
             // Adjust cursor position
-            let newLength = value.length;
-            cursorPosition = cursorPosition + (newLength - oldLength);
+            let newLength = displayValue.length;
+            if (cursorPosition >= oldLength - 2 && oldLength > 2) {
+                cursorPosition = value.length;
+            } else {
+                cursorPosition = cursorPosition + (newLength - oldLength);
+                cursorPosition = Math.min(cursorPosition, value.length);
+            }
             input.setSelectionRange(cursorPosition, cursorPosition);
+        });
+
+        heightInput.addEventListener("keydown", (e) => {
+            const input = e.target as HTMLInputElement;
+            if (e.key === "Backspace" && input.selectionStart === input.value.length && input.value.endsWith(" m")) {
+                e.preventDefault();
+                let raw = input.value.slice(0, -2);
+                input.value = raw.slice(0, -1);
+                input.dispatchEvent(new Event("input"));
+            }
         });
     }
 
@@ -319,8 +335,9 @@ export function initIntakeForm() {
                     errorMsg = t.phoneFormat;
                 }
             } else if (input.id === "estatura") {
+                const rawHeight = input.value.replace(/ m$/i, "").trim();
                 const heightRegex = /^\d\.\d{2}$/;
-                if (!heightRegex.test(input.value.trim())) {
+                if (!heightRegex.test(rawHeight)) {
                     errorMsg = t.heightFormat;
                 }
             } else if (input.id === "fecha_nacimiento") {
@@ -385,7 +402,11 @@ export function initIntakeForm() {
         const data: IntakeFormData = {};
 
         formData.forEach((value, key) => {
-            const strValue = value.toString();
+            let strValue = value.toString();
+            if (key === "estatura") {
+                strValue = strValue.replace(/ m$/i, "").trim();
+            }
+            
             if (data[key]) {
                 if (Array.isArray(data[key])) {
                     (data[key] as string[]).push(strValue);
