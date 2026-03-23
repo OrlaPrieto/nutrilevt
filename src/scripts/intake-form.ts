@@ -23,6 +23,7 @@ export function initIntakeForm() {
             phoneFormat: "Usa el formato (222)-2437640",
             heightFormat: "Usa el formato 1.90",
             futureDate: "La fecha no puede ser futura",
+            emailExists: "Este correo ya está registrado",
             errorSubmit: "Hubo un error al enviar. Por favor intenta de nuevo.",
             flatpickrLocale: "es"
         },
@@ -32,6 +33,7 @@ export function initIntakeForm() {
             phoneFormat: "Use format (222)-2437640",
             heightFormat: "Use format 1.75",
             futureDate: "Date cannot be in the future",
+            emailExists: "This email is already registered",
             errorSubmit: "There was an error submitting. Please try again.",
             flatpickrLocale: "en"
         }
@@ -302,7 +304,7 @@ export function initIntakeForm() {
         );
     }
 
-    function validateStep(stepIndex: number) {
+    async function validateStep(stepIndex: number) {
         const currentStepEl = steps[stepIndex];
         clearErrors(stepIndex);
 
@@ -310,12 +312,12 @@ export function initIntakeForm() {
         const processedGroups = new Set();
         let isValid = true;
 
-        requiredInputs.forEach((input: any) => {
+        for (const input of Array.from(requiredInputs) as any[]) {
             let errorMsg = "";
             const name = input.getAttribute("name");
 
             if (input.type === "radio" || input.type === "checkbox") {
-                if (processedGroups.has(name)) return;
+                if (processedGroups.has(name)) continue;
                 processedGroups.add(name);
 
                 const checked = currentStepEl.querySelector(
@@ -326,8 +328,24 @@ export function initIntakeForm() {
                 errorMsg = t.required;
             } else if (input.type === "email") {
                 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (!emailRegex.test(input.value.trim())) {
+                const value = input.value.trim();
+                if (!emailRegex.test(value)) {
                     errorMsg = t.invalidEmail;
+                } else if (stepIndex === 0) {
+                    // Check if email exists in Supabase
+                    try {
+                        const { data, error } = await supabase
+                            .from(TABLE_NAME)
+                            .select('email')
+                            .eq('email', value)
+                            .maybeSingle();
+                        
+                        if (data) {
+                            errorMsg = t.emailExists;
+                        }
+                    } catch (err) {
+                        console.error("Error checking email uniqueness:", err);
+                    }
                 }
             } else if (input.id === "telefono") {
                 const phoneRegex = /^\(\d{3}\)-\d{7}$/;
@@ -371,13 +389,13 @@ export function initIntakeForm() {
                     }
                 }
             }
-        });
+        }
 
         return isValid;
     }
 
-    nextBtn?.addEventListener("click", () => {
-        if (validateStep(currentStep - 1)) {
+    nextBtn?.addEventListener("click", async () => {
+        if (await validateStep(currentStep - 1)) {
             if (currentStep < totalSteps) {
                 currentStep++;
                 updateForm("next");
@@ -395,7 +413,7 @@ export function initIntakeForm() {
     form?.addEventListener("submit", async (e) => {
         e.preventDefault();
 
-        if (!validateStep(currentStep - 1)) return;
+        if (!(await validateStep(currentStep - 1))) return;
 
         loadingOverlay?.classList.remove("hidden");
         const formData = new FormData(form);
