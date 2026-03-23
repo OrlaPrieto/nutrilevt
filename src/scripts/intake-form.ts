@@ -329,6 +329,12 @@ export function initIntakeForm() {
             } else if (input.type === "email") {
                 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
                 const value = input.value.trim();
+                
+                if (value === "") {
+                    // Skip validation if empty (since it's now optional)
+                    continue;
+                }
+
                 if (!emailRegex.test(value)) {
                     errorMsg = t.invalidEmail;
                 } else if (stepIndex === 0) {
@@ -435,6 +441,12 @@ export function initIntakeForm() {
                 data[key] = strValue;
             }
         });
+
+        // Handle missing email by generating a placeholder based on phone
+        if (!data["email"] || (data["email"] as string).trim() === "") {
+            const phone = (data["telefono"] as string || "").replace(/\D/g, "");
+            data["email"] = `${phone || Date.now()}@nutrilev.temp`;
+        }
 
         Object.keys(data).forEach((key) => {
             if (Array.isArray(data[key])) {
