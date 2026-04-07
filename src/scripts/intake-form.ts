@@ -1,3 +1,6 @@
+import flatpickr from "flatpickr";
+import "flatpickr/dist/flatpickr.min.css";
+import { Spanish } from "flatpickr/dist/l10n/es.js";
 import { supabase } from "../lib/supabase";
 
 export interface IntakeFormData {
@@ -29,7 +32,7 @@ export function initIntakeForm() {
             futureDate: "La fecha no puede ser futura",
             emailExists: "Este correo ya está registrado",
             errorSubmit: "Hubo un error al enviar. Por favor intenta de nuevo.",
-            flatpickrLocale: "es"
+            flatpickrLocale: Spanish
         },
         en: {
             required: "This field is required",

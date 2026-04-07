@@ -10,11 +10,6 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-<!-- Flatpickr CSS -->
-<link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
-/>
 
 <style is:global>
     @import "../../../styles/flatpickr-theme.css";
@@ -83,10 +78,6 @@ const t = useTranslations(lang);
     @import "../../../styles/form-animations.css";
 </style>
 
-<!-- Flatpickr JS -->
-<script is:inline src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-<script is:inline src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/es.js"
-></script>
 
 <script>
     import { initIntakeForm } from "../../../scripts/init-intake-lazy";
