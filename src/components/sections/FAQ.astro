@@ -276,5 +276,12 @@ const faqs = [
     });
   }
 
-  document.addEventListener("astro:page-load", initFAQ);
+  // Defer non-critical FAQ initialization to free up the main thread
+  document.addEventListener("astro:page-load", () => {
+    if ('requestIdleCallback' in window) {
+      window.requestIdleCallback(initFAQ);
+    } else {
+      setTimeout(initFAQ, 1);
+    }
+  });
 </script>

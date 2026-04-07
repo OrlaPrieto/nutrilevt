@@ -2,6 +2,7 @@
 import { ClientRouter } from 'astro:transitions';
 import SpeedInsights from "@vercel/speed-insights/astro"
 import '../styles/global.css';
+import logoImg from '../assets/logo_nutrilev_final_2.png';
 import FloatingCTA from '../components/ui/FloatingCTA.astro';
 import { getLangFromUrl, useTranslations } from '../i18n/utils';
 
@@ -39,12 +40,23 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://nutrilev
     
     <!-- View Transitions -->
     <ClientRouter />
+
+    <!-- Performance: Inline Critical CSS (Header & LCP) -->
+    <style is:inline>
+      header { position: fixed; top: 0; left: 0; width: 100%; z-index: 50; }
+      .bg-primary { background-color: #D81B60; }
+      .text-white { color: #ffffff; }
+      .main-nav-placeholder { height: 80px; }
+      @media (min-width: 768px) { .main-nav-placeholder { height: 128px; } }
+      .logo-container { aspect-ratio: 292 / 112; display: block; }
+    </style>
     
     <!-- Performance: Resource Hints -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://grainy-gradients.vercel.app">
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" />
+    <link rel="preload" as="image" href={logoImg.src} fetchpriority="high" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 
     <!-- Open Graph / Facebook -->
@@ -137,7 +149,13 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://nutrilev
       };
 
       // Run on every view transition (including initial load)
-      document.addEventListener('astro:page-load', setupObserver);
+      document.addEventListener('astro:page-load', () => {
+        if ('requestIdleCallback' in window) {
+          window.requestIdleCallback(setupObserver);
+        } else {
+          setTimeout(setupObserver, 1);
+        }
+      });
     </script>
   </body>
 </html>

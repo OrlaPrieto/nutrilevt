@@ -12,7 +12,7 @@ const t = useTranslations(lang);
 const langPath = lang === "es" ? "" : `/${lang}`;
 ---
 
-<header class="fixed top-0 left-0 w-full z-50">
+<header class="fixed top-0 left-0 w-full z-50" transition:persist>
   <!-- Top Bar -->
   <div class="bg-primary text-white py-2 px-4 sm:px-6 lg:px-8">
     <div
@@ -67,11 +67,11 @@ const langPath = lang === "es" ? "" : `/${lang}`;
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center h-20 md:h-32">
         <div class="flex-shrink-0">
-          <a href={`${langPath}/`} class="block">
+          <a href={`${langPath}/`} class="block logo-container">
             <Image
               src={logoImg}
               alt="Nutrilev Logo"
-              class="h-16 md:h-24 w-auto object-contain"
+              class="logo-img object-contain"
               loading="eager"
               fetchpriority="high"
               width={292}
@@ -290,7 +290,14 @@ const langPath = lang === "es" ? "" : `/${lang}`;
     handleScroll();
   }
 
-  document.addEventListener("astro:page-load", initNavbar);
+  // Defer non-critical initialization to free up the main thread during navigation
+  document.addEventListener("astro:page-load", () => {
+    if ('requestIdleCallback' in window) {
+      window.requestIdleCallback(() => initNavbar());
+    } else {
+      setTimeout(initNavbar, 1);
+    }
+  });
 </script>
 
 <style>
@@ -323,5 +330,23 @@ const langPath = lang === "es" ? "" : `/${lang}`;
   /* Automatic glint/shimmer every 5 seconds */
   .animate-shimmer-auto {
     animation: shimmer-auto 5s infinite cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Critical Landing Performance: Explicit LCP Dimensions */
+  .logo-container {
+    display: block;
+    height: 64px; /* Mobile header height equivalent */
+    aspect-ratio: 292 / 112;
+  }
+
+  .logo-img {
+    height: 100%;
+    width: auto;
+  }
+
+  @media (min-width: 768px) {
+    .logo-container {
+      height: 96px; /* Desktop height equivalent */
+    }
   }
 </style>
