@@ -4,15 +4,16 @@ import { getLangFromUrl } from '../../i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
 ---
-<div class="flex items-center gap-1.5 bg-slate-100/50 p-1 rounded-full border border-slate-200/50 backdrop-blur-sm">
+<div class="flex items-center gap-1 bg-white/95 p-1 rounded-full border border-slate-200 shadow-sm transition-all duration-300">
   {Object.entries(languages).map(([code, label]) => (
     <a 
       href={code === 'es' ? '/' : `/${code}/`}
-      class={`px-3 py-1 text-[10px] font-bold tracking-wider rounded-full transition-all duration-300 ${
+      class={`min-w-[42px] text-center px-3.5 py-1.5 text-[10px] font-black tracking-[0.1em] rounded-full transition-all duration-500 ${
         lang === code 
-          ? 'bg-white text-primary shadow-sm ring-1 ring-slate-200' 
-          : 'text-slate-700 hover:text-primary hover:bg-white/50'
+          ? 'bg-primary text-white shadow-md shadow-primary/25 scale-[1.02]' 
+          : 'text-slate-700 hover:text-primary hover:bg-primary/5'
       }`}
+      aria-current={lang === code ? 'page' : undefined}
     >
       {code.toUpperCase()}
     </a>

@@ -18,11 +18,12 @@ const t = useTranslations(lang);
 
     <div class="grid md:grid-cols-2 gap-6">
         <div class="md:col-span-2">
-            <label class="block text-sm font-semibold text-slate-700 mb-2"
+            <label for="email" class="block text-sm font-semibold text-slate-700 mb-2"
                 >{t('intake.field.email')}</label
             >
             <input
                 type="email"
+                id="email"
                 name="email"
                 class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
                 placeholder={t('intake.field.emailPlaceholder')}
@@ -32,7 +33,7 @@ const t = useTranslations(lang);
             </p>
         </div>
         <div class="relative group">
-            <label class="block text-sm font-semibold text-slate-700 mb-2"
+            <label for="fecha_hoy" class="block text-sm font-semibold text-slate-700 mb-2"
                 >{t('intake.field.today')}</label
             >
             <div class="relative">
@@ -68,11 +69,12 @@ const t = useTranslations(lang);
             </div>
         </div>
         <div>
-            <label class="block text-sm font-semibold text-slate-700 mb-2"
+            <label for="nombre" class="block text-sm font-semibold text-slate-700 mb-2"
                 >{t('intake.field.name')}</label
             >
             <input
                 type="text"
+                id="nombre"
                 name="nombre"
                 required
                 class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
@@ -80,7 +82,7 @@ const t = useTranslations(lang);
             />
         </div>
         <div class="relative group">
-            <label class="block text-sm font-semibold text-slate-700 mb-2"
+            <label for="fecha_nacimiento" class="block text-sm font-semibold text-slate-700 mb-2"
                 >{t('intake.field.birth')}</label
             >
             <div class="relative">
@@ -129,18 +131,19 @@ const t = useTranslations(lang);
             />
         </div>
         <div class="md:col-span-2">
-            <label class="block text-sm font-semibold text-slate-700 mb-2"
+            <label for="direccion" class="block text-sm font-semibold text-slate-700 mb-2"
                 >{t('intake.field.address')}</label
             >
             <input
                 type="text"
+                id="direccion"
                 name="direccion"
                 class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
                 placeholder={t('intake.field.addressPlaceholder')}
             />
         </div>
         <div>
-            <label class="block text-sm font-semibold text-slate-700 mb-2"
+            <label for="telefono" class="block text-sm font-semibold text-slate-700 mb-2"
                 >{t('intake.field.phone')}</label
             >
             <input
@@ -153,7 +156,7 @@ const t = useTranslations(lang);
             />
         </div>
         <div>
-            <label class="block text-sm font-semibold text-slate-700 mb-2"
+            <label for="estatura" class="block text-sm font-semibold text-slate-700 mb-2"
                 >{t('intake.field.stature')}</label
             >
             <input
@@ -241,11 +244,12 @@ const t = useTranslations(lang);
 
         <div class="grid md:grid-cols-2 gap-6">
             <div>
-                <label class="block text-sm font-semibold text-slate-700 mb-2"
+                <label for="peso_habitual" class="block text-sm font-semibold text-slate-700 mb-2"
                     >{t('intake.field.usualWeight')}</label
                 >
                 <input
                     type="number"
+                    id="peso_habitual"
                     step="0.1"
                     name="peso_habitual"
                     class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary outline-none transition-all"
@@ -253,11 +257,12 @@ const t = useTranslations(lang);
                 />
             </div>
             <div>
-                <label class="block text-sm font-semibold text-slate-700 mb-2"
+                <label for="peso_meta" class="block text-sm font-semibold text-slate-700 mb-2"
                     >{t('intake.field.targetWeight')}</label
                 >
                 <input
                     type="number"
+                    id="peso_meta"
                     step="0.1"
                     name="peso_meta"
                     class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary outline-none transition-all"
@@ -265,11 +270,12 @@ const t = useTranslations(lang);
                 />
             </div>
             <div class="md:col-span-2">
-                <label class="block text-sm font-semibold text-slate-700 mb-2"
+                <label for="cambios_peso_detalle" class="block text-sm font-semibold text-slate-700 mb-2"
                     >{t('intake.field.weightChanges')}</label
                 >
                 <input
                     type="text"
+                    id="cambios_peso_detalle"
                     name="cambios_peso_detalle"
                     class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary outline-none transition-all"
                     placeholder={t('intake.field.weightChangesPlaceholder')}
@@ -278,10 +284,11 @@ const t = useTranslations(lang);
         </div>
 
         <div>
-            <label class="block text-sm font-semibold text-slate-700 mb-2"
+            <label for="motivos_consulta" class="block text-sm font-semibold text-slate-700 mb-2"
                 >{t('intake.field.motives')}</label
             >
             <textarea
+                id="motivos_consulta"
                 name="motivos_consulta"
                 required
                 rows="3"
@@ -323,11 +330,12 @@ const t = useTranslations(lang);
 
         <!-- Conditional Female Health Section -->
         <div id="female-health-section" class="hidden premium-card bg-pink-50/30 p-6 rounded-2xl border border-pink-100/50">
-            <label class="block text-sm font-bold text-primary mb-3 uppercase tracking-wider"
+            <label for="salud_femenina_ciclo" class="block text-sm font-bold text-primary mb-3 uppercase tracking-wider"
                 >{t('intake.field.femaleHealth')}</label
             >
             <p class="text-xs text-slate-500 mb-4 italic">{t('intake.field.femaleHealthDesc')}</p>
             <textarea
+                id="salud_femenina_ciclo"
                 name="salud_femenina_ciclo"
                 rows="2"
                 class="w-full px-4 py-3 rounded-xl border border-white bg-white/50 focus:border-primary focus:bg-white outline-none transition-all resize-none text-sm"

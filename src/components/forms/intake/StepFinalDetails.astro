@@ -89,10 +89,10 @@ const t = useTranslations(lang);
             </div>
 
             <div>
-                <label class="block text-sm font-semibold text-slate-700 mb-4"
+                <label for="anclaje_ansiedad_momento" class="block text-sm font-semibold text-slate-700 mb-4"
                     >{t('intake.field.anxietyTime')}</label
                 >
-                <select name="anclaje_ansiedad_momento" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary outline-none text-sm transition-all" required>
+                <select id="anclaje_ansiedad_momento" name="anclaje_ansiedad_momento" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary outline-none text-sm transition-all" required>
                     <option value="" disabled selected>{t('intake.anxiety.select')}</option>
                     <option value="Mañana">{t('intake.anxiety.morning')}</option>
                     <option value="Tarde">{t('intake.anxiety.afternoon')}</option>
@@ -105,28 +105,28 @@ const t = useTranslations(lang);
 
         <div class="grid md:grid-cols-2 gap-6">
             <div class="md:col-span-2">
-                <label class="block text-sm font-semibold text-slate-700 mb-2"
+                <label for="alimentos_preferidos" class="block text-sm font-semibold text-slate-700 mb-2"
                     >{t('intake.field.preferredFoods')}</label
                 >
-                <input type="text" name="alimentos_preferidos" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary outline-none text-sm" placeholder={t('intake.field.preferredFoodsPlaceholder')} />
+                <input type="text" id="alimentos_preferidos" name="alimentos_preferidos" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary outline-none text-sm" placeholder={t('intake.field.preferredFoodsPlaceholder')} />
             </div>
             <div class="md:col-span-2">
-                <label class="block text-sm font-semibold text-slate-700 mb-2"
+                <label for="alimentos_no_agradan" class="block text-sm font-semibold text-slate-700 mb-2"
                     >{t('intake.field.dislikedFoods')}</label
                 >
-                <input type="text" name="alimentos_no_agradan" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary outline-none text-sm" placeholder={t('intake.field.dislikedFoodsPlaceholder')} />
+                <input type="text" id="alimentos_no_agradan" name="alimentos_no_agradan" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary outline-none text-sm" placeholder={t('intake.field.dislikedFoodsPlaceholder')} />
             </div>
             <div class="md:col-span-2">
-                <label class="block text-sm font-semibold text-slate-700 mb-2"
+                <label for="alergias_alimentarias" class="block text-sm font-semibold text-slate-700 mb-2"
                     >{t('intake.field.foodAllergies')}</label
                 >
-                <input type="text" name="alergias_alimentarias" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary outline-none text-sm" placeholder={t('intake.field.foodAllergiesPlaceholder')} />
+                <input type="text" id="alergias_alimentarias" name="alergias_alimentarias" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary outline-none text-sm" placeholder={t('intake.field.foodAllergiesPlaceholder')} />
             </div>
             <div class="md:col-span-2">
-                <label class="block text-sm font-semibold text-slate-700 mb-2"
+                <label for="dieta_especial" class="block text-sm font-semibold text-slate-700 mb-2"
                     >{t('intake.field.pastDiets')}</label
                 >
-                <input type="text" name="dieta_especial" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary outline-none text-sm" placeholder={t('intake.field.weightChangesPlaceholder')} />
+                <input type="text" id="dieta_especial" name="dieta_especial" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary outline-none text-sm" placeholder={t('intake.field.weightChangesPlaceholder')} />
             </div>
             <div class="md:col-span-2">
                 <label class="block text-sm font-semibold text-slate-700 mb-4"
@@ -148,8 +148,9 @@ const t = useTranslations(lang);
                         ))
                     }
                 </div>
-                <div id="supplements-details-container" class="hidden">
-                    <input type="text" name="suplementos_cuales" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary outline-none text-sm" placeholder={t('intake.field.supplementsPlaceholder')} />
+                <div id="supplements-details-container" class="hidden mt-3">
+                    <label for="suplementos_cuales" class="block text-xs text-slate-500 mb-2">{t('intake.field.supplementsPlaceholder')}</label>
+                    <input type="text" id="suplementos_cuales" name="suplementos_cuales" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary outline-none text-sm" placeholder={t('intake.field.supplementsPlaceholder')} />
                 </div>
             </div>
         </div>
