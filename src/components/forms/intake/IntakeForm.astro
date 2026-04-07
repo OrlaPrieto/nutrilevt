@@ -9,82 +9,16 @@ import { getLangFromUrl, useTranslations } from "../../../i18n/utils";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
-    <!-- Defer non-critical form styles until they are needed -->
-    <link rel="stylesheet" href="/src/styles/intake-form-bundle.css" media="print" onload="this.media='all'">
-
-
-<div
-    id="intake-form-container"
-    class="max-w-4xl mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden border border-pink-50 relative"
->
-    <!-- Progress Bar -->
-    <div class="h-2 bg-pink-50 w-full overflow-hidden">
-        <div
-            id="form-progress"
-            class="h-full bg-primary transition-all duration-500 w-[14%]"
-        >
-        </div>
-    </div>
-
-    <form id="clinical-form" class="p-8 sm:p-12" novalidate>
-        <StepPersonalData />
-        <StepHealthBackground />
-        <StepHabits />
-        <StepFinalDetails />
-
-        <!-- Button Navigation -->
-        <div
-            class="px-8 sm:px-12 py-6 border-t border-pink-50 bg-white/50 backdrop-blur-sm"
-        >
-            <div class="flex gap-4">
-                <button
-                    type="button"
-                    id="prev-btn"
-                    class="hidden flex-1 px-8 py-4 rounded-2xl font-bold text-slate-500 border border-slate-200 hover:bg-slate-50 transition-all"
-                    >{t('intake.prev')}</button
-                >
-                <button
-                    type="button"
-                    id="next-btn"
-                    class="flex-1 px-8 py-4 rounded-2xl font-bold bg-primary text-white shadow-lg shadow-pink-100 hover:scale-105 active:scale-95 transition-all"
-                    >{t('intake.next')}</button
-                >
-                <button
-                    type="submit"
-                    id="submit-btn"
-                    class="hidden flex-1 px-8 py-4 rounded-2xl font-bold bg-gradient-to-r from-primary to-accent text-white shadow-xl shadow-pink-200 hover:scale-105 active:scale-95 transition-all"
-                    >{t('intake.submit')}</button
-                >
-            </div>
-        </div>
-    </form>
-
-    <!-- Loading Overlay -->
-    <div
-        id="loading-overlay"
-        class="hidden absolute inset-0 bg-white/80 backdrop-blur-sm flex items-center justify-center z-30"
-    >
-        <div
-            class="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin"
-        >
-        </div>
-    </div>
-</div>
-
-
-
-<script is:inline>
+<script>
     document.addEventListener('astro:page-load', () => {
         const container = document.getElementById('intake-form-container');
         if (container) {
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(async (entry) => {
                     if (entry.isIntersecting) {
-                        // Manual injection of the main script chunk to avoid preload chaining
-                        // This ensures the JS is truly lazy and not discovered by the preload scanner
-                        import("/src/scripts/intake-form.ts").then((mod) => {
-                            mod.initIntakeForm();
-                        });
+                        // Correct lazy-loading using relative paths that Vite understands
+                        const { initIntakeForm } = await import("../../../scripts/intake-form");
+                        initIntakeForm();
                         observer.disconnect();
                     }
                 });
@@ -93,3 +27,394 @@ const t = useTranslations(lang);
         }
     });
 </script>
+
+<style is:global>
+/* Import Base Flatpickr CSS for self-hosting and optimal caching */
+@import "flatpickr/dist/flatpickr.min.css";
+
+/* src/styles/flatpickr-theme.css - Material Design 3 Style */
+
+.flatpickr-calendar {
+    background: #ffffff;
+    box-shadow: 0px 4px 8px 3px rgba(0, 0, 0, 0.15), 0px 1px 3px rgba(0, 0, 0, 0.3) !important;
+    border: none !important;
+    border-radius: 28px !important;
+    padding: 16px !important;
+    font-family: 'Inter Variable', 'Inter', sans-serif !important;
+    width: 336px !important;
+}
+
+.flatpickr-months {
+    padding: 12px 0 !important;
+    position: relative !important;
+}
+
+.flatpickr-months .flatpickr-month {
+    color: #1c1b1f !important;
+    height: 48px !important;
+    position: relative !important;
+    display: block !important;
+}
+
+.flatpickr-current-month {
+    font-size: 16px !important;
+    font-weight: 500 !important;
+    position: absolute !important;
+    width: 100% !important;
+    height: 48px !important;
+    top: 0 !important;
+    left: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    padding: 0 !important;
+}
+
+.flatpickr-current-month .flatpickr-monthDropdown-months {
+    font-weight: 600 !important;
+    padding: 8px 14px !important;
+    border-radius: 12px !important;
+    transition: all 0.2s !important;
+    color: #d81b60 !important;
+    border: 1px solid rgba(216, 27, 96, 0.1) !important;
+    background: rgba(216, 27, 96, 0.04) !important;
+    cursor: pointer !important;
+}
+
+.flatpickr-current-month .flatpickr-monthDropdown-months:hover {
+    background: rgba(216, 27, 96, 0.08) !important;
+    border-color: rgba(216, 27, 96, 0.3) !important;
+}
+
+/* Custom year selector styles */
+.flatpickr-monthDropdown-years {
+    background: rgba(216, 27, 96, 0.04) !important;
+    border: 1px solid rgba(216, 27, 96, 0.1) !important;
+    padding: 8px 14px !important;
+    border-radius: 12px !important;
+    font-weight: 600 !important;
+    color: #d81b60 !important;
+    cursor: pointer !important;
+    transition: all 0.2s !important;
+    font-size: 16px !important;
+    font-family: inherit !important;
+    outline: none !important;
+}
+
+.flatpickr-monthDropdown-years:hover {
+    background: rgba(216, 27, 96, 0.08) !important;
+    border-color: rgba(216, 27, 96, 0.3) !important;
+}
+
+.numInputWrapper {
+    width: 75px !important;
+    border-radius: 12px !important;
+    transition: all 0.2s !important;
+    padding: 2px !important;
+}
+
+.numInputWrapper:hover {
+    background: rgba(216, 27, 96, 0.08) !important;
+}
+
+.numInputWrapper input.cur-year {
+    font-weight: 600 !important;
+    color: #d81b60 !important;
+    padding: 4px !important;
+}
+
+.numInputWrapper span.arrowUp,
+.numInputWrapper span.arrowDown {
+    border: none !important;
+    padding: 0 4px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.numInputWrapper span.arrowUp:after {
+    border-bottom-color: #d81b60 !important;
+}
+
+.numInputWrapper span.arrowDown:after {
+    border-top-color: #d81b60 !important;
+}
+
+.flatpickr-weekday {
+    color: #49454f !important;
+    font-weight: 500 !important;
+    font-size: 14px !important;
+}
+
+.flatpickr-day {
+    border-radius: 100% !important;
+    height: 40px !important;
+    line-height: 40px !important;
+    max-width: 40px !important;
+    margin: 2px !important;
+    border: none !important;
+    font-size: 14px !important;
+    transition: all 0.2s !important;
+}
+
+.flatpickr-day:hover {
+    background: rgba(216, 27, 96, 0.08) !important;
+}
+
+.flatpickr-day.today {
+    border: 1px solid #d81b60 !important;
+    color: #d81b60 !important;
+}
+
+.flatpickr-day.selected,
+.flatpickr-day.startRange,
+.flatpickr-day.endRange {
+    background: #d81b60 !important;
+    color: #ffffff !important;
+    box-shadow: none !important;
+}
+
+.flatpickr-day.flatpickr-disabled, 
+.flatpickr-day.flatpickr-disabled:hover {
+    color: rgba(28, 27, 31, 0.38) !important;
+}
+
+.flatpickr-months .flatpickr-prev-month,
+.flatpickr-months .flatpickr-next-month {
+    position: absolute !important;
+    padding: 8px !important;
+    border-radius: 100% !important;
+    transition: all 0.2s !important;
+    z-index: 10 !important;
+    height: 40px !important;
+    width: 40px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    top: 16px !important;
+}
+
+.flatpickr-months .flatpickr-prev-month {
+    left: 12px !important;
+}
+
+.flatpickr-months .flatpickr-next-month {
+    right: 12px !important;
+}
+
+.flatpickr-months .flatpickr-prev-month svg,
+.flatpickr-months .flatpickr-next-month svg {
+    margin: 0 !important;
+    position: static !important;
+}
+
+.flatpickr-months .flatpickr-prev-month:hover,
+.flatpickr-months .flatpickr-next-month:hover {
+    background: rgba(216, 27, 96, 0.08) !important;
+}
+
+.flatpickr-calendar.arrowTop:before,
+.flatpickr-calendar.arrowTop:after,
+.flatpickr-calendar.arrowBottom:before,
+.flatpickr-calendar.arrowBottom:after {
+    display: none !important;
+}
+
+.selection-grid {
+    display: grid;
+    gap: 0.75rem;
+}
+
+.selection-card {
+    position: relative;
+    cursor: pointer;
+    display: block;
+    user-select: none;
+}
+
+.selection-card input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.card-content {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 1rem;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.selection-card:hover .card-content {
+    background: #ffffff;
+    border-color: var(--color-primary);
+    box-shadow: 0 4px 12px rgba(var(--color-primary-rgb), 0.05);
+}
+
+.selection-card input:checked ~ .card-content {
+    background: #ffffff;
+    border-color: var(--color-primary);
+    border-width: 2px;
+    box-shadow: 0 8px 20px rgba(var(--color-primary-rgb), 0.1);
+}
+
+.radio-indicator {
+    width: 1.25rem;
+    height: 1.25rem;
+    border: 2px solid #cbd5e1;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.2s;
+}
+
+.selection-card input:checked ~ .card-content .radio-indicator {
+    border-color: var(--color-primary);
+    background: var(--color-primary);
+}
+
+.radio-indicator::after {
+    content: '';
+    width: 0.5rem;
+    height: 0.5rem;
+    background: white;
+    border-radius: 50%;
+    transform: scale(0);
+    transition: transform 0.2s;
+}
+
+.selection-card input:checked ~ .card-content .radio-indicator::after {
+    transform: scale(1);
+}
+
+.checkbox-indicator {
+    width: 1.25rem;
+    height: 1.25rem;
+    border: 2px solid #cbd5e1;
+    border-radius: 0.375rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.2s;
+}
+
+.selection-card input:checked ~ .card-content .checkbox-indicator {
+    border-color: var(--color-primary);
+    background: var(--color-primary);
+}
+
+.checkbox-indicator svg {
+    width: 0.875rem;
+    height: 0.875rem;
+    color: white;
+    transform: scale(0);
+    transition: transform 0.2s;
+}
+
+.selection-card input:checked ~ .card-content .checkbox-indicator svg {
+    transform: scale(1);
+}
+
+.card-label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #475569;
+    transition: color 0.2s;
+}
+
+.selection-card input:checked ~ .card-content .card-label {
+    color: var(--color-primary);
+    font-weight: 600;
+}
+
+@media (max-width: 640px) {
+    .card-content {
+        padding: 0.75rem;
+    }
+}
+
+.form-step {
+    display: none;
+    animation: fadeIn 0.4s ease-out forwards;
+}
+
+.form-step.active {
+    display: block;
+}
+
+.modern-date-input::-webkit-calendar-picker-indicator {
+    background: transparent;
+    bottom: 0;
+    color: transparent;
+    cursor: pointer;
+    height: auto;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: auto;
+}
+
+.modern-date-input {
+    position: relative;
+    height: 52px;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.modern-date-input:focus {
+    border-color: #d81b60;
+    box-shadow: 0 0 0 2px rgba(216, 27, 96, 0.1);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.form-step.active {
+    animation: slide-next 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.form-step.slide-prev {
+    animation: slide-prev 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes slide-next {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slide-prev {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+</style>
