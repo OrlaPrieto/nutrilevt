@@ -12,6 +12,10 @@ export interface IntakeFormData {
 }
 
 export function initIntakeForm() {
+    const form = document.getElementById("clinical-form") as HTMLFormElement;
+    if (!form || form.hasAttribute('data-initialized')) return;
+    form.setAttribute('data-initialized', 'true');
+
     // Detect language from URL
     const isEnglish = window.location.pathname.startsWith('/en');
     const lang = isEnglish ? 'en' : 'es';
@@ -43,7 +47,6 @@ export function initIntakeForm() {
 
     let currentStep = 1;
     const totalSteps = 7;
-    const form = document.getElementById("clinical-form") as HTMLFormElement;
     const steps = document.querySelectorAll(".form-step");
     const prevBtn = document.getElementById("prev-btn");
     const nextBtn = document.getElementById("next-btn");

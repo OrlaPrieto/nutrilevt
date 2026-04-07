@@ -43,6 +43,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://nutrilev
     <!-- Performance: Resource Hints -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
@@ -104,9 +105,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://nutrilev
     `}>
     </script>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
   </head>
   <body class="bg-bg-base text-slate-800 font-['Inter',sans-serif] overflow-x-hidden">
     <slot />
@@ -132,13 +130,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://nutrilev
 
         const sections = document.querySelectorAll('.fade-in-section');
         sections.forEach(element => {
-          // Check if already in view (fallback)
-          const rect = element.getBoundingClientRect();
-          if (rect.top < window.innerHeight && rect.bottom > 0) {
-            element.classList.add('is-visible');
-          } else {
-            observer.observe(element);
-          }
+          observer.observe(element);
         });
       };
 

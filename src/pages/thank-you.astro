@@ -1,6 +1,5 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import FloatingCTA from "../components/ui/FloatingCTA.astro";
 import { getLangFromUrl, useTranslations } from "../i18n/utils";
 
 const lang = getLangFromUrl(Astro.url);
@@ -86,7 +85,6 @@ const langPath = lang === "es" ? "" : `/${lang}`;
             </div>
         </div>
     </div>
-    <FloatingCTA />
 </Layout>
 
 <style>
@@ -122,18 +120,17 @@ const langPath = lang === "es" ? "" : `/${lang}`;
     }
 </style>
 
-<script>
+<script define:vars={{ whatsappMessageWithName: t('thanks.whatsappMessageWithName') }}>
     // En caso de que se haya pasado el nombre por URL para personalizar el mensaje
     document.addEventListener("astro:page-load", () => {
         const urlParams = new URLSearchParams(window.location.search);
         const nameParam = urlParams.get("name");
         const whatsappBtn = document.getElementById(
             "whatsapp-schedule-btn"
-        ) as HTMLAnchorElement;
+        );
 
         if (whatsappBtn && nameParam) {
-            const encodedName = encodeURIComponent(nameParam);
-            const message = t('thanks.whatsappMessageWithName').replace('{name}', nameParam);
+            const message = whatsappMessageWithName.replace('{name}', nameParam);
             whatsappBtn.href = `https://wa.me/526143958598?text=${encodeURIComponent(message)}`;
         }
     });
