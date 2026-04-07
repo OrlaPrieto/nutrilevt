@@ -255,33 +255,42 @@ const langPath = lang === "es" ? "" : `/${lang}`;
       });
     });
 
-    // Dynamic Navbar on Scroll
+    // Dynamic Navbar on Scroll - Synchronized with Animation Frames
     const mainNav = document.getElementById("main-nav");
+    let ticking = false;
+
     const handleScroll = () => {
-      if (window.scrollY > 20) {
-        mainNav?.classList.add(
-          "bg-white/90",
-          "backdrop-blur-xl",
-          "shadow-md",
-          "border-pink-100/50",
-        );
-        mainNav?.classList.remove(
-          "bg-white/40",
-          "backdrop-blur-md",
-          "border-transparent",
-        );
-      } else {
-        mainNav?.classList.remove(
-          "bg-white/90",
-          "backdrop-blur-xl",
-          "shadow-md",
-          "border-pink-100/50",
-        );
-        mainNav?.classList.add(
-          "bg-white/40",
-          "backdrop-blur-md",
-          "border-transparent",
-        );
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const scrollY = window.scrollY;
+          if (scrollY > 20) {
+            mainNav?.classList.add(
+              "bg-white/90",
+              "backdrop-blur-xl",
+              "shadow-md",
+              "border-pink-100/50",
+            );
+            mainNav?.classList.remove(
+              "bg-white/40",
+              "backdrop-blur-md",
+              "border-transparent",
+            );
+          } else {
+            mainNav?.classList.remove(
+              "bg-white/90",
+              "backdrop-blur-xl",
+              "shadow-md",
+              "border-pink-100/50",
+            );
+            mainNav?.classList.add(
+              "bg-white/40",
+              "backdrop-blur-md",
+              "border-transparent",
+            );
+          }
+          ticking = false;
+        });
+        ticking = true;
       }
     };
 

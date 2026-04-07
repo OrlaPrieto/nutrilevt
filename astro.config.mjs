@@ -19,5 +19,8 @@ export default defineConfig({
       prefixDefaultLocale: false
     }
   },
+  build: {
+    inlineStylesheets: 'always'
+  },
   integrations: [sitemap()]
 });

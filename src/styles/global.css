@@ -24,6 +24,10 @@
     transform: translateY(20px);
     transition: opacity 0.8s ease-out, transform 0.8s ease-out;
     will-change: opacity, visibility;
+    /* Performance: Isolate section layout to prevent global forced reflows */
+    content-visibility: auto;
+    contain-intrinsic-size: 1px 500px;
+    contain: layout paint;
   }
 
   .fade-in-section.is-visible {
