@@ -1,3 +1,6 @@
+/* Import Base Flatpickr CSS for self-hosting and optimal caching */
+@import "flatpickr/dist/flatpickr.min.css";
+
 /* src/styles/flatpickr-theme.css - Material Design 3 Style */
 
 .flatpickr-calendar {

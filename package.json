@@ -11,8 +11,8 @@
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.1",
-    "@fontsource/inter": "^5.2.8",
-    "@fontsource/playfair-display": "^5.2.8",
+    "@fontsource-variable/inter": "^5.2.8",
+    "@fontsource-variable/playfair-display": "^5.2.8",
     "@supabase/supabase-js": "^2.99.1",
     "@tailwindcss/vite": "^4.1.18",
     "@vercel/speed-insights": "^2.0.0",

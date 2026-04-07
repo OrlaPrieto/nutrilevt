@@ -11,7 +11,6 @@ const t = useTranslations(lang);
 ---
     <!-- Defer non-critical form styles until they are needed -->
     <link rel="stylesheet" href="/src/styles/intake-form-bundle.css" media="print" onload="this.media='all'">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" media="print" onload="this.media='all'">
 
 
 <div
@@ -74,17 +73,18 @@ const t = useTranslations(lang);
 
 
 
-<script>
+<script is:inline>
     document.addEventListener('astro:page-load', () => {
         const container = document.getElementById('intake-form-container');
         if (container) {
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(async (entry) => {
                     if (entry.isIntersecting) {
-                        // Dynamically import the initialization script
-                        // This creates a separate non-blocking chunk
-                        const { initIntakeForm } = await import("../../../scripts/intake-form");
-                        initIntakeForm();
+                        // Manual injection of the main script chunk to avoid preload chaining
+                        // This ensures the JS is truly lazy and not discovered by the preload scanner
+                        import("/src/scripts/intake-form.ts").then((mod) => {
+                            mod.initIntakeForm();
+                        });
                         observer.disconnect();
                     }
                 });

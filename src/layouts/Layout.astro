@@ -1,14 +1,8 @@
 ---
 import { ClientRouter } from 'astro:transitions';
 import SpeedInsights from "@vercel/speed-insights/astro"
-import '@fontsource/inter/300.css';
-import '@fontsource/inter/400.css';
-import '@fontsource/inter/500.css';
-import '@fontsource/inter/600.css';
-import '@fontsource/playfair-display/400.css';
-import '@fontsource/playfair-display/400-italic.css';
-import '@fontsource/playfair-display/600.css';
-import '@fontsource/playfair-display/700.css';
+import '@fontsource-variable/inter';
+import '@fontsource-variable/playfair-display';
 import '../styles/global.css';
 import logoImg from '../assets/logo_nutrilev_final_2.png';
 import FloatingCTA from '../components/ui/FloatingCTA.astro';
@@ -171,6 +165,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://nutrilev
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Playfair Display Variable', 'Playfair Display', serif;
   }
 </style>
