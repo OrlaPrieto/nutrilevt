@@ -249,24 +249,32 @@ const faqs = [
 </style>
 
 <script>
-  const items = document.querySelectorAll(".faq-item");
-  items.forEach((item) => {
-    const btn = item.querySelector(".faq-question");
-    btn?.addEventListener("click", () => {
-      const isActive = item.classList.contains("active");
-      // Cierra todos
-      items.forEach((i) => {
-        i.classList.remove("active");
-        i.querySelector(".faq-question")?.setAttribute(
-          "aria-expanded",
-          "false"
-        );
+  function initFAQ() {
+    const faqContainer = document.getElementById("faq");
+    if (!faqContainer || faqContainer.hasAttribute("data-initialized")) return;
+    faqContainer.setAttribute("data-initialized", "true");
+
+    const items = document.querySelectorAll(".faq-item");
+    items.forEach((item) => {
+      const btn = item.querySelector(".faq-question");
+      btn?.addEventListener("click", () => {
+        const isActive = item.classList.contains("active");
+        // Cierra todos
+        items.forEach((i) => {
+          i.classList.remove("active");
+          i.querySelector(".faq-question")?.setAttribute(
+            "aria-expanded",
+            "false"
+          );
+        });
+        // Abre el clickeado si no estaba abierto
+        if (!isActive) {
+          item.classList.add("active");
+          btn.setAttribute("aria-expanded", "true");
+        }
       });
-      // Abre el clickeado si no estaba abierto
-      if (!isActive) {
-        item.classList.add("active");
-        btn.setAttribute("aria-expanded", "true");
-      }
     });
-  });
+  }
+
+  document.addEventListener("astro:page-load", initFAQ);
 </script>

@@ -89,9 +89,20 @@ const t = useTranslations(lang);
 ></script>
 
 <script>
-    import { initIntakeForm } from "../../../scripts/intake-form";
+    import { initIntakeForm } from "../../../scripts/init-intake-lazy";
 
     document.addEventListener('astro:page-load', () => {
-        initIntakeForm();
+        const container = document.getElementById('intake-form-container');
+        if (container) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        initIntakeForm();
+                        observer.disconnect();
+                    }
+                });
+            }, { rootMargin: '200px' });
+            observer.observe(container);
+        }
     });
 </script>

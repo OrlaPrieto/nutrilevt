@@ -208,6 +208,10 @@ const langPath = lang === "es" ? "" : `/${lang}`;
 
 <script>
   function initNavbar() {
+    const header = document.querySelector("header");
+    if (!header || header.hasAttribute("data-initialized")) return;
+    header.setAttribute("data-initialized", "true");
+
     const mobileMenuButton = document.getElementById("mobile-menu-button");
     const mobileMenu = document.getElementById("mobile-menu");
     const hamburgerIcon = document.getElementById("hamburger-icon");
@@ -273,7 +277,7 @@ const langPath = lang === "es" ? "" : `/${lang}`;
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     // Initial check
     handleScroll();
   }

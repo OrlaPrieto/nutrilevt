@@ -134,10 +134,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://nutrilev
         });
       };
 
-      // Run on initial load
-      setupObserver();
-      
-      // Run on every view transition
+      // Run on every view transition (including initial load)
       document.addEventListener('astro:page-load', setupObserver);
     </script>
   </body>
