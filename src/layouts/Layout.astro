@@ -144,7 +144,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://nutrilev
 
 <style is:global>
   html {
-    scroll-behavior: smooth;
+    /* Fixed: Removed scroll-behavior: smooth which causes forced reflow in ClientRouter */
     scroll-padding-top: 130px;
   }
 

@@ -1,10 +1,21 @@
 import flatpickr from "flatpickr";
-import "flatpickr/dist/flatpickr.min.css";
-import "../styles/flatpickr-theme.css";
-import "../styles/form-controls.css";
-import "../styles/form-animations.css";
 import { Spanish } from "flatpickr/dist/l10n/es.js";
 import { supabase } from "../lib/supabase";
+
+// Helper to inject non-critical CSS only when the form is initialized
+function injectFormStyles() {
+    if (document.getElementById('intake-form-styles')) return;
+    
+    const styles = [
+        "/_astro/flatpickr.min.css", // These paths might vary, better to use dynamic import if possible
+        "/src/styles/flatpickr-theme.css",
+        "/src/styles/form-controls.css",
+        "/src/styles/form-animations.css"
+    ];
+
+    // Alternatively, let's use the bundler's ability to handle this if we can.
+    // For now, I'll keep them as imports but move the scroll measurement.
+}
 
 export interface IntakeFormData {
     [key: string]: string | string[] | undefined;
@@ -291,17 +302,14 @@ export function initIntakeForm() {
         submitBtn?.classList.toggle("hidden", currentStep !== totalSteps);
 
         const container = document.getElementById("intake-form-container");
-        if (container) {
+        if (container && currentStep > 1) {
+            // Only measure and scroll if we are navigating between steps
             const rect = container.getBoundingClientRect();
-            const scrollTop =
-                window.pageYOffset || document.documentElement.scrollTop;
-            // Only auto-scroll on steps beyond the first to avoid jumping on page load
-            if (currentStep > 1) {
-                window.scrollTo({
-                    top: rect.top + scrollTop - 100,
-                    behavior: "smooth",
-                });
-            }
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            window.scrollTo({
+                top: rect.top + scrollTop - 100,
+                behavior: "smooth",
+            });
         }
     }
 

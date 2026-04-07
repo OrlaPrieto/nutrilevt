@@ -9,7 +9,9 @@ import { getLangFromUrl, useTranslations } from "../../../i18n/utils";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
-
+    <!-- Defer non-critical form styles until they are needed -->
+    <link rel="stylesheet" href="/src/styles/intake-form-bundle.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" media="print" onload="this.media='all'">
 
 
 <div
