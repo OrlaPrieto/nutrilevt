@@ -11,10 +11,6 @@ const t = useTranslations(lang);
 ---
 
 
-<style is:global>
-    @import "../../../styles/flatpickr-theme.css";
-    @import "../../../styles/form-controls.css";
-</style>
 
 <div
     id="intake-form-container"
@@ -74,20 +70,18 @@ const t = useTranslations(lang);
     </div>
 </div>
 
-<style is:global>
-    @import "../../../styles/form-animations.css";
-</style>
 
 
 <script>
-    import { initIntakeForm } from "../../../scripts/init-intake-lazy";
-
     document.addEventListener('astro:page-load', () => {
         const container = document.getElementById('intake-form-container');
         if (container) {
             const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
+                entries.forEach(async (entry) => {
                     if (entry.isIntersecting) {
+                        // Dynamically import the initialization script
+                        // This creates a separate non-blocking chunk
+                        const { initIntakeForm } = await import("../../../scripts/intake-form");
                         initIntakeForm();
                         observer.disconnect();
                     }

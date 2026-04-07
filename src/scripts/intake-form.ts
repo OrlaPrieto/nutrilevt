@@ -1,5 +1,8 @@
 import flatpickr from "flatpickr";
 import "flatpickr/dist/flatpickr.min.css";
+import "../styles/flatpickr-theme.css";
+import "../styles/form-controls.css";
+import "../styles/form-animations.css";
 import { Spanish } from "flatpickr/dist/l10n/es.js";
 import { supabase } from "../lib/supabase";
 
