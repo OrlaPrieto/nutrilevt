@@ -24,7 +24,9 @@ const {
 
 const t = useTranslations(lang);
 const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://nutrilev.com');
+const gaId = import.meta.env.PUBLIC_GA_ID;
 ---
+
 
 <!doctype html>
 <html lang={lang} class="no-js">
@@ -108,6 +110,28 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://nutrilev
       }
     `}>
     </script>
+
+    {gaId && (
+      <>
+        <!-- Google tag (gtag.js) -->
+        <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}></script>
+        <script is:inline set:html={`
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            window.dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+
+          document.addEventListener('astro:page-load', () => {
+            gtag('config', '${gaId}', {
+              page_path: window.location.pathname,
+              page_location: window.location.href,
+            });
+          });
+        `}>
+        </script>
+      </>
+    )}
 
   </head>
   <body class="bg-bg-base text-slate-800 font-['Inter',sans-serif] overflow-x-hidden">
