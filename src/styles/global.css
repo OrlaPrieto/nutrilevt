@@ -18,66 +18,62 @@
   }
 }
 
-@layer utilities {
-  .fade-in-section {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-    will-change: opacity, visibility;
-    /* Performance: Isolate section layout to prevent global forced reflows */
-    content-visibility: auto;
-    contain-intrinsic-size: 1px 500px;
-    contain: layout paint;
-  }
+@utility fade-in-section {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  will-change: opacity, visibility;
+  /* Performance: Isolate section layout to prevent global forced reflows */
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 500px;
+  contain: layout paint;
 
-  .fade-in-section.is-visible {
+  &.is-visible {
     opacity: 1;
     transform: none;
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .fade-in-section {
-      opacity: 1;
-      transform: none;
-      transition: none;
-    }
-  }
-
-  /* No-JS Fallback */
-  :root.no-js .fade-in-section {
     opacity: 1;
     transform: none;
+    transition: none;
   }
+}
 
-  .shadow-glow {
-    box-shadow: 0 0 15px rgba(216, 27, 96, 0.3);
-  }
+/* No-JS Fallback */
+:root.no-js .fade-in-section {
+  opacity: 1;
+  transform: none;
+}
 
-  .shadow-glow-lg {
-    box-shadow: 0 0 30px rgba(216, 27, 96, 0.4);
-  }
+@utility shadow-glow {
+  box-shadow: 0 0 15px rgba(216, 27, 96, 0.3);
+}
 
-  .bg-mesh {
-    background-color: #FAF9F6;
-    font-family: 'Inter Variable', 'Inter', sans-serif;
-    background-image: 
-      radial-gradient(at 0% 0%, rgba(216, 27, 96, 0.05) 0px, transparent 50%),
-      radial-gradient(at 100% 0%, rgba(255, 107, 155, 0.08) 0px, transparent 50%),
-      radial-gradient(at 100% 100%, rgba(216, 27, 96, 0.05) 0px, transparent 50%),
-      radial-gradient(at 0% 100%, rgba(255, 107, 155, 0.08) 0px, transparent 50%);
-  }
+@utility shadow-glow-lg {
+  box-shadow: 0 0 30px rgba(216, 27, 96, 0.4);
+}
 
-  @keyframes shimmer {
-    0% { transform: translateX(-150%) skewX(-25deg); }
-    100% { transform: translateX(150%) skewX(-25deg); }
-  }
+@utility bg-mesh {
+  background-color: #FAF9F6;
+  font-family: 'Inter Variable', 'Inter', sans-serif;
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(216, 27, 96, 0.05) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(255, 107, 155, 0.08) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(216, 27, 96, 0.05) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, rgba(255, 107, 155, 0.08) 0px, transparent 50%);
+}
 
-  .animate-shimmer {
-    position: relative;
-    overflow: hidden;
-  }
+@keyframes shimmer {
+  0% { transform: translateX(-150%) skewX(-25deg); }
+  100% { transform: translateX(150%) skewX(-25deg); }
+}
 
-  .animate-shimmer::after {
+@utility animate-shimmer {
+  position: relative;
+  overflow: hidden;
+
+  &::after {
     content: "";
     position: absolute;
     top: 0;
