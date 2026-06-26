@@ -12,7 +12,7 @@ const t = useTranslations(lang);
 const langPath = lang === "es" ? "" : `/${lang}`;
 ---
 
-<header class="fixed top-0 left-0 w-full z-50" transition:persist>
+<header class="fixed top-0 left-0 w-full z-50">
   <!-- Top Bar -->
   <div class="bg-primary text-white py-2 px-4 sm:px-6 lg:px-8">
     <div
@@ -215,6 +215,8 @@ const langPath = lang === "es" ? "" : `/${lang}`;
 </header>
 
 <script>
+  let scrollListener: (() => void) | null = null;
+
   function initNavbar() {
     const header = document.querySelector("header");
     if (!header || header.hasAttribute("data-initialized")) return;
@@ -294,7 +296,11 @@ const langPath = lang === "es" ? "" : `/${lang}`;
       }
     };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
+    if (scrollListener) {
+      window.removeEventListener("scroll", scrollListener);
+    }
+    scrollListener = handleScroll;
+    window.addEventListener("scroll", scrollListener, { passive: true });
     // Initial check
     handleScroll();
   }
