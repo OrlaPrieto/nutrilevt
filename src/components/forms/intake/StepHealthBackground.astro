@@ -21,7 +21,7 @@ const t = useTranslations(lang);
             <label class="block text-sm font-semibold text-slate-700 mb-4"
                 >{t('intake.field.pathological')}</label
             >
-            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 {
                     [
                         { value: "Diarrea", label: t('intake.pathological.diarrhea') },
@@ -58,7 +58,7 @@ const t = useTranslations(lang);
             <label class="block text-sm font-semibold text-slate-700 mb-4"
                 >{t('intake.field.medicationsCheck')}</label
             >
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            <div class="grid grid-cols-1 sm:grid-cols-4 gap-3">
                 {
                     [
                         { value: "Laxantes", label: t('intake.meds.laxatives') },
@@ -74,7 +74,9 @@ const t = useTranslations(lang);
                                 value={opt.value}
                             />
                             <div class="card-content">
-                                <div class="checkbox-indicator"></div>
+                                <div class="checkbox-indicator">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                </div>
                                 <span class="card-label !text-xs">{opt.label}</span>
                             </div>
                         </label>
@@ -139,7 +141,7 @@ const t = useTranslations(lang);
             <label class="block text-sm font-semibold text-slate-700 mb-4"
                 >{t('intake.field.familyHistory')}</label
             >
-            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 {
                     [
                         { value: "Diabetes", label: t('intake.family.diabetes') },
@@ -199,7 +201,7 @@ const t = useTranslations(lang);
                 <label class="block text-sm font-semibold text-slate-700 mb-4"
                     >{t('intake.field.smoking')}</label
                 >
-                <div class="grid grid-cols-2 gap-3">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     {
                          [
                             { value: "No", label: t('intake.habits.no') },

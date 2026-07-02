@@ -189,7 +189,7 @@ const t = useTranslations(lang);
             <label class="block text-sm font-semibold text-slate-700 mb-4"
                 >{t('intake.field.gender')}</label
             >
-            <div class="grid grid-cols-2 gap-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {
                     [
                         { value: "Femenino", label: t('intake.gender.female') },
@@ -218,7 +218,7 @@ const t = useTranslations(lang);
             <label class="block text-sm font-semibold text-slate-700 mb-4"
                 >{t('intake.field.civil')}</label
             >
-            <div class="grid grid-cols-3 gap-4">
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 {
                     [
                         { value: "Soltero", label: t('intake.civil.single') },
@@ -300,7 +300,7 @@ const t = useTranslations(lang);
             <label class="block text-sm font-semibold text-slate-700 mb-4"
                 >{t('intake.field.referral')}</label
             >
-            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
                 {
                     [
                         { value: "Amigo/a", label: t('intake.referral.friend') },

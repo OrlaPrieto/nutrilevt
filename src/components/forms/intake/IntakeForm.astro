@@ -23,33 +23,55 @@ const t = useTranslations(lang);
         </div>
     </div>
 
-    <form id="clinical-form" class="p-8 sm:p-12" novalidate>
+    <form id="clinical-form" class="p-4 sm:p-8 md:p-12" novalidate>
         <StepPersonalData />
         <StepHealthBackground />
         <StepHabits />
         <StepFinalDetails />
 
+        <!-- Error Message Summary -->
+        <div
+            id="step-error-summary"
+            class="hidden mt-6 mb-6 p-4 bg-red-50 border border-red-200 rounded-2xl flex items-center gap-3 text-red-700 text-sm"
+        >
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-5 h-5 flex-shrink-0"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            >
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+            </svg>
+            <span id="step-error-text"></span>
+        </div>
+
         <!-- Button Navigation -->
         <div
-            class="px-8 sm:px-12 py-6 border-t border-pink-50 bg-white/50 backdrop-blur-sm"
+            class="px-4 sm:px-8 md:px-12 py-6 border-t border-pink-50 bg-white/50 backdrop-blur-sm"
         >
             <div class="flex gap-4">
                 <button
                     type="button"
                     id="prev-btn"
-                    class="hidden flex-1 px-8 py-4 rounded-2xl font-bold text-slate-500 border border-slate-200 hover:bg-slate-50 transition-all"
+                    class="hidden flex-1 px-4 sm:px-8 py-3.5 sm:py-4 rounded-2xl font-bold text-sm sm:text-base text-slate-500 border border-slate-200 hover:bg-slate-50 transition-all"
                     >{t('intake.prev')}</button
                 >
                 <button
                     type="button"
                     id="next-btn"
-                    class="flex-1 px-8 py-4 rounded-2xl font-bold bg-primary text-white shadow-lg shadow-pink-100 hover:scale-105 active:scale-95 transition-all"
+                    class="flex-1 px-4 sm:px-8 py-3.5 sm:py-4 rounded-2xl font-bold text-sm sm:text-base bg-primary text-white shadow-lg shadow-pink-100 hover:scale-105 active:scale-95 transition-all"
                     >{t('intake.next')}</button
                 >
                 <button
                     type="submit"
                     id="submit-btn"
-                    class="hidden flex-1 px-8 py-4 rounded-2xl font-bold bg-gradient-to-r from-primary to-accent text-white shadow-xl shadow-pink-200 hover:scale-105 active:scale-95 transition-all"
+                    class="hidden flex-1 px-4 sm:px-8 py-3.5 sm:py-4 rounded-2xl font-bold text-sm sm:text-base bg-gradient-to-r from-primary to-accent text-white shadow-xl shadow-pink-200 hover:scale-105 active:scale-95 transition-all"
                     >{t('intake.submit')}</button
                 >
             </div>

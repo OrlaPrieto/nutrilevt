@@ -157,6 +157,9 @@ export function initIntakeForm() {
                     }
                     ageInput.value = age >= 0 ? age.toString() : "0";
                 }
+                if (birthDateInput) {
+                    birthDateInput.dispatchEvent(new Event("change", { bubbles: true }));
+                }
             },
         });
     }
@@ -319,6 +322,8 @@ export function initIntakeForm() {
         step.querySelectorAll(".border-red-400").forEach((el) =>
             el.classList.remove("border-red-400")
         );
+        const errorSummary = document.getElementById("step-error-summary");
+        if (errorSummary) errorSummary.classList.add("hidden");
     }
 
     async function validateStep(stepIndex: number) {
@@ -328,10 +333,12 @@ export function initIntakeForm() {
         const requiredInputs = currentStepEl.querySelectorAll("[required]");
         const processedGroups = new Set();
         let isValid = true;
+        const invalidFields: string[] = [];
 
         for (const input of Array.from(requiredInputs) as any[]) {
             let errorMsg = "";
             const name = input.getAttribute("name");
+            const id = input.id;
 
             if (input.type === "radio" || input.type === "checkbox") {
                 if (processedGroups.has(name)) continue;
@@ -347,27 +354,24 @@ export function initIntakeForm() {
                 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
                 const value = input.value.trim();
                 
-                if (value === "") {
-                    // Skip validation if empty (since it's now optional)
-                    continue;
-                }
-
-                if (!emailRegex.test(value)) {
-                    errorMsg = t.invalidEmail;
-                } else if (stepIndex === 0) {
-                    // Check if email exists in Supabase
-                    try {
-                        const { data, error } = await supabase
-                            .from(TABLE_NAME)
-                            .select('email')
-                            .eq('email', value)
-                            .maybeSingle();
-                        
-                        if (data) {
-                            errorMsg = t.emailExists;
+                if (value !== "") {
+                    if (!emailRegex.test(value)) {
+                        errorMsg = t.invalidEmail;
+                    } else if (stepIndex === 0) {
+                        // Check if email exists in Supabase
+                        try {
+                            const { data, error } = await supabase
+                                .from(TABLE_NAME)
+                                .select('email')
+                                .eq('email', value)
+                                .maybeSingle();
+                            
+                            if (data) {
+                                errorMsg = t.emailExists;
+                            }
+                        } catch (err) {
+                            console.error("Error checking email uniqueness:", err);
                         }
-                    } catch (err) {
-                        console.error("Error checking email uniqueness:", err);
                     }
                 }
             } else if (input.id === "telefono") {
@@ -394,13 +398,37 @@ export function initIntakeForm() {
                 isValid = false;
                 input.classList.add("border-red-400");
 
+                let labelText = "";
+                if (id) {
+                    const label = currentStepEl.querySelector(`label[for="${id}"]`);
+                    if (label) {
+                        labelText = label.textContent.trim().replace(/[:\s*]+$/, "");
+                    }
+                }
+                if (!labelText) {
+                    const parentDiv = input.closest('div');
+                    const groupContainer = input.closest('.grid') || input.closest('.flex-wrap') || input.closest('.flex') || input.closest('.space-y-4');
+                    const label = groupContainer?.parentElement?.querySelector('label') || parentDiv?.querySelector('label');
+                    if (label) {
+                        labelText = label.textContent.trim().replace(/[:\s*]+$/, "");
+                    }
+                }
+                if (!labelText && name === "privacidad_acepto") {
+                    labelText = lang === 'en' ? "Privacy Policy" : "Aviso de Privacidad";
+                }
+                if (!labelText && name) {
+                    labelText = name.charAt(0).toUpperCase() + name.slice(1).replace(/_/g, " ");
+                }
+                if (labelText && !invalidFields.includes(labelText)) {
+                    invalidFields.push(labelText);
+                }
+
                 if (!currentStepEl.querySelector(`.error-${name}`)) {
                     const error = document.createElement("p");
                     error.className = `text-red-500 text-xs mt-1 error-message error-${name} w-full`;
                     error.innerText = errorMsg;
 
                     if (input.type === "radio" || input.type === "checkbox") {
-                        // Find the closest container that holds the group (grid or flex)
                         const container = input.closest(".grid") || input.closest(".flex-wrap") || input.closest(".flex");
                         if (container) {
                             container.after(error);
@@ -408,20 +436,177 @@ export function initIntakeForm() {
                             input.parentElement?.after(error);
                         }
                     } else {
-                        input.after(error);
+                        const relativeParent = input.parentElement?.classList.contains("relative") ? input.parentElement : null;
+                        if (relativeParent) {
+                            relativeParent.after(error);
+                        } else {
+                            input.after(error);
+                        }
                     }
                 }
             }
         }
 
-        return isValid;
+        return { isValid, invalidFields };
+    }
+
+    async function handleFieldRealtimeValidation(input: HTMLInputElement) {
+        const name = input.getAttribute("name");
+        if (!name) return;
+
+        const currentStepEl = steps[currentStep - 1];
+        
+        // We only validate in real-time if the field has been marked as invalid previously (i.e. has border-red-400 or the group has an error message)
+        const hasErrorMark = input.classList.contains("border-red-400") || 
+                             (input.type === "radio" || input.type === "checkbox" 
+                              ? currentStepEl.querySelector(`input[name="${name}"].border-red-400`) || currentStepEl.querySelector(`.error-${name}`)
+                              : currentStepEl.querySelector(`.error-${name}`));
+                              
+        if (!hasErrorMark) return;
+
+        // Perform the validation checks
+        let isValidField = true;
+        let errorMsg = "";
+
+        if (input.type === "radio" || input.type === "checkbox") {
+            const checked = currentStepEl.querySelector(
+                `input[name="${name}"]:checked`
+            );
+            if (!checked) {
+                isValidField = false;
+                errorMsg = t.required;
+            }
+        } else if (input.hasAttribute("required") && !input.value.trim()) {
+            isValidField = false;
+            errorMsg = t.required;
+        } else if (input.type === "email") {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const value = input.value.trim();
+            if (value !== "" && !emailRegex.test(value)) {
+                isValidField = false;
+                errorMsg = t.invalidEmail;
+            }
+        } else if (input.id === "telefono") {
+            const phoneRegex = /^\(\d{3}\)-\d{7}$/;
+            if (!phoneRegex.test(input.value.trim())) {
+                isValidField = false;
+                errorMsg = t.phoneFormat;
+            }
+        } else if (input.id === "estatura") {
+            const rawHeight = input.value.replace(/ m$/i, "").trim();
+            const heightRegex = /^\d\.\d{2}$/;
+            if (!heightRegex.test(rawHeight)) {
+                isValidField = false;
+                errorMsg = t.heightFormat;
+            }
+        } else if (input.id === "fecha_nacimiento") {
+            const selectedDate = new Date(input.value);
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            if (selectedDate > today) {
+                isValidField = false;
+                errorMsg = t.futureDate;
+            }
+        }
+
+        // If it's a group, select all inputs of the same group to clear/apply border
+        const groupInputs = input.type === "radio" || input.type === "checkbox"
+            ? Array.from(currentStepEl.querySelectorAll(`input[name="${name}"]`))
+            : [input];
+
+        if (isValidField) {
+            // Remove error styles and message
+            groupInputs.forEach(el => el.classList.remove("border-red-400"));
+            currentStepEl.querySelector(`.error-${name}`)?.remove();
+        } else {
+            // Update or show error message if it changed
+            groupInputs.forEach(el => el.classList.add("border-red-400"));
+            const existingError = currentStepEl.querySelector(`.error-${name}`) as HTMLElement;
+            if (existingError) {
+                existingError.innerText = errorMsg;
+            }
+        }
+
+        // Recalculate remaining errors for the step error summary banner
+        const requiredInputs = currentStepEl.querySelectorAll("[required]");
+        const invalidFields: string[] = [];
+
+        for (const reqInput of Array.from(requiredInputs) as any[]) {
+            const reqName = reqInput.getAttribute("name");
+            const reqId = reqInput.id;
+            
+            // Check if this field currently has a border-red-400 (meaning it's invalid)
+            let isReqInvalid = reqInput.classList.contains("border-red-400");
+            
+            if (isReqInvalid) {
+                let labelText = "";
+                if (reqId) {
+                    const label = currentStepEl.querySelector(`label[for="${reqId}"]`);
+                    if (label) {
+                        labelText = label.textContent.trim().replace(/[:\s*]+$/, "");
+                    }
+                }
+                if (!labelText) {
+                    const parentDiv = reqInput.closest('div');
+                    const groupContainer = reqInput.closest('.grid') || reqInput.closest('.flex-wrap') || reqInput.closest('.flex') || reqInput.closest('.space-y-4');
+                    const label = groupContainer?.parentElement?.querySelector('label') || parentDiv?.querySelector('label');
+                    if (label) {
+                        labelText = label.textContent.trim().replace(/[:\s*]+$/, "");
+                    }
+                }
+                if (!labelText && reqName === "privacidad_acepto") {
+                    labelText = lang === 'en' ? "Privacy Policy" : "Aviso de Privacidad";
+                }
+                if (!labelText && reqName) {
+                    labelText = reqName.charAt(0).toUpperCase() + reqName.slice(1).replace(/_/g, " ");
+                }
+                if (labelText && !invalidFields.includes(labelText)) {
+                    invalidFields.push(labelText);
+                }
+            }
+        }
+
+        const errorSummary = document.getElementById("step-error-summary");
+        const errorText = document.getElementById("step-error-text");
+
+        if (invalidFields.length > 0) {
+            if (errorSummary && errorText) {
+                const prefix = lang === 'es'
+                    ? "Por favor completa o corrige los siguientes campos obligatorios:"
+                    : "Please fill in or correct the following required fields:";
+                errorText.textContent = `${prefix} ${invalidFields.join(", ")}.`;
+                errorSummary.classList.remove("hidden");
+            }
+        } else {
+            if (errorSummary) {
+                errorSummary.classList.add("hidden");
+            }
+        }
     }
 
     nextBtn?.addEventListener("click", async () => {
-        if (await validateStep(currentStep - 1)) {
+        const { isValid, invalidFields } = await validateStep(currentStep - 1);
+        const errorSummary = document.getElementById("step-error-summary");
+        const errorText = document.getElementById("step-error-text");
+
+        if (isValid) {
+            if (errorSummary) errorSummary.classList.add("hidden");
             if (currentStep < totalSteps) {
                 currentStep++;
                 updateForm("next");
+            }
+        } else {
+            if (errorSummary && errorText) {
+                const prefix = lang === 'es'
+                    ? "Por favor completa o corrige los siguientes campos obligatorios:"
+                    : "Please fill in or correct the following required fields:";
+                errorText.textContent = `${prefix} ${invalidFields.join(", ")}.`;
+                errorSummary.classList.remove("hidden");
+                errorSummary.scrollIntoView({ behavior: "smooth", block: "nearest" });
+            }
+            const firstInvalid = steps[currentStep - 1].querySelector(".border-red-400");
+            if (firstInvalid) {
+                firstInvalid.scrollIntoView({ behavior: "smooth", block: "center" });
             }
         }
     });
@@ -436,7 +621,27 @@ export function initIntakeForm() {
     form?.addEventListener("submit", async (e) => {
         e.preventDefault();
 
-        if (!(await validateStep(currentStep - 1))) return;
+        const { isValid, invalidFields } = await validateStep(currentStep - 1);
+        const errorSummary = document.getElementById("step-error-summary");
+        const errorText = document.getElementById("step-error-text");
+
+        if (!isValid) {
+            if (errorSummary && errorText) {
+                const prefix = lang === 'es'
+                    ? "Por favor completa o corrige los siguientes campos obligatorios:"
+                    : "Please fill in or correct the following required fields:";
+                errorText.textContent = `${prefix} ${invalidFields.join(", ")}.`;
+                errorSummary.classList.remove("hidden");
+                errorSummary.scrollIntoView({ behavior: "smooth", block: "nearest" });
+            }
+            const firstInvalid = steps[currentStep - 1].querySelector(".border-red-400");
+            if (firstInvalid) {
+                firstInvalid.scrollIntoView({ behavior: "smooth", block: "center" });
+            }
+            return;
+        }
+
+        if (errorSummary) errorSummary.classList.add("hidden");
 
         loadingOverlay?.classList.remove("hidden");
         const formData = new FormData(form);
@@ -507,6 +712,20 @@ export function initIntakeForm() {
             alert(t.errorSubmit);
         } finally {
             loadingOverlay?.classList.add("hidden");
+        }
+    });
+
+    form?.addEventListener("input", (e) => {
+        const target = e.target as HTMLInputElement;
+        if (target) {
+            handleFieldRealtimeValidation(target);
+        }
+    });
+
+    form?.addEventListener("change", (e) => {
+        const target = e.target as HTMLInputElement;
+        if (target) {
+            handleFieldRealtimeValidation(target);
         }
     });
 
