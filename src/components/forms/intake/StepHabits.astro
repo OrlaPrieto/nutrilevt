@@ -104,7 +104,7 @@ const t = useTranslations(lang);
             <div class="grid gap-4">
                 <div class="flex flex-col sm:flex-row sm:items-center gap-4">
                     <label for="diario_desayuno" class="text-xs font-bold text-primary sm:w-32 uppercase">{t('intake.meal.breakfast')}</label>
-                    <input type="text" id="diario_desayuno" name="diario_desayuno" class="flex-1 px-4 py-2.5 rounded-xl border border-white bg-white shadow-sm focus:border-primary outline-none text-sm" placeholder={t('intake.meal.breakfastPlaceholder')} />
+                    <input type="text" id="diario_desayuno" name="diario_desayuno" required class="flex-1 px-4 py-2.5 rounded-xl border border-white bg-white shadow-sm focus:border-primary outline-none text-sm" placeholder={t('intake.meal.breakfastPlaceholder')} />
                 </div>
                 <div class="flex flex-col sm:flex-row sm:items-center gap-4">
                     <label for="diario_colacion_mat" class="text-xs font-bold text-primary sm:w-32 uppercase">{t('intake.meal.morningSnack')}</label>
@@ -112,7 +112,7 @@ const t = useTranslations(lang);
                 </div>
                 <div class="flex flex-col sm:flex-row sm:items-center gap-4">
                     <label for="diario_comida" class="text-xs font-bold text-primary sm:w-32 uppercase">{t('intake.meal.lunch')}</label>
-                    <input type="text" id="diario_comida" name="diario_comida" class="flex-1 px-4 py-2.5 rounded-xl border border-white bg-white shadow-sm focus:border-primary outline-none text-sm" placeholder={t('intake.meal.lunchPlaceholder')} />
+                    <input type="text" id="diario_comida" name="diario_comida" required class="flex-1 px-4 py-2.5 rounded-xl border border-white bg-white shadow-sm focus:border-primary outline-none text-sm" placeholder={t('intake.meal.lunchPlaceholder')} />
                 </div>
                 <div class="flex flex-col sm:flex-row sm:items-center gap-4">
                     <label for="diario_colacion_vesp" class="text-xs font-bold text-primary sm:w-32 uppercase">{t('intake.meal.afternoonSnack')}</label>
@@ -120,7 +120,7 @@ const t = useTranslations(lang);
                 </div>
                 <div class="flex flex-col sm:flex-row sm:items-center gap-4">
                     <label for="diario_cena" class="text-xs font-bold text-primary sm:w-32 uppercase">{t('intake.meal.dinner')}</label>
-                    <input type="text" id="diario_cena" name="diario_cena" class="flex-1 px-4 py-2.5 rounded-xl border border-white bg-white shadow-sm focus:border-primary outline-none text-sm" placeholder={t('intake.meal.dinnerPlaceholder')} />
+                    <input type="text" id="diario_cena" name="diario_cena" required class="flex-1 px-4 py-2.5 rounded-xl border border-white bg-white shadow-sm focus:border-primary outline-none text-sm" placeholder={t('intake.meal.dinnerPlaceholder')} />
                 </div>
                 <div class="flex flex-col sm:flex-row sm:items-center gap-4">
                     <label for="diario_extras" class="text-xs font-bold text-primary sm:w-32 uppercase">{t('intake.meal.extras')}</label>
