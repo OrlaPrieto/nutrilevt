@@ -1,0 +1,79 @@
+---
+import type { BlogPost } from '../../lib/blog';
+import { formatBlogDate } from '../../lib/blog';
+import { useTranslations } from '../../i18n/utils';
+
+interface Props {
+  post: BlogPost;
+  lang?: 'es' | 'en';
+}
+
+const { post, lang = 'es' } = Astro.props;
+const t = useTranslations(lang);
+const langPath = lang === 'es' ? '' : `/${lang}`;
+const postUrl = `${langPath}/blog/${post.slug}`;
+const formattedDate = formatBlogDate(post.created_at, lang);
+---
+
+<article class="group bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col h-full transform hover:-translate-y-1">
+  <!-- Cover Image -->
+  <a href={postUrl} class="relative block aspect-[16/10] overflow-hidden bg-pink-50/50">
+    {post.cover_image ? (
+      <img
+        src={post.cover_image}
+        alt={post.title}
+        loading="lazy"
+        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+      />
+    ) : (
+      <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-pink-50 to-pink-100/50 text-primary">
+        <svg class="w-12 h-12 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+        </svg>
+      </div>
+    )}
+    <!-- Category Badge -->
+    <div class="absolute top-4 left-4">
+      <span class="inline-block px-3 py-1 text-xs font-semibold uppercase tracking-wider rounded-full bg-white/90 backdrop-blur-md text-primary shadow-sm">
+        {post.category || 'Nutrición'}
+      </span>
+    </div>
+  </a>
+
+  <!-- Content Body -->
+  <div class="p-6 md:p-8 flex flex-col flex-grow">
+    <!-- Meta details (Date & Reading Time) -->
+    <div class="flex items-center gap-3 text-xs font-medium text-slate-600 mb-3">
+      <time datetime={post.created_at}>{formattedDate}</time>
+      <span class="w-1 h-1 rounded-full bg-slate-300"></span>
+      <span>{post.reading_time || '3 min'} {t('blog.readingTime')}</span>
+    </div>
+
+    <!-- Title -->
+    <h3 class="font-serif text-xl md:text-2xl font-bold text-slate-900 group-hover:text-primary transition-colors line-clamp-2 mb-3 leading-tight">
+      <a href={postUrl}>
+        {post.title}
+      </a>
+    </h3>
+
+    <!-- Excerpt -->
+    {post.excerpt && (
+      <p class="text-slate-600 text-sm leading-relaxed line-clamp-3 mb-6 flex-grow">
+        {post.excerpt}
+      </p>
+    )}
+
+    <!-- Action Link -->
+    <div class="mt-auto pt-4 border-t border-slate-100 flex items-center justify-between">
+      <a
+        href={postUrl}
+        class="inline-flex items-center gap-2 text-sm font-semibold text-primary group-hover:text-primary-hover transition-colors"
+      >
+        <span>{t('blog.readMore')}</span>
+        <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</article>

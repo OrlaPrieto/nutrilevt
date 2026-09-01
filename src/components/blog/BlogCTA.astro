@@ -1,0 +1,45 @@
+---
+import { useTranslations } from '../../i18n/utils';
+
+interface Props {
+  lang?: 'es' | 'en';
+}
+
+const { lang = 'es' } = Astro.props;
+const t = useTranslations(lang);
+const langPath = lang === 'es' ? '' : `/${lang}`;
+---
+
+<section class="mt-16 bg-gradient-to-br from-primary to-[#9B1143] text-white rounded-3xl p-8 sm:p-12 shadow-xl relative overflow-hidden">
+  <!-- Decorative background circles -->
+  <div class="absolute -right-12 -bottom-12 w-64 h-64 rounded-full bg-white/10 blur-2xl pointer-events-none"></div>
+  <div class="absolute -left-12 -top-12 w-48 h-48 rounded-full bg-accent/20 blur-xl pointer-events-none"></div>
+
+  <div class="relative z-10 max-w-2xl mx-auto text-center">
+    <span class="inline-block px-4 py-1 rounded-full bg-white/20 text-xs font-semibold uppercase tracking-wider mb-4 backdrop-blur-md">
+      Nutrilev Especializada
+    </span>
+    <h3 class="font-serif text-2xl sm:text-4xl font-bold mb-4 leading-tight text-white">
+      {t('blog.cta.title')}
+    </h3>
+    <p class="text-pink-100 text-sm sm:text-base mb-8 max-w-xl mx-auto leading-relaxed">
+      {t('blog.cta.desc')}
+    </p>
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+      <a
+        href={`${langPath}/#booking`}
+        class="w-full sm:w-auto px-8 py-4 bg-white text-primary rounded-full font-bold text-base shadow-lg hover:shadow-2xl hover:scale-105 active:scale-95 transition-all text-center"
+      >
+        {t('blog.cta.button')}
+      </a>
+      <a
+        href="https://wa.me/526143958598"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="w-full sm:w-auto px-6 py-4 bg-white/15 hover:bg-white/25 text-white border border-white/30 rounded-full font-semibold text-base transition-all text-center flex items-center justify-center gap-2"
+      >
+        <span>Preguntar por WhatsApp</span>
+      </a>
+    </div>
+  </div>
+</section>

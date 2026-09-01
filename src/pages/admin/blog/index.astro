@@ -1,0 +1,311 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+---
+
+<Layout title="Gestión de Artículos | Panel Nutrilev">
+  <div class="min-h-screen bg-slate-900 text-slate-100 flex flex-col">
+    <!-- Admin Navigation Header -->
+    <header class="bg-slate-800/90 border-b border-slate-700/80 sticky top-0 z-40 backdrop-blur-md">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <a href="/admin/blog" class="font-serif font-bold text-lg text-white">
+            NUTRILEV<span class="text-primary">.</span> <span class="text-xs uppercase px-2 py-0.5 rounded bg-primary/20 text-accent font-sans ml-1">Admin</span>
+          </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <a
+            href="/blog"
+            target="_blank"
+            class="text-xs text-slate-400 hover:text-white hidden sm:inline-flex items-center gap-1 transition-colors"
+          >
+            <span>Ver Blog en vivo ↗</span>
+          </a>
+          <button
+            id="logout-btn"
+            class="px-3.5 py-2 bg-slate-700 hover:bg-slate-600 rounded-xl text-xs font-semibold text-slate-300 hover:text-white transition-all cursor-pointer"
+          >
+            Cerrar Sesión
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow max-w-6xl w-full mx-auto px-4 sm:px-6 py-8">
+      <!-- Title & CTA Header -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+        <div>
+          <h1 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+            Artículos del Blog
+          </h1>
+          <p class="text-slate-400 text-sm mt-1">
+            Crea, edita o publica contenido de nutrición y salud
+          </p>
+        </div>
+
+        <a
+          href="/admin/blog/editor"
+          class="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-primary hover:bg-primary-hover text-white rounded-2xl font-bold text-sm shadow-lg shadow-pink-950/60 hover:shadow-pink-900/80 active:scale-95 transition-all text-center"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+          </svg>
+          <span>Nueva Publicación</span>
+        </a>
+      </div>
+
+      <!-- Filters & Search -->
+      <div class="bg-slate-800/60 border border-slate-700/60 rounded-2xl p-4 mb-6 flex flex-col sm:flex-row gap-3">
+        <div class="flex-grow relative">
+          <input
+            id="search-input"
+            type="text"
+            placeholder="Buscar por título..."
+            class="w-full pl-10 pr-4 py-2.5 bg-slate-900/80 border border-slate-700 rounded-xl text-sm text-white placeholder-slate-500 focus:outline-none focus:border-primary"
+          />
+          <svg class="w-4 h-4 text-slate-500 absolute left-3.5 top-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+        </div>
+
+        <div class="flex gap-2">
+          <select
+            id="lang-filter"
+            class="px-4 py-2.5 bg-slate-900/80 border border-slate-700 rounded-xl text-xs sm:text-sm text-white focus:outline-none focus:border-primary"
+          >
+            <option value="all">Todos los idiomas</option>
+            <option value="es">Español (ES)</option>
+            <option value="en">Inglés (EN)</option>
+          </select>
+
+          <select
+            id="status-filter"
+            class="px-4 py-2.5 bg-slate-900/80 border border-slate-700 rounded-xl text-xs sm:text-sm text-white focus:outline-none focus:border-primary"
+          >
+            <option value="all">Todos los estados</option>
+            <option value="published">Publicados</option>
+            <option value="draft">Borradores</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Posts List Container -->
+      <div id="posts-container" class="space-y-4">
+        <!-- Skeleton Loader -->
+        <div id="loading-state" class="py-16 text-center">
+          <div class="inline-block w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+          <p class="text-slate-400 text-sm mt-3">Cargando publicaciones...</p>
+        </div>
+      </div>
+    </main>
+  </div>
+</Layout>
+
+<script>
+  import { supabase } from "../../../lib/supabase";
+  import { checkIsBlogAdmin, type BlogPost } from "../../../lib/blog";
+
+  let allPosts: BlogPost[] = [];
+
+  async function checkAuth() {
+    const { data: { session } } = await supabase.auth.getSession();
+    if (!session) {
+      window.location.href = '/admin';
+      return null;
+    }
+
+    const isAdmin = await checkIsBlogAdmin();
+    if (!isAdmin) {
+      await supabase.auth.signOut();
+      window.location.href = '/admin';
+      return null;
+    }
+
+    return session;
+  }
+
+  async function loadPosts() {
+    const session = await checkAuth();
+    if (!session) return;
+
+    const { data, error } = await supabase
+      .from('posts')
+      .select('*')
+      .order('created_at', { ascending: false });
+
+    const container = document.getElementById('posts-container');
+    if (!container) return;
+
+    if (error) {
+      container.innerHTML = `
+        <div class="p-6 bg-red-950/40 border border-red-800/60 rounded-2xl text-center text-red-200 text-sm">
+          Error al cargar posts: ${error.message}
+        </div>
+      `;
+      return;
+    }
+
+    allPosts = (data as BlogPost[]) || [];
+    renderPosts(allPosts);
+  }
+
+  function renderPosts(posts: BlogPost[]) {
+    const container = document.getElementById('posts-container');
+    if (!container) return;
+
+    if (posts.length === 0) {
+      container.innerHTML = `
+        <div class="py-16 text-center bg-slate-800/40 border border-slate-700/60 rounded-3xl p-8">
+          <div class="w-16 h-16 bg-slate-800 text-slate-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-1">No hay publicaciones</h3>
+          <p class="text-slate-400 text-sm mb-6">Comienza creando tu primer artículo para el blog.</p>
+          <a href="/admin/blog/editor" class="inline-flex items-center gap-2 px-6 py-3 bg-primary hover:bg-primary-hover text-white rounded-xl font-bold text-sm transition-all shadow-md">
+            <span>+ Crear Primer Post</span>
+          </a>
+        </div>
+      `;
+      return;
+    }
+
+    container.innerHTML = posts.map(post => {
+      const formattedDate = new Date(post.created_at).toLocaleDateString('es-MX', {
+        day: 'numeric',
+        month: 'short',
+        year: 'numeric'
+      });
+
+      const liveUrl = post.lang === 'es' ? `/blog/${post.slug}` : `/en/blog/${post.slug}`;
+
+      return `
+        <div class="bg-slate-800/80 border border-slate-700/70 rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 transition-all hover:border-slate-600">
+          <div class="flex items-start sm:items-center gap-4 w-full sm:w-auto">
+            ${post.cover_image ? `
+              <img src="${post.cover_image}" alt="" class="w-16 h-16 rounded-xl object-cover flex-shrink-0 bg-slate-900 border border-slate-700" />
+            ` : `
+              <div class="w-16 h-16 rounded-xl bg-slate-900 border border-slate-700 flex items-center justify-center text-slate-600 flex-shrink-0">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+              </div>
+            `}
+
+            <div class="flex-grow min-w-0">
+              <div class="flex items-center gap-2 mb-1">
+                <span class="px-2 py-0.5 rounded-full text-[11px] font-bold ${post.published ? 'bg-emerald-950/80 text-emerald-400 border border-emerald-800/60' : 'bg-amber-950/80 text-amber-400 border border-amber-800/60'}">
+                  ${post.published ? 'Publicado' : 'Borrador'}
+                </span>
+                <span class="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-slate-700 text-slate-300 uppercase">
+                  ${post.lang}
+                </span>
+                <span class="text-xs text-slate-500 hidden xs:inline">• ${formattedDate}</span>
+              </div>
+              <h3 class="font-bold text-white text-base sm:text-lg truncate max-w-md sm:max-w-lg">
+                ${post.title}
+              </h3>
+              <p class="text-xs text-slate-400 truncate max-w-sm sm:max-w-md mt-0.5">
+                ${post.excerpt || 'Sin extracto'}
+              </p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-2 w-full sm:w-auto justify-end pt-3 sm:pt-0 border-t border-slate-700/60 sm:border-t-0">
+            ${post.published ? `
+              <a
+                href="${liveUrl}"
+                target="_blank"
+                class="p-2.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded-xl transition-colors text-xs flex items-center gap-1"
+                title="Ver en vivo"
+              >
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                </svg>
+              </a>
+            ` : ''}
+
+            <a
+              href="/admin/blog/editor?id=${post.id}"
+              class="px-4 py-2 bg-slate-700 hover:bg-slate-600 text-white rounded-xl text-xs font-semibold transition-colors flex items-center gap-1.5"
+            >
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+              </svg>
+              <span>Editar</span>
+            </a>
+
+            <button
+              data-delete-id="${post.id}"
+              data-title="${post.title.replace(/"/g, '&quot;')}"
+              class="delete-post-btn p-2 text-red-400 hover:text-red-300 hover:bg-red-950/40 rounded-xl transition-colors"
+              title="Eliminar post"
+            >
+              <svg class="w-4 h-4 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    // Attach delete listeners
+    document.querySelectorAll('.delete-post-btn').forEach(btn => {
+      btn.addEventListener('click', async (e) => {
+        const target = e.currentTarget as HTMLElement;
+        const id = target.getAttribute('data-delete-id');
+        const title = target.getAttribute('data-title');
+        
+        if (!id) return;
+        if (!confirm(`¿Estás seguro de eliminar el artículo "${title}"? Esta acción no se puede deshacer.`)) return;
+
+        target.setAttribute('disabled', 'true');
+        const { error } = await supabase.from('posts').delete().eq('id', id);
+
+        if (error) {
+          alert(`Error al eliminar: ${error.message}`);
+          target.removeAttribute('disabled');
+        } else {
+          allPosts = allPosts.filter(p => p.id !== id);
+          applyFilters();
+        }
+      });
+    });
+  }
+
+  function applyFilters() {
+    const searchVal = (document.getElementById('search-input') as HTMLInputElement)?.value.toLowerCase() || '';
+    const langVal = (document.getElementById('lang-filter') as HTMLSelectElement)?.value || 'all';
+    const statusVal = (document.getElementById('status-filter') as HTMLSelectElement)?.value || 'all';
+
+    const filtered = allPosts.filter(post => {
+      const matchesSearch = !searchVal || post.title.toLowerCase().includes(searchVal) || (post.excerpt && post.excerpt.toLowerCase().includes(searchVal));
+      const matchesLang = langVal === 'all' || post.lang === langVal;
+      const matchesStatus = statusVal === 'all' || (statusVal === 'published' ? post.published : !post.published);
+
+      return matchesSearch && matchesLang && matchesStatus;
+    });
+
+    renderPosts(filtered);
+  }
+
+  function initAdminDashboard() {
+    loadPosts();
+
+    document.getElementById('logout-btn')?.addEventListener('click', async () => {
+      await supabase.auth.signOut();
+      window.location.href = '/admin';
+    });
+
+    document.getElementById('search-input')?.addEventListener('input', applyFilters);
+    document.getElementById('lang-filter')?.addEventListener('change', applyFilters);
+    document.getElementById('status-filter')?.addEventListener('change', applyFilters);
+  }
+
+  document.addEventListener('astro:page-load', initAdminDashboard);
+  initAdminDashboard();
+</script>

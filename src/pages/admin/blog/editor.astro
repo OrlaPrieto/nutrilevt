@@ -1,0 +1,645 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+---
+
+<Layout title="Editor de Artículo | Panel Nutrilev">
+  <!-- Quill Stylesheet -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" />
+
+  <div class="min-h-screen bg-slate-900 text-slate-100 pb-24">
+    <!-- Header -->
+    <header class="bg-slate-800/90 border-b border-slate-700/80 sticky top-0 z-40 backdrop-blur-md">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 py-3.5 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <a
+            href="/admin/blog"
+            class="p-2 text-slate-400 hover:text-white hover:bg-slate-700 rounded-xl transition-colors inline-flex items-center gap-1 text-sm font-semibold"
+          >
+            <span>← Salir</span>
+          </a>
+          <h1 id="page-title" class="font-bold text-white text-base sm:text-lg">
+            Nueva Publicación
+          </h1>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <button
+            type="button"
+            id="save-post-btn"
+            class="px-5 py-2.5 bg-primary hover:bg-primary-hover text-white font-bold rounded-xl text-sm shadow-md shadow-pink-950/50 hover:shadow-pink-900/80 active:scale-95 transition-all flex items-center gap-2 cursor-pointer"
+          >
+            <span id="save-btn-text">Guardar</span>
+            <svg id="save-btn-spinner" class="hidden w-4 h-4 animate-spin text-white" fill="none" viewBox="0 0 24 24">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Editor Form Container -->
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 pt-6">
+      <div id="editor-alert" class="hidden mb-6 p-4 rounded-2xl text-sm font-medium"></div>
+
+      <form id="post-form" class="space-y-6">
+        <input type="hidden" id="post-id" value="" />
+        <input type="hidden" id="cover-image-url" value="" />
+
+        <!-- Top Controls: Language & Status -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 bg-slate-800/60 p-4 rounded-2xl border border-slate-700/60">
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">
+              Idioma
+            </label>
+            <select
+              id="post-lang"
+              class="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-sm text-white focus:border-primary focus:outline-none"
+            >
+              <option value="es">Español (ES)</option>
+              <option value="en">English (EN)</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">
+              Categoría
+            </label>
+            <input
+              type="text"
+              id="post-category"
+              value="Nutrición Clínica"
+              placeholder="Ej: Psiconutrición, Recetas..."
+              class="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-sm text-white focus:border-primary focus:outline-none"
+            />
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">
+              Estado de Publicación
+            </label>
+            <select
+              id="post-published"
+              class="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-sm text-white focus:border-primary focus:outline-none font-semibold"
+            >
+              <option value="true" class="text-emerald-400">🟢 Publicado (Visible en web)</option>
+              <option value="false" class="text-amber-400">🟡 Borrador (Solo en panel)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Cover Image Uploader (Mobile-First) -->
+        <div class="bg-slate-800/60 p-5 rounded-2xl border border-slate-700/60">
+          <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">
+            Imagen de Portada (Desde tu celular o archivo)
+          </label>
+
+          <div id="image-preview-container" class="hidden mb-4 relative rounded-2xl overflow-hidden max-h-72 bg-slate-900 border border-slate-700">
+            <img id="image-preview" src="" alt="Preview" class="w-full h-full object-cover" />
+            <button
+              type="button"
+              id="remove-image-btn"
+              class="absolute top-3 right-3 bg-red-600 hover:bg-red-700 text-white p-2 rounded-full shadow-lg transition-all cursor-pointer"
+              title="Eliminar imagen"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+
+          <div id="upload-box" class="flex flex-col items-center justify-center p-6 border-2 border-dashed border-slate-700 hover:border-primary rounded-2xl bg-slate-900/60 transition-colors cursor-pointer text-center">
+            <input
+              type="file"
+              id="image-file-input"
+              accept="image/*"
+              class="hidden"
+            />
+            <div class="w-12 h-12 rounded-full bg-slate-800 text-primary flex items-center justify-center mb-3">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+            </div>
+            <p class="text-sm font-semibold text-white mb-1">
+              Toca para tomar foto o elegir de tu galería
+            </p>
+            <p class="text-xs text-slate-400">
+              Formatos JPG, PNG, WEBP (Hasta 5MB)
+            </p>
+            <span id="upload-status" class="hidden text-xs text-primary font-semibold mt-2">
+              Subiendo imagen...
+            </span>
+          </div>
+        </div>
+
+        <!-- Title & Slug -->
+        <div class="space-y-4">
+          <div>
+            <label for="post-title" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">
+              Título del Artículo *
+            </label>
+            <input
+              type="text"
+              id="post-title"
+              required
+              placeholder="Ej: 5 Claves para Mejorar tu Salud Digestiva"
+              class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-xl text-lg font-bold text-white placeholder-slate-500 focus:outline-none focus:border-primary"
+            />
+          </div>
+
+          <div>
+            <label for="post-slug" class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1">
+              URL amigable (Slug)
+            </label>
+            <div class="flex items-center text-xs text-slate-400 bg-slate-900/90 border border-slate-700/80 rounded-xl px-3 py-2">
+              <span class="text-slate-500">/blog/</span>
+              <input
+                type="text"
+                id="post-slug"
+                placeholder="5-claves-para-mejorar-tu-salud-digestiva"
+                class="w-full bg-transparent border-none text-slate-300 focus:outline-none px-1 text-xs"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Excerpt / Summary -->
+        <div>
+          <label for="post-excerpt" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">
+            Resumen Breve (Para tarjetas y Google)
+          </label>
+          <textarea
+            id="post-excerpt"
+            rows="2"
+            placeholder="Escribe una breve introducción o síntesis del post..."
+            class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-xl text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:border-primary resize-none"
+          ></textarea>
+        </div>
+
+        <!-- Visual WYSIWYG Editor (Quill.js) -->
+        <div>
+          <div class="flex items-center justify-between mb-2">
+            <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider">
+              Contenido del Artículo (Visual WYSIWYG) *
+            </label>
+            <span id="reading-time-badge" class="text-xs text-slate-400 font-medium">
+              ~ 1 min de lectura
+            </span>
+          </div>
+
+          <!-- Quill Container with Custom Dark Theme -->
+          <div class="quill-dark-wrapper rounded-2xl overflow-hidden border border-slate-700 bg-slate-800/90">
+            <div id="quill-toolbar">
+              <span class="ql-formats">
+                <select class="ql-header">
+                  <option value="2">Título (H2)</option>
+                  <option value="3">Subtítulo (H3)</option>
+                  <option selected>Párrafo</option>
+                </select>
+              </span>
+              <span class="ql-formats">
+                <button class="ql-bold" title="Negrita"></button>
+                <button class="ql-italic" title="Cursiva"></button>
+                <button class="ql-underline" title="Subrayado"></button>
+              </span>
+              <span class="ql-formats">
+                <button class="ql-list" value="ordered" title="Lista numerada"></button>
+                <button class="ql-list" value="bullet" title="Lista con viñetas"></button>
+                <button class="ql-blockquote" title="Cita destacada"></button>
+              </span>
+              <span class="ql-formats">
+                <button class="ql-link" title="Insertar enlace"></button>
+                <button class="ql-clean" title="Limpiar formato"></button>
+              </span>
+            </div>
+            <div id="quill-editor" class="min-h-[360px] text-base text-slate-100 font-sans leading-relaxed"></div>
+          </div>
+        </div>
+
+        <!-- Bottom Action Bar -->
+        <div class="pt-4 flex items-center justify-end gap-3">
+          <a
+            href="/admin/blog"
+            class="px-5 py-3 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-xl text-sm font-semibold transition-colors"
+          >
+            Cancelar
+          </a>
+          <button
+            type="submit"
+            class="px-8 py-3 bg-primary hover:bg-primary-hover text-white rounded-xl text-sm font-bold shadow-lg shadow-pink-950/50 hover:shadow-pink-900/80 active:scale-95 transition-all cursor-pointer"
+          >
+            Guardar Publicación
+          </button>
+        </div>
+      </form>
+    </main>
+  </div>
+</Layout>
+
+<!-- Quill JavaScript Core -->
+<script is:inline src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
+
+<style is:global>
+  /* Quill Dark Theme Customization */
+  .quill-dark-wrapper .ql-toolbar.ql-snow {
+    background-color: #1e293b;
+    border: none;
+    border-bottom: 1px solid #334155;
+    padding: 10px 14px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .quill-dark-wrapper .ql-snow .ql-picker.ql-header {
+    width: 130px;
+    height: 32px;
+  }
+
+  .quill-dark-wrapper .ql-snow .ql-picker.ql-header .ql-picker-label {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 4px 8px;
+    line-height: 22px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  .quill-dark-wrapper .ql-container.ql-snow {
+    border: none;
+    background-color: #0f172a;
+    font-family: inherit;
+    font-size: 1rem;
+    color: #f1f5f9;
+  }
+
+  .quill-dark-wrapper .ql-editor {
+    min-height: 360px;
+    padding: 16px 20px;
+    line-height: 1.75;
+  }
+
+  .quill-dark-wrapper .ql-editor.ql-blank::before {
+    color: #64748b;
+    font-style: normal;
+    left: 20px;
+  }
+
+  /* Toolbar Icons & Buttons */
+  .quill-dark-wrapper .ql-snow .ql-stroke {
+    stroke: #94a3b8;
+  }
+
+  .quill-dark-wrapper .ql-snow .ql-fill {
+    fill: #94a3b8;
+  }
+
+  .quill-dark-wrapper .ql-snow .ql-picker {
+    color: #cbd5e1;
+    font-weight: 500;
+  }
+
+  .quill-dark-wrapper .ql-snow .ql-picker-options {
+    background-color: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 8px;
+    padding: 6px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  }
+
+  .quill-dark-wrapper .ql-snow .ql-picker-item {
+    color: #cbd5e1;
+    padding: 6px 10px;
+    border-radius: 6px;
+  }
+
+  .quill-dark-wrapper .ql-snow .ql-picker-item:hover {
+    background-color: #334155;
+    color: #ffffff;
+  }
+
+  .quill-dark-wrapper .ql-snow button:hover .ql-stroke,
+  .quill-dark-wrapper .ql-snow button.ql-active .ql-stroke,
+  .quill-dark-wrapper .ql-snow .ql-picker-label:hover .ql-stroke,
+  .quill-dark-wrapper .ql-snow .ql-picker-label.ql-active .ql-stroke {
+    stroke: #D81B60 !important;
+  }
+
+  .quill-dark-wrapper .ql-snow button:hover .ql-fill,
+  .quill-dark-wrapper .ql-snow button.ql-active .ql-fill {
+    fill: #D81B60 !important;
+  }
+
+  /* Content inside editor formatting */
+  .quill-dark-wrapper .ql-editor h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+    font-family: 'Playfair Display Variable', serif;
+  }
+
+  .quill-dark-wrapper .ql-editor h3 {
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: #f8fafc;
+    margin-top: 1.25rem;
+    margin-bottom: 0.5rem;
+    font-family: 'Playfair Display Variable', serif;
+  }
+
+  .quill-dark-wrapper .ql-editor blockquote {
+    border-left: 4px solid #D81B60;
+    padding-left: 1rem;
+    margin: 1rem 0;
+    color: #e2e8f0;
+    font-style: italic;
+    background: rgba(216, 27, 96, 0.05);
+    border-radius: 0 8px 8px 0;
+  }
+
+  .quill-dark-wrapper .ql-editor ul, 
+  .quill-dark-wrapper .ql-editor ol {
+    padding-left: 1.5rem;
+    margin: 1rem 0;
+  }
+
+  .quill-dark-wrapper .ql-editor a {
+    color: #FF6B9B;
+    text-decoration: underline;
+  }
+</style>
+
+<script>
+  import { supabase } from "../../../lib/supabase";
+  import { slugify, calculateReadingTime, uploadBlogImage, checkIsBlogAdmin } from "../../../lib/blog";
+
+  declare const Quill: any;
+
+  let quillInstance: any = null;
+  let isEditMode = false;
+  let currentPostId: string | null = null;
+
+  async function checkAuth() {
+    const { data: { session } } = await supabase.auth.getSession();
+    if (!session) {
+      window.location.href = '/admin';
+      return null;
+    }
+
+    const isAdmin = await checkIsBlogAdmin();
+    if (!isAdmin) {
+      await supabase.auth.signOut();
+      window.location.href = '/admin';
+      return null;
+    }
+
+    return session;
+  }
+
+  function initQuillEditor() {
+    if (typeof Quill === 'undefined') {
+      setTimeout(initQuillEditor, 100);
+      return;
+    }
+
+    const editorElem = document.getElementById('quill-editor');
+    if (!editorElem) return;
+
+    // Prevent re-initialization
+    if (quillInstance) return;
+
+    quillInstance = new Quill('#quill-editor', {
+      theme: 'snow',
+      modules: {
+        toolbar: '#quill-toolbar'
+      },
+      placeholder: 'Escribe aquí tu artículo... Puedes escribir párrafos, seleccionar texto para hacerlo Título, negrita o crear listas de forma 100% visual.'
+    });
+
+    quillInstance.on('text-change', () => {
+      updateReadingTime();
+    });
+  }
+
+  async function loadExistingPost(id: string) {
+    const { data, error } = await supabase
+      .from('posts')
+      .select('*')
+      .eq('id', id)
+      .single();
+
+    if (error || !data) {
+      alert('Error al cargar la publicación para editar');
+      window.location.href = '/admin/blog';
+      return;
+    }
+
+    isEditMode = true;
+    currentPostId = data.id;
+    (document.getElementById('page-title') as HTMLElement).innerText = 'Editar Publicación';
+    (document.getElementById('post-id') as HTMLInputElement).value = data.id;
+    (document.getElementById('post-title') as HTMLInputElement).value = data.title;
+    (document.getElementById('post-slug') as HTMLInputElement).value = data.slug;
+    (document.getElementById('post-category') as HTMLInputElement).value = data.category || 'Nutrición Clínica';
+    (document.getElementById('post-lang') as HTMLSelectElement).value = data.lang || 'es';
+    (document.getElementById('post-published') as HTMLSelectElement).value = data.published ? 'true' : 'false';
+    (document.getElementById('post-excerpt') as HTMLTextAreaElement).value = data.excerpt || '';
+
+    // Set content in Quill
+    if (quillInstance) {
+      quillInstance.root.innerHTML = data.content || '';
+    } else {
+      const checkQuill = setInterval(() => {
+        if (quillInstance) {
+          quillInstance.root.innerHTML = data.content || '';
+          clearInterval(checkQuill);
+        }
+      }, 50);
+    }
+
+    if (data.cover_image) {
+      setCoverImage(data.cover_image);
+    }
+
+    updateReadingTime();
+  }
+
+  function setCoverImage(url: string) {
+    const previewContainer = document.getElementById('image-preview-container');
+    const previewImg = document.getElementById('image-preview') as HTMLImageElement;
+    const coverInput = document.getElementById('cover-image-url') as HTMLInputElement;
+
+    if (previewContainer && previewImg && coverInput) {
+      coverInput.value = url;
+      previewImg.src = url;
+      previewContainer.classList.remove('hidden');
+    }
+  }
+
+  function removeCoverImage() {
+    const previewContainer = document.getElementById('image-preview-container');
+    const previewImg = document.getElementById('image-preview') as HTMLImageElement;
+    const coverInput = document.getElementById('cover-image-url') as HTMLInputElement;
+    const fileInput = document.getElementById('image-file-input') as HTMLInputElement;
+
+    if (previewContainer && previewImg && coverInput) {
+      coverInput.value = '';
+      previewImg.src = '';
+      previewContainer.classList.add('hidden');
+      if (fileInput) fileInput.value = '';
+    }
+  }
+
+  function updateReadingTime() {
+    const text = quillInstance ? quillInstance.getText() : '';
+    const badge = document.getElementById('reading-time-badge');
+    if (badge) {
+      badge.innerText = `~ ${calculateReadingTime(text)} de lectura`;
+    }
+  }
+
+  async function handleSave(e: Event) {
+    e.preventDefault();
+
+    const title = (document.getElementById('post-title') as HTMLInputElement).value.trim();
+    const rawSlug = (document.getElementById('post-slug') as HTMLInputElement).value.trim();
+    const slug = slugify(rawSlug || title);
+    const category = (document.getElementById('post-category') as HTMLInputElement).value.trim() || 'Nutrición Clínica';
+    const lang = (document.getElementById('post-lang') as HTMLSelectElement).value as 'es' | 'en';
+    const published = (document.getElementById('post-published') as HTMLSelectElement).value === 'true';
+    const excerpt = (document.getElementById('post-excerpt') as HTMLTextAreaElement).value.trim();
+    const cover_image = (document.getElementById('cover-image-url') as HTMLInputElement).value.trim() || null;
+
+    const contentHtml = quillInstance ? quillInstance.root.innerHTML : '';
+    const contentText = quillInstance ? quillInstance.getText().trim() : '';
+    const reading_time = calculateReadingTime(contentText);
+
+    const alertBox = document.getElementById('editor-alert') as HTMLDivElement;
+    const saveBtn = document.getElementById('save-post-btn') as HTMLButtonElement;
+    const btnText = document.getElementById('save-btn-text') as HTMLSpanElement;
+    const btnSpinner = document.getElementById('save-btn-spinner') as HTMLElement;
+
+    if (!title || !contentText) {
+      alertBox.className = 'mb-6 p-4 rounded-2xl text-sm font-medium bg-red-900/50 border border-red-700/60 text-red-200';
+      alertBox.innerText = 'El título y el contenido son obligatorios.';
+      alertBox.classList.remove('hidden');
+      return;
+    }
+
+    // Show loading
+    saveBtn.disabled = true;
+    btnText.innerText = 'Guardando...';
+    btnSpinner.classList.remove('hidden');
+    alertBox.classList.add('hidden');
+
+    try {
+      const payload = {
+        title,
+        slug,
+        category,
+        lang,
+        published,
+        excerpt,
+        content: contentHtml,
+        cover_image,
+        reading_time,
+        updated_at: new Date().toISOString()
+      };
+
+      let error = null;
+
+      if (isEditMode && currentPostId) {
+        const res = await supabase.from('posts').update(payload).eq('id', currentPostId);
+        error = res.error;
+      } else {
+        const res = await supabase.from('posts').insert([payload]);
+        error = res.error;
+      }
+
+      if (error) {
+        alertBox.className = 'mb-6 p-4 rounded-2xl text-sm font-medium bg-red-900/50 border border-red-700/60 text-red-200';
+        alertBox.innerText = `Error al guardar: ${error.message}`;
+        alertBox.classList.remove('hidden');
+        saveBtn.disabled = false;
+        btnText.innerText = 'Guardar';
+        btnSpinner.classList.add('hidden');
+        return;
+      }
+
+      alertBox.className = 'mb-6 p-4 rounded-2xl text-sm font-medium bg-emerald-950/50 border border-emerald-700/60 text-emerald-200';
+      alertBox.innerText = '¡Publicación guardada exitosamente! Redirigiendo...';
+      alertBox.classList.remove('hidden');
+
+      setTimeout(() => {
+        window.location.href = '/admin/blog';
+      }, 700);
+
+    } catch (err: any) {
+      alertBox.className = 'mb-6 p-4 rounded-2xl text-sm font-medium bg-red-900/50 border border-red-700/60 text-red-200';
+      alertBox.innerText = err.message || 'Error inesperado al guardar';
+      alertBox.classList.remove('hidden');
+      saveBtn.disabled = false;
+      btnText.innerText = 'Guardar';
+      btnSpinner.classList.add('hidden');
+    }
+  }
+
+  function initEditor() {
+    checkAuth();
+    initQuillEditor();
+
+    // Check URL query for editing
+    const urlParams = new URLSearchParams(window.location.search);
+    const editId = urlParams.get('id');
+    if (editId) {
+      loadExistingPost(editId);
+    }
+
+    // Auto slug on title change
+    const titleInput = document.getElementById('post-title') as HTMLInputElement;
+    const slugInput = document.getElementById('post-slug') as HTMLInputElement;
+
+    titleInput?.addEventListener('input', () => {
+      if (!isEditMode) {
+        slugInput.value = slugify(titleInput.value);
+      }
+    });
+
+    // Image Upload triggers
+    const uploadBox = document.getElementById('upload-box');
+    const fileInput = document.getElementById('image-file-input') as HTMLInputElement;
+    const uploadStatus = document.getElementById('upload-status');
+    const removeImgBtn = document.getElementById('remove-image-btn');
+
+    uploadBox?.addEventListener('click', () => fileInput?.click());
+    removeImgBtn?.addEventListener('click', removeCoverImage);
+
+    fileInput?.addEventListener('change', async () => {
+      const file = fileInput.files?.[0];
+      if (!file) return;
+
+      uploadStatus?.classList.remove('hidden');
+      const res = await uploadBlogImage(file);
+      uploadStatus?.classList.add('hidden');
+
+      if (res.error || !res.url) {
+        alert(`Error al subir imagen: ${res.error || 'Error desconocido'}`);
+        return;
+      }
+
+      setCoverImage(res.url);
+    });
+
+    // Save triggers
+    document.getElementById('post-form')?.addEventListener('submit', handleSave);
+    document.getElementById('save-post-btn')?.addEventListener('click', handleSave);
+  }
+
+  document.addEventListener('astro:page-load', initEditor);
+  initEditor();
+</script>

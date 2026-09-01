@@ -13,14 +13,20 @@ interface Props {
   description?: string;
   image?: string;
   lang?: 'es' | 'en';
+  hideFloatingCTA?: boolean;
 }
 
 const { 
   lang = getLangFromUrl(Astro.url) as 'es' | 'en', 
   title,
   description = useTranslations(lang)('site.descriptionDefault'),
-  image = "/assets/logo-final.jpg"
+  image = "/assets/logo-final.jpg",
+  hideFloatingCTA = false
 } = Astro.props;
+
+const isAdminRoute = Astro.url.pathname.startsWith('/admin');
+const isBlogRoute = Astro.url.pathname.includes('/blog');
+const showFloatingCTA = !hideFloatingCTA && !isAdminRoute && !isBlogRoute;
 
 const t = useTranslations(lang);
 const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://nutrilev.com');
@@ -136,7 +142,7 @@ const gaId = import.meta.env.PUBLIC_GA_ID;
   </head>
   <body class="bg-bg-base text-slate-800 font-['Inter',sans-serif] overflow-x-hidden">
     <slot />
-    <FloatingCTA />
+    {showFloatingCTA && <FloatingCTA />}
     <SpeedInsights />
 
     <script>

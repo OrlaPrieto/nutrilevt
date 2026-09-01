@@ -1,0 +1,172 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import Navbar from "../../../components/sections/Navbar.astro";
+import Footer from "../../../components/sections/Footer.astro";
+import WhatsAppFloat from "../../../components/ui/WhatsAppFloat.astro";
+import ShareButtons from "../../../components/blog/ShareButtons.astro";
+import BlogCTA from "../../../components/blog/BlogCTA.astro";
+import BlogCard from "../../../components/blog/BlogCard.astro";
+import { getPublishedPosts, getPostBySlug, getRelatedPosts, formatBlogDate } from "../../../lib/blog";
+import { useTranslations } from "../../../i18n/utils";
+
+export async function getStaticPaths() {
+  const posts = await getPublishedPosts('en');
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post }
+  }));
+}
+
+const lang = 'en';
+const t = useTranslations(lang);
+const { slug } = Astro.params;
+const { post: initialPost } = Astro.props;
+
+const post = initialPost || (slug ? await getPostBySlug(slug, 'en') : null);
+
+if (!post) {
+  return Astro.redirect('/en/blog');
+}
+
+const relatedPosts = await getRelatedPosts(post.slug, 'en', 2);
+const formattedDate = formatBlogDate(post.created_at, 'en');
+const currentUrl = Astro.url.href;
+
+const schemaArticle = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": post.title,
+  "description": post.excerpt || post.title,
+  "image": post.cover_image ? [post.cover_image] : [],
+  "datePublished": post.created_at,
+  "dateModified": post.updated_at || post.created_at,
+  "author": {
+    "@type": "Person",
+    "name": "Velvet De la Cruz",
+    "jobTitle": "Clinical Nutritionist & Psychotherapist",
+    "url": "https://nutrilev.com/en/#about"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Nutrilev Specialized",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://nutrilev.com/favicon2.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": currentUrl
+  }
+};
+---
+
+<Layout
+  title={`${post.title} | Nutrilev Blog`}
+  description={post.excerpt || post.title}
+  image={post.cover_image || "/assets/logo-final.jpg"}
+  lang={lang}
+>
+  <!-- Schema.org JSON-LD -->
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(schemaArticle)} />
+
+  <Navbar />
+  <WhatsAppFloat />
+
+  <main class="pt-28 pb-20 bg-slate-50/40">
+    <!-- Breadcrumbs & Back link -->
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 pt-6 pb-4">
+      <a
+        href="/en/blog"
+        class="inline-flex items-center gap-2 text-sm font-semibold text-slate-500 hover:text-primary transition-colors"
+      >
+        <span>{t('blog.backToList')}</span>
+      </a>
+    </div>
+
+    <!-- Article Header -->
+    <header class="max-w-4xl mx-auto px-4 sm:px-6 pt-2 pb-8">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="px-3.5 py-1 text-xs font-bold uppercase tracking-wider rounded-full bg-pink-100/80 text-primary">
+          {post.category || 'Clinical Nutrition'}
+        </span>
+        <span class="w-1.5 h-1.5 rounded-full bg-slate-300"></span>
+        <span class="text-xs font-medium text-slate-500">
+          {post.reading_time || '3 min'} {t('blog.readingTime')}
+        </span>
+      </div>
+
+      <h1 class="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 leading-tight mb-6">
+        {post.title}
+      </h1>
+
+      <!-- Author info & Date -->
+      <div class="flex items-center gap-4 py-4 border-y border-slate-200/70">
+        <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-primary to-accent text-white flex items-center justify-center font-bold text-lg shadow-sm">
+          V
+        </div>
+        <div>
+          <div class="font-bold text-slate-900 text-sm sm:text-base">
+            Nutritionist Velvet De la Cruz
+          </div>
+          <div class="text-xs text-slate-500 flex items-center gap-2">
+            <span>{t('blog.publishedOn')} {formattedDate}</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Cover Image -->
+    {post.cover_image && (
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 mb-10">
+        <div class="rounded-3xl overflow-hidden shadow-md border border-slate-100 bg-slate-100 aspect-[16/9] max-h-[460px] flex items-center justify-center">
+          <img
+            src={post.cover_image}
+            alt={post.title}
+            class="w-full h-full object-cover"
+            loading="eager"
+          />
+        </div>
+      </div>
+    )}
+
+    <!-- Article Content Body -->
+    <article class="max-w-4xl mx-auto px-4 sm:px-6">
+      <div
+        class="prose prose-lg prose-slate prose-pink max-w-none 
+               prose-headings:font-serif prose-headings:text-slate-900 prose-headings:font-bold
+               prose-h2:text-2xl sm:prose-h2:text-3xl prose-h2:mt-10 prose-h2:mb-4
+               prose-h3:text-xl sm:prose-h3:text-2xl prose-h3:mt-8 prose-h3:mb-3
+               prose-p:text-slate-700 prose-p:leading-relaxed prose-p:mb-6
+               prose-ul:my-6 prose-ul:list-disc prose-ul:pl-6 prose-li:text-slate-700 prose-li:my-2
+               prose-ol:my-6 prose-ol:list-decimal prose-ol:pl-6 prose-li:text-slate-700
+               prose-blockquote:border-l-4 prose-blockquote:border-primary prose-blockquote:pl-4 prose-blockquote:italic prose-blockquote:text-slate-700
+               prose-strong:text-slate-900 prose-strong:font-bold
+               prose-img:rounded-2xl prose-img:shadow-md prose-img:my-8"
+        set:html={post.content}
+      />
+
+      <!-- Social Share Buttons -->
+      <ShareButtons title={post.title} url={currentUrl} lang={lang} />
+
+      <!-- Consultation CTA Box -->
+      <BlogCTA lang={lang} />
+
+      <!-- Related Articles -->
+      {relatedPosts && relatedPosts.length > 0 && (
+        <section class="mt-20 pt-12 border-t border-slate-200/80">
+          <h2 class="font-serif text-2xl sm:text-3xl font-bold text-slate-900 mb-8 text-center sm:text-left">
+            {t('blog.relatedTitle')}
+          </h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+            {relatedPosts.map((related) => (
+              <BlogCard post={related} lang={lang} />
+            ))}
+          </div>
+        </section>
+      )}
+    </article>
+  </main>
+
+  <Footer />
+</Layout>

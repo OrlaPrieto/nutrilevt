@@ -152,6 +152,12 @@ const langPath = lang === "es" ? "" : `/${lang}`;
             class="text-slate-600 hover:text-primary px-4 py-2 text-sm font-semibold transition-colors"
             >{t("nav.faq")}</a
           >
+
+          <a
+            href={`${langPath}/blog`}
+            class="text-slate-600 hover:text-primary px-4 py-2 text-sm font-semibold transition-colors"
+            >{t("nav.blog")}</a
+          >
           <div class="ml-4">
             <a
               href={`${langPath}/#booking`}
@@ -201,6 +207,12 @@ const langPath = lang === "es" ? "" : `/${lang}`;
         href={`${langPath}/#faq`}
         class="mobile-link text-2xl font-bold text-slate-800 hover:text-primary transition-colors"
         >{t("nav.faq")}</a
+      >
+
+      <a
+        href={`${langPath}/blog`}
+        class="mobile-link text-2xl font-bold text-slate-800 hover:text-primary transition-colors"
+        >{t("nav.blog")}</a
       >
       <div class="pt-6 w-full">
         <a

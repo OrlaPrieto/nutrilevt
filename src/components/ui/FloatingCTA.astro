@@ -1,7 +1,11 @@
 ---
+import { getLangFromUrl } from '../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const langPath = lang === 'es' ? '' : `/${lang}`;
 ---
 <a 
-  href="#booking" 
+  href={`${langPath}/#booking`} 
   class="fixed bottom-6 right-6 z-[60] md:hidden bg-primary text-white p-4 rounded-full shadow-2xl shadow-pink-500/40 flex items-center gap-2 animate-bounce-subtle group active:scale-95 transition-all overflow-hidden"
   aria-label="Agendar Cita"
 >
