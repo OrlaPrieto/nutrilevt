@@ -1,0 +1,36 @@
+---
+---
+<div
+  id="reading-progress-container"
+  class="fixed top-0 left-0 w-full h-1.5 z-[60] bg-transparent pointer-events-none"
+>
+  <div
+    id="reading-progress-bar"
+    class="h-full w-0 bg-gradient-to-r from-primary via-accent to-primary-hover shadow-sm shadow-pink-500/50 transition-[width] duration-150 ease-out rounded-r-full"
+  >
+  </div>
+</div>
+
+<script>
+  function initReadingProgressBar() {
+    const progressBar = document.getElementById('reading-progress-bar');
+    if (!progressBar) return;
+
+    const updateProgress = () => {
+      const scrollY = window.scrollY || document.documentElement.scrollTop;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      if (docHeight <= 0) {
+        progressBar.style.width = '0%';
+        return;
+      }
+      const progressPercent = Math.min(100, Math.max(0, (scrollY / docHeight) * 100));
+      progressBar.style.width = `${progressPercent}%`;
+    };
+
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    updateProgress();
+  }
+
+  document.addEventListener('astro:page-load', initReadingProgressBar);
+  initReadingProgressBar();
+</script>
