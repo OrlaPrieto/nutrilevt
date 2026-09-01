@@ -4,6 +4,7 @@ import Navbar from "../../components/sections/Navbar.astro";
 import Footer from "../../components/sections/Footer.astro";
 import WhatsAppFloat from "../../components/ui/WhatsAppFloat.astro";
 import ReadingProgressBar from "../../components/blog/ReadingProgressBar.astro";
+import TableOfContents from "../../components/blog/TableOfContents.astro";
 import ShareButtons from "../../components/blog/ShareButtons.astro";
 import BlogCTA from "../../components/blog/BlogCTA.astro";
 import BlogCard from "../../components/blog/BlogCard.astro";
@@ -136,6 +137,8 @@ const schemaArticle = {
 
     <!-- Article Content Body -->
     <article class="max-w-4xl mx-auto px-4 sm:px-6">
+      <TableOfContents lang={lang} />
+
       <div
         class="prose prose-lg prose-slate prose-pink max-w-none 
                prose-headings:font-serif prose-headings:text-slate-900 prose-headings:font-bold

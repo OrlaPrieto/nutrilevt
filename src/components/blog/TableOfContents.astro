@@ -1,0 +1,108 @@
+---
+import { useTranslations } from '../../i18n/utils';
+
+interface Props {
+  lang?: 'es' | 'en';
+}
+
+const { lang = 'es' } = Astro.props;
+---
+
+<nav
+  id="toc-container"
+  class="hidden my-8 p-6 bg-slate-50 border border-slate-200/80 rounded-3xl shadow-sm"
+  aria-label="Tabla de contenidos"
+>
+  <div class="flex items-center justify-between gap-2 mb-4 pb-3 border-b border-slate-200/70">
+    <div class="flex items-center gap-2.5 text-slate-900 font-bold text-base font-serif">
+      <span class="w-8 h-8 rounded-xl bg-pink-100/70 text-primary flex items-center justify-center text-sm">
+        📑
+      </span>
+      <span>{lang === 'es' ? 'En este artículo' : 'Table of Contents'}</span>
+    </div>
+    <button
+      type="button"
+      id="toc-toggle-btn"
+      class="text-xs font-semibold text-slate-500 hover:text-primary transition-colors cursor-pointer px-2.5 py-1 rounded-lg hover:bg-white"
+    >
+      <span id="toc-toggle-text">{lang === 'es' ? 'Ocultar' : 'Hide'}</span>
+    </button>
+  </div>
+
+  <ul id="toc-list" class="space-y-2.5 text-sm text-slate-600 transition-all duration-300">
+    <!-- Generated dynamically by script -->
+  </ul>
+</nav>
+
+<script>
+  function initTableOfContents() {
+    const article = document.querySelector('article .prose');
+    const tocContainer = document.getElementById('toc-container');
+    const tocList = document.getElementById('toc-list');
+    const toggleBtn = document.getElementById('toc-toggle-btn');
+    const toggleText = document.getElementById('toc-toggle-text');
+
+    if (!article || !tocContainer || !tocList) return;
+
+    // Find all H2 and H3 elements inside article body
+    const headings = article.querySelectorAll('h2, h3');
+    if (headings.length < 2) {
+      tocContainer.classList.add('hidden');
+      return;
+    }
+
+    tocList.innerHTML = '';
+
+    headings.forEach((heading, index) => {
+      const headingText = heading.textContent?.trim() || '';
+      if (!headingText) return;
+
+      // Assign id to heading if not present
+      if (!heading.id) {
+        heading.id = `section-${index + 1}-${headingText.toLowerCase().replace(/[^a-z0-9]/g, '-')}`;
+      }
+
+      const isH3 = heading.tagName.toLowerCase() === 'h3';
+      const li = document.createElement('li');
+      li.className = isH3 ? 'pl-4 text-xs' : 'font-medium';
+
+      const a = document.createElement('a');
+      a.href = `#${heading.id}`;
+      a.className = 'hover:text-primary transition-colors flex items-start gap-2 py-0.5';
+      a.innerHTML = `<span class="text-primary font-bold text-xs mt-0.5">•</span><span>${headingText}</span>`;
+
+      // Smooth scroll with offset for fixed header
+      a.addEventListener('click', (e) => {
+        e.preventDefault();
+        const target = document.getElementById(heading.id);
+        if (target) {
+          const navHeight = 120;
+          const targetPosition = target.getBoundingClientRect().top + window.scrollY - navHeight;
+          window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+          history.pushState(null, '', `#${heading.id}`);
+        }
+      });
+
+      li.appendChild(a);
+      tocList.appendChild(li);
+    });
+
+    tocContainer.classList.remove('hidden');
+
+    // Toggle collapse
+    let isCollapsed = false;
+    toggleBtn?.addEventListener('click', () => {
+      isCollapsed = !isCollapsed;
+      if (isCollapsed) {
+        tocList.classList.add('hidden');
+        if (toggleText) toggleText.innerText = 'Mostrar';
+      } else {
+        tocList.classList.remove('hidden');
+        if (toggleText) toggleText.innerText = 'Ocultar';
+      }
+    });
+  }
+
+  document.addEventListener('astro:page-load', initTableOfContents);
+  initTableOfContents();
+</script>
