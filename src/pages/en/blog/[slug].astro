@@ -24,7 +24,8 @@ const t = useTranslations(lang);
 const { slug } = Astro.params;
 const { post: initialPost } = Astro.props;
 
-const post = initialPost || (slug ? await getPostBySlug(slug, 'en') : null);
+// Obtener siempre la versión más reciente desde Supabase (con fallback a initialPost de build)
+const post = (slug ? await getPostBySlug(slug, 'en') : null) || initialPost;
 
 if (!post) {
   return Astro.redirect('/en/blog');

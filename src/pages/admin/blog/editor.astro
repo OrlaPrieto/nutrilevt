@@ -445,8 +445,8 @@ import Layout from "../../../layouts/Layout.astro";
     const editorElem = document.getElementById('quill-editor');
     if (!editorElem) return;
 
-    // Prevent re-initialization
-    if (quillInstance) return;
+    // Prevent re-initialization if already active on DOM
+    if (editorElem.querySelector('.ql-editor')) return;
 
     quillInstance = new Quill('#quill-editor', {
       theme: 'snow',
@@ -486,12 +486,22 @@ import Layout from "../../../layouts/Layout.astro";
     (document.getElementById('post-excerpt') as HTMLTextAreaElement).value = data.excerpt || '';
 
     // Set content in Quill
-    if (quillInstance) {
-      quillInstance.root.innerHTML = data.content || '';
+    const setContent = () => {
+      if (quillInstance && quillInstance.root) {
+        quillInstance.root.innerHTML = data.content || '';
+      }
+    };
+
+    if (quillInstance && quillInstance.root) {
+      setContent();
     } else {
+      let attempts = 0;
       const checkQuill = setInterval(() => {
-        if (quillInstance) {
-          quillInstance.root.innerHTML = data.content || '';
+        attempts++;
+        if (quillInstance && quillInstance.root) {
+          setContent();
+          clearInterval(checkQuill);
+        } else if (attempts > 30) {
           clearInterval(checkQuill);
         }
       }, 50);
@@ -587,9 +597,12 @@ import Layout from "../../../layouts/Layout.astro";
       };
 
       let error = null;
+      const postIdInput = (document.getElementById('post-id') as HTMLInputElement)?.value;
+      const effectiveId = currentPostId || postIdInput;
+      const isUpdating = isEditMode || Boolean(effectiveId);
 
-      if (isEditMode && currentPostId) {
-        const res = await supabase.from('posts').update(payload).eq('id', currentPostId);
+      if (isUpdating && effectiveId) {
+        const res = await supabase.from('posts').update(payload).eq('id', effectiveId);
         error = res.error;
       } else {
         const res = await supabase.from('posts').insert([payload]);

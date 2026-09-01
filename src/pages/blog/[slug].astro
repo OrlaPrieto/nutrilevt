@@ -24,8 +24,8 @@ const t = useTranslations(lang);
 const { slug } = Astro.params;
 const { post: initialPost } = Astro.props;
 
-// Obtener el post (desde props en build o consulta directa como fallback)
-const post = initialPost || (slug ? await getPostBySlug(slug, 'es') : null);
+// Obtener siempre la versión más reciente desde Supabase (con fallback a initialPost de build)
+const post = (slug ? await getPostBySlug(slug, 'es') : null) || initialPost;
 
 if (!post) {
   return Astro.redirect('/blog');
