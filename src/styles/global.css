@@ -89,3 +89,215 @@
     animation: shimmer 3s infinite;
   }
 }
+
+/* ==============================================================================
+   ESTILOS EDITORIALES PARA EL BLOG DE NUTRILEV
+   ============================================================================== */
+
+/* 1. Caja de Consejo Clínico */
+.clinical-tip-box {
+  background: linear-gradient(135deg, rgba(255, 240, 245, 0.85) 0%, rgba(255, 245, 247, 0.95) 100%);
+  border-left: 4px solid var(--color-primary, #D81B60);
+  border-radius: 0 1.25rem 1.25rem 0;
+  padding: 1.5rem 1.75rem;
+  margin: 2rem 0;
+  box-shadow: 0 2px 10px rgba(216, 27, 96, 0.06);
+}
+
+.clinical-tip-box .tip-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-primary, #D81B60);
+  font-weight: 700;
+  font-size: 1.05rem;
+  margin-bottom: 0.75rem;
+  font-family: 'Playfair Display Variable', serif;
+}
+
+.clinical-tip-box p {
+  margin: 0;
+  color: #334155;
+  line-height: 1.7;
+}
+
+/* 2. Caja de Mito vs Realidad */
+.myth-reality-box {
+  margin: 2rem 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 640px) {
+  .myth-reality-box {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.myth-card {
+  background-color: #fff1f2;
+  border: 1px solid #fecdd3;
+  border-radius: 1.25rem;
+  padding: 1.25rem 1.5rem;
+}
+
+.myth-card .card-title {
+  color: #e11d48;
+  font-weight: 700;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.myth-card p {
+  margin: 0;
+  color: #881337;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.reality-card {
+  background-color: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 1.25rem;
+  padding: 1.25rem 1.5rem;
+}
+
+.reality-card .card-title {
+  color: #16a34a;
+  font-weight: 700;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.reality-card p {
+  margin: 0;
+  color: #14532d;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* 3. Tarjeta de Receta / Menú con Checklist Interactivo */
+.recipe-card {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 1.5rem;
+  padding: 1.75rem;
+  margin: 2.25rem 0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+}
+
+.recipe-header {
+  border-bottom: 1px solid #f1f5f9;
+  padding-bottom: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.recipe-title {
+  font-family: 'Playfair Display Variable', serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 0.5rem 0;
+}
+
+.recipe-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  font-size: 0.85rem;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.recipe-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.recipe-ingredients-title {
+  font-weight: 700;
+  color: #1e293b;
+  font-size: 1rem;
+  margin: 1rem 0 0.75rem 0;
+}
+
+.recipe-checklist {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.recipe-checklist li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.4rem 0;
+  color: #334155;
+  font-size: 0.95rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.recipe-checklist input[type="checkbox"] {
+  width: 1.15rem;
+  height: 1.15rem;
+  accent-color: var(--color-primary, #D81B60);
+  cursor: pointer;
+}
+
+.recipe-checklist input[type="checkbox"]:checked + span {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+/* 4. In-Article CTA Banner */
+.in-article-cta {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  color: #ffffff;
+  border-radius: 1.5rem;
+  padding: 1.75rem 2rem;
+  margin: 2.5rem 0;
+  text-align: center;
+  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.3);
+}
+
+.in-article-cta h4 {
+  color: #ffffff !important;
+  font-family: 'Playfair Display Variable', serif;
+  font-size: 1.35rem !important;
+  font-weight: 700 !important;
+  margin: 0 0 0.5rem 0 !important;
+}
+
+.in-article-cta p {
+  color: #cbd5e1 !important;
+  font-size: 0.95rem !important;
+  margin: 0 0 1.25rem 0 !important;
+  line-height: 1.6 !important;
+}
+
+.in-article-cta a {
+  display: inline-block;
+  background-color: var(--color-primary, #D81B60);
+  color: #ffffff !important;
+  font-weight: 700;
+  font-size: 0.9rem;
+  padding: 0.75rem 1.75rem;
+  border-radius: 9999px;
+  text-decoration: none !important;
+  box-shadow: 0 4px 15px rgba(216, 27, 96, 0.4);
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.in-article-cta a:hover {
+  background-color: var(--color-primary-hover, #B3154C);
+  transform: scale(1.04);
+}
