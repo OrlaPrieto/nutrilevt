@@ -187,6 +187,41 @@ import Layout from "../../../layouts/Layout.astro";
             </span>
           </div>
 
+          <!-- Quick Template Insertion Bar -->
+          <div class="mb-3 p-2.5 bg-slate-800/90 border border-slate-700/80 rounded-2xl flex flex-wrap items-center gap-2 text-xs">
+            <span class="text-slate-400 font-semibold flex items-center gap-1.5 pl-1 mr-1">
+              <span>⚡ Plantillas:</span>
+            </span>
+            <button
+              type="button"
+              data-template="tip"
+              class="tpl-btn px-3 py-1.5 bg-pink-950/60 hover:bg-pink-900/80 text-pink-200 border border-pink-700/50 rounded-xl font-semibold transition-all flex items-center gap-1.5 active:scale-95 cursor-pointer"
+            >
+              <span>💡 Consejo Clínico</span>
+            </button>
+            <button
+              type="button"
+              data-template="myth"
+              class="tpl-btn px-3 py-1.5 bg-slate-700/80 hover:bg-slate-600 text-slate-200 border border-slate-600 rounded-xl font-semibold transition-all flex items-center gap-1.5 active:scale-95 cursor-pointer"
+            >
+              <span>⚡ Mito vs Realidad</span>
+            </button>
+            <button
+              type="button"
+              data-template="recipe"
+              class="tpl-btn px-3 py-1.5 bg-emerald-950/60 hover:bg-emerald-900/80 text-emerald-200 border border-emerald-700/50 rounded-xl font-semibold transition-all flex items-center gap-1.5 active:scale-95 cursor-pointer"
+            >
+              <span>🥑 Tarjeta de Receta</span>
+            </button>
+            <button
+              type="button"
+              data-template="cta"
+              class="tpl-btn px-3 py-1.5 bg-blue-950/60 hover:bg-blue-900/80 text-blue-200 border border-blue-700/50 rounded-xl font-semibold transition-all flex items-center gap-1.5 active:scale-95 cursor-pointer"
+            >
+              <span>🩺 Banner Agendar Cita</span>
+            </button>
+          </div>
+
           <!-- Quill Container with Custom Dark Theme -->
           <div class="quill-dark-wrapper rounded-2xl overflow-hidden border border-slate-700 bg-slate-800/90">
             <div id="quill-toolbar">
@@ -635,9 +670,82 @@ import Layout from "../../../layouts/Layout.astro";
       setCoverImage(res.url);
     });
 
+    // Template buttons
+    document.querySelectorAll('.tpl-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const tpl = btn.getAttribute('data-template');
+        if (tpl) insertTemplate(tpl);
+      });
+    });
+
     // Save triggers
     document.getElementById('post-form')?.addEventListener('submit', handleSave);
     document.getElementById('save-post-btn')?.addEventListener('click', handleSave);
+  }
+
+  function insertTemplate(type: string) {
+    if (!quillInstance) return;
+
+    let html = '';
+    switch (type) {
+      case 'tip':
+        html = `
+<div class="clinical-tip-box">
+  <div class="tip-header">💡 Consejo Clínico de la Nutrióloga</div>
+  <p>Escribe aquí tu recomendación profesional clave para el paciente. Explica el porqué desde un enfoque clínico y humano.</p>
+</div>
+<p><br></p>`;
+        break;
+      case 'myth':
+        html = `
+<div class="myth-reality-box">
+  <div class="myth-card">
+    <div class="card-title">❌ Mito Frecuente</div>
+    <p>Escribe aquí el mito común que muchas personas creen...</p>
+  </div>
+  <div class="reality-card">
+    <div class="card-title">✅ Realidad Basada en Evidencia</div>
+    <p>Escribe aquí la verdad médica explicada de forma clara y accesible...</p>
+  </div>
+</div>
+<p><br></p>`;
+        break;
+      case 'recipe':
+        html = `
+<div class="recipe-card">
+  <div class="recipe-header">
+    <h4 class="recipe-title">🥗 Bowl Nutritivo de Avena y Frutos Rojos</h4>
+    <div class="recipe-meta">
+      <span class="recipe-meta-item">⏱️ 10 min</span>
+      <span class="recipe-meta-item">🍽️ 1 porción</span>
+      <span class="recipe-meta-item">🥑 Alta en fibra</span>
+    </div>
+  </div>
+  <div class="recipe-ingredients-title">Ingredientes necesarios:</div>
+  <ul class="recipe-checklist">
+    <li><input type="checkbox"> <span>1/2 taza de hojuelas de avena integral</span></li>
+    <li><input type="checkbox"> <span>1 taza de leche vegetal o descremada</span></li>
+    <li><input type="checkbox"> <span>1 cucharada de semillas de chía</span></li>
+    <li><input type="checkbox"> <span>1/2 taza de frutos rojos frescos</span></li>
+  </ul>
+</div>
+<p><br></p>`;
+        break;
+      case 'cta':
+        html = `
+<div class="in-article-cta">
+  <h4>¿Buscas un plan adaptado a tu metabolismo?</h4>
+  <p>En Nutrilev evaluamos tu composición corporal con tecnología InBody 270 para acompañarte en tu transformación.</p>
+  <a href="/#booking">Agendar Consulta Personalizada</a>
+</div>
+<p><br></p>`;
+        break;
+    }
+
+    const range = quillInstance.getSelection();
+    const index = range ? range.index : quillInstance.getLength();
+    quillInstance.clipboard.dangerouslyPasteHTML(index, html);
+    updateReadingTime();
   }
 
   document.addEventListener('astro:page-load', initEditor);
