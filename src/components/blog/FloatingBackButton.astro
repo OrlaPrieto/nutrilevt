@@ -1,0 +1,106 @@
+---
+// FloatingBackButton.astro
+// Botón flotante en la parte derecha para regresar al listado de artículos
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+
+interface Props {
+  href?: string;
+}
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const { href = lang === 'en' ? '/en/blog' : '/blog' } = Astro.props;
+
+const fullLabel = t('blog.backToList').replace(/^←\s*/, '');
+const shortLabel = lang === 'en' ? 'Back to blog' : 'Volver al blog';
+---
+
+<a
+  href={href}
+  class="floating-back-btn group"
+  aria-label={fullLabel}
+>
+  <svg
+    class="back-icon"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+    stroke-width="2.5"
+    aria-hidden="true"
+  >
+    <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+  </svg>
+  <span class="label-full">{fullLabel}</span>
+  <span class="label-short">{shortLabel}</span>
+</a>
+
+<style>
+  .floating-back-btn {
+    position: fixed;
+    right: 18px;
+    bottom: 22px;
+    z-index: 50;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    border-radius: 9999px;
+    background: linear-gradient(135deg, #D81B60 0%, #FF6B9B 100%);
+    color: #ffffff;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    text-decoration: none;
+    box-shadow: 0 4px 20px rgba(216, 27, 96, 0.38), 0 2px 6px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(8px);
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1),
+                box-shadow 0.2s ease,
+                background 0.2s ease;
+  }
+
+  .floating-back-btn:hover {
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 8px 26px rgba(216, 27, 96, 0.48), 0 3px 8px rgba(0, 0, 0, 0.12);
+  }
+
+  .floating-back-btn:active {
+    transform: translateY(0) scale(0.97);
+  }
+
+  .back-icon {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.2s ease;
+  }
+
+  .floating-back-btn:hover .back-icon {
+    transform: translateX(-3px);
+  }
+
+  .label-full {
+    display: none;
+  }
+
+  .label-short {
+    display: inline;
+  }
+
+  /* Desktop: Apilado arriba del botón de WhatsApp (bottom: 28px + altura) */
+  @media (min-width: 769px) {
+    .floating-back-btn {
+      right: 28px;
+      bottom: 96px;
+      padding: 11px 20px;
+      font-size: 0.875rem;
+    }
+
+    .label-full {
+      display: inline;
+    }
+
+    .label-short {
+      display: none;
+    }
+  }
+</style>

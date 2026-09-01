@@ -389,12 +389,25 @@ import Layout from "../../../layouts/Layout.astro";
 
   .quill-dark-wrapper .ql-editor blockquote {
     border-left: 4px solid #D81B60;
-    padding: 1rem 1.25rem;
-    margin: 1.25rem 0;
+    padding: 0.35rem 1.25rem;
+    margin: 0;
     color: #f8fafc;
     font-style: normal;
-    background: rgba(216, 27, 96, 0.15);
-    border-radius: 0 12px 12px 0;
+    background: rgba(216, 27, 96, 0.12);
+  }
+
+  .quill-dark-wrapper .ql-editor blockquote:first-child,
+  .quill-dark-wrapper .ql-editor *:not(blockquote) + blockquote {
+    margin-top: 1.25rem;
+    padding-top: 0.85rem;
+    border-top-right-radius: 12px;
+  }
+
+  .quill-dark-wrapper .ql-editor blockquote:has(+ :not(blockquote)),
+  .quill-dark-wrapper .ql-editor blockquote:last-child {
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.85rem;
+    border-bottom-right-radius: 12px;
   }
 
   .quill-dark-wrapper .ql-editor ul, 

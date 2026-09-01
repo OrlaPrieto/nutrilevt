@@ -121,6 +121,10 @@
   line-height: 1.7;
 }
 
+.clinical-tip-box p + p {
+  margin-top: 0.75rem;
+}
+
 /* 2. Caja de Mito vs Realidad */
 .myth-reality-box {
   margin: 2rem 0;
@@ -217,9 +221,16 @@
 }
 
 .recipe-meta-item {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 0.35rem;
+  background: #fdf2f8;
+  border: 1px solid #fce7f3;
+  color: #be185d;
+  font-weight: 600;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.8rem;
 }
 
 .recipe-ingredients-title {
@@ -280,7 +291,8 @@
 .in-article-cta p {
   color: #cbd5e1 !important;
   font-size: 0.95rem !important;
-  margin: 0 0 1.25rem 0 !important;
+  margin: 0 auto 1.25rem auto !important;
+  max-width: 36rem;
   line-height: 1.6 !important;
 }
 
@@ -300,4 +312,15 @@
 .in-article-cta a:hover {
   background-color: var(--color-primary-hover, #B3154C);
   transform: scale(1.04);
+}
+
+/* 5. Citas generales (Blockquote estándar dentro de artículos) */
+article blockquote:not([class*="clinical-tip"]):not([class*="in-article-cta"]) {
+  background: linear-gradient(135deg, rgba(255, 240, 245, 0.7) 0%, rgba(255, 245, 247, 0.85) 100%);
+  border-left: 4px solid var(--color-primary, #D81B60);
+  border-radius: 0 1rem 1rem 0;
+  padding: 1rem 1.5rem;
+  margin: 1.75rem 0;
+  color: #334155;
+  font-style: normal;
 }
