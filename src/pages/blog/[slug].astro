@@ -8,7 +8,7 @@ import TableOfContents from "../../components/blog/TableOfContents.astro";
 import ShareButtons from "../../components/blog/ShareButtons.astro";
 import BlogCTA from "../../components/blog/BlogCTA.astro";
 import BlogCard from "../../components/blog/BlogCard.astro";
-import { getPublishedPosts, getPostBySlug, getRelatedPosts, formatBlogDate } from "../../lib/blog";
+import { getPublishedPosts, getPostBySlug, getRelatedPosts, formatBlogDate, formatBlogContent } from "../../lib/blog";
 import { useTranslations } from "../../i18n/utils";
 
 export async function getStaticPaths() {
@@ -147,10 +147,10 @@ const schemaArticle = {
                prose-p:text-slate-700 prose-p:leading-relaxed prose-p:mb-6
                prose-ul:my-6 prose-ul:list-disc prose-ul:pl-6 prose-li:text-slate-700 prose-li:my-2
                prose-ol:my-6 prose-ol:list-decimal prose-ol:pl-6 prose-li:text-slate-700
-               prose-blockquote:border-l-4 prose-blockquote:border-primary prose-blockquote:pl-4 prose-blockquote:italic prose-blockquote:text-slate-700
+               prose-blockquote:bg-pink-50/70 prose-blockquote:border-l-4 prose-blockquote:border-primary prose-blockquote:p-4 sm:prose-blockquote:p-6 prose-blockquote:rounded-r-2xl prose-blockquote:not-italic prose-blockquote:text-slate-800
                prose-strong:text-slate-900 prose-strong:font-bold
                prose-img:rounded-2xl prose-img:shadow-md prose-img:my-8"
-        set:html={post.content}
+        set:html={formatBlogContent(post.content)}
       />
 
       <!-- Social Share Buttons -->

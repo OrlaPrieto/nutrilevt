@@ -389,12 +389,12 @@ import Layout from "../../../layouts/Layout.astro";
 
   .quill-dark-wrapper .ql-editor blockquote {
     border-left: 4px solid #D81B60;
-    padding-left: 1rem;
-    margin: 1rem 0;
-    color: #e2e8f0;
-    font-style: italic;
-    background: rgba(216, 27, 96, 0.05);
-    border-radius: 0 8px 8px 0;
+    padding: 1rem 1.25rem;
+    margin: 1.25rem 0;
+    color: #f8fafc;
+    font-style: normal;
+    background: rgba(216, 27, 96, 0.15);
+    border-radius: 0 12px 12px 0;
   }
 
   .quill-dark-wrapper .ql-editor ul, 
@@ -702,56 +702,16 @@ import Layout from "../../../layouts/Layout.astro";
     let html = '';
     switch (type) {
       case 'tip':
-        html = `
-<div class="clinical-tip-box">
-  <div class="tip-header">💡 Consejo Clínico de la Nutrióloga</div>
-  <p>Escribe aquí tu recomendación profesional clave para el paciente. Explica el porqué desde un enfoque clínico y humano.</p>
-</div>
-<p><br></p>`;
+        html = `<blockquote><p><strong>💡 Consejo Clínico de la Nutrióloga:</strong></p><p>Escribe aquí tu recomendación profesional clave para el paciente. Explica el porqué desde un enfoque clínico y humano.</p></blockquote><p><br></p>`;
         break;
       case 'myth':
-        html = `
-<div class="myth-reality-box">
-  <div class="myth-card">
-    <div class="card-title">❌ Mito Frecuente</div>
-    <p>Escribe aquí el mito común que muchas personas creen...</p>
-  </div>
-  <div class="reality-card">
-    <div class="card-title">✅ Realidad Basada en Evidencia</div>
-    <p>Escribe aquí la verdad médica explicada de forma clara y accesible...</p>
-  </div>
-</div>
-<p><br></p>`;
+        html = `<p><strong>❌ Mito Frecuente:</strong> Escribe aquí el mito común que muchas personas creen...</p><p><strong>✅ Realidad Basada en Evidencia:</strong> Escribe aquí la verdad médica explicada de forma clara y accesible...</p><p><br></p>`;
         break;
       case 'recipe':
-        html = `
-<div class="recipe-card">
-  <div class="recipe-header">
-    <h4 class="recipe-title">🥗 Bowl Nutritivo de Avena y Frutos Rojos</h4>
-    <div class="recipe-meta">
-      <span class="recipe-meta-item">⏱️ 10 min</span>
-      <span class="recipe-meta-item">🍽️ 1 porción</span>
-      <span class="recipe-meta-item">🥑 Alta en fibra</span>
-    </div>
-  </div>
-  <div class="recipe-ingredients-title">Ingredientes necesarios:</div>
-  <ul class="recipe-checklist">
-    <li><input type="checkbox"> <span>1/2 taza de hojuelas de avena integral</span></li>
-    <li><input type="checkbox"> <span>1 taza de leche vegetal o descremada</span></li>
-    <li><input type="checkbox"> <span>1 cucharada de semillas de chía</span></li>
-    <li><input type="checkbox"> <span>1/2 taza de frutos rojos frescos</span></li>
-  </ul>
-</div>
-<p><br></p>`;
+        html = `<p><strong>🥗 Bowl Nutritivo de Avena y Frutos Rojos</strong></p><p><em>⏱️ 10 min | 🍽️ 1 porción | 🥑 Alta en fibra</em></p><p><strong>Ingredientes necesarios:</strong></p><ul><li>1/2 taza de hojuelas de avena integral</li><li>1 taza de leche vegetal o descremada</li><li>1 cucharada de semillas de chía</li><li>1/2 taza de frutos rojos frescos</li></ul><p><br></p>`;
         break;
       case 'cta':
-        html = `
-<div class="in-article-cta">
-  <h4>¿Buscas un plan adaptado a tu metabolismo?</h4>
-  <p>En Nutrilev evaluamos tu composición corporal con tecnología InBody 270 para acompañarte en tu transformación.</p>
-  <a href="/#booking">Agendar Consulta Personalizada</a>
-</div>
-<p><br></p>`;
+        html = `<blockquote><p><strong>🩺 ¿Buscas un plan adaptado a tu metabolismo?</strong></p><p>En Nutrilev evaluamos tu composición corporal con tecnología InBody 270 para acompañarte en tu transformación.</p><p><a href="/#booking">👉 Agendar Consulta Personalizada</a></p></blockquote><p><br></p>`;
         break;
     }
 

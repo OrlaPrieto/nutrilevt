@@ -183,3 +183,47 @@ export async function checkIsBlogAdmin(): Promise<boolean> {
   }
 }
 
+/**
+ * Transforma y asegura el renderizado de cajas editoriales (Consejos, Mitos, Recetas, CTAs)
+ */
+export function formatBlogContent(content: string): string {
+  if (!content) return '';
+
+  let formatted = content;
+
+  // 1. Transformar Consejos Clínicos (si vienen en texto plano <p> o <blockquote>)
+  formatted = formatted.replace(
+    /(?:<div class="clinical-tip-box">[\s\S]*?<\/div>|<p>\s*(?:<strong>)?💡\s*Consejo[^<]*?(?:<\/strong>)?<\/p>\s*<p>([\s\S]*?)<\/p>|<blockquote>\s*(?:<p>)?\s*(?:<strong>)?💡\s*Consejo[^<]*?(?:<\/strong>)?\s*(?:<br\/?>)?\s*([\s\S]*?)(?:<\/p>)?\s*<\/blockquote>)/gi,
+    (match, pText, quoteText) => {
+      if (match.includes('class="clinical-tip-box"')) return match;
+      const text = pText || quoteText || match.replace(/💡[^<]*/, '').replace(/<\/?(blockquote|p|strong|br)>/g, ' ').trim();
+      return `
+<div class="clinical-tip-box">
+  <div class="tip-header">💡 Consejo Clínico de la Nutrióloga</div>
+  <p>${text.trim()}</p>
+</div>`;
+    }
+  );
+
+  // 2. Transformar Mitos vs Realidad planos a cajas de contraste
+  formatted = formatted.replace(
+    /<p>\s*(?:<strong>)?❌\s*Mito[^:]*:(?:<\/strong>)?\s*([\s\S]*?)<\/p>\s*<p>\s*(?:<strong>)?✅\s*Realidad[^:]*:(?:<\/strong>)?\s*([\s\S]*?)<\/p>/gi,
+    (_match, mythText, realityText) => {
+      return `
+<div class="myth-reality-box">
+  <div class="myth-card">
+    <div class="card-title">❌ Mito Frecuente</div>
+    <p>${mythText.trim()}</p>
+  </div>
+  <div class="reality-card">
+    <div class="card-title">✅ Realidad Basada en Evidencia</div>
+    <p>${realityText.trim()}</p>
+  </div>
+</div>`;
+    }
+  );
+
+  return formatted;
+}
+
+
