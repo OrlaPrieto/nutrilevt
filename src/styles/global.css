@@ -324,3 +324,72 @@ article blockquote:not([class*="clinical-tip"]):not([class*="in-article-cta"]) {
   color: #334155;
   font-style: normal;
 }
+
+/* 6. Soporte completo para listas (viñetas y numeradas) dentro de artículos */
+article .prose ul:not(.recipe-checklist) {
+  list-style-type: disc !important;
+  padding-left: 1.75rem !important;
+  margin: 1.25rem 0 !important;
+}
+
+article .prose ol:not(.recipe-checklist) {
+  list-style-type: decimal !important;
+  padding-left: 1.75rem !important;
+  margin: 1.25rem 0 !important;
+}
+
+article .prose ol li[data-list="bullet"] {
+  list-style-type: disc !important;
+  display: list-item !important;
+}
+
+article .prose ol li[data-list="ordered"] {
+  list-style-type: decimal !important;
+  display: list-item !important;
+}
+
+article .prose li:not(.recipe-checklist li) {
+  margin: 0.4rem 0 !important;
+  color: #334155;
+  line-height: 1.75;
+  padding-left: 0.25rem;
+}
+
+article .prose li::marker {
+  color: var(--color-primary, #D81B60);
+  font-weight: 700;
+}
+
+article .prose li .ql-ui {
+  display: none !important;
+}
+
+/* Encabezados y párrafos dentro de artículos */
+article .prose h2,
+article .prose h3,
+article .prose h4 {
+  font-family: 'Playfair Display Variable', serif;
+  color: #0f172a;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+article .prose h2 {
+  font-size: 1.65rem;
+  margin-top: 2.25rem;
+  margin-bottom: 0.85rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+article .prose h3 {
+  font-size: 1.3rem;
+  margin-top: 1.75rem;
+  margin-bottom: 0.65rem;
+}
+
+article .prose p {
+  color: #334155;
+  line-height: 1.8;
+  margin-bottom: 1.15rem;
+}
