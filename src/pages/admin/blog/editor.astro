@@ -650,7 +650,12 @@ import Layout from "../../../layouts/Layout.astro";
     }
   }
 
+  let isEditorInitialized = false;
+
   function initEditor() {
+    if (isEditorInitialized) return;
+    isEditorInitialized = true;
+
     checkAuth();
     initQuillEditor();
 
@@ -673,9 +678,9 @@ import Layout from "../../../layouts/Layout.astro";
 
     // Image Upload triggers
     const uploadBox = document.getElementById('upload-box');
-    const fileInput = document.getElementById('image-file-input') as HTMLInputElement;
+    const fileInput = document.getElementById('cover-file-input') as HTMLInputElement;
+    const removeImgBtn = document.getElementById('remove-img-btn');
     const uploadStatus = document.getElementById('upload-status');
-    const removeImgBtn = document.getElementById('remove-image-btn');
 
     uploadBox?.addEventListener('click', () => fileInput?.click());
     removeImgBtn?.addEventListener('click', removeCoverImage);
@@ -696,12 +701,14 @@ import Layout from "../../../layouts/Layout.astro";
       setCoverImage(res.url);
     });
 
-    // Template buttons
+    // Template buttons (idempotent onclick handler to guarantee single execution)
     document.querySelectorAll('.tpl-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
+      (btn as HTMLElement).onclick = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
         const tpl = btn.getAttribute('data-template');
         if (tpl) insertTemplate(tpl);
-      });
+      };
     });
 
     // Save triggers
