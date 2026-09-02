@@ -192,8 +192,8 @@
   background-color: #ffffff;
   border: 1px solid #e2e8f0;
   border-radius: 1.5rem;
-  padding: 1.75rem;
-  margin: 2.25rem 0;
+  padding: 1.5rem;
+  margin: 1.25rem 0;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
 }
 
@@ -399,8 +399,8 @@ article .prose p {
   background: #ffffff;
   border: 1px solid #e2e8f0;
   border-radius: 1.5rem;
-  padding: 1.75rem 2rem;
-  margin: 2.5rem 0;
+  padding: 1.5rem;
+  margin: 1.25rem 0;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
 }
 
@@ -482,8 +482,8 @@ article .prose p {
   background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
   border: 1px solid #e2e8f0;
   border-radius: 1.5rem;
-  padding: 1.75rem 2rem;
-  margin: 2.5rem 0;
+  padding: 1.5rem;
+  margin: 1.25rem 0;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
 }
 
@@ -550,4 +550,17 @@ article .prose p {
   font-size: 1.05rem;
   font-weight: 700;
   color: #0f172a;
+}
+
+/* 9. Espaciado compacto cuando hay tarjetas consecutivas */
+.recipe-card + .recipe-steps-card,
+.recipe-steps-card + .nutrition-facts-card,
+.nutrition-facts-card + .clinical-tip-box,
+.recipe-card + .nutrition-facts-card,
+.recipe-steps-card + .clinical-tip-box,
+.clinical-tip-box + .in-article-cta,
+div[class*="-card"] + div[class*="-card"],
+div[class*="-box"] + div[class*="-card"],
+div[class*="-card"] + div[class*="-box"] {
+  margin-top: 1rem !important;
 }

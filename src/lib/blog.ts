@@ -473,6 +473,12 @@ export function formatBlogContent(content: string): string {
     }
   );
 
+  // 7. Eliminar párrafos vacíos o saltos innecesarios entre tarjetas visuales
+  formatted = formatted.replace(
+    /(<\/div>)\s*(?:<p[^>]*>(?:\s*<br\s*\/?>|\s|&nbsp;)*<\/p>\s*)+(<div class="[^"]*(?:recipe|nutrition|clinical|myth|cta|in-article)[^"]*")/gi,
+    '$1\n$2'
+  );
+
   return formatted;
 }
 
