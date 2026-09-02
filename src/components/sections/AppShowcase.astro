@@ -1,0 +1,331 @@
+---
+import { Image } from "astro:assets";
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+import dashboardImg from "../../assets/app/app-dashboard.png";
+import menuImg from "../../assets/app/app-menu.png";
+import inbodyImg from "../../assets/app/app-inbody.png";
+import historyImg from "../../assets/app/app-history.png";
+import resourcesImg from "../../assets/app/app-resources.png";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const langPath = lang === "es" ? "" : `/${lang}`;
+
+const tabs = [
+  {
+    id: "dashboard",
+    icon: "📅",
+    tag: t("app.tab1.tag"),
+    name: t("app.tab1.name"),
+    title: t("app.tab1.title"),
+    desc: t("app.tab1.desc"),
+    img: dashboardImg,
+    alt: "Clinical Nutrilev App - Dashboard y Próxima Consulta"
+  },
+  {
+    id: "menu",
+    icon: "🥗",
+    tag: t("app.tab2.tag"),
+    name: t("app.tab2.name"),
+    title: t("app.tab2.title"),
+    desc: t("app.tab2.desc"),
+    img: menuImg,
+    alt: "Clinical Nutrilev App - Menú del Día y Porciones"
+  },
+  {
+    id: "inbody",
+    icon: "📊",
+    tag: t("app.tab3.tag"),
+    name: t("app.tab3.name"),
+    title: t("app.tab3.title"),
+    desc: t("app.tab3.desc"),
+    img: inbodyImg,
+    alt: "Clinical Nutrilev App - Análisis InBody 270"
+  },
+  {
+    id: "history",
+    icon: "📈",
+    tag: t("app.tab4.tag"),
+    name: t("app.tab4.name"),
+    title: t("app.tab4.title"),
+    desc: t("app.tab4.desc"),
+    img: historyImg,
+    alt: "Clinical Nutrilev App - Evolución e Historial Médico"
+  },
+  {
+    id: "resources",
+    icon: "📚",
+    tag: t("app.tab5.tag"),
+    name: t("app.tab5.name"),
+    title: t("app.tab5.title"),
+    desc: t("app.tab5.desc"),
+    img: resourcesImg,
+    alt: "Clinical Nutrilev App - Documentos y Lista de Equivalentes"
+  }
+];
+---
+
+<section id="app" class="py-20 lg:py-28 bg-gradient-to-b from-white via-pink-50/25 to-slate-50 relative overflow-hidden">
+  <!-- Subtle Background decorative glows -->
+  <div class="absolute top-1/4 -left-40 w-96 h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none"></div>
+  <div class="absolute bottom-10 -right-40 w-96 h-96 bg-accent/5 rounded-full blur-3xl pointer-events-none"></div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <!-- Section Header -->
+    <div class="text-center max-w-3xl mx-auto mb-14 lg:mb-20">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-pink-100/80 border border-pink-200/80 text-primary text-xs sm:text-sm font-bold uppercase tracking-wider mb-4 shadow-sm">
+        <span>📱</span>
+        <span>{t("app.badge")}</span>
+      </div>
+      <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 leading-tight mb-5">
+        {t("app.title")}
+      </h2>
+      <p class="text-slate-600 text-base sm:text-lg leading-relaxed">
+        {t("app.subtitle")}
+      </p>
+    </div>
+
+    <!-- Main Showcase Layout: Tabs on Left, Interactive Phone Mockup on Right -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+      <!-- Left Column: Interactive Feature Tabs -->
+      <div class="lg:col-span-7 flex flex-col gap-3.5 order-2 lg:order-1" id="app-tabs-container">
+        {tabs.map((tab, index) => (
+          <button
+            type="button"
+            data-app-tab={tab.id}
+            data-index={index}
+            class={`app-tab-btn text-left p-4 sm:p-5 rounded-2xl sm:rounded-3xl border transition-all duration-300 flex items-start gap-4 sm:gap-5 cursor-pointer select-none group ${
+              index === 0
+                ? "active-tab bg-white border-primary/40 shadow-lg shadow-pink-500/5 ring-2 ring-primary/15"
+                : "bg-white/60 hover:bg-white border-slate-200/80 hover:border-pink-200 shadow-xs"
+            }`}
+          >
+            <!-- Tab Icon badge -->
+            <div class="tab-icon-box w-12 h-12 rounded-2xl flex items-center justify-center text-2xl flex-shrink-0 transition-transform duration-300 group-hover:scale-105 bg-slate-100/80 group-[.active-tab]:bg-gradient-to-tr group-[.active-tab]:from-primary group-[.active-tab]:to-accent group-[.active-tab]:text-white group-[.active-tab]:shadow-md group-[.active-tab]:shadow-pink-500/20">
+              <span class="group-[.active-tab]:scale-110 transition-transform">{tab.icon}</span>
+            </div>
+
+            <!-- Tab Content -->
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center gap-2.5 mb-1 flex-wrap">
+                <span class="text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-600 group-[.active-tab]:bg-pink-100 group-[.active-tab]:text-primary transition-colors">
+                  {tab.tag}
+                </span>
+                <span class="text-xs font-semibold text-slate-400">
+                  {tab.name}
+                </span>
+              </div>
+              <h3 class="text-base sm:text-lg font-bold text-slate-900 mb-1 group-[.active-tab]:text-primary transition-colors">
+                {tab.title}
+              </h3>
+              <p class="text-xs sm:text-sm text-slate-600 leading-relaxed line-clamp-2 sm:line-clamp-3">
+                {tab.desc}
+              </p>
+            </div>
+          </button>
+        ))}
+      </div>
+
+      <!-- Right Column: Smartphone Mockup Frame -->
+      <div class="lg:col-span-5 flex flex-col items-center justify-center order-1 lg:order-2">
+        <!-- Phone Device Frame -->
+        <div class="relative w-full max-w-[310px] sm:max-w-[340px]">
+          <!-- Phone outer shell with premium metallic / glass rim -->
+          <div class="relative rounded-[3rem] p-3.5 bg-slate-900 shadow-2xl shadow-slate-900/30 border-4 border-slate-800 ring-1 ring-white/20">
+            <!-- Dynamic Island / Speaker Pill -->
+            <div class="absolute top-6 left-1/2 -translate-x-1/2 w-24 h-4 bg-black rounded-full z-30 flex items-center justify-end px-2">
+              <div class="w-2.5 h-2.5 rounded-full bg-slate-800/80 border border-slate-700/50"></div>
+            </div>
+
+            <!-- Screen Viewport with smooth image switching -->
+            <div class="relative rounded-[2.3rem] overflow-hidden bg-white aspect-[9/18.5] shadow-inner">
+              {tabs.map((tab, index) => (
+                <div
+                  id={`app-screen-${tab.id}`}
+                  class={`app-screen-item absolute inset-0 w-full h-full transition-opacity duration-500 ease-in-out flex flex-col ${
+                    index === 0 ? "opacity-100 z-10" : "opacity-0 z-0 pointer-events-none"
+                  }`}
+                >
+                  <Image
+                    src={tab.img}
+                    alt={tab.alt}
+                    class="w-full h-full object-cover object-top"
+                    loading={index === 0 ? "eager" : "lazy"}
+                    width={410}
+                    height={820}
+                  />
+                </div>
+              ))}
+            </div>
+
+            <!-- Home indicator bar at bottom -->
+            <div class="absolute bottom-5 left-1/2 -translate-x-1/2 w-32 h-1 bg-white/40 rounded-full z-30"></div>
+          </div>
+
+          <!-- Decorative ambient background glow behind phone -->
+          <div class="absolute -inset-4 bg-gradient-to-tr from-primary/20 via-accent/20 to-pink-300/10 rounded-[3.5rem] blur-xl -z-10 opacity-70"></div>
+        </div>
+
+        <!-- Mobile Screen Dots Indicator -->
+        <div class="flex items-center justify-center gap-2 mt-6 lg:hidden" id="app-dots-container">
+          {tabs.map((tab, index) => (
+            <button
+              type="button"
+              data-dot-index={index}
+              aria-label={`Ver pantalla ${tab.name}`}
+              class={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+                index === 0 ? "w-7 bg-primary" : "bg-slate-300"
+              }`}
+            ></button>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Feature Benefits -->
+    <div class="mt-16 sm:mt-20 pt-10 border-t border-slate-200/70 grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+      <div class="bg-white/80 backdrop-blur-sm p-6 rounded-2xl border border-slate-200/70 shadow-xs flex items-start gap-4">
+        <div class="w-10 h-10 rounded-xl bg-pink-50 border border-pink-100 flex items-center justify-center text-xl flex-shrink-0 text-primary">
+          📲
+        </div>
+        <div>
+          <h4 class="font-bold text-slate-900 text-base mb-1">{t("app.feature1.title")}</h4>
+          <p class="text-sm text-slate-600 leading-relaxed">{t("app.feature1.desc")}</p>
+        </div>
+      </div>
+
+      <div class="bg-white/80 backdrop-blur-sm p-6 rounded-2xl border border-slate-200/70 shadow-xs flex items-start gap-4">
+        <div class="w-10 h-10 rounded-xl bg-pink-50 border border-pink-100 flex items-center justify-center text-xl flex-shrink-0 text-primary">
+          ⚡
+        </div>
+        <div>
+          <h4 class="font-bold text-slate-900 text-base mb-1">{t("app.feature2.title")}</h4>
+          <p class="text-sm text-slate-600 leading-relaxed">{t("app.feature2.desc")}</p>
+        </div>
+      </div>
+
+      <div class="bg-white/80 backdrop-blur-sm p-6 rounded-2xl border border-slate-200/70 shadow-xs flex items-start gap-4">
+        <div class="w-10 h-10 rounded-xl bg-pink-50 border border-pink-100 flex items-center justify-center text-xl flex-shrink-0 text-primary">
+          🔒
+        </div>
+        <div>
+          <h4 class="font-bold text-slate-900 text-base mb-1">{t("app.feature3.title")}</h4>
+          <p class="text-sm text-slate-600 leading-relaxed">{t("app.feature3.desc")}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA Section Banner to Book & Access -->
+    <div class="mt-12 text-center">
+      <a
+        href={`${langPath}/#booking`}
+        class="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-primary to-accent text-white font-bold text-base sm:text-lg shadow-lg shadow-pink-500/25 hover:scale-105 transition-transform"
+      >
+        <span>{t("app.cta")}</span>
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+  function initAppShowcase() {
+    const tabButtons = document.querySelectorAll<HTMLButtonElement>('.app-tab-btn');
+    const screenItems = document.querySelectorAll<HTMLElement>('.app-screen-item');
+    const dotButtons = document.querySelectorAll<HTMLButtonElement>('[data-dot-index]');
+    const container = document.getElementById('app');
+
+    if (!tabButtons.length || !screenItems.length) return;
+
+    let currentIndex = 0;
+    let autoplayTimer: number | null = null;
+    let isUserInteracting = false;
+
+    function setActiveTab(index: number) {
+      currentIndex = index;
+
+      // Update Tab Buttons
+      tabButtons.forEach((btn, i) => {
+        if (i === index) {
+          btn.classList.add('active-tab', 'bg-white', 'border-primary/40', 'shadow-lg', 'shadow-pink-500/5', 'ring-2', 'ring-primary/15');
+          btn.classList.remove('bg-white/60', 'border-slate-200/80', 'shadow-xs');
+        } else {
+          btn.classList.remove('active-tab', 'bg-white', 'border-primary/40', 'shadow-lg', 'shadow-pink-500/5', 'ring-2', 'ring-primary/15');
+          btn.classList.add('bg-white/60', 'border-slate-200/80', 'shadow-xs');
+        }
+      });
+
+      // Update Screens with crossfade
+      screenItems.forEach((screen, i) => {
+        if (i === index) {
+          screen.classList.remove('opacity-0', 'pointer-events-none', 'z-0');
+          screen.classList.add('opacity-100', 'z-10');
+        } else {
+          screen.classList.remove('opacity-100', 'z-10');
+          screen.classList.add('opacity-0', 'pointer-events-none', 'z-0');
+        }
+      });
+
+      // Update Dots
+      dotButtons.forEach((dot, i) => {
+        if (i === index) {
+          dot.className = 'w-7 h-2.5 rounded-full bg-primary transition-all duration-300';
+        } else {
+          dot.className = 'w-2.5 h-2.5 rounded-full bg-slate-300 transition-all duration-300';
+        }
+      });
+    }
+
+    // Attach Click Handlers
+    tabButtons.forEach((btn, i) => {
+      btn.onclick = () => {
+        isUserInteracting = true;
+        stopAutoplay();
+        setActiveTab(i);
+      };
+    });
+
+    dotButtons.forEach((dot, i) => {
+      dot.onclick = () => {
+        isUserInteracting = true;
+        stopAutoplay();
+        setActiveTab(i);
+      };
+    });
+
+    function startAutoplay() {
+      if (autoplayTimer) clearInterval(autoplayTimer);
+      autoplayTimer = window.setInterval(() => {
+        if (!isUserInteracting) {
+          const nextIndex = (currentIndex + 1) % tabButtons.length;
+          setActiveTab(nextIndex);
+        }
+      }, 4500);
+    }
+
+    function stopAutoplay() {
+      if (autoplayTimer) {
+        clearInterval(autoplayTimer);
+        autoplayTimer = null;
+      }
+    }
+
+    // Pause on hover
+    container?.addEventListener('mouseenter', () => {
+      isUserInteracting = true;
+      stopAutoplay();
+    });
+
+    container?.addEventListener('mouseleave', () => {
+      isUserInteracting = false;
+      startAutoplay();
+    });
+
+    startAutoplay();
+  }
+
+  document.addEventListener('astro:page-load', initAppShowcase);
+  initAppShowcase();
+</script>

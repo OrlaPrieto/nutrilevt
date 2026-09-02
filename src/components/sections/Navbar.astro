@@ -142,6 +142,12 @@ const langPath = lang === "es" ? "" : `/${lang}`;
           >
 
           <a
+            href={`${langPath}/#app`}
+            class="text-slate-600 hover:text-primary px-4 py-2 text-sm font-semibold transition-colors"
+            >{t("nav.app")}</a
+          >
+
+          <a
             href={`${langPath}/#clinical-history`}
             class="text-slate-600 hover:text-primary px-4 py-2 text-sm font-semibold transition-colors"
             >{t("nav.historial")}</a
@@ -195,6 +201,12 @@ const langPath = lang === "es" ? "" : `/${lang}`;
         href={`${langPath}/#consultation-modes`}
         class="mobile-link text-2xl font-bold text-slate-800 hover:text-primary transition-colors"
         >{t("nav.modalidades")}</a
+      >
+
+      <a
+        href={`${langPath}/#app`}
+        class="mobile-link text-2xl font-bold text-slate-800 hover:text-primary transition-colors"
+        >{t("nav.app")}</a
       >
 
       <a
