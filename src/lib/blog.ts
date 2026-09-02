@@ -227,12 +227,14 @@ export function formatBlogContent(content: string): string {
 
   // Caso C: En párrafos <p>
   formatted = formatted.replace(
-    /<p>\s*(?:<strong>)?\s*💡\s*(?:Consejo|Clinical)[^<]*?(?:<\/strong>)?\s*<\/p>\s*<p>([\s\S]*?)<\/p>/gi,
-    (_match, text) => {
+    /<p>\s*(?:<strong>)?\s*💡\s*(?:Consejo|Clinical)[^<]*?(?:<\/strong>)?\s*<\/p>((?:\s*<p[^>]*>(?!\s*(?:<strong>)?\s*[💡🩺🥗🥑❌✅])[\s\S]*?<\/p>)+)/gi,
+    (_match, paragraphs) => {
+      const pMatches = paragraphs.match(/<p[^>]*>([\s\S]*?)<\/p>/gi) || [];
+      const bodyHtml = pMatches.length > 0 ? pMatches.join('') : paragraphs;
       return `
 <div class="clinical-tip-box not-prose">
   <div class="tip-header">💡 Consejo Clínico de la Nutrióloga</div>
-  <p>${text.trim()}</p>
+  ${bodyHtml}
 </div>`;
     }
   );
@@ -256,11 +258,11 @@ export function formatBlogContent(content: string): string {
     }
   );
 
-  // 3. Transformar Tarjetas de Recetas (Título con emoji o Receta: + Meta opcional + Ingredientes + Lista <ol> o <ul>)
+  // 3. Transformar Tarjetas de Recetas (Título con emoji o Receta: + Meta opcional + Ingredientes + Lista <ol>/<ul> o <p> con viñetas)
   let recipeCounter = 0;
   formatted = formatted.replace(
-    /(?:<div class="recipe-card[\s\S]*?<\/div>|<(?:p|h[2-4])\s*[^>]*>\s*(?:<strong>)?\s*(?:[🥗🥑🍳🥣🥞🥘🍲🥪🥙]|(?:Receta|Recipe):?)[\s\S]*?<\/(?:p|h[2-4])>\s*(?:<p\s*[^>]*>\s*(?:<em>)?\s*([⏱️⏰🍴🍽️🥑][^<]+?)(?:<\/em>)?\s*<\/p>)?(?:\s*<(?:p|h[2-4])\s*[^>]*>\s*(?:<strong>)?\s*(?:Ingredientes[^<]*?|Ingredients[^<]*?)(?:<\/strong>)?\s*<\/(?:p|h[2-4])>)?\s*<(?:ul|ol)[^>]*>([\s\S]*?)<\/(?:ul|ol)>)/gi,
-    (match, metaStr, listItems) => {
+    /(?:<div class="recipe-card[\s\S]*?<\/div>|<(?:p|h[2-4])\s*[^>]*>\s*(?:<strong>)?\s*(?:[🥗🥑🍳🥣🥞🥘🍲🥪🥙]|(?:Receta|Recipe):?)[\s\S]*?<\/(?:p|h[2-4])>\s*(?:<p\s*[^>]*>\s*(?:<em>|<strong>)?\s*([⏱️⏰🍴🍽️🥑][^<]+?)(?:<\/em>|<\/strong>)?\s*<\/p>)?(?:\s*<(?:p|h[2-4])\s*[^>]*>\s*(?:<strong>)?\s*(?:Ingredientes[^<]*?|Ingredients[^<]*?)(?:<\/strong>)?\s*<\/(?:p|h[2-4])>)?(?:\s*<(?:ul|ol)[^>]*>([\s\S]*?)<\/(?:ul|ol)>|((?:\s*<p[^>]*>\s*(?:<strong>)?\s*[•\-\*]\s*[\s\S]*?<\/p>)+)))/gi,
+    (match, metaStr, listItems, pListItems) => {
       if (match.includes('class="recipe-card"')) return match;
       recipeCounter++;
       const currentRecipeId = recipeCounter;
@@ -276,24 +278,48 @@ export function formatBlogContent(content: string): string {
       }
 
       const checklistItems: string[] = [];
-      const liRegex = /<li[^>]*>([\s\S]*?)<\/li>/gi;
-      let liMatch;
       let itemIdx = 0;
-      while ((liMatch = liRegex.exec(listItems)) !== null) {
-        itemIdx++;
-        const ingredient = liMatch[1]
-          .replace(/<span class="ql-ui"[^>]*>.*?<\/span>/gi, '')
-          .replace(/<[^>]+>/gi, '')
-          .trim();
-        if (ingredient) {
-          checklistItems.push(`
-          <li>
-            <label class="flex items-center gap-2.5 cursor-pointer">
-              <input type="checkbox" id="rec-${currentRecipeId}-${itemIdx}" onchange="this.nextElementSibling.classList.toggle('line-through', this.checked); this.nextElementSibling.classList.toggle('opacity-60', this.checked);" />
-              <span>${ingredient}</span>
-            </label>
-          </li>
-        `);
+
+      if (listItems) {
+        const liRegex = /<li[^>]*>([\s\S]*?)<\/li>/gi;
+        let liMatch;
+        while ((liMatch = liRegex.exec(listItems)) !== null) {
+          itemIdx++;
+          const ingredient = liMatch[1]
+            .replace(/<span class="ql-ui"[^>]*>.*?<\/span>/gi, '')
+            .replace(/<[^>]+>/gi, '')
+            .replace(/^[•\-\*]\s*/, '')
+            .trim();
+          if (ingredient) {
+            checklistItems.push(`
+            <li>
+              <label class="flex items-center gap-2.5 cursor-pointer">
+                <input type="checkbox" id="rec-${currentRecipeId}-${itemIdx}" onchange="this.nextElementSibling.classList.toggle('line-through', this.checked); this.nextElementSibling.classList.toggle('opacity-60', this.checked);" />
+                <span>${ingredient}</span>
+              </label>
+            </li>
+          `);
+          }
+        }
+      } else if (pListItems) {
+        const pRegex = /<p[^>]*>([\s\S]*?)<\/p>/gi;
+        let pMatch;
+        while ((pMatch = pRegex.exec(pListItems)) !== null) {
+          itemIdx++;
+          const ingredient = pMatch[1]
+            .replace(/<[^>]+>/gi, '')
+            .replace(/^[•\-\*]\s*/, '')
+            .trim();
+          if (ingredient) {
+            checklistItems.push(`
+            <li>
+              <label class="flex items-center gap-2.5 cursor-pointer">
+                <input type="checkbox" id="rec-${currentRecipeId}-${itemIdx}" onchange="this.nextElementSibling.classList.toggle('line-through', this.checked); this.nextElementSibling.classList.toggle('opacity-60', this.checked);" />
+                <span>${ingredient}</span>
+              </label>
+            </li>
+          `);
+          }
         }
       }
 
