@@ -12,21 +12,17 @@ import FloatingBackButton from "../../../components/blog/FloatingBackButton.astr
 import { getPublishedPosts, getPostBySlug, getRelatedPosts, formatBlogDate, formatBlogContent } from "../../../lib/blog";
 import { useTranslations } from "../../../i18n/utils";
 
-export async function getStaticPaths() {
-  const posts = await getPublishedPosts('en');
-  return posts.map((post) => ({
-    params: { slug: post.slug },
-    props: { post }
-  }));
-}
+export const prerender = false;
 
 const lang = 'en';
 const t = useTranslations(lang);
 const { slug } = Astro.params;
-const { post: initialPost } = Astro.props;
 
-// Obtener siempre la versión más reciente desde Supabase (con fallback a initialPost de build)
-const post = (slug ? await getPostBySlug(slug, 'en') : null) || initialPost;
+if (!slug) {
+  return Astro.redirect('/en/blog');
+}
+
+const post = await getPostBySlug(slug, 'en');
 
 if (!post) {
   return Astro.redirect('/en/blog');

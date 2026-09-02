@@ -8,6 +8,8 @@ import BlogCTA from "../../../components/blog/BlogCTA.astro";
 import { getPublishedPosts } from "../../../lib/blog";
 import { useTranslations } from "../../../i18n/utils";
 
+export const prerender = false;
+
 const lang = 'en';
 const t = useTranslations(lang);
 const posts = await getPublishedPosts('en');
