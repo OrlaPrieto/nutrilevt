@@ -473,9 +473,132 @@ export function formatBlogContent(content: string): string {
     }
   );
 
-  // 7. Eliminar párrafos vacíos o saltos innecesarios entre tarjetas visuales
+  // 7. Transformar Plan de Acción con checklist interactivo
+  let planCounter = 0;
   formatted = formatted.replace(
-    /(<\/div>)\s*(?:<p[^>]*>(?:\s*<br\s*\/?>|\s|&nbsp;)*<\/p>\s*)+(<div class="[^"]*(?:recipe|nutrition|clinical|myth|cta|in-article)[^"]*")/gi,
+    /(?:<div class="action-plan-card[\s\S]*?<\/div>|<(?:p|h[2-4])\s*[^>]*>\s*(?:<strong>)?\s*(?:📋\s*(?:Plan de Acción|Hábitos|Guía de Acción)[^<]*?)(?:<\/strong>)?\s*<\/(?:p|h[2-4])>(?:\s*<(?:ul|ol)[^>]*>([\s\S]*?)<\/(?:ul|ol)>|((?:\s*<p[^>]*>\s*(?:<strong>)?\s*[•\-\*]?\s*[\s\S]*?<\/p>)+)))/gi,
+    (match, listContent, pContent) => {
+      if (match.includes('class="action-plan-card"')) return match;
+      planCounter++;
+      const currentPlanId = planCounter;
+
+      const titleMatch = match.match(/<(?:p|h[2-4])[^>]*>([\s\S]*?)<\/(?:p|h[2-4])>/i);
+      const title = titleMatch ? titleMatch[1].replace(/<[^>]+>/g, '').trim() : 'Plan de Acción';
+
+      const items: string[] = [];
+      let idx = 0;
+      const raw = listContent || pContent || '';
+      const regex = /<(?:li|p)[^>]*>([\s\S]*?)<\/(?:li|p)>/gi;
+      let m;
+      while ((m = regex.exec(raw)) !== null) {
+        idx++;
+        const habit = m[1].replace(/<[^>]+>/g, '').replace(/^[•\-\*]\s*/, '').trim();
+        if (habit) {
+          items.push(`
+            <li>
+              <label class="flex items-center gap-2.5 cursor-pointer">
+                <input type="checkbox" id="plan-${currentPlanId}-${idx}" onchange="this.nextElementSibling.classList.toggle('line-through', this.checked); this.nextElementSibling.classList.toggle('opacity-60', this.checked);" />
+                <span>${habit}</span>
+              </label>
+            </li>`);
+        }
+      }
+
+      if (items.length === 0) return match;
+
+      return `
+<div class="action-plan-card not-prose">
+  <div class="action-plan-header">
+    <span class="action-plan-badge">📋 Hábitos Clínicos</span>
+    <h3 class="action-plan-title">${title}</h3>
+  </div>
+  <ul class="recipe-checklist">
+    ${items.join('')}
+  </ul>
+</div>`;
+    }
+  );
+
+  // 8. Transformar Semáforo Nutricional
+  formatted = formatted.replace(
+    /(?:<div class="traffic-light-card[\s\S]*?<\/div>|<(?:p|h[2-4])\s*[^>]*>\s*(?:<strong>)?\s*(?:⚖️\s*(?:Semáforo Nutricional|Guía Práctica|Semáforo)[^<]*?)(?:<\/strong>)?\s*<\/(?:p|h[2-4])>([\s\S]*?)(?=<div|<h[2-4]|<blockquote|$))/gi,
+    (match, rawContent) => {
+      if (match.includes('class="traffic-light-card"')) return match;
+
+      const titleMatch = match.match(/<(?:p|h[2-4])[^>]*>([\s\S]*?)<\/(?:p|h[2-4])>/i);
+      const title = titleMatch ? titleMatch[1].replace(/<[^>]+>/g, '').trim() : 'Semáforo Nutricional';
+
+      const items: string[] = [];
+      const pRegex = /<p[^>]*>([\s\S]*?)<\/p>/gi;
+      let m;
+      while ((m = pRegex.exec(rawContent)) !== null) {
+        const text = m[1].trim();
+        if (text.includes('🟢')) {
+          items.push(`<div class="traffic-row traffic-green"><span class="traffic-dot">🟢</span><div>${text.replace(/🟢\s*/, '')}</div></div>`);
+        } else if (text.includes('🟡')) {
+          items.push(`<div class="traffic-row traffic-yellow"><span class="traffic-dot">🟡</span><div>${text.replace(/🟡\s*/, '')}</div></div>`);
+        } else if (text.includes('🔴')) {
+          items.push(`<div class="traffic-row traffic-red"><span class="traffic-dot">🔴</span><div>${text.replace(/🔴\s*/, '')}</div></div>`);
+        }
+      }
+
+      if (items.length === 0) return match;
+
+      return `
+<div class="traffic-light-card not-prose">
+  <div class="traffic-card-header">
+    <span class="traffic-card-badge">⚖️ Guía Visual de Elección</span>
+    <h3 class="traffic-card-title">${title}</h3>
+  </div>
+  <div class="traffic-rows-container">
+    ${items.join('')}
+  </div>
+</div>`;
+    }
+  );
+
+  // 9. Transformar Pregunta Frecuente en Consulta
+  formatted = formatted.replace(
+    /(?:<div class="faq-card[\s\S]*?<\/div>|<blockquote>\s*<p>\s*(?:<strong>)?\s*❓\s*(?:Pregunta|Duda)[^<]*?(?:<\/strong>)?\s*<\/p>([\s\S]*?)<\/blockquote>|<p>\s*(?:<strong>)?\s*❓\s*(?:Pregunta|Duda)[^<]*?(?:<\/strong>)?\s*<\/p>((?:\s*<p[^>]*>[\s\S]*?<\/p>)+))/gi,
+    (match, bqContent, pContent) => {
+      if (match.includes('class="faq-card"')) return match;
+      const content = bqContent || pContent || '';
+
+      return `
+<div class="faq-card not-prose">
+  <div class="faq-card-header">
+    <span class="faq-card-badge">❓ Pregunta en Consulta</span>
+  </div>
+  <div class="faq-card-body">
+    ${content}
+  </div>
+</div>`;
+    }
+  );
+
+  // 10. Transformar Ciencia en Corto
+  formatted = formatted.replace(
+    /(?:<div class="science-card[\s\S]*?<\/div>|<blockquote>\s*<p>\s*(?:<strong>)?\s*🧠\s*(?:Ciencia|Evidencia)[^<]*?(?:<\/strong>)?\s*<\/p>([\s\S]*?)<\/blockquote>|<p>\s*(?:<strong>)?\s*🧠\s*(?:Ciencia|Evidencia)[^<]*?(?:<\/strong>)?\s*<\/p>((?:\s*<p[^>]*>[\s\S]*?<\/p>)+))/gi,
+    (match, bqContent, pContent) => {
+      if (match.includes('class="science-card"')) return match;
+      const content = bqContent || pContent || '';
+
+      return `
+<div class="science-card not-prose">
+  <div class="science-card-header">
+    <span class="science-card-badge">🧠 Ciencia en Corto</span>
+    <div class="science-card-title">Evidencia Clínica</div>
+  </div>
+  <div class="science-card-body">
+    ${content}
+  </div>
+</div>`;
+    }
+  );
+
+  // 11. Eliminar párrafos vacíos o saltos innecesarios entre tarjetas visuales
+  formatted = formatted.replace(
+    /(<\/div>)\s*(?:<p[^>]*>(?:\s*<br\s*\/?>|\s|&nbsp;)*<\/p>\s*)+(<div class="[^"]*(?:recipe|nutrition|clinical|myth|cta|in-article|action-plan|traffic|faq|science)[^"]*")/gi,
     '$1\n$2'
   );
 

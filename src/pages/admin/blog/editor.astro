@@ -215,10 +215,31 @@ import Layout from "../../../layouts/Layout.astro";
             </button>
             <button
               type="button"
-              data-template="cta"
-              class="tpl-btn px-3 py-1.5 bg-blue-950/60 hover:bg-blue-900/80 text-blue-200 border border-blue-700/50 rounded-xl font-semibold transition-all flex items-center gap-1.5 active:scale-95 cursor-pointer"
+              data-template="plan"
+              class="tpl-btn px-3 py-1.5 bg-indigo-950/60 hover:bg-indigo-900/80 text-indigo-200 border border-indigo-700/50 rounded-xl font-semibold transition-all flex items-center gap-1.5 active:scale-95 cursor-pointer"
             >
-              <span>🩺 Banner Agendar Cita</span>
+              <span>📋 Plan de Acción</span>
+            </button>
+            <button
+              type="button"
+              data-template="traffic"
+              class="tpl-btn px-3 py-1.5 bg-teal-950/60 hover:bg-teal-900/80 text-teal-200 border border-teal-700/50 rounded-xl font-semibold transition-all flex items-center gap-1.5 active:scale-95 cursor-pointer"
+            >
+              <span>⚖️ Semáforo Nutricional</span>
+            </button>
+            <button
+              type="button"
+              data-template="faq"
+              class="tpl-btn px-3 py-1.5 bg-amber-950/60 hover:bg-amber-900/80 text-amber-200 border border-amber-700/50 rounded-xl font-semibold transition-all flex items-center gap-1.5 active:scale-95 cursor-pointer"
+            >
+              <span>❓ Pregunta en Consulta</span>
+            </button>
+            <button
+              type="button"
+              data-template="science"
+              class="tpl-btn px-3 py-1.5 bg-sky-950/60 hover:bg-sky-900/80 text-sky-200 border border-sky-700/50 rounded-xl font-semibold transition-all flex items-center gap-1.5 active:scale-95 cursor-pointer"
+            >
+              <span>🧠 Ciencia en Corto</span>
             </button>
           </div>
 
@@ -730,8 +751,17 @@ import Layout from "../../../layouts/Layout.astro";
       case 'recipe':
         html = `<p><strong>🥗 Pizza Saludable con Base de Pollo</strong></p><p><em>⏱️ 25 min | 🍽️ 2 a 3 porciones | 🥑 Alta en proteína | 🔥 308 kcal</em></p><p><strong>Ingredientes necesarios:</strong></p><ul><li>250 g de pechuga de pollo molida en crudo</li><li>1 huevo chico</li><li>2 cdas de queso parmesano rallado</li><li>1/2 cdita de ajo en polvo y orégano seco</li><li>Sal y pimienta negra al gusto</li><li>3 cdas de salsa para pizza o puré de tomate casero</li><li>60 g de queso mozzarella rallado</li><li>Toppings al gusto: champiñones, pimiento o albahaca</li></ul><p><br></p><p><strong>Paso a Paso</strong></p><ol><li>Mezclar la base: Integra en un tazón la pechuga molida con el huevo, parmesano y especias hasta obtener una mezcla maleable.</li><li>Formar la corteza: Extiende sobre papel encerado o molde de silicón formando un disco de unos 0.5 cm de grosor.</li><li>Precocinar la carne: Cocina en freidora de aire a 190 °C durante 8 a 10 minutos hasta dorar los bordes.</li><li>Agregar ingredientes: Distribuye la salsa de tomate, el queso rallado y tus toppings elegidos.</li><li>Gratinar: Hornea a 190 °C por 3 a 5 minutos adicionales hasta derretir el queso. Sirve caliente.</li></ol><p><br></p><p><strong>Información Nutricional (por porción)</strong></p><ul><li>Porciones que rinde: 3 porciones</li><li>Calorías: ~308 kcal</li><li>Proteína: ~41 g</li><li>Grasas totales: ~13 g (Saturadas: ~5.5 g)</li><li>Carbohidratos netos: ~3.5 g (Fibra: ~1 g)</li><li>Sodio: ~380 mg</li></ul><p><br></p>`;
         break;
-      case 'cta':
-        html = `<blockquote><p><strong>🩺 ¿Buscas un plan adaptado a tu metabolismo?</strong></p><p>En Nutrilev evaluamos tu composición corporal con tecnología InBody 270 para acompañarte en tu transformación.</p><p><a href="/#booking">👉 Agendar Consulta Personalizada</a></p></blockquote><p><br></p>`;
+      case 'plan':
+        html = `<p><strong>📋 Plan de Acción: Hábitos para Empezar Hoy</strong></p><ul><li>Incluye al menos 1 porción de verdura fresca en tu comida principal.</li><li>Camina de 10 a 15 minutos después de comer para favorecer tu respuesta glucémica.</li><li>Toma 500 ml de agua natural al despertar antes de tu primer café.</li><li>Prioriza entre 25 g y 30 g de proteína en tu desayuno para saciedad prolongada.</li></ul><p><br></p>`;
+        break;
+      case 'traffic':
+        html = `<p><strong>⚖️ Semáforo Nutricional: Guía Práctica de Elección</strong></p><p>🟢 <strong>Consumo diario recomendado:</strong> Alimentos naturales, verduras frescas de temporada, proteínas magras (pollo, pescado, huevo) y aceite de oliva virgen.</p><p>🟡 <strong>Consumo con moderación:</strong> Frutos secos en exceso, cortes grasos, quesos muy madurados y aderezos comerciales.</p><p>🔴 <strong>Evita o reduce al mínimo:</strong> Refrescos azucarados, harinas refinadas ultraprocesadas, embutidos altos en sodio y frituras.</p><p><br></p>`;
+        break;
+      case 'faq':
+        html = `<blockquote><p><strong>❓ Pregunta Frecuente en Consulta:</strong></p><p><em>“Nutrióloga, ¿es verdad que comer fruta por la noche me hará subir de peso?”</em></p><p><strong>Respuesta Clínica:</strong> No. El valor calórico de un alimento no cambia según la hora del día. Lo fundamental es la porción, la carga glucémica del día completo y acompañarla de proteína o grasa saludable para estabilizar la curva de glucosa.</p></blockquote><p><br></p>`;
+        break;
+      case 'science':
+        html = `<blockquote><p><strong>🧠 Ciencia en Corto: Evidencia Clínica</strong></p><p>Estudios clínicos demuestran que priorizar un desayuno con al menos 25g de proteína suprime de forma más prolongada los niveles de grelina (hormona del hambre), reduciendo hasta un 60% los antojos y picoteos nocturnos.</p></blockquote><p><br></p>`;
         break;
     }
 
