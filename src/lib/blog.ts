@@ -371,6 +371,108 @@ export function formatBlogContent(content: string): string {
     }
   );
 
+  // 5. Transformar Paso a Paso / Instrucciones a Tarjeta Visual
+  formatted = formatted.replace(
+    /(?:<div class="recipe-steps-card[\s\S]*?<\/div>|<(?:p|h[2-4])\s*[^>]*>\s*(?:<strong>)?\s*(?:👩‍🍳\s*)?(?:Paso a Paso|Preparación|Instrucciones|Modo de preparación|Steps)[^<]*?(?:<\/strong>)?\s*<\/(?:p|h[2-4])>(?:\s*<(?:ol|ul)[^>]*>([\s\S]*?)<\/(?:ol|ul)>|((?:\s*<p[^>]*>\s*(?:<strong>)?\s*\d+[\.\)]\s*[\s\S]*?<\/p>)+)))/gi,
+    (match, olList, pList) => {
+      if (match.includes('class="recipe-steps-card"')) return match;
+      const stepItems: string[] = [];
+      let idx = 0;
+
+      if (olList) {
+        const liRegex = /<li[^>]*>([\s\S]*?)<\/li>/gi;
+        let m;
+        while ((m = liRegex.exec(olList)) !== null) {
+          idx++;
+          const text = m[1].replace(/<span class="ql-ui"[^>]*>.*?<\/span>/gi, '').replace(/^\d+[\.\)]\s*/, '').trim();
+          stepItems.push(`
+            <div class="step-card-item">
+              <span class="step-num">${idx}</span>
+              <div class="step-body">${text}</div>
+            </div>`);
+        }
+      } else if (pList) {
+        const pRegex = /<p[^>]*>([\s\S]*?)<\/p>/gi;
+        let m;
+        while ((m = pRegex.exec(pList)) !== null) {
+          idx++;
+          const text = m[1].replace(/^\s*(?:<strong>)?\s*\d+[\.\)]\s*/i, '').trim();
+          stepItems.push(`
+            <div class="step-card-item">
+              <span class="step-num">${idx}</span>
+              <div class="step-body">${text}</div>
+            </div>`);
+        }
+      }
+
+      if (stepItems.length === 0) return match;
+
+      return `
+<div class="recipe-steps-card not-prose">
+  <div class="steps-card-header">
+    <span class="steps-card-badge">👩‍🍳 Método de Elaboración</span>
+    <h3 class="steps-card-title">Paso a Paso</h3>
+  </div>
+  <div class="steps-card-list">
+    ${stepItems.join('')}
+  </div>
+</div>`;
+    }
+  );
+
+  // 6. Transformar Información Nutricional a Tarjeta Visual
+  formatted = formatted.replace(
+    /(?:<div class="nutrition-facts-card[\s\S]*?<\/div>|<(?:p|h[2-4])\s*[^>]*>\s*(?:<strong>)?\s*(?:📊\s*)?(?:Información Nutricional|Valor Nutricional|Aporte Nutricional|Nutrition Facts)[^<]*?(?:<\/strong>)?\s*<\/(?:p|h[2-4])>(?:\s*<(?:ul|ol)[^>]*>([\s\S]*?)<\/(?:ul|ol)>|((?:\s*<p[^>]*>\s*(?:<strong>)?\s*[•\-\*]?\s*[\s\S]*?<\/p>)+)))/gi,
+    (match, listContent, pContent) => {
+      if (match.includes('class="nutrition-facts-card"')) return match;
+
+      let itemsRaw = listContent || pContent || '';
+      if (itemsRaw.includes('💡') || itemsRaw.includes('🩺')) {
+        const tipIndex = itemsRaw.search(/<p[^>]*>\s*(?:<strong>)?\s*[💡🩺]/i);
+        if (tipIndex > 0) itemsRaw = itemsRaw.slice(0, tipIndex);
+      }
+
+      const items: string[] = [];
+      const itemRegex = /<(?:li|p)[^>]*>([\s\S]*?)<\/(?:li|p)>/gi;
+      let m;
+      while ((m = itemRegex.exec(itemsRaw)) !== null) {
+        const cleaned = m[1].replace(/<[^>]+>/g, '').replace(/^[•\-\*]\s*/, '').trim();
+        if (!cleaned || cleaned.includes('💡') || cleaned.includes('🩺')) continue;
+        items.push(cleaned);
+      }
+
+      if (items.length === 0) return match;
+
+      const pillsHtml = items.map(it => {
+        const parts = it.split(/[:~]/);
+        if (parts.length >= 2) {
+          const label = parts[0].trim();
+          const value = parts.slice(1).join(':').trim();
+          return `
+            <div class="nutrition-stat-pill">
+              <span class="stat-name">${label}</span>
+              <span class="stat-value">${value}</span>
+            </div>`;
+        }
+        return `
+          <div class="nutrition-stat-pill">
+            <span class="stat-value">${it}</span>
+          </div>`;
+      }).join('');
+
+      return `
+<div class="nutrition-facts-card not-prose">
+  <div class="nutrition-card-header">
+    <span class="nutrition-card-badge">📊 Análisis Clínico</span>
+    <h3 class="nutrition-card-title">Información Nutricional (por porción)</h3>
+  </div>
+  <div class="nutrition-stats-grid">
+    ${pillsHtml}
+  </div>
+</div>`;
+    }
+  );
+
   return formatted;
 }
 
