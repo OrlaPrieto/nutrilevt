@@ -17,7 +17,7 @@ const formattedDate = formatBlogDate(post.created_at, lang);
 
 <article class="group bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col h-full transform hover:-translate-y-1">
   <!-- Cover Image -->
-  <a href={postUrl} class="relative block aspect-[16/10] overflow-hidden bg-pink-50/50">
+  <a href={postUrl} data-astro-prefetch="hover" class="relative block aspect-[16/10] overflow-hidden bg-pink-50/50">
     {post.cover_image ? (
       <img
         src={post.cover_image}
@@ -51,7 +51,7 @@ const formattedDate = formatBlogDate(post.created_at, lang);
 
     <!-- Title -->
     <h3 class="font-serif text-xl md:text-2xl font-bold text-slate-900 group-hover:text-primary transition-colors line-clamp-2 mb-3 leading-tight">
-      <a href={postUrl}>
+      <a href={postUrl} data-astro-prefetch="hover">
         {post.title}
       </a>
     </h3>
@@ -67,6 +67,7 @@ const formattedDate = formatBlogDate(post.created_at, lang);
     <div class="mt-auto pt-4 border-t border-slate-100 flex items-center justify-between">
       <a
         href={postUrl}
+        data-astro-prefetch="hover"
         class="inline-flex items-center gap-2 text-sm font-semibold text-primary group-hover:text-primary-hover transition-colors"
       >
         <span>{t('blog.readMore')}</span>

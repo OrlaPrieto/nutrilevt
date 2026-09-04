@@ -161,6 +161,7 @@ const langPath = lang === "es" ? "" : `/${lang}`;
 
           <a
             href={`${langPath}/blog`}
+            data-astro-prefetch="hover"
             class="text-slate-600 hover:text-primary px-4 py-2 text-sm font-semibold transition-colors"
             >{t("nav.blog")}</a
           >
@@ -223,6 +224,7 @@ const langPath = lang === "es" ? "" : `/${lang}`;
 
       <a
         href={`${langPath}/blog`}
+        data-astro-prefetch="hover"
         class="mobile-link text-2xl font-bold text-slate-800 hover:text-primary transition-colors"
         >{t("nav.blog")}</a
       >

@@ -56,10 +56,25 @@ export function formatBlogDate(dateStr: string, lang: 'es' | 'en' = 'es'): strin
   }).format(date);
 }
 
+interface CacheEntry<T> {
+  data: T;
+  timestamp: number;
+}
+
+const postsCache = new Map<string, CacheEntry<BlogPost[]>>();
+const postSlugCache = new Map<string, CacheEntry<BlogPost | null>>();
+const relatedPostsCache = new Map<string, CacheEntry<BlogPost[]>>();
+const CACHE_TTL_MS = 60 * 1000; // 60 segundos en memoria
+
 /**
  * Obtiene todos los artículos publicados para el portal público
  */
 export async function getPublishedPosts(lang: 'es' | 'en' = 'es'): Promise<BlogPost[]> {
+  const cached = postsCache.get(lang);
+  if (cached && Date.now() - cached.timestamp < CACHE_TTL_MS) {
+    return cached.data;
+  }
+
   try {
     const { data, error } = await supabase
       .from('posts')
@@ -70,13 +85,15 @@ export async function getPublishedPosts(lang: 'es' | 'en' = 'es'): Promise<BlogP
 
     if (error) {
       console.error('Error fetching published posts:', error.message);
-      return [];
+      return cached ? cached.data : [];
     }
 
-    return (data as BlogPost[]) || [];
+    const result = (data as BlogPost[]) || [];
+    postsCache.set(lang, { data: result, timestamp: Date.now() });
+    return result;
   } catch (err) {
     console.error('Unexpected error fetching posts:', err);
-    return [];
+    return cached ? cached.data : [];
   }
 }
 
@@ -84,6 +101,12 @@ export async function getPublishedPosts(lang: 'es' | 'en' = 'es'): Promise<BlogP
  * Obtiene un artículo publicado específico por su slug e idioma
  */
 export async function getPostBySlug(slug: string, lang: 'es' | 'en' = 'es'): Promise<BlogPost | null> {
+  const cacheKey = `${lang}:${slug}`;
+  const cached = postSlugCache.get(cacheKey);
+  if (cached && Date.now() - cached.timestamp < CACHE_TTL_MS) {
+    return cached.data;
+  }
+
   try {
     const { data, error } = await supabase
       .from('posts')
@@ -95,13 +118,15 @@ export async function getPostBySlug(slug: string, lang: 'es' | 'en' = 'es'): Pro
 
     if (error) {
       console.error(`Error fetching post with slug "${slug}":`, error.message);
-      return null;
+      return cached ? cached.data : null;
     }
 
-    return data as BlogPost | null;
+    const result = data as BlogPost | null;
+    postSlugCache.set(cacheKey, { data: result, timestamp: Date.now() });
+    return result;
   } catch (err) {
     console.error('Unexpected error fetching post by slug:', err);
-    return null;
+    return cached ? cached.data : null;
   }
 }
 
@@ -109,6 +134,12 @@ export async function getPostBySlug(slug: string, lang: 'es' | 'en' = 'es'): Pro
  * Obtiene los artículos más recientes excluyendo uno específico (para recomendaciones)
  */
 export async function getRelatedPosts(currentSlug: string, lang: 'es' | 'en' = 'es', limit: number = 2): Promise<BlogPost[]> {
+  const cacheKey = `${lang}:${currentSlug}:${limit}`;
+  const cached = relatedPostsCache.get(cacheKey);
+  if (cached && Date.now() - cached.timestamp < CACHE_TTL_MS) {
+    return cached.data;
+  }
+
   try {
     const { data, error } = await supabase
       .from('posts')
@@ -121,13 +152,15 @@ export async function getRelatedPosts(currentSlug: string, lang: 'es' | 'en' = '
 
     if (error) {
       console.error('Error fetching related posts:', error.message);
-      return [];
+      return cached ? cached.data : [];
     }
 
-    return (data as BlogPost[]) || [];
+    const result = (data as BlogPost[]) || [];
+    relatedPostsCache.set(cacheKey, { data: result, timestamp: Date.now() });
+    return result;
   } catch (err) {
     console.error('Unexpected error fetching related posts:', err);
-    return [];
+    return cached ? cached.data : [];
   }
 }
 

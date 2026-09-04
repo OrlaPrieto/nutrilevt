@@ -141,6 +141,9 @@ const gaId = import.meta.env.PUBLIC_GA_ID;
 
   </head>
   <body class="bg-bg-base text-slate-800 font-['Inter',sans-serif] overflow-x-hidden">
+    <!-- Top Navigation Loading Bar for View Transitions -->
+    <div id="nav-loading-bar" class="fixed top-0 left-0 h-[3px] w-0 bg-gradient-to-r from-primary via-accent to-pink-300 z-[9999] pointer-events-none transition-all duration-300 opacity-0 shadow-[0_0_10px_rgba(225,29,72,0.8)]"></div>
+
     <slot />
     {showFloatingCTA && <FloatingCTA />}
     <SpeedInsights />
@@ -170,8 +173,32 @@ const gaId = import.meta.env.PUBLIC_GA_ID;
         });
       };
 
+      // Visual feedback on link clicks during page transitions
+      const navLoadingBar = document.getElementById('nav-loading-bar');
+      
+      document.addEventListener('astro:before-preparation', () => {
+        if (navLoadingBar) {
+          navLoadingBar.style.transition = 'width 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.15s ease';
+          navLoadingBar.style.opacity = '1';
+          navLoadingBar.style.width = '75%';
+        }
+        document.body.style.cursor = 'progress';
+      });
+
       // Run on every view transition (including initial load)
       document.addEventListener('astro:page-load', () => {
+        document.body.style.cursor = 'default';
+        if (navLoadingBar) {
+          navLoadingBar.style.width = '100%';
+          setTimeout(() => {
+            navLoadingBar.style.opacity = '0';
+            setTimeout(() => {
+              navLoadingBar.style.transition = 'none';
+              navLoadingBar.style.width = '0%';
+            }, 200);
+          }, 150);
+        }
+
         if ('requestIdleCallback' in window) {
           window.requestIdleCallback(setupObserver);
         } else {
