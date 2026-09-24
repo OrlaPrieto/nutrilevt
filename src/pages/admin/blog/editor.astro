@@ -96,16 +96,29 @@ import Layout from "../../../layouts/Layout.astro";
 
           <div id="image-preview-container" class="hidden mb-4 relative rounded-2xl overflow-hidden max-h-72 bg-slate-900 border border-slate-700">
             <img id="image-preview" src="" alt="Preview" class="w-full h-full object-cover" />
-            <button
-              type="button"
-              id="remove-image-btn"
-              class="absolute top-3 right-3 bg-red-600 hover:bg-red-700 text-white p-2 rounded-full shadow-lg transition-all cursor-pointer"
-              title="Eliminar imagen"
-            >
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
+            <div class="absolute top-3 right-3 flex items-center gap-2">
+              <button
+                type="button"
+                id="change-image-btn"
+                class="bg-slate-800/90 hover:bg-slate-700 text-white px-3 py-1.5 rounded-xl text-xs font-semibold backdrop-blur-md shadow-lg transition-all flex items-center gap-1.5 cursor-pointer border border-slate-600"
+                title="Cambiar imagen de portada"
+              >
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+                <span>Cambiar</span>
+              </button>
+              <button
+                type="button"
+                id="remove-image-btn"
+                class="bg-red-600 hover:bg-red-700 text-white p-2 rounded-xl shadow-lg transition-all cursor-pointer"
+                title="Eliminar imagen"
+              >
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
           </div>
 
           <div id="upload-box" class="flex flex-col items-center justify-center p-6 border-2 border-dashed border-slate-700 hover:border-primary rounded-2xl bg-slate-900/60 transition-colors cursor-pointer text-center">
@@ -126,9 +139,13 @@ import Layout from "../../../layouts/Layout.astro";
             <p class="text-xs text-slate-400">
               Formatos JPG, PNG, WEBP (Hasta 5MB)
             </p>
-            <span id="upload-status" class="hidden text-xs text-primary font-semibold mt-2">
-              Subiendo imagen...
-            </span>
+            <div id="upload-status" class="hidden flex items-center gap-2 text-xs text-primary font-semibold mt-3">
+              <svg class="w-4 h-4 animate-spin text-primary" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+              <span>Subiendo imagen a la nube...</span>
+            </div>
           </div>
         </div>
 
@@ -265,6 +282,7 @@ import Layout from "../../../layouts/Layout.astro";
               </span>
               <span class="ql-formats">
                 <button class="ql-link" title="Insertar enlace"></button>
+                <button class="ql-image" title="Insertar imagen en el texto"></button>
                 <button class="ql-clean" title="Limpiar formato"></button>
               </span>
             </div>
@@ -441,6 +459,14 @@ import Layout from "../../../layouts/Layout.astro";
     color: #FF6B9B;
     text-decoration: underline;
   }
+
+  .quill-dark-wrapper .ql-editor img {
+    max-width: 100%;
+    border-radius: 12px;
+    margin: 1.25rem auto;
+    display: block;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  }
 </style>
 
 <script>
@@ -489,6 +515,49 @@ import Layout from "../../../layouts/Layout.astro";
       },
       placeholder: 'Escribe aquí tu artículo... Puedes escribir párrafos, seleccionar texto para hacerlo Título, negrita o crear listas de forma 100% visual.'
     });
+
+    // Custom image handler to upload images directly to Supabase Storage
+    const toolbar = quillInstance.getModule('toolbar');
+    if (toolbar) {
+      toolbar.addHandler('image', () => {
+        const input = document.createElement('input');
+        input.setAttribute('type', 'file');
+        input.setAttribute('accept', 'image/*');
+        input.click();
+
+        input.onchange = async () => {
+          const file = input.files?.[0];
+          if (!file) return;
+
+          if (file.size > 5 * 1024 * 1024) {
+            alert('La imagen excede el límite permitido de 5MB.');
+            return;
+          }
+
+          const alertBox = document.getElementById('editor-alert') as HTMLDivElement;
+          if (alertBox) {
+            alertBox.className = 'mb-6 p-4 rounded-2xl text-sm font-medium bg-blue-900/50 border border-blue-700/60 text-blue-200';
+            alertBox.innerText = 'Subiendo imagen al artículo...';
+            alertBox.classList.remove('hidden');
+          }
+
+          const res = await uploadBlogImage(file);
+
+          if (alertBox) alertBox.classList.add('hidden');
+
+          if (res.error || !res.url) {
+            alert(`Error al subir imagen: ${res.error || 'Error desconocido'}`);
+            return;
+          }
+
+          const range = quillInstance.getSelection(true);
+          const index = range ? range.index : quillInstance.getLength();
+          quillInstance.insertEmbed(index, 'image', res.url);
+          quillInstance.setSelection(index + 1);
+          updateReadingTime();
+        };
+      });
+    }
 
     quillInstance.on('text-change', () => {
       updateReadingTime();
@@ -552,11 +621,13 @@ import Layout from "../../../layouts/Layout.astro";
     const previewContainer = document.getElementById('image-preview-container');
     const previewImg = document.getElementById('image-preview') as HTMLImageElement;
     const coverInput = document.getElementById('cover-image-url') as HTMLInputElement;
+    const uploadBox = document.getElementById('upload-box');
 
     if (previewContainer && previewImg && coverInput) {
       coverInput.value = url;
       previewImg.src = url;
       previewContainer.classList.remove('hidden');
+      if (uploadBox) uploadBox.classList.add('hidden');
     }
   }
 
@@ -565,12 +636,14 @@ import Layout from "../../../layouts/Layout.astro";
     const previewImg = document.getElementById('image-preview') as HTMLImageElement;
     const coverInput = document.getElementById('cover-image-url') as HTMLInputElement;
     const fileInput = document.getElementById('image-file-input') as HTMLInputElement;
+    const uploadBox = document.getElementById('upload-box');
 
     if (previewContainer && previewImg && coverInput) {
       coverInput.value = '';
       previewImg.src = '';
       previewContainer.classList.add('hidden');
       if (fileInput) fileInput.value = '';
+      if (uploadBox) uploadBox.classList.remove('hidden');
     }
   }
 
@@ -699,16 +772,18 @@ import Layout from "../../../layouts/Layout.astro";
 
     // Image Upload triggers
     const uploadBox = document.getElementById('upload-box');
-    const fileInput = document.getElementById('cover-file-input') as HTMLInputElement;
-    const removeImgBtn = document.getElementById('remove-img-btn');
+    const fileInput = document.getElementById('image-file-input') as HTMLInputElement;
+    const removeImgBtn = document.getElementById('remove-image-btn');
+    const changeImgBtn = document.getElementById('change-image-btn');
     const uploadStatus = document.getElementById('upload-status');
 
-    uploadBox?.addEventListener('click', () => fileInput?.click());
-    removeImgBtn?.addEventListener('click', removeCoverImage);
-
-    fileInput?.addEventListener('change', async () => {
-      const file = fileInput.files?.[0];
+    async function processCoverUpload(file: File) {
       if (!file) return;
+
+      if (file.size > 5 * 1024 * 1024) {
+        alert('La imagen excede el límite permitido de 5MB.');
+        return;
+      }
 
       uploadStatus?.classList.remove('hidden');
       const res = await uploadBlogImage(file);
@@ -720,6 +795,48 @@ import Layout from "../../../layouts/Layout.astro";
       }
 
       setCoverImage(res.url);
+    }
+
+    uploadBox?.addEventListener('click', (e) => {
+      if (e.target !== fileInput) {
+        fileInput?.click();
+      }
+    });
+
+    fileInput?.addEventListener('click', (e) => {
+      e.stopPropagation();
+    });
+
+    changeImgBtn?.addEventListener('click', () => {
+      fileInput?.click();
+    });
+
+    removeImgBtn?.addEventListener('click', removeCoverImage);
+
+    fileInput?.addEventListener('change', async () => {
+      const file = fileInput.files?.[0];
+      if (file) {
+        await processCoverUpload(file);
+      }
+    });
+
+    // Drag and drop support
+    uploadBox?.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      uploadBox.classList.add('border-primary');
+    });
+
+    uploadBox?.addEventListener('dragleave', () => {
+      uploadBox.classList.remove('border-primary');
+    });
+
+    uploadBox?.addEventListener('drop', async (e) => {
+      e.preventDefault();
+      uploadBox.classList.remove('border-primary');
+      const file = e.dataTransfer?.files?.[0];
+      if (file && file.type.startsWith('image/')) {
+        await processCoverUpload(file);
+      }
     });
 
     // Template buttons (idempotent onclick handler to guarantee single execution)
