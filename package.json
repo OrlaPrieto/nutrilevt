@@ -23,5 +23,11 @@
   },
   "devDependencies": {
     "standard-version": "^9.5.0"
+  },
+  "overrides": {
+    "standard-version": {
+      "brace-expansion": "^1.1.22"
+    },
+    "path-to-regexp": "^6.3.0"
   }
 }
