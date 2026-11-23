@@ -265,54 +265,72 @@ function getCategoryContour(slug: string) {
       </div>
     </section>
 
-    <!-- BARRA DE CONTROLES, BÚSQUEDA Y FILTROS ESTILIZADA -->
-    <section class="border-y border-[#E6A635]/25 bg-[#2B050D]/90 backdrop-blur-xl sticky top-16 sm:top-20 z-20 shadow-xl">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <!-- BARRA DE CONTROLES, BÚSQUEDA Y FILTROS ESTILIZADA (COMPACTA Y ADAPTABLE EN MÓVIL) -->
+    <section class="border-y border-[#E6A635]/25 bg-[#2B050D]/95 backdrop-blur-xl sticky top-16 sm:top-20 z-20 shadow-xl transition-all">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5 sm:py-3.5">
         
-        <!-- Top Row: Search and Quick Filters -->
-        <div class="flex flex-col md:flex-row items-stretch md:items-center gap-3.5 mb-4">
-          <!-- Unique Bespoke Search Input with Gold Accent -->
+        <!-- Top Row: Compact Search + Mobile Filter Trigger + Desktop Quick Chips -->
+        <div class="flex items-center gap-2.5 sm:gap-3.5 mb-2.5">
+          <!-- Search Input with Clear Button -->
           <div class="relative flex-1 group">
-            <div class="absolute left-4 top-1/2 -translate-y-1/2 text-[#F5D061] pointer-events-none">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div class="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#F5D061] pointer-events-none">
+              <svg class="w-4.5 h-4.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
               </svg>
             </div>
             <input
               id="recipe-search"
               type="search"
-              placeholder="Buscar por receta o ingrediente (pavo, lomo, ponche, chía, cacao)..."
-              class="w-full h-12.5 pl-12 pr-12 bg-[#1E0308]/90 hover:bg-[#1E0308] focus:bg-[#20040A] border border-[#E6A635]/40 focus:border-[#F5D061] focus:ring-4 focus:ring-[#E6A635]/20 rounded-2xl text-sm text-white placeholder-amber-200/40 focus:outline-none transition-all shadow-inner"
+              placeholder="Buscar receta o ingrediente..."
+              class="w-full h-11 sm:h-12 pl-10 sm:pl-11 pr-10 bg-[#1E0308]/90 hover:bg-[#1E0308] focus:bg-[#20040A] border border-[#E6A635]/40 focus:border-[#F5D061] focus:ring-4 focus:ring-[#E6A635]/20 rounded-xl sm:rounded-2xl text-xs sm:text-sm text-white placeholder-amber-200/40 focus:outline-none transition-all shadow-inner"
             />
             <button
               id="clear-search-btn"
               type="button"
-              class="hidden absolute right-3.5 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-[#E6A635]/20 hover:bg-[#E6A635]/40 text-[#F5D061] flex items-center justify-center text-xs font-bold transition-colors cursor-pointer"
+              class="hidden absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 rounded-full bg-[#E6A635]/20 hover:bg-[#E6A635]/40 text-[#F5D061] flex items-center justify-center text-[10px] font-bold transition-colors cursor-pointer"
+              title="Borrar búsqueda"
             >
               ✕
             </button>
           </div>
 
-          <!-- Quick Tag Filter Chips -->
-          <div class="flex items-center gap-2 overflow-x-auto pb-1 md:pb-0 scrollbar-none">
+          <!-- Botón de Filtros Táctil (Móvil y Escritorio) -->
+          <button
+            id="btn-open-filters-drawer"
+            type="button"
+            class="h-11 sm:h-12 px-3.5 sm:px-4 bg-[#3B0B14] hover:bg-[#4E0E1C] active:scale-95 border border-[#E6A635]/40 hover:border-[#F5D061] text-amber-100 rounded-xl sm:rounded-2xl font-bold text-xs flex items-center gap-1.5 transition-all shadow-sm shrink-0 cursor-pointer"
+            title="Abrir filtros avanzados"
+          >
+            <svg class="w-4 h-4 text-[#F5D061]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path>
+            </svg>
+            <span class="hidden xs:inline">Filtros</span>
+            <span
+              id="filter-badge-count"
+              class="hidden px-1.5 py-0.2 rounded-full text-[10px] font-extrabold bg-[#E6A635] text-[#28050D] shadow-sm font-mono-recetario"
+            >0</span>
+          </button>
+
+          <!-- Desktop Quick Filter Chips (Solo pantallas medianas y grandes) -->
+          <div class="hidden md:flex items-center gap-2">
             <button
               type="button"
               data-filter-tag="Sin azúcar añadida"
-              class="filter-tag-btn text-xs font-semibold px-4 py-2.5 bg-[#3B0B14] border border-[#E6A635]/30 hover:border-[#F5D061] text-amber-100/90 rounded-full whitespace-nowrap cursor-pointer transition-all shadow-sm active:scale-95"
+              class="filter-tag-btn text-xs font-semibold px-3.5 py-2.5 bg-[#3B0B14] border border-[#E6A635]/30 hover:border-[#F5D061] text-amber-100/90 rounded-full whitespace-nowrap cursor-pointer transition-all shadow-sm active:scale-95"
             >
               Sin azúcar
             </button>
             <button
               type="button"
               data-filter-tag="Baja en grasa"
-              class="filter-tag-btn text-xs font-semibold px-4 py-2.5 bg-[#3B0B14] border border-[#E6A635]/30 hover:border-[#F5D061] text-amber-100/90 rounded-full whitespace-nowrap cursor-pointer transition-all shadow-sm active:scale-95"
+              class="filter-tag-btn text-xs font-semibold px-3.5 py-2.5 bg-[#3B0B14] border border-[#E6A635]/30 hover:border-[#F5D061] text-amber-100/90 rounded-full whitespace-nowrap cursor-pointer transition-all shadow-sm active:scale-95"
             >
               Baja en grasa
             </button>
             <button
               type="button"
               data-filter-tag="Rica en proteína"
-              class="filter-tag-btn text-xs font-semibold px-4 py-2.5 bg-[#3B0B14] border border-[#E6A635]/30 hover:border-[#F5D061] text-amber-100/90 rounded-full whitespace-nowrap cursor-pointer transition-all shadow-sm active:scale-95"
+              class="filter-tag-btn text-xs font-semibold px-3.5 py-2.5 bg-[#3B0B14] border border-[#E6A635]/30 hover:border-[#F5D061] text-amber-100/90 rounded-full whitespace-nowrap cursor-pointer transition-all shadow-sm active:scale-95"
             >
               Con proteína
             </button>
@@ -320,33 +338,33 @@ function getCategoryContour(slug: string) {
               type="button"
               data-filter-free="true"
               id="filter-free-btn"
-              class="text-xs font-bold px-4 py-2.5 bg-emerald-950/80 border border-emerald-400/60 text-emerald-300 hover:bg-emerald-600 hover:text-white rounded-full whitespace-nowrap cursor-pointer transition-all shadow-sm active:scale-95"
+              class="text-xs font-bold px-3.5 py-2.5 bg-emerald-950/80 border border-emerald-400/60 text-emerald-300 hover:bg-emerald-600 hover:text-white rounded-full whitespace-nowrap cursor-pointer transition-all shadow-sm active:scale-95"
             >
-              ★ Muestras Gratis [6]
+              ★ Muestras [6]
             </button>
           </div>
         </div>
 
-        <!-- Bottom Row: Category Tabs con estilo cinta festiva dorada -->
-        <div class="flex items-center justify-between gap-4 overflow-x-auto scrollbar-none pt-1">
-          <div class="flex items-center gap-2 flex-nowrap">
+        <!-- Bottom Row: Category Tabs con cinta única de scroll táctil fluido -->
+        <div class="flex items-center justify-between gap-3 overflow-x-auto scrollbar-none py-1 -mx-4 px-4 sm:mx-0 sm:px-0">
+          <div class="flex items-center gap-1.5 sm:gap-2 flex-nowrap">
             {categories.map((cat, idx) => (
               <button
                 type="button"
                 data-category={cat.slug}
-                class={`cat-tab-btn text-xs font-bold px-4 py-2 rounded-full whitespace-nowrap transition-all duration-300 cursor-pointer border ${
+                class={`cat-tab-btn text-xs font-bold px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full whitespace-nowrap transition-all duration-300 cursor-pointer border ${
                   idx === 0
                     ? "bg-gradient-to-r from-[#E6A635] to-[#D49522] text-[#28050D] font-extrabold shadow-[0_0_15px_rgba(230,166,53,0.4)] border-[#FFF0C0]"
                     : "bg-[#25040B]/80 text-amber-100/80 border-[#E6A635]/30 hover:border-[#F5D061] hover:text-[#F5D061] hover:bg-[#380A13]"
                 }`}
               >
                 <span>{cat.name}</span>
-                <span class="opacity-80 ml-1.5 text-[11px] font-mono-recetario">({cat.count})</span>
+                <span class="opacity-80 ml-1 text-[11px] font-mono-recetario">({cat.count})</span>
               </button>
             ))}
           </div>
 
-          <div class="hidden lg:flex items-center gap-3 text-xs text-amber-200/70 whitespace-nowrap">
+          <div class="hidden lg:flex items-center gap-3 text-xs text-amber-200/70 whitespace-nowrap shrink-0">
             <span>Visibles: <strong id="count-visible" class="text-[#F5D061] font-mono-recetario font-bold">185</strong> / 185</span>
             <button
               id="btn-vip-header-pill"
@@ -859,6 +877,157 @@ function getCategoryContour(slug: string) {
     </div>
   </div>
 
+  <!-- BOTTOM SHEET / DRAWER TÁCTIL DE FILTROS AVANZADOS (OPTIMIZADO PARA MÓVIL) -->
+  <div
+    id="filters-drawer-backdrop"
+    class="fixed inset-0 z-50 hidden bg-black/75 backdrop-blur-sm transition-opacity duration-300 font-sans-recetario"
+    role="dialog"
+    aria-modal="true"
+  >
+    <div
+      id="filters-drawer-panel"
+      class="fixed bottom-0 left-0 right-0 sm:bottom-6 sm:left-auto sm:right-auto sm:inset-x-0 sm:max-w-lg sm:mx-auto sm:rounded-[28px] sm:border-2 z-50 max-h-[85vh] bg-[#22040B] border-t-2 border-[#E6A635] rounded-t-[28px] shadow-[0_-15px_50px_rgba(0,0,0,0.85)] flex flex-col text-white transform translate-y-full transition-transform duration-300 ease-out"
+    >
+      <!-- Drag Handle / Visual pill -->
+      <div class="pt-3 pb-1 flex justify-center">
+        <div class="w-12 h-1.5 rounded-full bg-[#E6A635]/40"></div>
+      </div>
+
+      <!-- Drawer Header -->
+      <div class="px-5 py-3 border-b border-[#E6A635]/25 flex items-center justify-between">
+        <div class="flex items-center gap-2.5">
+          <span class="w-8 h-8 rounded-full bg-[#E6A635]/15 border border-[#E6A635]/40 text-[#F5D061] flex items-center justify-center text-sm shadow-inner">
+            🎛️
+          </span>
+          <div>
+            <h3 class="font-display text-lg font-bold text-white">Filtros de Recetas</h3>
+            <span class="text-[11px] text-amber-200/60 block font-light">Refina por calorías, nutrición y acceso</span>
+          </div>
+        </div>
+        <button
+          id="btn-close-filters-drawer"
+          type="button"
+          class="w-8 h-8 rounded-full bg-[#1E0308] hover:bg-[#E6A635] text-[#F5D061] hover:text-[#28050D] flex items-center justify-center font-bold text-xs transition-colors cursor-pointer"
+          title="Cerrar filtros"
+        >
+          ✕
+        </button>
+      </div>
+
+      <!-- Drawer Scrollable Content -->
+      <div class="px-5 py-4 overflow-y-auto space-y-6 flex-1 text-xs">
+        
+        <!-- Bloque 1: Tipo de Acceso -->
+        <div>
+          <span class="font-bold text-[11px] uppercase tracking-wider text-[#E6A635] block mb-2.5">
+            Tipo de Acceso
+          </span>
+          <button
+            type="button"
+            id="drawer-free-toggle"
+            class="w-full p-3 rounded-2xl border flex items-center justify-between transition-all bg-[#1E0308] border-[#E6A635]/30 text-amber-100 cursor-pointer active:scale-98"
+          >
+            <div class="flex items-center gap-2.5">
+              <span id="drawer-free-dot" class="w-2.5 h-2.5 rounded-full bg-slate-500"></span>
+              <span class="font-semibold text-xs text-left">Solo recetas de Muestra Libre</span>
+            </div>
+            <span class="text-[11px] font-mono-recetario px-2.5 py-0.5 rounded-full bg-emerald-950/90 text-emerald-300 border border-emerald-400/40">
+              6 recetas
+            </span>
+          </button>
+        </div>
+
+        <!-- Bloque 2: Rango Calórico -->
+        <div>
+          <div class="flex items-center justify-between mb-2.5">
+            <span class="font-bold text-[11px] uppercase tracking-wider text-[#E6A635]">
+              Calorías por porción
+            </span>
+            <span id="drawer-calories-label" class="text-[11px] text-[#F5D061] font-mono-recetario">
+              Todas
+            </span>
+          </div>
+          <div class="grid grid-cols-2 gap-2" id="drawer-calories-grid">
+            <button
+              type="button"
+              data-cal-range="all"
+              class="cal-pill-btn p-2.5 rounded-xl border text-center font-semibold transition-all bg-[#E6A635] text-[#28050D] border-[#FFF0C0] shadow-sm cursor-pointer"
+            >
+              Cualquier caloría
+            </button>
+            <button
+              type="button"
+              data-cal-range="under100"
+              class="cal-pill-btn p-2.5 rounded-xl border text-center font-semibold transition-all bg-[#1E0308] text-amber-100/90 border-[#E6A635]/30 hover:border-[#F5D061] cursor-pointer"
+            >
+              Menos de 100 kcal
+            </button>
+            <button
+              type="button"
+              data-cal-range="100to200"
+              class="cal-pill-btn p-2.5 rounded-xl border text-center font-semibold transition-all bg-[#1E0308] text-amber-100/90 border-[#E6A635]/30 hover:border-[#F5D061] cursor-pointer"
+            >
+              100 a 200 kcal
+            </button>
+            <button
+              type="button"
+              data-cal-range="over200"
+              class="cal-pill-btn p-2.5 rounded-xl border text-center font-semibold transition-all bg-[#1E0308] text-amber-100/90 border-[#E6A635]/30 hover:border-[#F5D061] cursor-pointer"
+            >
+              Más de 200 kcal
+            </button>
+          </div>
+        </div>
+
+        <!-- Bloque 3: Etiquetas Clínicas y Nutricionales -->
+        <div>
+          <span class="font-bold text-[11px] uppercase tracking-wider text-[#E6A635] block mb-2.5">
+            Etiquetas Clínicas y Saludables
+          </span>
+          <div class="flex flex-wrap gap-2" id="drawer-tags-container">
+            {[
+              "Sin azúcar añadida",
+              "Baja en grasa",
+              "Rica en proteína",
+              "Con fibra",
+              "Con fruta",
+              "Ligero",
+              "Receta casera"
+            ].map((tag) => (
+              <button
+                type="button"
+                data-drawer-tag={tag}
+                class="drawer-tag-btn px-3.5 py-2 rounded-full border border-[#E6A635]/30 bg-[#1E0308] text-amber-100/90 font-medium text-xs transition-all flex items-center gap-1.5 cursor-pointer active:scale-95"
+              >
+                <span class="tag-check opacity-0 font-bold text-[#F5D061]">✓</span>
+                <span>{tag}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Drawer Fixed Footer Action Bar -->
+      <div class="p-4 border-t border-[#E6A635]/25 bg-[#1A0307] flex items-center gap-3 shrink-0">
+        <button
+          type="button"
+          id="btn-drawer-reset"
+          class="py-3 px-4 rounded-xl border border-[#E6A635]/40 bg-[#1E0308] hover:bg-[#340811] text-amber-100 font-bold text-xs transition-colors cursor-pointer shrink-0"
+        >
+          Limpiar
+        </button>
+        <button
+          type="button"
+          id="btn-drawer-apply"
+          class="flex-1 py-3 px-5 rounded-xl bg-gradient-to-r from-[#E6A635] to-[#D49522] hover:from-[#F5D061] hover:to-[#E6A635] text-[#28050D] font-extrabold text-xs uppercase tracking-wider transition-all shadow-lg active:scale-98 cursor-pointer text-center"
+        >
+          Aplicar Filtros (<span id="drawer-apply-count">185</span>)
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- TOAST NOTIFICATION ESTILIZADO (SIN ALERT NATIVO) -->
   <div
     id="toast-notification"
@@ -907,6 +1076,7 @@ function getCategoryContour(slug: string) {
     let activeTag = null;
     let onlyFree = false;
     let searchQuery = "";
+    let calorieRange = "all";
 
     // Toast logic
     const toast = document.getElementById("toast-notification");
@@ -1148,6 +1318,101 @@ function getCategoryContour(slug: string) {
       document.body.style.overflow = "";
     }
 
+    // Filter Drawer Logic
+    const drawerBackdrop = document.getElementById("filters-drawer-backdrop");
+    const drawerPanel = document.getElementById("filters-drawer-panel");
+
+    function openFilterDrawer() {
+      if (!drawerBackdrop || !drawerPanel) return;
+      drawerBackdrop.classList.remove("hidden");
+      requestAnimationFrame(() => {
+        drawerPanel.classList.remove("translate-y-full");
+        drawerPanel.classList.add("translate-y-0");
+      });
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeFilterDrawer() {
+      if (!drawerBackdrop || !drawerPanel) return;
+      drawerPanel.classList.add("translate-y-full");
+      drawerPanel.classList.remove("translate-y-0");
+      setTimeout(() => {
+        drawerBackdrop.classList.add("hidden");
+        document.body.style.overflow = "";
+      }, 250);
+    }
+
+    // Synchronize visual buttons across desktop and mobile drawer
+    function syncTagButtons() {
+      const tagBtns = document.querySelectorAll(".filter-tag-btn");
+      tagBtns.forEach((btn) => {
+        const tag = btn.getAttribute("data-filter-tag");
+        if (activeTag === tag) {
+          btn.className = "filter-tag-btn text-xs font-bold px-3.5 py-2.5 bg-gradient-to-r from-[#E6A635] to-[#D49522] text-[#28050D] border border-[#FFF0C0] rounded-full whitespace-nowrap cursor-pointer transition-all shadow-md active:scale-95";
+        } else {
+          btn.className = "filter-tag-btn text-xs font-semibold px-3.5 py-2.5 bg-[#3B0B14] border border-[#E6A635]/30 hover:border-[#F5D061] text-amber-100/90 rounded-full whitespace-nowrap cursor-pointer transition-all shadow-sm active:scale-95";
+        }
+      });
+
+      const drawerTagBtns = document.querySelectorAll(".drawer-tag-btn");
+      drawerTagBtns.forEach((btn) => {
+        const tag = btn.getAttribute("data-drawer-tag");
+        const check = btn.querySelector(".tag-check");
+        if (activeTag === tag) {
+          btn.className = "drawer-tag-btn px-3.5 py-2 rounded-full border border-[#FFF0C0] bg-gradient-to-r from-[#E6A635] to-[#D49522] text-[#28050D] font-bold text-xs transition-all flex items-center gap-1.5 cursor-pointer shadow-md";
+          if (check) check.classList.remove("opacity-0");
+        } else {
+          btn.className = "drawer-tag-btn px-3.5 py-2 rounded-full border border-[#E6A635]/30 bg-[#1E0308] text-amber-100/90 font-medium text-xs transition-all flex items-center gap-1.5 cursor-pointer active:scale-95";
+          if (check) check.classList.add("opacity-0");
+        }
+      });
+    }
+
+    function syncFreeButtons() {
+      const freeBtn = document.getElementById("filter-free-btn");
+      if (freeBtn) {
+        if (onlyFree) {
+          freeBtn.className = "text-xs font-bold px-3.5 py-2.5 bg-emerald-500 text-white border border-emerald-300 rounded-full whitespace-nowrap cursor-pointer transition-all shadow-[0_0_15px_rgba(52,211,153,0.4)] active:scale-95";
+        } else {
+          freeBtn.className = "text-xs font-bold px-3.5 py-2.5 bg-emerald-950/80 border border-emerald-400/60 text-emerald-300 hover:bg-emerald-600 hover:text-white rounded-full whitespace-nowrap cursor-pointer transition-all shadow-sm active:scale-95";
+        }
+      }
+
+      const drawerFreeToggle = document.getElementById("drawer-free-toggle");
+      const drawerFreeDot = document.getElementById("drawer-free-dot");
+      if (drawerFreeToggle && drawerFreeDot) {
+        if (onlyFree) {
+          drawerFreeToggle.className = "w-full p-3 rounded-2xl border flex items-center justify-between transition-all bg-emerald-950/70 border-emerald-400/80 text-white cursor-pointer shadow-sm";
+          drawerFreeDot.className = "w-2.5 h-2.5 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]";
+        } else {
+          drawerFreeToggle.className = "w-full p-3 rounded-2xl border flex items-center justify-between transition-all bg-[#1E0308] border-[#E6A635]/30 text-amber-100 cursor-pointer active:scale-98";
+          drawerFreeDot.className = "w-2.5 h-2.5 rounded-full bg-slate-500";
+        }
+      }
+    }
+
+    function syncCalorieButtons() {
+      const calBtns = document.querySelectorAll(".cal-pill-btn");
+      const calLabel = document.getElementById("drawer-calories-label");
+      calBtns.forEach((btn) => {
+        const range = btn.getAttribute("data-cal-range");
+        if (calorieRange === range) {
+          btn.className = "cal-pill-btn p-2.5 rounded-xl border text-center font-bold text-xs transition-all bg-[#E6A635] text-[#28050D] border-[#FFF0C0] shadow-sm cursor-pointer";
+        } else {
+          btn.className = "cal-pill-btn p-2.5 rounded-xl border text-center font-semibold text-xs transition-all bg-[#1E0308] text-amber-100/90 border-[#E6A635]/30 hover:border-[#F5D061] cursor-pointer";
+        }
+      });
+      if (calLabel) {
+        const labels = {
+          all: "Todas",
+          under100: "< 100 kcal",
+          "100to200": "100–200 kcal",
+          over200: "> 200 kcal"
+        };
+        calLabel.textContent = labels[calorieRange] || "Todas";
+      }
+    }
+
     // Filter Logic
     function applyFilters() {
       const articles = document.querySelectorAll(".recipe-card");
@@ -1159,6 +1424,7 @@ function getCategoryContour(slug: string) {
         const title = card.getAttribute("data-title") || "";
         const ingredients = card.getAttribute("data-ingredients") || "";
         const isFree = card.getAttribute("data-free") === "true";
+        const cals = parseInt(card.getAttribute("data-calories") || "0", 10);
 
         // SI NO TIENE LA CONTRASEÑA (NO VIP), LAS RECETAS QUE NO SON DE MUESTRA QUEDAN COMPLETAMENTE OCULTAS
         if (!isVip && !isFree) {
@@ -1169,14 +1435,18 @@ function getCategoryContour(slug: string) {
         let matchesCat = activeCategory === "todas" || cat === activeCategory;
         let matchesTag = !activeTag || tags.includes(activeTag);
         let matchesFree = !onlyFree || isFree;
-        let matchesSearch = true;
+        let matchesCal = true;
+        if (calorieRange === "under100") matchesCal = cals > 0 && cals < 100;
+        else if (calorieRange === "100to200") matchesCal = cals >= 100 && cals <= 200;
+        else if (calorieRange === "over200") matchesCal = cals > 200;
 
+        let matchesSearch = true;
         if (searchQuery) {
           const q = searchQuery.toLowerCase();
           matchesSearch = title.includes(q) || ingredients.includes(q) || tags.toLowerCase().includes(q);
         }
 
-        if (matchesCat && matchesTag && matchesFree && matchesSearch) {
+        if (matchesCat && matchesTag && matchesFree && matchesCal && matchesSearch) {
           card.classList.remove("hidden");
           visibleCount++;
         } else {
@@ -1190,6 +1460,31 @@ function getCategoryContour(slug: string) {
           countSpan.textContent = visibleCount;
         } else {
           countSpan.textContent = `${visibleCount} de muestra (179 bloqueadas)`;
+        }
+      }
+
+      // Actualizar contador del botón del Drawer móvil
+      const drawerApplyCount = document.getElementById("drawer-apply-count");
+      if (drawerApplyCount) drawerApplyCount.textContent = visibleCount;
+
+      // Actualizar insignia numérica de filtros activos
+      let activeFiltersCount = 0;
+      if (activeCategory !== "todas") activeFiltersCount++;
+      if (activeTag) activeFiltersCount++;
+      if (onlyFree) activeFiltersCount++;
+      if (calorieRange !== "all") activeFiltersCount++;
+      if (searchQuery) activeFiltersCount++;
+
+      const badge = document.getElementById("filter-badge-count");
+      const btnOpenDrawer = document.getElementById("btn-open-filters-drawer");
+      if (badge) {
+        if (activeFiltersCount > 0) {
+          badge.textContent = activeFiltersCount;
+          badge.classList.remove("hidden");
+          btnOpenDrawer?.classList.add("border-[#F5D061]", "bg-[#4E0E1C]", "text-[#F5D061]", "shadow-[0_0_15px_rgba(230,166,53,0.3)]");
+        } else {
+          badge.classList.add("hidden");
+          btnOpenDrawer?.classList.remove("border-[#F5D061]", "bg-[#4E0E1C]", "text-[#F5D061]", "shadow-[0_0_15px_rgba(230,166,53,0.3)]");
         }
       }
 
@@ -1210,11 +1505,15 @@ function getCategoryContour(slug: string) {
       if (activeCategory !== "todas") activeFilters.push(`Categoría: ${activeCategory}`);
       if (activeTag) activeFilters.push(`Etiqueta: ${activeTag}`);
       if (onlyFree) activeFilters.push("Solo Muestras Gratis");
+      if (calorieRange !== "all") {
+        const calNames = { under100: "< 100 kcal", "100to200": "100–200 kcal", over200: "> 200 kcal" };
+        activeFilters.push(`Calorías: ${calNames[calorieRange] || calorieRange}`);
+      }
       if (searchQuery) activeFilters.push(`Búsqueda: "${searchQuery}"`);
 
       if (activeFilters.length > 0 && feedback && feedbackText) {
         feedback.classList.remove("hidden");
-        feedbackText.textContent = `FILTROS: ${activeFilters.join(" | ")} (${visibleCount} recetas)`;
+        feedbackText.textContent = `FILTROS ACTIVOS: ${activeFilters.join(" | ")} (${visibleCount} recetas)`;
       } else if (feedback) {
         feedback.classList.add("hidden");
       }
@@ -1277,14 +1576,82 @@ function getCategoryContour(slug: string) {
         if (e.target === recipeModal) closeRecipeModal();
       });
 
-      // Escape key to close modals
+      // Escape key to close modals and drawer
       document.addEventListener("keydown", (e) => {
         if (e.key === "Escape") {
           closeRecipeModal();
           closeUnlockModal();
           closeLogoutModal();
+          closeFilterDrawer();
         }
       });
+
+      // Filter Drawer triggers
+      document.getElementById("btn-open-filters-drawer")?.addEventListener("click", openFilterDrawer);
+      document.getElementById("btn-close-filters-drawer")?.addEventListener("click", closeFilterDrawer);
+      document.getElementById("btn-drawer-apply")?.addEventListener("click", closeFilterDrawer);
+      drawerBackdrop?.addEventListener("click", (e) => {
+        if (e.target === drawerBackdrop) closeFilterDrawer();
+      });
+
+      // Reset filters logic
+      const resetFilters = () => {
+        activeCategory = "todas";
+        activeTag = null;
+        onlyFree = false;
+        calorieRange = "all";
+        searchQuery = "";
+        if (searchInput) searchInput.value = "";
+        clearBtn?.classList.add("hidden");
+
+        catBtns.forEach((b, idx) => {
+          if (idx === 0) {
+            b.className = "cat-tab-btn text-xs font-bold px-4 py-2 rounded-full whitespace-nowrap transition-all duration-300 cursor-pointer border bg-gradient-to-r from-[#E6A635] to-[#D49522] text-[#28050D] font-extrabold shadow-[0_0_15px_rgba(230,166,53,0.4)] border-[#FFF0C0]";
+          } else {
+            b.className = "cat-tab-btn text-xs font-bold px-4 py-2 rounded-full whitespace-nowrap transition-all duration-300 cursor-pointer border bg-[#25040B]/80 text-amber-100/80 border-[#E6A635]/30 hover:border-[#F5D061] hover:text-[#F5D061] hover:bg-[#380A13]";
+          }
+        });
+
+        syncTagButtons();
+        syncFreeButtons();
+        syncCalorieButtons();
+        applyFilters();
+      };
+
+      // Calorie pills in Drawer
+      const calBtns = document.querySelectorAll(".cal-pill-btn");
+      calBtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          calorieRange = btn.getAttribute("data-cal-range") || "all";
+          syncCalorieButtons();
+          applyFilters();
+        });
+      });
+
+      // Drawer Tags
+      const drawerTagBtns = document.querySelectorAll(".drawer-tag-btn");
+      drawerTagBtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const tag = btn.getAttribute("data-drawer-tag");
+          if (activeTag === tag) {
+            activeTag = null;
+          } else {
+            activeTag = tag;
+          }
+          syncTagButtons();
+          applyFilters();
+        });
+      });
+
+      // Drawer Free Toggle
+      document.getElementById("drawer-free-toggle")?.addEventListener("click", () => {
+        onlyFree = !onlyFree;
+        syncFreeButtons();
+        applyFilters();
+      });
+
+      // Drawer Reset Button
+      document.getElementById("btn-drawer-reset")?.addEventListener("click", resetFilters);
 
       // Category tab buttons
       const catBtns = document.querySelectorAll(".cat-tab-btn");
@@ -1300,34 +1667,26 @@ function getCategoryContour(slug: string) {
         });
       });
 
-      // Tag filter buttons
+      // Tag filter buttons (Desktop quick chips)
       const tagBtns = document.querySelectorAll(".filter-tag-btn");
       tagBtns.forEach((btn) => {
         btn.addEventListener("click", () => {
           const tag = btn.getAttribute("data-filter-tag");
           if (activeTag === tag) {
             activeTag = null;
-            btn.className = "filter-tag-btn text-xs font-semibold px-4 py-2.5 bg-[#3B0B14] border border-[#E6A635]/30 hover:border-[#F5D061] text-amber-100/90 rounded-full whitespace-nowrap cursor-pointer transition-all shadow-sm active:scale-95";
           } else {
-            tagBtns.forEach((b) => {
-              b.className = "filter-tag-btn text-xs font-semibold px-4 py-2.5 bg-[#3B0B14] border border-[#E6A635]/30 hover:border-[#F5D061] text-amber-100/90 rounded-full whitespace-nowrap cursor-pointer transition-all shadow-sm active:scale-95";
-            });
             activeTag = tag;
-            btn.className = "filter-tag-btn text-xs font-bold px-4 py-2.5 bg-gradient-to-r from-[#E6A635] to-[#D49522] text-[#28050D] border border-[#FFF0C0] rounded-full whitespace-nowrap cursor-pointer transition-all shadow-md active:scale-95";
           }
+          syncTagButtons();
           applyFilters();
         });
       });
 
-      // Free filter button
+      // Free filter button (Desktop quick chip)
       const freeBtn = document.getElementById("filter-free-btn");
       freeBtn?.addEventListener("click", () => {
         onlyFree = !onlyFree;
-        if (onlyFree) {
-          freeBtn.className = "text-xs font-bold px-4 py-2.5 bg-emerald-500 text-white border border-emerald-300 rounded-full whitespace-nowrap cursor-pointer transition-all shadow-[0_0_15px_rgba(52,211,153,0.4)] active:scale-95";
-        } else {
-          freeBtn.className = "text-xs font-bold px-4 py-2.5 bg-emerald-950/80 border border-emerald-400/60 text-emerald-300 hover:bg-emerald-600 hover:text-white rounded-full whitespace-nowrap cursor-pointer transition-all shadow-sm active:scale-95";
-        }
+        syncFreeButtons();
         applyFilters();
       });
 
@@ -1350,34 +1709,6 @@ function getCategoryContour(slug: string) {
         clearBtn.classList.add("hidden");
         applyFilters();
       });
-
-      // Reset filters
-      const resetFilters = () => {
-        activeCategory = "todas";
-        activeTag = null;
-        onlyFree = false;
-        searchQuery = "";
-        if (searchInput) searchInput.value = "";
-        clearBtn?.classList.add("hidden");
-
-        catBtns.forEach((b, idx) => {
-          if (idx === 0) {
-            b.className = "cat-tab-btn text-xs font-bold px-4 py-2 rounded-full whitespace-nowrap transition-all duration-300 cursor-pointer border bg-gradient-to-r from-[#E6A635] to-[#D49522] text-[#28050D] font-extrabold shadow-[0_0_15px_rgba(230,166,53,0.4)] border-[#FFF0C0]";
-          } else {
-            b.className = "cat-tab-btn text-xs font-bold px-4 py-2 rounded-full whitespace-nowrap transition-all duration-300 cursor-pointer border bg-[#25040B]/80 text-amber-100/80 border-[#E6A635]/30 hover:border-[#F5D061] hover:text-[#F5D061] hover:bg-[#380A13]";
-          }
-        });
-
-        tagBtns.forEach((b) => {
-          b.className = "filter-tag-btn text-xs font-semibold px-4 py-2.5 bg-[#3B0B14] border border-[#E6A635]/30 hover:border-[#F5D061] text-amber-100/90 rounded-full whitespace-nowrap cursor-pointer transition-all shadow-sm active:scale-95";
-        });
-
-        if (freeBtn) {
-          freeBtn.className = "text-xs font-bold px-4 py-2.5 bg-emerald-950/80 border border-emerald-400/60 text-emerald-300 hover:bg-emerald-600 hover:text-white rounded-full whitespace-nowrap cursor-pointer transition-all shadow-sm active:scale-95";
-        }
-
-        applyFilters();
-      };
 
       document.getElementById("reset-all-filters")?.addEventListener("click", resetFilters);
       document.getElementById("btn-reset-empty")?.addEventListener("click", resetFilters);
