@@ -23,3 +23,8 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 .vercel
+
+# private assets & recipe book raw files
+private/
+*.pdf
+
