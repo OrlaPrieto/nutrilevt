@@ -448,12 +448,6 @@ function getCategoryContour(slug: string) {
                         </span>
                       )}
                     </div>
-
-                    <div class="absolute top-3 right-3 z-10">
-                      <span class="font-mono-recetario text-[11px] font-bold px-2.5 py-1 rounded-full bg-black/70 backdrop-blur-md text-[#F5D061] border border-[#E6A635]/40">
-                        P. {String(recipe.pdfPage).padStart(3, '0')}
-                      </span>
-                    </div>
                   </div>
                 </div>
 
@@ -462,8 +456,8 @@ function getCategoryContour(slug: string) {
                   <span class="font-bold text-[11px] uppercase tracking-widest text-[#E6A635]">
                     FICHA DE RECETA
                   </span>
-                  <span class="text-[11px] text-amber-200/60 font-mono-recetario">
-                    Diapositiva {recipe.pdfPage}
+                  <span class="text-[11px] text-[#F5D061]/80 font-mono-recetario uppercase tracking-wider font-semibold">
+                    {recipe.category}
                   </span>
                 </div>
 
@@ -1060,7 +1054,7 @@ function getCategoryContour(slug: string) {
       const modalCat = document.getElementById("modal-category");
       modalCat.textContent = recipe.category;
 
-      document.getElementById("modal-page").textContent = "Diapositiva " + String(recipe.pdfPage).padStart(3, '0');
+      document.getElementById("modal-page").textContent = "Receta #" + String(recipe.number).padStart(3, '0');
       document.getElementById("modal-title").textContent = recipe.title;
       document.getElementById("modal-calories").textContent = (recipe.calories || "150");
       document.getElementById("modal-time").textContent = recipe.prepTime.replace(/prep\.? estimada|preparaci[oó]n/i, "").trim();

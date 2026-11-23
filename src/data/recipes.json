@@ -175,7 +175,12 @@
       "carbs": "17 g",
       "fiber": "1 g"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Frutas",
+        "count": "1"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/003-limonada-de-pina-con-un-toque-de-menta.webp"
   },
@@ -223,7 +228,12 @@
       "carbs": "10 g",
       "fiber": "1.5 g"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Frutas",
+        "count": "1"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/004-refresco-de-fresa.webp"
   },
@@ -283,7 +293,12 @@
       "carbs": "16 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Cereales Sin Grasa",
+        "count": "20"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/005-horchata.webp"
   },
@@ -338,7 +353,20 @@
       "carbs": "22 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Grasas",
+        "count": "5"
+      },
+      {
+        "group": "Lácteos",
+        "count": "240"
+      },
+      {
+        "group": "Verduras",
+        "count": "5"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/006-cacao-con-licor-de-jengibre.webp"
   },
@@ -544,7 +572,12 @@
       "carbs": "2 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Grasas",
+        "count": "3"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/010-bebida-caliente-de-almendra-y-canela.webp"
   },
@@ -647,7 +680,20 @@
       "carbs": "25.8 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Lácteos",
+        "count": "1"
+      },
+      {
+        "group": "Cereales",
+        "count": "1"
+      },
+      {
+        "group": "Grasas",
+        "count": "1"
+      }
+    ],
     "tip": "66 Grupo de alimentos Equivalentes Lácteos 1 Cereales 1 Grasas 1 Alimentos de origen animal Incluido en lácteo OBSERVACIÓN •No ideal como bebida libre. •En resistencia a la insulina u obesidad, se recomienda: • Tomarla acompañada de proteína extra o • Usar leche light o vegetal sin azúcar para reducir equivalentes. •No sustituye agua natural. Sistema Mexicano de Alimentos Equivalentes (SMAE)",
     "image": "/images/recetas/012-leche-con-cocoa.webp"
   },
@@ -697,7 +743,12 @@
       "carbs": "5 g",
       "fiber": "0.5 g"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Azúcares",
+        "count": "4"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/013-agua-de-tamarindo.webp"
   },
@@ -745,7 +796,12 @@
       "carbs": "13 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Lácteos",
+        "count": "250"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/014-leche-con-matcha.webp"
   },
@@ -803,7 +859,20 @@
       "carbs": "8 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Cereales Sin Grasa",
+        "count": "15"
+      },
+      {
+        "group": "Grasas",
+        "count": "5"
+      },
+      {
+        "group": "Frutas",
+        "count": "60"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/015-limonada-de-frambuesas.webp"
   },
@@ -852,7 +921,24 @@
       "carbs": "5 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Grasas",
+        "count": "1"
+      },
+      {
+        "group": "Cereales Sin Grasa",
+        "count": "1"
+      },
+      {
+        "group": "Frutas",
+        "count": "1"
+      },
+      {
+        "group": "Verduras",
+        "count": "1"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/016-leche-de-coco-sin-azucar.webp"
   },
@@ -964,7 +1050,28 @@
       "carbs": "6 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Cereales Sin Grasa",
+        "count": "1"
+      },
+      {
+        "group": "Grasas",
+        "count": "1"
+      },
+      {
+        "group": "Verduras",
+        "count": "1"
+      },
+      {
+        "group": "Frutas",
+        "count": "1"
+      },
+      {
+        "group": "Lácteos",
+        "count": "125"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/018-ponche-de-huevo.webp"
   },
@@ -1021,7 +1128,24 @@
       "carbs": "22.5 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Azúcares",
+        "count": "1"
+      },
+      {
+        "group": "Frutas",
+        "count": "1"
+      },
+      {
+        "group": "Verduras",
+        "count": "1"
+      },
+      {
+        "group": "Grasas",
+        "count": "1"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/019-bebida-espumosa-de-pera.webp"
   },
@@ -1071,9 +1195,14 @@
       "protein": "0.5 g",
       "fats": "0 g",
       "carbs": "6 g",
-      "fiber": "N/D"
+      "fiber": "0.5 g"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Frutas",
+        "count": "0.5"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/020-agua-de-sandia.webp"
   },
@@ -1125,9 +1254,14 @@
       "protein": "1.5 g",
       "fats": "0 g",
       "carbs": "34 g",
-      "fiber": "N/D"
+      "fiber": "0 g"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Azúcares Sin Grasa",
+        "count": "1"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/021-infusion-de-naranja-menta-canela-y-miel.webp"
   },
@@ -1179,7 +1313,24 @@
       "carbs": "58 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Azúcares",
+        "count": "1"
+      },
+      {
+        "group": "Grasas",
+        "count": "1"
+      },
+      {
+        "group": "Frutas",
+        "count": "1"
+      },
+      {
+        "group": "Verduras",
+        "count": "1"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/022-te-selecto-de-taro.webp"
   },
@@ -1232,9 +1383,14 @@
       "protein": "0.2 g",
       "fats": "0 g",
       "carbs": "6 g",
-      "fiber": "N/D"
+      "fiber": "1 g"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Frutas",
+        "count": "1"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/023-sangria.webp"
   },
@@ -1285,7 +1441,20 @@
       "carbs": "4 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Frutas",
+        "count": "1"
+      },
+      {
+        "group": "Grasas",
+        "count": "1"
+      },
+      {
+        "group": "Verduras",
+        "count": "1"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/024-leche-de-almendras-sin-azucar.webp"
   },
@@ -1331,7 +1500,24 @@
       "carbs": "49 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Frutas",
+        "count": "1"
+      },
+      {
+        "group": "Grasas",
+        "count": "1"
+      },
+      {
+        "group": "Verduras",
+        "count": "1"
+      },
+      {
+        "group": "Lácteos",
+        "count": "0.75"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/025-smoothie-de-mantequilla-de-cacahuate-con-platano-y-linaza.webp"
   },
@@ -1378,7 +1564,20 @@
       "carbs": "26 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Frutas",
+        "count": "1"
+      },
+      {
+        "group": "Grasas",
+        "count": "1"
+      },
+      {
+        "group": "Verduras",
+        "count": "1"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/026-jugo-verde.webp"
   },
@@ -1422,7 +1621,20 @@
       "carbs": "59 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Frutas",
+        "count": "1"
+      },
+      {
+        "group": "Grasas",
+        "count": "1"
+      },
+      {
+        "group": "Verduras",
+        "count": "1"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/027-frappe-para-el-sistema-inmune.webp"
   },
@@ -1468,7 +1680,20 @@
       "carbs": "58 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Frutas",
+        "count": "1"
+      },
+      {
+        "group": "Grasas",
+        "count": "1"
+      },
+      {
+        "group": "Verduras",
+        "count": "1"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/028-jugo-super-vitaminico.webp"
   },
@@ -1516,7 +1741,20 @@
       "carbs": "17 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Frutas",
+        "count": "1"
+      },
+      {
+        "group": "Grasas",
+        "count": "1"
+      },
+      {
+        "group": "Verduras",
+        "count": "1"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/029-jugo-antiviral.webp"
   },
@@ -1565,9 +1803,14 @@
       "protein": "0 g",
       "fats": "0 g",
       "carbs": "9 g",
-      "fiber": "N/D"
+      "fiber": "0.5 g"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Azúcares Sin Grasa",
+        "count": "0.5"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/030-te-antigripal.webp"
   },
@@ -2243,7 +2486,24 @@
       "carbs": "19 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Grasas",
+        "count": "9"
+      },
+      {
+        "group": "Grasas",
+        "count": "9"
+      },
+      {
+        "group": "Grasas",
+        "count": "9"
+      },
+      {
+        "group": "Grasas",
+        "count": "9"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/042-ensalada-campera.webp"
   },
@@ -2300,7 +2560,24 @@
       "carbs": "16 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Grasas",
+        "count": "16"
+      },
+      {
+        "group": "Grasas",
+        "count": "16"
+      },
+      {
+        "group": "Grasas",
+        "count": "16"
+      },
+      {
+        "group": "Grasas",
+        "count": "16"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/043-ensalada-de-papas-y-ejotes-con-vinagreta-de-curry-amarillo.webp"
   },
@@ -2358,7 +2635,24 @@
       "carbs": "14.7 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Grasas",
+        "count": "12.2"
+      },
+      {
+        "group": "Grasas",
+        "count": "12.2"
+      },
+      {
+        "group": "Grasas",
+        "count": "12.2"
+      },
+      {
+        "group": "Grasas",
+        "count": "12.2"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/044-ensalada-waldorf.webp"
   },
@@ -2425,7 +2719,24 @@
       "carbs": "15 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Grasas",
+        "count": "17"
+      },
+      {
+        "group": "Grasas",
+        "count": "17"
+      },
+      {
+        "group": "Grasas",
+        "count": "17"
+      },
+      {
+        "group": "Grasas",
+        "count": "17"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/045-ensalada-de-hongos-con-lentejas.webp"
   },
@@ -2483,7 +2794,24 @@
       "carbs": "20 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Grasas",
+        "count": "30"
+      },
+      {
+        "group": "Grasas",
+        "count": "30"
+      },
+      {
+        "group": "Grasas",
+        "count": "30"
+      },
+      {
+        "group": "Grasas",
+        "count": "30"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/046-ensalada-de-espinacas-durazno-y-ciruela.webp"
   },
@@ -2542,7 +2870,24 @@
       "carbs": "17 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Grasas",
+        "count": "20"
+      },
+      {
+        "group": "Grasas",
+        "count": "20"
+      },
+      {
+        "group": "Grasas",
+        "count": "20"
+      },
+      {
+        "group": "Grasas",
+        "count": "20"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/047-ensalada-de-espinaca-queso-de-cabra-y-vinagreta-de-ajonjoli.webp"
   },
@@ -2604,7 +2949,24 @@
       "carbs": "20 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Grasas",
+        "count": "5"
+      },
+      {
+        "group": "Grasas",
+        "count": "5"
+      },
+      {
+        "group": "Grasas",
+        "count": "5"
+      },
+      {
+        "group": "Grasas",
+        "count": "5"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/048-tabla-de-vegetales.webp"
   },
@@ -2652,7 +3014,24 @@
       "carbs": "12 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Grasas",
+        "count": "14"
+      },
+      {
+        "group": "Grasas",
+        "count": "14"
+      },
+      {
+        "group": "Grasas",
+        "count": "14"
+      },
+      {
+        "group": "Grasas",
+        "count": "14"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/049-ensalada-de-arrachera.webp"
   },
@@ -2699,7 +3078,24 @@
       "carbs": "9.5 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Grasas",
+        "count": "0.5"
+      },
+      {
+        "group": "Grasas",
+        "count": "0.5"
+      },
+      {
+        "group": "Grasas",
+        "count": "0.5"
+      },
+      {
+        "group": "Grasas",
+        "count": "0.5"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/050-ensalada-citrica.webp"
   },
@@ -2762,7 +3158,24 @@
       "carbs": "5 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Grasas",
+        "count": "7"
+      },
+      {
+        "group": "Grasas",
+        "count": "7"
+      },
+      {
+        "group": "Grasas",
+        "count": "7"
+      },
+      {
+        "group": "Grasas",
+        "count": "7"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/051-falso-tabule-de-coliflor.webp"
   },
@@ -2821,7 +3234,24 @@
       "carbs": "54.6 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Grasas",
+        "count": "11.2"
+      },
+      {
+        "group": "Grasas",
+        "count": "11.2"
+      },
+      {
+        "group": "Grasas",
+        "count": "11.2"
+      },
+      {
+        "group": "Grasas",
+        "count": "11.2"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/052-ensalada-rusa.webp"
   },
@@ -2872,7 +3302,24 @@
       "carbs": "8 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Grasas",
+        "count": "0.5"
+      },
+      {
+        "group": "Grasas",
+        "count": "0.5"
+      },
+      {
+        "group": "Grasas",
+        "count": "0.5"
+      },
+      {
+        "group": "Grasas",
+        "count": "0.5"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/053-ensalada-grinch.webp"
   },
@@ -2989,7 +3436,24 @@
       "carbs": "73 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Grasas",
+        "count": "31"
+      },
+      {
+        "group": "Grasas",
+        "count": "31"
+      },
+      {
+        "group": "Grasas",
+        "count": "31"
+      },
+      {
+        "group": "Grasas",
+        "count": "31"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/055-ensalada-de-manzana-con-cerezas.webp"
   },
@@ -3039,7 +3503,24 @@
       "carbs": "39 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Grasas",
+        "count": "20"
+      },
+      {
+        "group": "Grasas",
+        "count": "20"
+      },
+      {
+        "group": "Grasas",
+        "count": "20"
+      },
+      {
+        "group": "Grasas",
+        "count": "20"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/056-ensalada-de-quinoa-mediterranea.webp"
   },
@@ -3082,7 +3563,24 @@
       "carbs": "40 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Grasas",
+        "count": "23"
+      },
+      {
+        "group": "Grasas",
+        "count": "23"
+      },
+      {
+        "group": "Grasas",
+        "count": "23"
+      },
+      {
+        "group": "Grasas",
+        "count": "23"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/057-ensalada-de-champinones-con-aguacate.webp"
   },
@@ -3151,7 +3649,24 @@
       "carbs": "19 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Grasas",
+        "count": "11"
+      },
+      {
+        "group": "Grasas",
+        "count": "11"
+      },
+      {
+        "group": "Grasas",
+        "count": "11"
+      },
+      {
+        "group": "Grasas",
+        "count": "11"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/058-ensalada-con-manzanas-y-nueces.webp"
   },
@@ -3213,7 +3728,24 @@
       "carbs": "10 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Grasas",
+        "count": "1.5"
+      },
+      {
+        "group": "Grasas",
+        "count": "1.5"
+      },
+      {
+        "group": "Grasas",
+        "count": "1.5"
+      },
+      {
+        "group": "Grasas",
+        "count": "1.5"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/059-ensalada-arcoiris.webp"
   },
@@ -3271,7 +3803,24 @@
       "carbs": "10 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Grasas",
+        "count": "13"
+      },
+      {
+        "group": "Grasas",
+        "count": "13"
+      },
+      {
+        "group": "Grasas",
+        "count": "13"
+      },
+      {
+        "group": "Grasas",
+        "count": "13"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/060-ensalada-de-pera-y-avellanas.webp"
   },
@@ -3329,7 +3878,24 @@
       "carbs": "4 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Grasas",
+        "count": "2"
+      },
+      {
+        "group": "Grasas",
+        "count": "2"
+      },
+      {
+        "group": "Grasas",
+        "count": "2"
+      },
+      {
+        "group": "Grasas",
+        "count": "2"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/061-ensalada-de-berenjena-grill-con-espinacas.webp"
   },
@@ -3386,7 +3952,24 @@
       "carbs": "24 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Grasas",
+        "count": "23"
+      },
+      {
+        "group": "Grasas",
+        "count": "23"
+      },
+      {
+        "group": "Grasas",
+        "count": "23"
+      },
+      {
+        "group": "Grasas",
+        "count": "23"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/062-ensalada-de-betabel-y-jitomate.webp"
   },
@@ -3446,7 +4029,24 @@
       "carbs": "13 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Grasas",
+        "count": "11"
+      },
+      {
+        "group": "Grasas",
+        "count": "11"
+      },
+      {
+        "group": "Grasas",
+        "count": "11"
+      },
+      {
+        "group": "Grasas",
+        "count": "11"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/063-ensalada-de-naranja-y-fresas.webp"
   },
@@ -3499,7 +4099,24 @@
       "carbs": "20 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Grasas",
+        "count": "0.5"
+      },
+      {
+        "group": "Grasas",
+        "count": "0.5"
+      },
+      {
+        "group": "Grasas",
+        "count": "0.5"
+      },
+      {
+        "group": "Grasas",
+        "count": "0.5"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/064-ensalada-de-zanahoria-con-repollo.webp"
   },
@@ -3552,7 +4169,24 @@
       "carbs": "5 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Grasas",
+        "count": "23"
+      },
+      {
+        "group": "Grasas",
+        "count": "23"
+      },
+      {
+        "group": "Grasas",
+        "count": "23"
+      },
+      {
+        "group": "Grasas",
+        "count": "23"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/065-ensalada-caprese-con-berenjena.webp"
   },
@@ -3606,7 +4240,24 @@
       "carbs": "5 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Grasas",
+        "count": "10"
+      },
+      {
+        "group": "Grasas",
+        "count": "10"
+      },
+      {
+        "group": "Grasas",
+        "count": "10"
+      },
+      {
+        "group": "Grasas",
+        "count": "10"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/066-ensalada-de-jitomates-con-albahaca.webp"
   },
@@ -3658,7 +4309,24 @@
       "carbs": "6 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Grasas",
+        "count": "9"
+      },
+      {
+        "group": "Grasas",
+        "count": "9"
+      },
+      {
+        "group": "Grasas",
+        "count": "9"
+      },
+      {
+        "group": "Grasas",
+        "count": "9"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/067-ensalada-de-espinacas.webp"
   },
@@ -4655,7 +5323,24 @@
       "carbs": "4 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Grasas",
+        "count": "13"
+      },
+      {
+        "group": "Grasas",
+        "count": "13"
+      },
+      {
+        "group": "Grasas",
+        "count": "13"
+      },
+      {
+        "group": "Grasas",
+        "count": "13"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/084-lomo-de-cerdo-con-champinones.webp"
   },
@@ -4667,7 +5352,7 @@
     "categorySlug": "platos-fuertes",
     "pdfPage": 342,
     "portions": "~6 porciones",
-    "calories": 0,
+    "calories": 220,
     "prepTime": "~2 h",
     "tags": [
       "Receta casera"
@@ -4699,13 +5384,26 @@
       }
     ],
     "nutrition": {
-      "calories": 0,
-      "protein": "N/D",
-      "fats": "N/D",
-      "carbs": "N/D",
+      "calories": 220,
+      "protein": "32 g",
+      "fats": "8 g",
+      "carbs": "2g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Poa Bajos En Grasa",
+        "count": "4"
+      },
+      {
+        "group": "Grasas",
+        "count": "1"
+      },
+      {
+        "group": "Verduras",
+        "count": "0.5"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/085-pavo-horneado-con-gravy-ligero.webp"
   },
@@ -4717,7 +5415,7 @@
     "categorySlug": "platos-fuertes",
     "pdfPage": 346,
     "portions": "~4 porciones",
-    "calories": 0,
+    "calories": 225,
     "prepTime": "~45 min",
     "tags": [
       "Con fruta"
@@ -4744,13 +5442,26 @@
       }
     ],
     "nutrition": {
-      "calories": 0,
-      "protein": "N/D",
-      "fats": "N/D",
-      "carbs": "N/D",
-      "fiber": "N/D"
+      "calories": 225,
+      "protein": "31 g",
+      "fats": "7 g",
+      "carbs": "15 g",
+      "fiber": "2 g"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "POA Bajo En Grasa",
+        "count": "3"
+      },
+      {
+        "group": "Frutas",
+        "count": "1"
+      },
+      {
+        "group": "Grasas",
+        "count": "0.5"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/086-lomo-de-cerdo-en-salsa-de-manzana.webp"
   },
@@ -4814,7 +5525,24 @@
       "carbs": "12.5 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Grasas",
+        "count": "3.8"
+      },
+      {
+        "group": "Grasas",
+        "count": "3.8"
+      },
+      {
+        "group": "Grasas",
+        "count": "3.8"
+      },
+      {
+        "group": "Grasas",
+        "count": "3.8"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/087-tortitas-de-lentejas.webp"
   },
@@ -4858,7 +5586,24 @@
       "carbs": "10 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Grasas",
+        "count": "10"
+      },
+      {
+        "group": "Grasas",
+        "count": "10"
+      },
+      {
+        "group": "Grasas",
+        "count": "10"
+      },
+      {
+        "group": "Grasas",
+        "count": "10"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/088-lasana-de-calabacita.webp"
   },
@@ -4928,7 +5673,24 @@
       "carbs": "58 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Grasas",
+        "count": "33"
+      },
+      {
+        "group": "Grasas",
+        "count": "33"
+      },
+      {
+        "group": "Grasas",
+        "count": "33"
+      },
+      {
+        "group": "Grasas",
+        "count": "33"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/089-bowl-de-garbanzos-rostizados.webp"
   },
@@ -4940,7 +5702,7 @@
     "categorySlug": "platos-fuertes",
     "pdfPage": 358,
     "portions": "~4 porciones",
-    "calories": 0,
+    "calories": 245,
     "prepTime": "~50 min",
     "tags": [
       "Con verduras",
@@ -4963,13 +5725,26 @@
       }
     ],
     "nutrition": {
-      "calories": 0,
-      "protein": "N/D",
-      "fats": "N/D",
-      "carbs": "N/D",
-      "fiber": "N/D"
+      "calories": 245,
+      "protein": "35 g",
+      "fats": "8 g",
+      "carbs": "4 g",
+      "fiber": "2 g"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "POA Muy Bajo En Grasa",
+        "count": "3.5"
+      },
+      {
+        "group": "Grasas Con Proteína",
+        "count": "1"
+      },
+      {
+        "group": "Verduras",
+        "count": "0.5"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/090-pollo-relleno-de-espinaca-y-nuez.webp"
   },
@@ -4981,7 +5756,7 @@
     "categorySlug": "platos-fuertes",
     "pdfPage": 361,
     "portions": "6 porciones",
-    "calories": 0,
+    "calories": 240,
     "prepTime": "~45 min",
     "tags": [
       "Receta casera"
@@ -5002,13 +5777,26 @@
       }
     ],
     "nutrition": {
-      "calories": 0,
-      "protein": "N/D",
-      "fats": "N/D",
-      "carbs": "N/D",
-      "fiber": "N/D"
+      "calories": 240,
+      "protein": "36 g",
+      "fats": "6 g",
+      "carbs": "8 g",
+      "fiber": "2 g"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "POA Muy Bajo En Grasa",
+        "count": "3.5"
+      },
+      {
+        "group": "Grasas Sin Proteína",
+        "count": "1"
+      },
+      {
+        "group": "Cereales Sin Grasa",
+        "count": "0.5"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/091-pavo-en-mole-rojo-ligero.webp"
   },
@@ -5059,7 +5847,24 @@
       "carbs": "10 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Grasas",
+        "count": "31"
+      },
+      {
+        "group": "Grasas",
+        "count": "31"
+      },
+      {
+        "group": "Grasas",
+        "count": "31"
+      },
+      {
+        "group": "Grasas",
+        "count": "31"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/092-salmon-con-esparragos.webp"
   },
@@ -5071,7 +5876,7 @@
     "categorySlug": "platos-fuertes",
     "pdfPage": 367,
     "portions": "~6 porciones",
-    "calories": 0,
+    "calories": 280,
     "prepTime": "~75 min",
     "tags": [
       "Con verduras",
@@ -5094,13 +5899,26 @@
       }
     ],
     "nutrition": {
-      "calories": 0,
-      "protein": "N/D",
-      "fats": "N/D",
-      "carbs": "N/D",
-      "fiber": "N/D"
+      "calories": 280,
+      "protein": "28 g",
+      "fats": "5 g",
+      "carbs": "22 g",
+      "fiber": "4 g"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "POA Bajo En Grasa",
+        "count": "2.5"
+      },
+      {
+        "group": "Cereales Sin Grasa",
+        "count": "1"
+      },
+      {
+        "group": "Verduras",
+        "count": "1"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/093-lasana-navidena-de-verduras-y-pollo.webp"
   },
@@ -5112,7 +5930,7 @@
     "categorySlug": "platos-fuertes",
     "pdfPage": 370,
     "portions": "~4 porciones",
-    "calories": 0,
+    "calories": 195,
     "prepTime": "~25 min",
     "tags": [
       "Receta casera"
@@ -5145,13 +5963,22 @@
       }
     ],
     "nutrition": {
-      "calories": 0,
-      "protein": "N/D",
-      "fats": "N/D",
-      "carbs": "N/D",
-      "fiber": "N/D"
+      "calories": 195,
+      "protein": "29 g",
+      "fats": "6 g",
+      "carbs": "3 g",
+      "fiber": "1 g"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "POA Muy Bajo En Grasa",
+        "count": "3"
+      },
+      {
+        "group": "Grasas Con Proteína",
+        "count": "1"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/094-filete-de-pescado-en-salsa-de-almendra.webp"
   },
@@ -5163,7 +5990,7 @@
     "categorySlug": "platos-fuertes",
     "pdfPage": 373,
     "portions": "~4 porciones",
-    "calories": 0,
+    "calories": 235,
     "prepTime": "~30 min",
     "tags": [
       "Con verduras"
@@ -5184,13 +6011,26 @@
       }
     ],
     "nutrition": {
-      "calories": 0,
-      "protein": "N/D",
-      "fats": "N/D",
-      "carbs": "N/D",
-      "fiber": "N/D"
+      "calories": 235,
+      "protein": "31 g",
+      "fats": "8 g",
+      "carbs": "4 g",
+      "fiber": "1 g"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "POA Moderado En Grasa",
+        "count": "3"
+      },
+      {
+        "group": "Verduras",
+        "count": "1"
+      },
+      {
+        "group": "Grasas Sin Proteína",
+        "count": "0.5"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/095-carne-de-res-en-salsa-de-champinones.webp"
   },
@@ -5259,7 +6099,24 @@
       "carbs": "11 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Grasas",
+        "count": "22"
+      },
+      {
+        "group": "Grasas",
+        "count": "22"
+      },
+      {
+        "group": "Grasas",
+        "count": "22"
+      },
+      {
+        "group": "Grasas",
+        "count": "22"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/096-pastel-de-carne-con-glaseado-de-chipotle.webp"
   },
@@ -5331,7 +6188,24 @@
       "carbs": "14 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Grasas",
+        "count": "4"
+      },
+      {
+        "group": "Grasas",
+        "count": "4"
+      },
+      {
+        "group": "Grasas",
+        "count": "4"
+      },
+      {
+        "group": "Grasas",
+        "count": "4"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/097-romeritos-con-camaron.webp"
   },
@@ -5384,7 +6258,24 @@
       "carbs": "3 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Grasas",
+        "count": "24"
+      },
+      {
+        "group": "Grasas",
+        "count": "24"
+      },
+      {
+        "group": "Grasas",
+        "count": "24"
+      },
+      {
+        "group": "Grasas",
+        "count": "24"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/098-pierna-enchilada.webp"
   },
@@ -5426,7 +6317,24 @@
       "carbs": "25 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Grasas",
+        "count": "8"
+      },
+      {
+        "group": "Grasas",
+        "count": "8"
+      },
+      {
+        "group": "Grasas",
+        "count": "8"
+      },
+      {
+        "group": "Grasas",
+        "count": "8"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/099-lasana-vegana.webp"
   },
@@ -5489,7 +6397,24 @@
       "carbs": "9 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Grasas",
+        "count": "17"
+      },
+      {
+        "group": "Grasas",
+        "count": "17"
+      },
+      {
+        "group": "Grasas",
+        "count": "17"
+      },
+      {
+        "group": "Grasas",
+        "count": "17"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/100-pierna-al-horno.webp"
   },
@@ -5553,7 +6478,24 @@
       "carbs": "26 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Grasas",
+        "count": "20"
+      },
+      {
+        "group": "Grasas",
+        "count": "20"
+      },
+      {
+        "group": "Grasas",
+        "count": "20"
+      },
+      {
+        "group": "Grasas",
+        "count": "20"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/101-pasta-cremosa-con-jamon.webp"
   },
@@ -5602,7 +6544,24 @@
       "carbs": "10 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Grasas",
+        "count": "18"
+      },
+      {
+        "group": "Grasas",
+        "count": "18"
+      },
+      {
+        "group": "Grasas",
+        "count": "18"
+      },
+      {
+        "group": "Grasas",
+        "count": "18"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/102-pavo-a-la-naranja.webp"
   },
@@ -5652,11 +6611,20 @@
     "nutrition": {
       "calories": 215,
       "protein": "33 g",
-      "fats": "N/D",
+      "fats": "4 g",
       "carbs": "3 g",
-      "fiber": "N/D"
+      "fiber": "1 g"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "POA Muy Bajo En Grasa",
+        "count": "3.5"
+      },
+      {
+        "group": "Cereales Sin Grasa",
+        "count": "0.5"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/103-pavo-al-achiote.webp"
   },
@@ -5717,7 +6685,24 @@
       "carbs": "37 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Grasas",
+        "count": "23"
+      },
+      {
+        "group": "Grasas",
+        "count": "23"
+      },
+      {
+        "group": "Grasas",
+        "count": "23"
+      },
+      {
+        "group": "Grasas",
+        "count": "23"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/104-chiles-rellenos.webp"
   },
@@ -5786,7 +6771,24 @@
       "carbs": "60 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Grasas",
+        "count": "20"
+      },
+      {
+        "group": "Grasas",
+        "count": "20"
+      },
+      {
+        "group": "Grasas",
+        "count": "20"
+      },
+      {
+        "group": "Grasas",
+        "count": "20"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/105-paella-mixta.webp"
   },
@@ -5853,7 +6855,24 @@
       "carbs": "20 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Grasas",
+        "count": "24"
+      },
+      {
+        "group": "Grasas",
+        "count": "24"
+      },
+      {
+        "group": "Grasas",
+        "count": "24"
+      },
+      {
+        "group": "Grasas",
+        "count": "24"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/106-salmon-empapelado-con-finas-hierbas-al-vino-blanco.webp"
   },
@@ -5909,7 +6928,24 @@
       "carbs": "8 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Grasas",
+        "count": "25"
+      },
+      {
+        "group": "Grasas",
+        "count": "25"
+      },
+      {
+        "group": "Grasas",
+        "count": "25"
+      },
+      {
+        "group": "Grasas",
+        "count": "25"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/107-salmon-empapelado-con-ensalada-de-rabanos-y-hojas-de-betabel.webp"
   },
@@ -5975,7 +7011,24 @@
       "carbs": "7 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Grasas",
+        "count": "24"
+      },
+      {
+        "group": "Grasas",
+        "count": "24"
+      },
+      {
+        "group": "Grasas",
+        "count": "24"
+      },
+      {
+        "group": "Grasas",
+        "count": "24"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/108-lonja-de-salmon-al-horno-con-vegetales.webp"
   },
@@ -6030,7 +7083,24 @@
       "carbs": "10 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Grasas",
+        "count": "31"
+      },
+      {
+        "group": "Grasas",
+        "count": "31"
+      },
+      {
+        "group": "Grasas",
+        "count": "31"
+      },
+      {
+        "group": "Grasas",
+        "count": "31"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/109-salmon-empapelado-con-vegetales-a-la-mantequilla.webp"
   },
@@ -6096,7 +7166,24 @@
       "carbs": "13 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Grasas",
+        "count": "9"
+      },
+      {
+        "group": "Grasas",
+        "count": "9"
+      },
+      {
+        "group": "Grasas",
+        "count": "9"
+      },
+      {
+        "group": "Grasas",
+        "count": "9"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/110-brochetas-de-camaron-con-salsa-de-cacahuate-con-limon.webp"
   },
@@ -6158,7 +7245,24 @@
       "carbs": "33 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Grasas",
+        "count": "38"
+      },
+      {
+        "group": "Grasas",
+        "count": "38"
+      },
+      {
+        "group": "Grasas",
+        "count": "38"
+      },
+      {
+        "group": "Grasas",
+        "count": "38"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/111-costillas-en-salsa-bbq-de-jamaica.webp"
   },
@@ -6247,7 +7351,16 @@
       "carbs": "6 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Verduras",
+        "count": "1"
+      },
+      {
+        "group": "Grasas",
+        "count": "8"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/112-rollitos-de-pavo-ahumado-rellenos-de-espinaca-y-queso-panela.webp"
   },
@@ -6987,7 +8100,24 @@
       "carbs": "10.2 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Grasas",
+        "count": "11.9"
+      },
+      {
+        "group": "Grasas",
+        "count": "11.9"
+      },
+      {
+        "group": "Grasas",
+        "count": "11.9"
+      },
+      {
+        "group": "Grasas",
+        "count": "11.9"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/124-sopa-de-esparragos-y-limon.webp"
   },
@@ -6999,7 +8129,7 @@
     "categorySlug": "guarniciones",
     "pdfPage": 485,
     "portions": "~4 porciones",
-    "calories": 0,
+    "calories": 80,
     "prepTime": "~30 min",
     "tags": [
       "Sin azúcar añadida"
@@ -7024,13 +8154,18 @@
       }
     ],
     "nutrition": {
-      "calories": 0,
-      "protein": "N/D",
-      "fats": "N/D",
-      "carbs": "N/D",
-      "fiber": "N/D"
+      "calories": 80,
+      "protein": "1.5 g",
+      "fats": "0.5 g",
+      "carbs": "18 g",
+      "fiber": "3 g"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Cereales Sin Grasa",
+        "count": "1"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/125-pure-de-camote-con-canela.webp"
   },
@@ -7042,7 +8177,7 @@
     "categorySlug": "guarniciones",
     "pdfPage": 488,
     "portions": "~4 porciones",
-    "calories": 0,
+    "calories": 50,
     "prepTime": "~25 min",
     "tags": [
       "Con verduras",
@@ -7063,13 +8198,22 @@
       }
     ],
     "nutrition": {
-      "calories": 0,
-      "protein": "N/D",
-      "fats": "N/D",
-      "carbs": "N/D",
-      "fiber": "N/D"
+      "calories": 50,
+      "protein": "1 g",
+      "fats": "0 g",
+      "carbs": "11 g",
+      "fiber": "2 g"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Verduras",
+        "count": "1"
+      },
+      {
+        "group": "Frutas",
+        "count": "0.5"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/126-zanahorias-glaseadas-con-naranja-natural.webp"
   },
@@ -7081,7 +8225,7 @@
     "categorySlug": "guarniciones",
     "pdfPage": 491,
     "portions": "~4 porciones",
-    "calories": 0,
+    "calories": 175,
     "prepTime": "~1 h",
     "tags": [
       "Con verduras",
@@ -7160,13 +8304,26 @@
       }
     ],
     "nutrition": {
-      "calories": 0,
-      "protein": "N/D",
-      "fats": "N/D",
-      "carbs": "N/D",
-      "fiber": "N/D"
+      "calories": 175,
+      "protein": "2 g",
+      "fats": "11 g",
+      "carbs": "16 g",
+      "fiber": "5 g"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Verduras",
+        "count": "1"
+      },
+      {
+        "group": "Frutas",
+        "count": "0.5"
+      },
+      {
+        "group": "Grasas Sin Proteína",
+        "count": "2"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/127-betabel-y-durazno-con-pure-de-aguacate.webp"
   },
@@ -7222,7 +8379,24 @@
       "carbs": "21 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Grasas",
+        "count": "9"
+      },
+      {
+        "group": "Grasas",
+        "count": "9"
+      },
+      {
+        "group": "Grasas",
+        "count": "9"
+      },
+      {
+        "group": "Grasas",
+        "count": "9"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/128-ensalada-de-vegetales-y-pina-a-la-parrilla.webp"
   },
@@ -7277,7 +8451,24 @@
       "carbs": "15 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Grasas",
+        "count": "47"
+      },
+      {
+        "group": "Grasas",
+        "count": "47"
+      },
+      {
+        "group": "Grasas",
+        "count": "47"
+      },
+      {
+        "group": "Grasas",
+        "count": "47"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/129-burrata-con-tomates-cherry-rostizados.webp"
   },
@@ -7328,7 +8519,24 @@
       "carbs": "10 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Grasas",
+        "count": "18"
+      },
+      {
+        "group": "Grasas",
+        "count": "18"
+      },
+      {
+        "group": "Grasas",
+        "count": "18"
+      },
+      {
+        "group": "Grasas",
+        "count": "18"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/130-coles-de-bruselas-crujientes-con-alioli-de-dijon.webp"
   },
@@ -7383,7 +8591,24 @@
       "carbs": "10 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Grasas",
+        "count": "1"
+      },
+      {
+        "group": "Grasas",
+        "count": "1"
+      },
+      {
+        "group": "Grasas",
+        "count": "1"
+      },
+      {
+        "group": "Grasas",
+        "count": "1"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/131-crema-de-esparragos.webp"
   },
@@ -7433,7 +8658,24 @@
       "carbs": "38 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Grasas",
+        "count": "7"
+      },
+      {
+        "group": "Grasas",
+        "count": "7"
+      },
+      {
+        "group": "Grasas",
+        "count": "7"
+      },
+      {
+        "group": "Grasas",
+        "count": "7"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/132-pure-de-papa.webp"
   },
@@ -7488,7 +8730,24 @@
       "carbs": "10 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Grasas",
+        "count": "1"
+      },
+      {
+        "group": "Grasas",
+        "count": "1"
+      },
+      {
+        "group": "Grasas",
+        "count": "1"
+      },
+      {
+        "group": "Grasas",
+        "count": "1"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/133-crema-de-brocoli.webp"
   },
@@ -7539,7 +8798,24 @@
       "carbs": "16.7 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Grasas",
+        "count": "5.8"
+      },
+      {
+        "group": "Grasas",
+        "count": "5.8"
+      },
+      {
+        "group": "Grasas",
+        "count": "5.8"
+      },
+      {
+        "group": "Grasas",
+        "count": "5.8"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/134-jitomates-cherry-salteados.webp"
   },
@@ -7582,7 +8858,24 @@
       "carbs": "21 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Grasas",
+        "count": "9.9"
+      },
+      {
+        "group": "Grasas",
+        "count": "9.9"
+      },
+      {
+        "group": "Grasas",
+        "count": "9.9"
+      },
+      {
+        "group": "Grasas",
+        "count": "9.9"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/135-pure-de-coliflor.webp"
   },
@@ -7631,9 +8924,14 @@
       "protein": "3 g",
       "fats": "0 g",
       "carbs": "7 g",
-      "fiber": "N/D"
+      "fiber": "3 g"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Verduras",
+        "count": "1"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/136-brocoli-al-vapor.webp"
   },
@@ -7683,7 +8981,24 @@
       "carbs": "3 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Grasas",
+        "count": "7"
+      },
+      {
+        "group": "Grasas",
+        "count": "7"
+      },
+      {
+        "group": "Grasas",
+        "count": "7"
+      },
+      {
+        "group": "Grasas",
+        "count": "7"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/137-calabacitas-al-ajillo.webp"
   },
@@ -7738,7 +9053,24 @@
       "carbs": "6 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Grasas",
+        "count": "3.9"
+      },
+      {
+        "group": "Grasas",
+        "count": "3.9"
+      },
+      {
+        "group": "Grasas",
+        "count": "3.9"
+      },
+      {
+        "group": "Grasas",
+        "count": "3.9"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/138-chips-de-kale-picantes.webp"
   },
@@ -7808,7 +9140,24 @@
       "carbs": "4 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Grasas",
+        "count": "6.6"
+      },
+      {
+        "group": "Grasas",
+        "count": "6.6"
+      },
+      {
+        "group": "Grasas",
+        "count": "6.6"
+      },
+      {
+        "group": "Grasas",
+        "count": "6.6"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/139-caldo-de-pollo-aromatico-con-vegetales-y-jengibre.webp"
   },
@@ -7879,7 +9228,24 @@
       "carbs": "13 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Grasas",
+        "count": "85"
+      },
+      {
+        "group": "Grasas",
+        "count": "85"
+      },
+      {
+        "group": "Grasas",
+        "count": "85"
+      },
+      {
+        "group": "Grasas",
+        "count": "85"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/140-sopa-de-zanahoria-y-coliflor.webp"
   },
@@ -8471,7 +9837,7 @@
     "categorySlug": "postres",
     "pdfPage": 576,
     "portions": "10 piezas",
-    "calories": 0,
+    "calories": 90,
     "prepTime": "~15 min",
     "tags": [
       "Sin azúcar añadida"
@@ -8492,13 +9858,22 @@
       }
     ],
     "nutrition": {
-      "calories": 0,
-      "protein": "N/D",
-      "fats": "N/D",
-      "carbs": "N/D",
+      "calories": 90,
+      "protein": "2g",
+      "fats": "3 g",
+      "carbs": "15 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Azúcares",
+        "count": "1"
+      },
+      {
+        "group": "Grasas",
+        "count": "1"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/151-trufas-de-datil-y-cacao.webp"
   },
@@ -8542,7 +9917,24 @@
       "carbs": "19 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Grasas",
+        "count": "2"
+      },
+      {
+        "group": "Grasas",
+        "count": "2"
+      },
+      {
+        "group": "Grasas",
+        "count": "2"
+      },
+      {
+        "group": "Grasas",
+        "count": "2"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/152-gelatina-de-frutos-rojos-con-yogur.webp"
   },
@@ -8590,12 +9982,21 @@
     ],
     "nutrition": {
       "calories": 70,
-      "protein": "N/D",
-      "fats": "N/D",
-      "carbs": "N/D",
+      "protein": "6 g",
+      "fats": "10 g",
+      "carbs": "6g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Poa Moderado",
+        "count": "1"
+      },
+      {
+        "group": "Grasas",
+        "count": "1"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/153-flan-de-coco-ligero-sin-azucar.webp"
   },
@@ -8607,7 +10008,7 @@
     "categorySlug": "postres",
     "pdfPage": 588,
     "portions": "4 porciones",
-    "calories": 0,
+    "calories": 130,
     "prepTime": "~35 min",
     "tags": [
       "Sin azúcar añadida",
@@ -8629,13 +10030,18 @@
       }
     ],
     "nutrition": {
-      "calories": 0,
-      "protein": "N/D",
-      "fats": "N/D",
-      "carbs": "N/D",
+      "calories": 130,
+      "protein": "0.5 g",
+      "fats": "0 g",
+      "carbs": "26 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Frutas",
+        "count": "2"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/154-peras-al-vino-tinto-sin-azucar.webp"
   },
@@ -8700,9 +10106,14 @@
       "protein": "0 g",
       "fats": "0 g",
       "carbs": "12 g",
-      "fiber": "N/D"
+      "fiber": "3 g"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Frutas",
+        "count": "1"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/155-manzana-canela.webp"
   },
@@ -8748,7 +10159,24 @@
       "carbs": "26 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Grasas",
+        "count": "11"
+      },
+      {
+        "group": "Grasas",
+        "count": "11"
+      },
+      {
+        "group": "Grasas",
+        "count": "11"
+      },
+      {
+        "group": "Grasas",
+        "count": "11"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/156-chips-de-manzana-y-canela.webp"
   },
@@ -8760,7 +10188,7 @@
     "categorySlug": "postres",
     "pdfPage": 598,
     "portions": "4 porciones",
-    "calories": 0,
+    "calories": 120,
     "prepTime": "~15 min",
     "tags": [
       "Con fruta"
@@ -8780,13 +10208,22 @@
       }
     ],
     "nutrition": {
-      "calories": 0,
-      "protein": "N/D",
-      "fats": "N/D",
-      "carbs": "N/D",
+      "calories": 120,
+      "protein": "10 g",
+      "fats": "2g",
+      "carbs": "15 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Lácteos",
+        "count": "1"
+      },
+      {
+        "group": "Frutas",
+        "count": "1"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/157-mousse-de-yogurt-griego-y-frutos-rojos.webp"
   },
@@ -8855,7 +10292,24 @@
       "carbs": "58 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Grasas",
+        "count": "13"
+      },
+      {
+        "group": "Grasas",
+        "count": "13"
+      },
+      {
+        "group": "Grasas",
+        "count": "13"
+      },
+      {
+        "group": "Grasas",
+        "count": "13"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/158-pastel-de-naranja-y-yogurt.webp"
   },
@@ -8898,12 +10352,29 @@
     ],
     "nutrition": {
       "calories": 200,
-      "protein": "N/D",
+      "protein": "8 g",
       "fats": "5 g",
       "carbs": "32.8 g",
-      "fiber": "N/D"
+      "fiber": "2 g"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Grasas",
+        "count": "5"
+      },
+      {
+        "group": "Grasas",
+        "count": "5"
+      },
+      {
+        "group": "Grasas",
+        "count": "5"
+      },
+      {
+        "group": "Grasas",
+        "count": "5"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/159-carlota-de-limon.webp"
   },
@@ -8954,7 +10425,24 @@
       "carbs": "57 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Grasas",
+        "count": "4"
+      },
+      {
+        "group": "Grasas",
+        "count": "4"
+      },
+      {
+        "group": "Grasas",
+        "count": "4"
+      },
+      {
+        "group": "Grasas",
+        "count": "4"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/160-postre-de-frutas-y-aderezo-de-yogurt.webp"
   },
@@ -9001,9 +10489,14 @@
       "protein": "2.8 g",
       "fats": "0 g",
       "carbs": "22 g",
-      "fiber": "N/D"
+      "fiber": "2.5 g"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Frutas",
+        "count": "1"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/161-brochetas-de-fruta.webp"
   },
@@ -9058,7 +10551,24 @@
       "carbs": "36 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Grasas",
+        "count": "12"
+      },
+      {
+        "group": "Grasas",
+        "count": "12"
+      },
+      {
+        "group": "Grasas",
+        "count": "12"
+      },
+      {
+        "group": "Grasas",
+        "count": "12"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/162-crepas-con-helado-de-yogurt-griego-y-platano.webp"
   },
@@ -9117,9 +10627,22 @@
       "protein": "2.8 g",
       "fats": "0 g",
       "carbs": "22 g",
-      "fiber": "N/D"
+      "fiber": "4 g"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Cereales Sin Grasa",
+        "count": "1"
+      },
+      {
+        "group": "Grasas Sin Proteína",
+        "count": "2"
+      },
+      {
+        "group": "POA Moderado En Grasa",
+        "count": "0.5"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/163-pastel-de-chocolate-sin-azucar-con-centro-liquido.webp"
   },
@@ -9131,7 +10654,7 @@
     "categorySlug": "postres",
     "pdfPage": 623,
     "portions": "6 porciones",
-    "calories": 0,
+    "calories": 60,
     "prepTime": "~20 min",
     "tags": [
       "Sin azúcar añadida",
@@ -9158,13 +10681,18 @@
       }
     ],
     "nutrition": {
-      "calories": 0,
-      "protein": "N/D",
-      "fats": "N/D",
-      "carbs": "N/D",
+      "calories": 60,
+      "protein": "3 g",
+      "fats": "0 g",
+      "carbs": "14 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Frutas",
+        "count": "1"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/164-gelatina-de-jamaica-natural-con-frutos-rojos.webp"
   },
@@ -9204,7 +10732,16 @@
       "carbs": "12 g",
       "fiber": "N/D"
     },
-    "equivalents": [],
+    "equivalents": [
+      {
+        "group": "Cereales Sin Grasa",
+        "count": "0.8"
+      },
+      {
+        "group": "Grasas",
+        "count": "1.5"
+      }
+    ],
     "tip": "",
     "image": "/images/recetas/165-enjambres-de-chocolate.webp"
   },
