@@ -126,6 +126,18 @@ function getCategoryContour(slug: string) {
       background-attachment: fixed;
     }
 
+    /* Asegurar fondo vino festivo y título dorado permanentemente visible en tarjetas */
+    .recipe-card {
+      background-color: #28050D !important;
+      color: #ffffff !important;
+    }
+    .recipe-card h3 {
+      color: #F5D061 !important;
+    }
+    .recipe-card:hover h3 {
+      color: #FFFFFF !important;
+    }
+
     /* Custom print styles for recipe detail */
     @media print {
       header, nav, footer, #filter-section, #vip-banner, .no-print {
@@ -461,11 +473,11 @@ function getCategoryContour(slug: string) {
                   </span>
                 </div>
 
-                <!-- Recipe Title (Letra cursiva festiva idéntica a la imagen) -->
+                <!-- Recipe Title (Letra cursiva festiva en oro permanente, visible siempre) -->
                 <h3
                   data-action="open-recipe"
                   data-recipe-id={recipe.id}
-                  class="font-script text-3xl sm:text-3.5xl text-white font-bold leading-tight mb-4 cursor-pointer group-hover:text-[#F5D061] transition-colors"
+                  class="font-script text-3xl sm:text-3.5xl text-[#F5D061] hover:text-white font-bold leading-tight mb-4 cursor-pointer transition-colors"
                 >
                   {recipe.title}
                 </h3>
@@ -645,7 +657,7 @@ function getCategoryContour(slug: string) {
             <span class="font-bold text-xs uppercase tracking-widest text-[#E6A635] block mb-1">
               FICHA DE RECETA
             </span>
-            <h2 id="modal-title" class="font-script text-3xl sm:text-4.5xl lg:text-5xl text-white font-bold leading-tight mb-4"></h2>
+            <h2 id="modal-title" class="font-script text-3xl sm:text-4.5xl lg:text-5xl text-[#F5D061] font-bold leading-tight mb-4"></h2>
 
             <!-- Metrics Grid -->
             <div class="grid grid-cols-3 gap-2.5 p-3.5 bg-[#1E0308] rounded-2xl border border-[#E6A635]/35 text-center mb-5">
