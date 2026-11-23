@@ -400,7 +400,7 @@
 </style>
 
 <!-- CLIENT SCRIPT PARA CANVAS NIEVE, DESTELLOS Y CONTROL DE ESTADO -->
-<script is:inline>
+<script is:inline data-astro-rerun>
   (function () {
     const STORAGE_KEY = "nutrilev_holiday_effects";
 
@@ -420,9 +420,9 @@
 
     let isEffectsActive = getInitialState();
 
-    // Canvas Engine State
-    const canvas = document.getElementById("holiday-snow-canvas");
-    let ctx = canvas ? canvas.getContext("2d") : null;
+    // Canvas Engine State (se inicializa dinámicamente en init())
+    let canvas = null;
+    let ctx = null;
     let animFrameId = null;
     let particles = [];
     let width = 0;
@@ -516,7 +516,7 @@
     }
 
     function startAnimation() {
-      if (!animFrameId && isEffectsActive && isTabVisible) {
+      if (!animFrameId && isEffectsActive && isTabVisible && ctx) {
         animFrameId = requestAnimationFrame(renderSnow);
       }
     }
@@ -526,7 +526,7 @@
         cancelAnimationFrame(animFrameId);
         animFrameId = null;
       }
-      if (ctx) {
+      if (ctx && width && height) {
         ctx.clearRect(0, 0, width, height);
       }
     }
@@ -564,39 +564,54 @@
       updateEffectsUI();
     }
 
-    // Inicialización al cargar el documento
+    // Inicialización al cargar el documento o navegar con ClientRouter
     function init() {
-      resizeCanvas();
-      window.addEventListener("resize", () => {
-        resizeCanvas();
-      });
+      // Re-obtener el elemento canvas en el DOM actual (vital en navegación ClientRouter)
+      canvas = document.getElementById("holiday-snow-canvas");
+      if (!canvas) return;
+      ctx = canvas.getContext("2d");
 
-      // Pausar animación cuando la pestaña esté oculta para ahorrar batería/CPU
-      document.addEventListener("visibilitychange", () => {
+      stopAnimation();
+
+      isEffectsActive = getInitialState();
+      isTabVisible = !document.hidden;
+
+      resizeCanvas();
+
+      window.removeEventListener("resize", resizeCanvas);
+      window.addEventListener("resize", resizeCanvas);
+
+      const onVisibilityChange = () => {
         isTabVisible = !document.hidden;
         if (isTabVisible && isEffectsActive) {
           startAnimation();
         } else {
           stopAnimation();
         }
-      });
+      };
+      document.removeEventListener("visibilitychange", onVisibilityChange);
+      document.addEventListener("visibilitychange", onVisibilityChange);
 
       // Escuchar clic en botón flotante
       const btn = document.getElementById("btn-toggle-holiday-fx");
       if (btn) {
-        btn.addEventListener("click", toggleEffects);
+        btn.onclick = toggleEffects;
       }
 
       updateEffectsUI();
     }
 
+    // Limpieza antes de swap de páginas con ClientRouter
+    document.addEventListener("astro:before-swap", stopAnimation);
+
+    // Compatibilidad con transiciones de Astro (View Transitions / ClientRouter)
+    document.addEventListener("astro:page-load", init);
+
+    // Inicializar de inmediato si el DOM ya está listo (carga directa o recarga)
     if (document.readyState === "loading") {
       document.addEventListener("DOMContentLoaded", init);
     } else {
       init();
     }
-
-    // Compatibilidad con transiciones de Astro (View Transitions / ClientRouter)
-    document.addEventListener("astro:page-load", init);
   })();
 </script>
