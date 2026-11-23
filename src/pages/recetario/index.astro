@@ -36,58 +36,58 @@ function getCategoryContour(slug: string) {
   switch (slug) {
     case "bebidas":
       return {
-        border: "border-rose-400/90",
-        glow: "hover:shadow-[0_0_25px_rgba(251,113,133,0.35)]",
-        badge: "bg-rose-500/20 text-rose-300 border-rose-400/50",
+        border: "border-rose-400/40 hover:border-rose-400/75",
+        glow: "hover:shadow-[0_12px_32px_rgba(0,0,0,0.6),0_0_22px_rgba(251,113,133,0.18)]",
+        badge: "bg-rose-500/15 text-rose-300 border-rose-400/30",
         accent: "#FB7185",
         label: "Bebidas"
       };
     case "ensaladas":
       return {
-        border: "border-emerald-400/90",
-        glow: "hover:shadow-[0_0_25px_rgba(52,211,153,0.35)]",
-        badge: "bg-emerald-500/20 text-emerald-300 border-emerald-400/50",
+        border: "border-emerald-400/40 hover:border-emerald-400/75",
+        glow: "hover:shadow-[0_12px_32px_rgba(0,0,0,0.6),0_0_22px_rgba(52,211,153,0.18)]",
+        badge: "bg-emerald-500/15 text-emerald-300 border-emerald-400/30",
         accent: "#34D399",
         label: "Ensaladas"
       };
     case "platos-fuertes":
       return {
-        border: "border-red-500/90",
-        glow: "hover:shadow-[0_0_25px_rgba(239,68,68,0.35)]",
-        badge: "bg-red-500/20 text-red-300 border-red-400/50",
-        accent: "#EF4444",
+        border: "border-red-400/40 hover:border-red-400/75",
+        glow: "hover:shadow-[0_12px_32px_rgba(0,0,0,0.6),0_0_22px_rgba(248,113,113,0.18)]",
+        badge: "bg-red-500/15 text-red-300 border-red-400/30",
+        accent: "#F87171",
         label: "Platos Fuertes"
       };
     case "guarniciones":
       return {
-        border: "border-amber-400/90",
-        glow: "hover:shadow-[0_0_25px_rgba(251,191,36,0.35)]",
-        badge: "bg-amber-500/20 text-amber-300 border-amber-400/50",
-        accent: "#FBBF24",
+        border: "border-orange-400/40 hover:border-orange-400/75",
+        glow: "hover:shadow-[0_12px_32px_rgba(0,0,0,0.6),0_0_22px_rgba(251,146,60,0.18)]",
+        badge: "bg-orange-500/15 text-orange-300 border-orange-400/30",
+        accent: "#FB923C",
         label: "Guarniciones"
       };
     case "postres":
       return {
-        border: "border-yellow-400/90",
-        glow: "hover:shadow-[0_0_25px_rgba(250,204,21,0.35)]",
-        badge: "bg-yellow-500/20 text-yellow-300 border-yellow-400/50",
-        accent: "#FACC15",
+        border: "border-amber-400/40 hover:border-amber-400/75",
+        glow: "hover:shadow-[0_12px_32px_rgba(0,0,0,0.6),0_0_22px_rgba(245,208,97,0.18)]",
+        badge: "bg-amber-500/15 text-amber-300 border-amber-400/30",
+        accent: "#F5D061",
         label: "Postres"
       };
     case "diabetes":
       return {
-        border: "border-cyan-400/90",
-        glow: "hover:shadow-[0_0_25px_rgba(34,211,238,0.35)]",
-        badge: "bg-cyan-500/20 text-cyan-300 border-cyan-400/50",
+        border: "border-cyan-400/40 hover:border-cyan-400/75",
+        glow: "hover:shadow-[0_12px_32px_rgba(0,0,0,0.6),0_0_22px_rgba(34,211,238,0.18)]",
+        badge: "bg-cyan-500/15 text-cyan-300 border-cyan-400/30",
         accent: "#22D3EE",
         label: "Diabetes"
       };
     default:
       return {
-        border: "border-amber-400/90",
-        glow: "hover:shadow-[0_0_25px_rgba(251,191,36,0.35)]",
-        badge: "bg-amber-500/20 text-amber-300 border-amber-400/50",
-        accent: "#FBBF24",
+        border: "border-[#E6A635]/35 hover:border-[#F5D061]/70",
+        glow: "hover:shadow-[0_12px_32px_rgba(0,0,0,0.6),0_0_22px_rgba(230,166,53,0.18)]",
+        badge: "bg-[#E6A635]/15 text-[#F5D061] border-[#E6A635]/30",
+        accent: "#F5D061",
         label: "Receta"
       };
   }
@@ -430,7 +430,7 @@ function getCategoryContour(slug: string) {
               data-title={recipe.title.toLowerCase()}
               data-ingredients={recipe.ingredients.join(" ").toLowerCase()}
               data-free={isFree ? "true" : "false"}
-              class={`recipe-card bg-[#28050D] rounded-2xl overflow-hidden border border-[#E6A635]/20 hover:border-[#E6A635]/50 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(0,0,0,0.6)] group relative ${!isFree ? "hidden" : ""}`}
+              class={`recipe-card bg-[#28050D] rounded-2xl overflow-hidden border ${style.border} ${style.glow} flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 group relative ${!isFree ? "hidden" : ""}`}
             >
               <!-- Top Dish Photo (Ocupa todo el ancho superior sin marco grueso exterior) -->
               <div
@@ -475,7 +475,7 @@ function getCategoryContour(slug: string) {
                   <!-- Indicador de categoría sobrio -->
                   <div class="flex items-center gap-1.5 mb-1.5">
                     <span class="w-1.5 h-1.5 rounded-full" style={`background-color: ${style.accent};`}></span>
-                    <span class="text-[11px] font-semibold uppercase tracking-wider text-amber-200/60 font-mono-recetario">
+                    <span class="text-[11px] font-semibold uppercase tracking-wider font-mono-recetario" style={`color: ${style.accent};`}>
                       {recipe.category}
                     </span>
                   </div>
