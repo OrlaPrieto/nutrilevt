@@ -49,6 +49,12 @@ const gaId = import.meta.env.PUBLIC_GA_ID;
     <link rel="canonical" href={canonicalURL} />
     
     <!-- Performance: Resource Hints & Preloads (Top priority) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="preconnect" href="https://grainy-gradients.vercel.app" crossorigin>
     <link rel="preload" as="image" href={logoImg.src} fetchpriority="high" />
     
@@ -140,7 +146,7 @@ const gaId = import.meta.env.PUBLIC_GA_ID;
     )}
 
   </head>
-  <body class="bg-bg-base text-slate-800 font-['Inter',sans-serif] overflow-x-hidden">
+  <body class="bg-bg-base text-slate-800 font-['Inter',sans-serif] overflow-x-clip">
     <!-- Top Navigation Loading Bar for View Transitions -->
     <div id="nav-loading-bar" class="fixed top-0 left-0 h-[3px] w-0 bg-gradient-to-r from-primary via-accent to-pink-300 z-[9999] pointer-events-none transition-all duration-300 opacity-0 shadow-[0_0_10px_rgba(225,29,72,0.8)]"></div>
 

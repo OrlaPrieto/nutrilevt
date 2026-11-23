@@ -198,7 +198,7 @@ const isBannerVisible = isHolidayBannerActive && isHomePage;
       <a
         href={`${langPath}/recetario-navideno-2026`}
         data-astro-prefetch="hover"
-        class="group relative block w-full h-[76px] sm:h-[86px] md:h-[94px] flex flex-col justify-end pb-3 sm:pb-3.5 md:pb-4 px-4 overflow-hidden transition-all duration-300 hover:brightness-105 focus:outline-none"
+        class="group relative block w-full py-2 sm:py-2.5 md:py-3 px-4 min-h-[84px] sm:min-h-[94px] md:min-h-[104px] flex flex-col justify-center items-center overflow-hidden transition-all duration-300 hover:brightness-105 focus:outline-none"
       >
         <!-- IMAGEN DE FONDO OFICIAL DEL BANNER (Gemini_Generated_Image_1ibkrj1ibkrj1ibk) -->
         <picture class="absolute inset-0 w-full h-full pointer-events-none select-none">
@@ -216,25 +216,33 @@ const isBannerVisible = isHolidayBannerActive && isHomePage;
         <!-- Sutil velo de contraste para garantizar legibilidad óptima del texto -->
         <div class="absolute inset-0 bg-black/15 pointer-events-none select-none" aria-hidden="true"></div>
 
-        <!-- CONTENIDO PRINCIPAL CENTRADO Y LIMPIO (PARTE INFERIOR) -->
-        <div class="max-w-7xl mx-auto flex items-center justify-center gap-2 sm:gap-3 text-xs sm:text-sm text-center relative z-10">
-          <!-- Prefijo solo en escritorio -->
-          <span class="hidden md:inline text-[#E6A635] text-[11px] font-bold uppercase tracking-[0.2em] shrink-0 drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]">
-            {lang === "es" ? "EDICIÓN 2026" : "2026 EDITION"}
+        <!-- CONTENIDO PRINCIPAL CENTRADO Y LIMPIO -->
+        <div class="max-w-7xl mx-auto flex flex-col items-center justify-center text-center relative z-10 w-full">
+          <!-- Título Cursivo Editorial (Estilo de recetas) -->
+          <span class="font-script text-2xl sm:text-3.5xl md:text-4xl text-[#F5D061] font-bold leading-tight mb-1 sm:mb-1.5 drop-shadow-[0_2px_5px_rgba(0,0,0,0.95)] tracking-wide">
+            Recetario Navideño Nutrilev 2026
           </span>
 
-          <span class="text-white/20 hidden md:inline select-none" aria-hidden="true">·</span>
+          <!-- Línea Inferior de Acción y Gancho Comercial -->
+          <div class="flex items-center justify-center gap-2 sm:gap-3 text-xs sm:text-sm text-center">
+            <!-- Prefijo solo en escritorio -->
+            <span class="hidden md:inline text-[#E6A635] text-[11px] font-bold uppercase tracking-[0.2em] shrink-0 drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]">
+              {lang === "es" ? "EDICIÓN 2026" : "2026 EDITION"}
+            </span>
 
-          <!-- Texto principal con gancho comercial -->
-          <span class="text-amber-50 font-medium truncate sm:overflow-visible drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)]">
-            {lang === "es" ? "185 recetas navideñas · Prueba 6 gratis" : "185 holiday recipes · Try 6 for free"}
-          </span>
+            <span class="text-white/20 hidden md:inline select-none" aria-hidden="true">·</span>
 
-          <!-- Botón Outline Fino y Elegante con Flecha -->
-          <span class="ml-1 sm:ml-2.5 px-3 sm:px-3.5 py-0.5 rounded-full border border-[#E6A635]/80 bg-[#240309]/70 backdrop-blur-sm text-[#F5D061] group-hover:bg-[#F5D061] group-hover:text-[#28050D] text-[11px] sm:text-xs font-semibold transition-all whitespace-nowrap inline-flex items-center gap-1 shrink-0 shadow-sm">
-            <span>{lang === "es" ? "Ver recetario" : "View recipes"}</span>
-            <span class="inline-block transition-transform duration-200 group-hover:translate-x-0.5">→</span>
-          </span>
+            <!-- Texto principal con gancho comercial -->
+            <span class="text-amber-50 font-medium truncate sm:overflow-visible drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)]">
+              {lang === "es" ? "185 recetas navideñas · Prueba 6 gratis" : "185 holiday recipes · Try 6 for free"}
+            </span>
+
+            <!-- Botón Outline Fino y Elegante con Flecha -->
+            <span class="ml-1 sm:ml-2.5 px-3 sm:px-3.5 py-0.5 rounded-full border border-[#E6A635]/80 bg-[#240309]/70 backdrop-blur-sm text-[#F5D061] group-hover:bg-[#F5D061] group-hover:text-[#28050D] text-[11px] sm:text-xs font-semibold transition-all whitespace-nowrap inline-flex items-center gap-1 shrink-0 shadow-sm">
+              <span>{lang === "es" ? "Ver recetario" : "View recipes"}</span>
+              <span class="inline-block transition-transform duration-200 group-hover:translate-x-0.5">→</span>
+            </span>
+          </div>
         </div>
       </a>
     </aside>
@@ -245,7 +253,7 @@ const isBannerVisible = isHolidayBannerActive && isHomePage;
     id="mobile-menu"
     class:list={[
       "fixed inset-0 md:hidden bg-[#FFFFFF] z-50 transform translate-x-full transition-transform duration-300 ease-in-out border-t border-pink-50",
-      isBannerVisible ? "top-[192px]" : "top-[120px]"
+      isBannerVisible ? "top-[204px]" : "top-[120px]"
     ]}
   >
     <div
@@ -469,7 +477,7 @@ const isBannerVisible = isHolidayBannerActive && isHomePage;
           banner.remove();
           const mobileMenu = document.getElementById("mobile-menu");
           if (mobileMenu) {
-            mobileMenu.classList.remove("top-[192px]");
+            mobileMenu.classList.remove("top-[204px]");
             mobileMenu.classList.add("top-[120px]");
           }
         }

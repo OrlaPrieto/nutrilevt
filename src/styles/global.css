@@ -9,6 +9,10 @@
   --color-bg-base: #FAF9F6;
 }
 
+.font-script {
+  font-family: 'Dancing Script', cursive, sans-serif;
+}
+
 @layer base {
 
   /* Global focus-visible styles for keyboard navigation accessibility */
