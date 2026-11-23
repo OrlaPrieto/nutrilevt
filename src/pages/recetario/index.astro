@@ -168,7 +168,7 @@ function getCategoryContour(slug: string) {
   <Navbar />
 
   <!-- CONTENEDOR PRINCIPAL CON EL FONDO NAVIDEÑO DE LA IMAGEN (VINO PROFUNDO Y DESTELLOS DORADOS) -->
-  <div class="bg-holiday-canvas text-white pt-24 sm:pt-32 pb-20 min-h-screen relative overflow-hidden font-sans-recetario selection:bg-[#E6A635] selection:text-[#2E060E]">
+  <div class="bg-holiday-canvas text-white pt-32 sm:pt-36 md:pt-44 lg:pt-48 pb-20 min-h-screen relative overflow-hidden font-sans-recetario selection:bg-[#E6A635] selection:text-[#2E060E]">
     
     <!-- EFECTOS NAVIDEÑOS MODULARES 2026 (NIEVE, ESFERAS, TRINEO Y CONTROL) -->
     <HolidayEffects />
@@ -179,7 +179,7 @@ function getCategoryContour(slug: string) {
     <div class="absolute bottom-40 left-10 w-[550px] h-[550px] bg-emerald-600/10 rounded-full blur-[150px] pointer-events-none"></div>
 
     <!-- HERO EDITORIAL FESTIVO -->
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-12 sm:pb-16 relative z-10">
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 sm:pt-8 md:pt-10 pb-12 sm:pb-16 relative z-10">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
         
         <!-- Left: Headline & Manifesto -->
@@ -272,7 +272,7 @@ function getCategoryContour(slug: string) {
     </section>
 
     <!-- BARRA DE CONTROLES, BÚSQUEDA Y FILTROS ESTILIZADA (COMPACTA Y ADAPTABLE EN MÓVIL) -->
-    <section class="border-y border-[#E6A635]/25 bg-[#2B050D]/95 backdrop-blur-xl sticky top-16 sm:top-20 z-20 shadow-xl transition-all">
+    <section class="border-y border-[#E6A635]/25 bg-[#2B050D]/95 backdrop-blur-xl sticky top-[116px] md:top-[164px] z-20 shadow-xl transition-all">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5 sm:py-3.5">
         
         <!-- Top Row: Compact Search + Mobile Filter Trigger + Desktop Quick Chips -->
@@ -625,7 +625,7 @@ function getCategoryContour(slug: string) {
   <!-- MODAL DE DETALLE DE RECETA -->
   <div
     id="recipe-modal"
-    class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md p-3 sm:p-6 lg:p-10 flex items-center justify-center overflow-y-auto font-sans-recetario"
+    class="fixed inset-0 z-[60] hidden bg-black/80 backdrop-blur-md p-3 sm:p-6 lg:p-10 flex items-center justify-center overflow-y-auto font-sans-recetario"
     role="dialog"
     aria-modal="true"
   >
@@ -781,7 +781,7 @@ function getCategoryContour(slug: string) {
   <!-- VIP CODE UNLOCK MODAL -->
   <div
     id="unlock-modal"
-    class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md p-4 flex items-center justify-center font-sans-recetario"
+    class="fixed inset-0 z-[60] hidden bg-black/80 backdrop-blur-md p-4 flex items-center justify-center font-sans-recetario"
     role="dialog"
     aria-modal="true"
   >
@@ -856,7 +856,7 @@ function getCategoryContour(slug: string) {
   <!-- MODAL DE CONFIRMACIÓN PARA CERRAR SESIÓN -->
   <div
     id="logout-modal"
-    class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md p-4 flex items-center justify-center font-sans-recetario"
+    class="fixed inset-0 z-[60] hidden bg-black/80 backdrop-blur-md p-4 flex items-center justify-center font-sans-recetario"
     role="dialog"
     aria-modal="true"
   >
@@ -895,7 +895,7 @@ function getCategoryContour(slug: string) {
   <!-- FILTROS AVANZADOS: BOTTOM SHEET EN MÓVIL Y MODAL CENTRADO EN ESCRITORIO -->
   <div
     id="filters-drawer-backdrop"
-    class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-sm transition-all duration-300 font-sans-recetario flex items-end sm:items-center justify-center p-0 sm:p-4"
+    class="fixed inset-0 z-[60] hidden bg-black/60 backdrop-blur-sm transition-all duration-300 font-sans-recetario flex items-end sm:items-center justify-center p-0 sm:p-4"
     role="dialog"
     aria-modal="true"
   >
@@ -1052,7 +1052,7 @@ function getCategoryContour(slug: string) {
   <!-- TOAST NOTIFICATION -->
   <div
     id="toast-notification"
-    class="fixed top-24 right-6 z-50 transition-all duration-300 transform -translate-y-6 opacity-0 pointer-events-none max-w-sm font-sans-recetario"
+    class="fixed top-32 md:top-44 right-6 z-[60] transition-all duration-300 transform -translate-y-6 opacity-0 pointer-events-none max-w-sm font-sans-recetario"
   >
     <div class="rounded-2xl border border-[#E6A635]/35 bg-[#2B050D]/95 backdrop-blur-md p-4 shadow-2xl flex items-center gap-3.5 text-white">
       <div class="w-9 h-9 rounded-xl bg-emerald-500/15 border border-emerald-400/40 text-emerald-300 flex items-center justify-center shrink-0">
