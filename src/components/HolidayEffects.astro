@@ -19,13 +19,14 @@
 ></canvas>
 
 <!-- 2. ESFERAS COLGANTES Y SILUETA DEL TRINEO EN EL HERO -->
+<!-- Comienza justo debajo del Navbar fijo (pt-24 / pt-32) para que las esferas sean 100% visibles en móvil y desktop -->
 <div
   id="holiday-decorative-layer"
-  class="holiday-fx-element absolute top-0 left-0 right-0 h-[480px] pointer-events-none overflow-hidden z-[15] no-print"
+  class="holiday-fx-element absolute top-24 sm:top-28 lg:top-32 left-0 right-0 h-[480px] pointer-events-none overflow-hidden z-[15] no-print"
   aria-hidden="true"
 >
   <!-- SILUETA MINIMALISTA DE RENOS Y TRINEO DORADO (Cruza periódicamente el cielo del Hero) -->
-  <div class="sleigh-flight-track absolute top-6 sm:top-10 left-0 w-full pointer-events-none">
+  <div class="sleigh-flight-track absolute top-2 sm:top-5 left-0 w-full pointer-events-none">
     <div class="sleigh-flight-vehicle">
       <svg
         class="w-64 sm:w-80 h-auto text-[#F5D061] drop-shadow-[0_0_12px_rgba(245,208,97,0.45)]"
@@ -122,7 +123,7 @@
             stroke-width="1.3"
             stroke-linecap="round"
           />
-          <!-- Nariz de Rudolph con brillo sutil -->
+          <!-- Nariz con brillo sutil -->
           <circle cx="33" cy="8" r="1.3" fill="#FFF4D0" />
           <!-- Cuerpo saltando estirado hacia adelante -->
           <path
@@ -134,110 +135,128 @@
     </div>
   </div>
 
-  <!-- RACIMO DE ESFERAS IZQUIERDO (Dorado y Vino Tinto) -->
-  <div class="absolute -top-3 sm:top-0 left-2 sm:left-6 lg:left-12 flex items-start gap-3 sm:gap-5">
+  <!-- RACIMO DE ESFERAS IZQUIERDO (Dorado y Vino Tinto Imperial) -->
+  <div class="absolute top-0 left-1.5 sm:left-6 lg:left-12 flex items-start gap-2.5 sm:gap-5">
     
-    <!-- Esfera A: Vino Tinto Imperial con hilo largo -->
+    <!-- Esfera A: Vino Tinto Imperial con estrella de nieve dorada -->
     <div class="bauble-swing-left-1 flex flex-col items-center">
-      <!-- Hilo dorado -->
-      <div class="w-[1px] h-20 sm:h-28 bg-gradient-to-b from-[#E6A635]/80 via-[#F5D061]/60 to-[#E6A635]"></div>
-      <!-- Casquillo dorado -->
-      <div class="w-3.5 h-2 bg-gradient-to-r from-[#D49522] via-[#F5D061] to-[#B37B1B] rounded-t-sm shadow-sm"></div>
+      <!-- Hilo dorado visible con brillo -->
+      <div class="w-[1.5px] sm:w-[2px] h-12 sm:h-22 bg-gradient-to-b from-[#FFF0A3] via-[#F5D061] to-[#E6A635] shadow-[0_0_8px_rgba(245,208,97,0.6)]"></div>
+      <!-- Casquillo dorado detallado -->
+      <div class="w-3.5 sm:w-4 h-2 sm:h-2.5 bg-gradient-to-r from-[#D49522] via-[#F5D061] to-[#B37B1B] rounded-t-sm shadow-md border-t border-[#FFF8E0]"></div>
       <!-- Esfera SVG -->
-      <svg class="w-12 h-12 sm:w-16 sm:h-16 drop-shadow-[0_8px_16px_rgba(0,0,0,0.6)]" viewBox="0 0 60 60">
+      <svg class="w-13 h-13 sm:w-16 sm:h-16 drop-shadow-[0_8px_20px_rgba(0,0,0,0.85)] drop-shadow-[0_0_15px_rgba(230,166,53,0.35)]" viewBox="0 0 60 60">
         <defs>
           <radialGradient id="wineBaubleGrad" cx="35%" cy="30%" r="65%">
-            <stop offset="0%" stop-color="#C72C48" />
-            <stop offset="35%" stop-color="#800F24" />
-            <stop offset="75%" stop-color="#3B0510" />
+            <stop offset="0%" stop-color="#FF2A55" />
+            <stop offset="25%" stop-color="#C72C48" />
+            <stop offset="55%" stop-color="#800F24" />
+            <stop offset="85%" stop-color="#3B0510" />
             <stop offset="100%" stop-color="#190206" />
           </radialGradient>
         </defs>
-        <!-- Cuerpo de la esfera -->
-        <circle cx="30" cy="30" r="28" fill="url(#wineBaubleGrad)" stroke="#E6A635" stroke-width="1" stroke-opacity="0.4" />
+        <!-- Cuerpo de la esfera con borde luminoso -->
+        <circle cx="30" cy="30" r="28" fill="url(#wineBaubleGrad)" stroke="#F5D061" stroke-width="1.2" stroke-opacity="0.65" />
         <!-- Detalle de estrella de nieve central en dorado -->
-        <g stroke="#F5D061" stroke-width="1" stroke-linecap="round" opacity="0.65">
-          <line x1="30" y1="18" x2="30" y2="42" />
-          <line x1="18" y1="30" x2="42" y2="30" />
-          <line x1="22" y1="22" x2="38" y2="38" />
-          <line x1="22" y1="38" x2="38" y2="22" />
-          <circle cx="30" cy="30" r="2" fill="#F5D061" />
+        <g stroke="#F5D061" stroke-width="1.3" stroke-linecap="round" opacity="0.85">
+          <line x1="30" y1="16" x2="30" y2="44" />
+          <line x1="16" y1="30" x2="44" y2="30" />
+          <line x1="20" y1="20" x2="40" y2="40" />
+          <line x1="20" y1="40" x2="40" y2="20" />
+          <circle cx="30" cy="30" r="2.5" fill="#FFF4D0" />
+          <!-- Rombitos en las puntas -->
+          <circle cx="30" cy="18" r="1.2" fill="#F5D061" />
+          <circle cx="30" cy="42" r="1.2" fill="#F5D061" />
+          <circle cx="18" cy="30" r="1.2" fill="#F5D061" />
+          <circle cx="42" cy="30" r="1.2" fill="#F5D061" />
         </g>
         <!-- Brillo especular superior -->
-        <ellipse cx="23" cy="20" rx="6" ry="3.5" transform="rotate(-30 23 20)" fill="#FFFFFF" opacity="0.35" />
+        <ellipse cx="22" cy="19" rx="7" ry="4" transform="rotate(-30 22 19)" fill="#FFFFFF" opacity="0.45" />
+        <circle cx="27" cy="15" r="1.5" fill="#FFFFFF" opacity="0.6" />
       </svg>
     </div>
 
-    <!-- Esfera B: Oro Metálico Festivo con hilo medio -->
+    <!-- Esfera B: Oro Metálico Festivo (Largo escalonado) -->
     <div class="bauble-swing-left-2 flex flex-col items-center">
-      <!-- Hilo dorado -->
-      <div class="w-[1px] h-12 sm:h-16 bg-gradient-to-b from-[#E6A635]/80 via-[#F5D061]/60 to-[#E6A635]"></div>
-      <!-- Casquillo dorado -->
-      <div class="w-3 h-1.5 bg-gradient-to-r from-[#D49522] via-[#F5D061] to-[#B37B1B] rounded-t-sm shadow-sm"></div>
+      <!-- Hilo dorado visible -->
+      <div class="w-[1.5px] sm:w-[2px] h-20 sm:h-34 bg-gradient-to-b from-[#FFF0A3] via-[#F5D061] to-[#E6A635] shadow-[0_0_8px_rgba(245,208,97,0.6)]"></div>
+      <!-- Casquillo -->
+      <div class="w-3 sm:w-3.5 h-1.5 sm:h-2 bg-gradient-to-r from-[#D49522] via-[#F5D061] to-[#B37B1B] rounded-t-sm shadow-md border-t border-[#FFF8E0]"></div>
       <!-- Esfera SVG -->
-      <svg class="w-9 h-9 sm:w-12 sm:h-12 drop-shadow-[0_6px_14px_rgba(0,0,0,0.5)]" viewBox="0 0 50 50">
+      <svg class="w-11 h-11 sm:w-13 sm:h-13 drop-shadow-[0_8px_18px_rgba(0,0,0,0.85)] drop-shadow-[0_0_15px_rgba(245,208,97,0.45)]" viewBox="0 0 50 50">
         <defs>
           <radialGradient id="goldBaubleGrad1" cx="35%" cy="30%" r="65%">
-            <stop offset="0%" stop-color="#FFF8E0" />
-            <stop offset="25%" stop-color="#F5D061" />
-            <stop offset="70%" stop-color="#C68A24" />
+            <stop offset="0%" stop-color="#FFFFFF" />
+            <stop offset="20%" stop-color="#FFF0A3" />
+            <stop offset="45%" stop-color="#F5D061" />
+            <stop offset="75%" stop-color="#C68A24" />
             <stop offset="100%" stop-color="#5E3E09" />
           </radialGradient>
         </defs>
-        <circle cx="25" cy="25" r="23" fill="url(#goldBaubleGrad1)" stroke="#FFF0C0" stroke-width="0.8" stroke-opacity="0.6" />
-        <!-- Filigrana geométrica -->
-        <circle cx="25" cy="25" r="14" fill="none" stroke="#2B050D" stroke-width="0.8" opacity="0.3" stroke-dasharray="2,2" />
-        <ellipse cx="19" cy="17" rx="5" ry="2.5" transform="rotate(-28 19 17)" fill="#FFFFFF" opacity="0.5" />
+        <circle cx="25" cy="25" r="23" fill="url(#goldBaubleGrad1)" stroke="#FFF0C0" stroke-width="1" stroke-opacity="0.8" />
+        <!-- Filigrana decorativa -->
+        <circle cx="25" cy="25" r="14" fill="none" stroke="#2B050D" stroke-width="1" opacity="0.35" stroke-dasharray="2,2" />
+        <path d="M 25 14 L 27 21 L 34 21 L 28 25 L 30 32 L 25 28 L 20 32 L 22 25 L 16 21 L 23 21 Z" fill="#2B050D" opacity="0.25" />
+        <ellipse cx="19" cy="16" rx="5.5" ry="3" transform="rotate(-28 19 16)" fill="#FFFFFF" opacity="0.6" />
       </svg>
     </div>
 
   </div>
 
-  <!-- RACIMO DE ESFERAS DERECHO (Verde Esmeralda y Champagne Oro) -->
-  <div class="absolute -top-3 sm:top-0 right-2 sm:right-6 lg:right-12 flex items-start gap-3 sm:gap-5">
+  <!-- RACIMO DE ESFERAS DERECHO (Verde Esmeralda y Oro Champagne) -->
+  <div class="absolute top-0 right-1.5 sm:right-6 lg:right-12 flex items-start gap-2.5 sm:gap-5">
     
-    <!-- Esfera C: Champagne Oro pequeño con hilo corto (Oculto en móviles muy pequeños para no obstruir) -->
-    <div class="bauble-swing-right-1 hidden xs:flex flex-col items-center">
-      <!-- Hilo dorado -->
-      <div class="w-[1px] h-14 sm:h-20 bg-gradient-to-b from-[#E6A635]/80 via-[#F5D061]/60 to-[#E6A635]"></div>
+    <!-- Esfera C: Champagne Oro brillante (Totalmente visible en móvil) -->
+    <div class="bauble-swing-right-1 flex flex-col items-center">
+      <!-- Hilo dorado visible -->
+      <div class="w-[1.5px] sm:w-[2px] h-18 sm:h-30 bg-gradient-to-b from-[#FFF0A3] via-[#F5D061] to-[#E6A635] shadow-[0_0_8px_rgba(245,208,97,0.6)]"></div>
       <!-- Casquillo -->
-      <div class="w-3 h-1.5 bg-gradient-to-r from-[#D49522] via-[#F5D061] to-[#B37B1B] rounded-t-sm shadow-sm"></div>
+      <div class="w-3 sm:w-3.5 h-1.5 sm:h-2 bg-gradient-to-r from-[#D49522] via-[#F5D061] to-[#B37B1B] rounded-t-sm shadow-md border-t border-[#FFF8E0]"></div>
       <!-- Esfera SVG -->
-      <svg class="w-9 h-9 sm:w-11 sm:h-11 drop-shadow-[0_6px_14px_rgba(0,0,0,0.5)]" viewBox="0 0 50 50">
+      <svg class="w-10 h-10 sm:w-12 sm:h-12 drop-shadow-[0_8px_18px_rgba(0,0,0,0.85)] drop-shadow-[0_0_15px_rgba(245,208,97,0.45)]" viewBox="0 0 50 50">
         <defs>
           <radialGradient id="champagneBaubleGrad" cx="35%" cy="30%" r="65%">
             <stop offset="0%" stop-color="#FFFFFF" />
-            <stop offset="30%" stop-color="#FCEAB3" />
-            <stop offset="75%" stop-color="#D49522" />
-            <stop offset="100%" stop-color="#734B0B" />
+            <stop offset="25%" stop-color="#FEF08A" />
+            <stop offset="55%" stop-color="#FACC15" />
+            <stop offset="85%" stop-color="#CA8A04" />
+            <stop offset="100%" stop-color="#713F12" />
           </radialGradient>
         </defs>
-        <circle cx="25" cy="25" r="23" fill="url(#champagneBaubleGrad)" stroke="#FFF" stroke-width="0.8" stroke-opacity="0.5" />
-        <ellipse cx="19" cy="17" rx="5" ry="2.5" transform="rotate(-28 19 17)" fill="#FFFFFF" opacity="0.6" />
+        <circle cx="25" cy="25" r="23" fill="url(#champagneBaubleGrad)" stroke="#FFFFFF" stroke-width="1" stroke-opacity="0.75" />
+        <!-- Patrón de filigrana -->
+        <circle cx="25" cy="25" r="16" fill="none" stroke="#FFFFFF" stroke-width="0.8" opacity="0.4" stroke-dasharray="3,2" />
+        <ellipse cx="19" cy="16" rx="5" ry="2.8" transform="rotate(-28 19 16)" fill="#FFFFFF" opacity="0.7" />
       </svg>
     </div>
 
-    <!-- Esfera D: Verde Esmeralda Clínico Festivo con hilo largo -->
+    <!-- Esfera D: Verde Esmeralda Clínico Festivo con guirnaldas doradas -->
     <div class="bauble-swing-right-2 flex flex-col items-center">
-      <!-- Hilo dorado -->
-      <div class="w-[1px] h-20 sm:h-26 bg-gradient-to-b from-[#E6A635]/80 via-[#F5D061]/60 to-[#E6A635]"></div>
+      <!-- Hilo dorado visible -->
+      <div class="w-[1.5px] sm:w-[2px] h-10 sm:h-20 bg-gradient-to-b from-[#FFF0A3] via-[#F5D061] to-[#E6A635] shadow-[0_0_8px_rgba(245,208,97,0.6)]"></div>
       <!-- Casquillo dorado -->
-      <div class="w-3.5 h-2 bg-gradient-to-r from-[#D49522] via-[#F5D061] to-[#B37B1B] rounded-t-sm shadow-sm"></div>
+      <div class="w-3.5 sm:w-4 h-2 sm:h-2.5 bg-gradient-to-r from-[#D49522] via-[#F5D061] to-[#B37B1B] rounded-t-sm shadow-md border-t border-[#FFF8E0]"></div>
       <!-- Esfera SVG -->
-      <svg class="w-12 h-12 sm:w-15 sm:h-15 drop-shadow-[0_8px_16px_rgba(0,0,0,0.6)]" viewBox="0 0 60 60">
+      <svg class="w-13 h-13 sm:w-16 sm:h-16 drop-shadow-[0_8px_20px_rgba(0,0,0,0.85)] drop-shadow-[0_0_15px_rgba(52,211,153,0.4)]" viewBox="0 0 60 60">
         <defs>
           <radialGradient id="emeraldBaubleGrad" cx="35%" cy="30%" r="65%">
-            <stop offset="0%" stop-color="#5EEAD4" />
-            <stop offset="25%" stop-color="#157347" />
-            <stop offset="75%" stop-color="#0B3E25" />
+            <stop offset="0%" stop-color="#A7F3D0" />
+            <stop offset="25%" stop-color="#34D399" />
+            <stop offset="55%" stop-color="#157347" />
+            <stop offset="85%" stop-color="#0B3E25" />
             <stop offset="100%" stop-color="#031A0F" />
           </radialGradient>
         </defs>
-        <circle cx="30" cy="30" r="28" fill="url(#emeraldBaubleGrad)" stroke="#F5D061" stroke-width="1" stroke-opacity="0.45" />
-        <!-- Guirnalda fina en dorado -->
-        <path d="M 12 30 Q 30 42, 48 30" fill="none" stroke="#F5D061" stroke-width="1.2" opacity="0.6" stroke-dasharray="2,2" />
-        <path d="M 16 24 Q 30 36, 44 24" fill="none" stroke="#F5D061" stroke-width="1" opacity="0.4" />
-        <ellipse cx="23" cy="20" rx="6" ry="3.5" transform="rotate(-30 23 20)" fill="#FFFFFF" opacity="0.35" />
+        <circle cx="30" cy="30" r="28" fill="url(#emeraldBaubleGrad)" stroke="#F5D061" stroke-width="1.3" stroke-opacity="0.65" />
+        <!-- Guirnalda festiva en dorado resplandeciente -->
+        <path d="M 10 30 Q 30 44, 50 30" fill="none" stroke="#F5D061" stroke-width="1.5" opacity="0.8" stroke-dasharray="3,2" />
+        <path d="M 14 24 Q 30 38, 46 24" fill="none" stroke="#F5D061" stroke-width="1.2" opacity="0.6" />
+        <circle cx="30" cy="37" r="1.5" fill="#FFF4D0" />
+        <circle cx="22" cy="35" r="1.2" fill="#F5D061" />
+        <circle cx="38" cy="35" r="1.2" fill="#F5D061" />
+        <!-- Brillo especular -->
+        <ellipse cx="22" cy="19" rx="7" ry="4" transform="rotate(-30 22 19)" fill="#FFFFFF" opacity="0.45" />
+        <circle cx="27" cy="15" r="1.5" fill="#FFFFFF" opacity="0.6" />
       </svg>
     </div>
 
