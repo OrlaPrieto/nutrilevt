@@ -188,65 +188,69 @@ const isBannerVisible = isHolidayBannerActive && isHomePage;
     </div>
   </nav>
 
-  <!-- Banner Navideño Editorial (Debajo del Header, solo en la página principal, visible hasta el 31 de Diciembre del 2026) -->
+  <!-- Banner Navideño Promocional (Solo en la página principal, visible hasta el 31 de Diciembre del 2026) -->
   {isBannerVisible && (
     <aside
       id="holiday-navbar-banner"
-      class="holiday-banner-element relative z-40 bg-[#350811] border-b border-[#E6A635]/20 no-print"
+      class="holiday-banner-element relative z-40 bg-gradient-to-r from-[#3D0914] via-[#520F1C] to-[#3D0914] border-b border-[#E6A635]/30 no-print overflow-hidden shadow-sm"
       aria-label={lang === "es" ? "Banner Recetario Navideño 2026" : "Holiday Recipe Book 2026 Banner"}
     >
       <a
         href={`${langPath}/recetario`}
         data-astro-prefetch="hover"
-        class="group block w-full py-2 px-4 transition-colors hover:bg-[#3D0A14] focus:outline-none focus:bg-[#3D0A14]"
+        class="group relative block w-full py-2 px-4 transition-colors hover:brightness-105 focus:outline-none focus:brightness-105"
       >
-        <div class="max-w-7xl mx-auto flex items-center justify-center gap-2 sm:gap-3 text-xs sm:text-sm text-center">
-          <!-- Guirnalda Botánica Izquierda Minimalista -->
-          <svg class="w-7 sm:w-10 h-3.5 sm:h-4 text-[#E6A635]/60 hidden xs:block shrink-0" viewBox="0 0 60 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path d="M2 4 C15 14, 35 14, 58 6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
-            <path d="M12 9 C10 13, 14 15, 16 11" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
-            <path d="M22 12 C24 16, 28 15, 27 11" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
-            <path d="M34 12 C36 16, 40 15, 39 11" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
-            <path d="M46 9 C48 13, 52 12, 50 8" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
-            <circle cx="15" cy="8" r="1.2" fill="#F5D061"/>
-            <circle cx="28" cy="10" r="1.2" fill="#F5D061"/>
-            <circle cx="41" cy="9" r="1.2" fill="#F5D061"/>
-          </svg>
+        <!-- SILUETAS MARCA DE AGUA (OPACIDAD SUTIL 0.09 A 0.12) -->
+        <!-- 1. Ramas de pino en esquina superior izquierda -->
+        <svg class="absolute -top-1 -left-1 w-16 sm:w-24 h-auto text-[#F5D061] opacity-[0.11] pointer-events-none select-none" viewBox="0 0 80 30" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+          <path d="M0 0 C15 5, 35 12, 65 24 M12 3 C16 9, 10 14, 6 12 M25 7 C30 14, 23 18, 19 15 M40 12 C46 18, 38 23, 33 19 M55 18 C61 24, 52 28, 47 24" />
+        </svg>
 
-          <!-- Prefijo discreto en dorado -->
-          <span class="text-[#E6A635] text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.18em] hidden sm:inline shrink-0">
+        <!-- 2. Ramas de pino en esquina superior derecha -->
+        <svg class="absolute -top-1 -right-1 w-16 sm:w-24 h-auto text-[#F5D061] opacity-[0.11] pointer-events-none select-none transform scale-x-[-1]" viewBox="0 0 80 30" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+          <path d="M0 0 C15 5, 35 12, 65 24 M12 3 C16 9, 10 14, 6 12 M25 7 C30 14, 23 18, 19 15 M40 12 C46 18, 38 23, 33 19 M55 18 C61 24, 52 28, 47 24" />
+        </svg>
+
+        <!-- 3. Silueta sutil de reno en costado izquierdo (Desktop) -->
+        <div class="absolute left-6 lg:left-12 top-1/2 -translate-y-1/2 opacity-[0.10] text-[#F5D061] pointer-events-none select-none hidden sm:block" aria-hidden="true">
+          <svg class="w-8 h-8" viewBox="0 0 32 32" fill="currentColor">
+            <path d="M18 4 C17 2, 14 1, 13 3 M16 2 C15 -1, 19 -2, 21 -1 M19 0 L18 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+            <path d="M12 9 C15 7, 19 8, 22 5 C23 4, 24 2, 25 3 C25 4, 24 6, 23 7 C21 9, 20 10, 19 12 L22 17 C23 18, 22 19, 21 19 L17 15 L14 14 L11 19 C10 20, 8 19, 9 18 L11 13 C8 13, 7 14, 5 16 L3 18 C2 19, 1 18, 2 17 L4 13 C5 12, 6 13, 7 13 Z"/>
+          </svg>
+        </div>
+
+        <!-- 4. Silueta sutil gastronómica / brindis en costado derecho (Desktop) -->
+        <div class="absolute right-6 lg:right-12 top-1/2 -translate-y-1/2 opacity-[0.10] text-[#F5D061] pointer-events-none select-none hidden sm:flex items-center gap-2" aria-hidden="true">
+          <!-- Estrella de anís gastronómica -->
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 3L13.2 8.5L18.5 7L15 11.5L20 14L14.5 16.5L17.5 21.5L12 18.5L6.5 21.5L9.5 16.5L4 14L9 11.5L5.5 7L10.8 8.5Z"/>
+          </svg>
+          <!-- Copas de brindis navideño minimalistas -->
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M7 4L9.5 9.5C10 10.5 10 11.2 9.5 12L7 14.5 M5 4L7.5 9.5C8 10.5 8 11.2 7.5 12L5 14.5 M7 14.5V19 M5 19H9"/>
+            <path d="M15 4L12.5 9.5C12 10.5 12 11.2 12.5 12L15 14.5 M17 4L14.5 9.5C14 10.5 14 11.2 14.5 12L17 14.5 M15 14.5V19 M13 19H17"/>
+          </svg>
+        </div>
+
+        <!-- CONTENIDO PRINCIPAL CENTRADO Y LIMPIO -->
+        <div class="max-w-7xl mx-auto flex items-center justify-center gap-1.5 sm:gap-2.5 text-xs sm:text-sm text-center relative z-10">
+          <!-- Prefijo solo en escritorio -->
+          <span class="hidden md:inline text-[#E6A635] text-[10px] font-semibold uppercase tracking-[0.18em] shrink-0">
             {lang === "es" ? "EDICIÓN 2026" : "2026 EDITION"}
           </span>
 
-          <!-- Separador sutil -->
-          <span class="text-white/25 hidden sm:inline select-none" aria-hidden="true">·</span>
+          <span class="text-white/20 hidden md:inline select-none" aria-hidden="true">·</span>
 
-          <!-- Texto principal en blanco/crema -->
-          <span class="text-amber-50/90 font-normal truncate sm:overflow-visible">
-            {lang === "es" ? "Recetario Navideño con respaldo clínico" : "Holiday Recipe Book with clinical backing"}
+          <!-- Texto principal con gancho comercial -->
+          <span class="text-amber-50 font-medium truncate sm:overflow-visible">
+            {lang === "es" ? "185 recetas navideñas · Prueba 6 gratis" : "185 holiday recipes · Try 6 for free"}
           </span>
 
-          <span class="text-white/25 hidden xs:inline select-none" aria-hidden="true">·</span>
-
-          <!-- Enlace de acción limpio en dorado -->
-          <span class="text-[#F5D061] font-semibold group-hover:text-white underline-offset-4 group-hover:underline inline-flex items-center gap-1 transition-colors shrink-0">
-            <span>{lang === "es" ? "Ver recetario" : "View recipe book"}</span>
-            <svg class="w-3.5 h-3.5 transform group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-            </svg>
+          <!-- Botón Outline Fino y Elegante -->
+          <span class="ml-1 sm:ml-2 px-3 py-0.5 rounded-full border border-[#F5D061]/60 bg-[#F5D061]/10 text-[#F5D061] group-hover:bg-[#F5D061] group-hover:text-[#28050D] text-[11px] sm:text-xs font-semibold transition-all whitespace-nowrap inline-flex items-center gap-1 shrink-0 shadow-sm">
+            <span>{lang === "es" ? "Ver recetario" : "View recipes"}</span>
+            <span class="inline-block transition-transform duration-200 group-hover:translate-x-0.5">→</span>
           </span>
-
-          <!-- Guirnalda Botánica Derecha Minimalista -->
-          <svg class="w-7 sm:w-10 h-3.5 sm:h-4 text-[#E6A635]/60 hidden xs:block shrink-0 transform scale-x-[-1]" viewBox="0 0 60 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path d="M2 4 C15 14, 35 14, 58 6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
-            <path d="M12 9 C10 13, 14 15, 16 11" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
-            <path d="M22 12 C24 16, 28 15, 27 11" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
-            <path d="M34 12 C36 16, 40 15, 39 11" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
-            <path d="M46 9 C48 13, 52 12, 50 8" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
-            <circle cx="15" cy="8" r="1.2" fill="#F5D061"/>
-            <circle cx="28" cy="10" r="1.2" fill="#F5D061"/>
-            <circle cx="41" cy="9" r="1.2" fill="#F5D061"/>
-          </svg>
         </div>
       </a>
     </aside>
