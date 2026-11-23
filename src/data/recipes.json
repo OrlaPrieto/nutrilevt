@@ -55,7 +55,8 @@
         "count": "½"
       }
     ],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/001-champurrado-ligero.webp"
   },
   {
     "id": "002-chocolate-caliente-mexicano",
@@ -110,7 +111,8 @@
         "count": "½"
       }
     ],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/002-chocolate-caliente-mexicano.webp"
   },
   {
     "id": "003-limonada-de-pina-con-un-toque-de-menta",
@@ -174,7 +176,8 @@
       "fiber": "1 g"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/003-limonada-de-pina-con-un-toque-de-menta.webp"
   },
   {
     "id": "004-refresco-de-fresa",
@@ -221,7 +224,8 @@
       "fiber": "1.5 g"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/004-refresco-de-fresa.webp"
   },
   {
     "id": "005-horchata",
@@ -280,7 +284,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/005-horchata.webp"
   },
   {
     "id": "006-cacao-con-licor-de-jengibre",
@@ -334,7 +339,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/006-cacao-con-licor-de-jengibre.webp"
   },
   {
     "id": "007-atole-de-avena",
@@ -391,7 +397,8 @@
         "count": "½"
       }
     ],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/007-atole-de-avena.webp"
   },
   {
     "id": "008-ponche-de-frutos-rojos",
@@ -439,7 +446,8 @@
         "count": "1"
       }
     ],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/008-ponche-de-frutos-rojos.webp"
   },
   {
     "id": "009-atole-de-arroz",
@@ -495,7 +503,8 @@
         "count": "½"
       }
     ],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/009-atole-de-arroz.webp"
   },
   {
     "id": "010-bebida-caliente-de-almendra-y-canela",
@@ -536,7 +545,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/010-bebida-caliente-de-almendra-y-canela.webp"
   },
   {
     "id": "011-atole-de-guayaba",
@@ -592,7 +602,8 @@
         "count": "½"
       }
     ],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/011-atole-de-guayaba.webp"
   },
   {
     "id": "012-leche-con-cocoa",
@@ -637,7 +648,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": "66 Grupo de alimentos Equivalentes Lácteos 1 Cereales 1 Grasas 1 Alimentos de origen animal Incluido en lácteo OBSERVACIÓN •No ideal como bebida libre. •En resistencia a la insulina u obesidad, se recomienda: • Tomarla acompañada de proteína extra o • Usar leche light o vegetal sin azúcar para reducir equivalentes. •No sustituye agua natural. Sistema Mexicano de Alimentos Equivalentes (SMAE)"
+    "tip": "66 Grupo de alimentos Equivalentes Lácteos 1 Cereales 1 Grasas 1 Alimentos de origen animal Incluido en lácteo OBSERVACIÓN •No ideal como bebida libre. •En resistencia a la insulina u obesidad, se recomienda: • Tomarla acompañada de proteína extra o • Usar leche light o vegetal sin azúcar para reducir equivalentes. •No sustituye agua natural. Sistema Mexicano de Alimentos Equivalentes (SMAE)",
+    "image": "/images/recetas/012-leche-con-cocoa.webp"
   },
   {
     "id": "013-agua-de-tamarindo",
@@ -686,7 +698,8 @@
       "fiber": "0.5 g"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/013-agua-de-tamarindo.webp"
   },
   {
     "id": "014-leche-con-matcha",
@@ -733,7 +746,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/014-leche-con-matcha.webp"
   },
   {
     "id": "015-limonada-de-frambuesas",
@@ -790,7 +804,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/015-limonada-de-frambuesas.webp"
   },
   {
     "id": "016-leche-de-coco-sin-azucar",
@@ -838,7 +853,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/016-leche-de-coco-sin-azucar.webp"
   },
   {
     "id": "017-ponche-de-fruta",
@@ -896,7 +912,8 @@
         "count": "1"
       }
     ],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/017-ponche-de-fruta.webp"
   },
   {
     "id": "018-ponche-de-huevo",
@@ -948,7 +965,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/018-ponche-de-huevo.webp"
   },
   {
     "id": "019-bebida-espumosa-de-pera",
@@ -1004,7 +1022,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/019-bebida-espumosa-de-pera.webp"
   },
   {
     "id": "020-agua-de-sandia",
@@ -1055,7 +1074,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/020-agua-de-sandia.webp"
   },
   {
     "id": "021-infusion-de-naranja-menta-canela-y-miel",
@@ -1108,7 +1128,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/021-infusion-de-naranja-menta-canela-y-miel.webp"
   },
   {
     "id": "022-te-selecto-de-taro",
@@ -1159,7 +1180,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/022-te-selecto-de-taro.webp"
   },
   {
     "id": "023-sangria",
@@ -1213,7 +1235,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/023-sangria.webp"
   },
   {
     "id": "024-leche-de-almendras-sin-azucar",
@@ -1263,7 +1286,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/024-leche-de-almendras-sin-azucar.webp"
   },
   {
     "id": "025-smoothie-de-mantequilla-de-cacahuate-con-platano-y-linaza",
@@ -1308,7 +1332,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/025-smoothie-de-mantequilla-de-cacahuate-con-platano-y-linaza.webp"
   },
   {
     "id": "026-jugo-verde",
@@ -1354,7 +1379,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/026-jugo-verde.webp"
   },
   {
     "id": "027-frappe-para-el-sistema-inmune",
@@ -1397,7 +1423,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/027-frappe-para-el-sistema-inmune.webp"
   },
   {
     "id": "028-jugo-super-vitaminico",
@@ -1442,7 +1469,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/028-jugo-super-vitaminico.webp"
   },
   {
     "id": "029-jugo-antiviral",
@@ -1489,7 +1517,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/029-jugo-antiviral.webp"
   },
   {
     "id": "030-te-antigripal",
@@ -1539,7 +1568,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/030-te-antigripal.webp"
   },
   {
     "id": "031-te-estilo-thai",
@@ -1595,7 +1625,8 @@
         "count": "½"
       }
     ],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/031-te-estilo-thai.webp"
   },
   {
     "id": "032-ponche-navideno-sin-azucar-anadida",
@@ -1648,7 +1679,8 @@
         "count": "1"
       }
     ],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/032-ponche-navideno-sin-azucar-anadida.webp"
   },
   {
     "id": "033-agua-de-jamaica-con-jengibre",
@@ -1700,7 +1732,8 @@
         "count": "1"
       }
     ],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/033-agua-de-jamaica-con-jengibre.webp"
   },
   {
     "id": "034-te-chai-especiado-con-leche-de-avena",
@@ -1758,7 +1791,8 @@
         "count": "½"
       }
     ],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/034-te-chai-especiado-con-leche-de-avena.webp"
   },
   {
     "id": "035-sidra-de-manzana-caliente-sin-alcohol",
@@ -1811,7 +1845,8 @@
         "count": "1½"
       }
     ],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/035-sidra-de-manzana-caliente-sin-alcohol.webp"
   },
   {
     "id": "036-smoothie-de-betabel-y-frutos-rojos",
@@ -1873,7 +1908,8 @@
         "count": "½"
       }
     ],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/036-smoothie-de-betabel-y-frutos-rojos.webp"
   },
   {
     "id": "037-agua-de-pepino-limon-y-chia",
@@ -1927,7 +1963,8 @@
         "count": "1"
       }
     ],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/037-agua-de-pepino-limon-y-chia.webp"
   },
   {
     "id": "038-chocolate-caliente-con-leche-de-almendra",
@@ -1982,7 +2019,8 @@
         "count": "0¼"
       }
     ],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/038-chocolate-caliente-con-leche-de-almendra.webp"
   },
   {
     "id": "039-te-de-manzanilla-con-naranja-y-clavo",
@@ -2034,7 +2072,8 @@
         "count": "1"
       }
     ],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/039-te-de-manzanilla-con-naranja-y-clavo.webp"
   },
   {
     "id": "040-licuado-de-avena-platano-y-canela",
@@ -2093,7 +2132,8 @@
         "count": "1"
       }
     ],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/040-licuado-de-avena-platano-y-canela.webp"
   },
   {
     "id": "041-agua-de-tuna-con-limon",
@@ -2145,7 +2185,8 @@
         "count": "¾"
       }
     ],
-    "tip": "Prefiere bebidas naturales sin azúcar añadida: el agua, los tés y los ponches con fruta entera te hidratan sin disparar tu glucosa. Alterna cada bebida festiva con un vaso de agua simple."
+    "tip": "Prefiere bebidas naturales sin azúcar añadida: el agua, los tés y los ponches con fruta entera te hidratan sin disparar tu glucosa. Alterna cada bebida festiva con un vaso de agua simple.",
+    "image": "/images/recetas/041-agua-de-tuna-con-limon.webp"
   },
   {
     "id": "042-ensalada-campera",
@@ -2203,7 +2244,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/042-ensalada-campera.webp"
   },
   {
     "id": "043-ensalada-de-papas-y-ejotes-con-vinagreta-de-curry-amarillo",
@@ -2259,7 +2301,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/043-ensalada-de-papas-y-ejotes-con-vinagreta-de-curry-amarillo.webp"
   },
   {
     "id": "044-ensalada-waldorf",
@@ -2316,7 +2359,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/044-ensalada-waldorf.webp"
   },
   {
     "id": "045-ensalada-de-hongos-con-lentejas",
@@ -2382,7 +2426,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/045-ensalada-de-hongos-con-lentejas.webp"
   },
   {
     "id": "046-ensalada-de-espinacas-durazno-y-ciruela",
@@ -2439,7 +2484,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/046-ensalada-de-espinacas-durazno-y-ciruela.webp"
   },
   {
     "id": "047-ensalada-de-espinaca-queso-de-cabra-y-vinagreta-de-ajonjoli",
@@ -2497,7 +2543,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/047-ensalada-de-espinaca-queso-de-cabra-y-vinagreta-de-ajonjoli.webp"
   },
   {
     "id": "048-tabla-de-vegetales",
@@ -2558,7 +2605,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/048-tabla-de-vegetales.webp"
   },
   {
     "id": "049-ensalada-de-arrachera",
@@ -2605,7 +2653,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/049-ensalada-de-arrachera.webp"
   },
   {
     "id": "050-ensalada-citrica",
@@ -2651,7 +2700,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/050-ensalada-citrica.webp"
   },
   {
     "id": "051-falso-tabule-de-coliflor",
@@ -2713,7 +2763,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/051-falso-tabule-de-coliflor.webp"
   },
   {
     "id": "052-ensalada-rusa",
@@ -2771,7 +2822,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/052-ensalada-rusa.webp"
   },
   {
     "id": "053-ensalada-grinch",
@@ -2821,7 +2873,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/053-ensalada-grinch.webp"
   },
   {
     "id": "054-ensalada-navidena-de-manzana-y-nuez",
@@ -2888,7 +2941,8 @@
         "count": "½"
       }
     ],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/054-ensalada-navidena-de-manzana-y-nuez.webp"
   },
   {
     "id": "055-ensalada-de-manzana-con-cerezas",
@@ -2936,7 +2990,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/055-ensalada-de-manzana-con-cerezas.webp"
   },
   {
     "id": "056-ensalada-de-quinoa-mediterranea",
@@ -2985,7 +3040,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/056-ensalada-de-quinoa-mediterranea.webp"
   },
   {
     "id": "057-ensalada-de-champinones-con-aguacate",
@@ -3027,7 +3083,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/057-ensalada-de-champinones-con-aguacate.webp"
   },
   {
     "id": "058-ensalada-con-manzanas-y-nueces",
@@ -3095,7 +3152,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/058-ensalada-con-manzanas-y-nueces.webp"
   },
   {
     "id": "059-ensalada-arcoiris",
@@ -3156,7 +3214,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/059-ensalada-arcoiris.webp"
   },
   {
     "id": "060-ensalada-de-pera-y-avellanas",
@@ -3213,7 +3272,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/060-ensalada-de-pera-y-avellanas.webp"
   },
   {
     "id": "061-ensalada-de-berenjena-grill-con-espinacas",
@@ -3270,7 +3330,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/061-ensalada-de-berenjena-grill-con-espinacas.webp"
   },
   {
     "id": "062-ensalada-de-betabel-y-jitomate",
@@ -3326,7 +3387,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/062-ensalada-de-betabel-y-jitomate.webp"
   },
   {
     "id": "063-ensalada-de-naranja-y-fresas",
@@ -3385,7 +3447,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/063-ensalada-de-naranja-y-fresas.webp"
   },
   {
     "id": "064-ensalada-de-zanahoria-con-repollo",
@@ -3437,7 +3500,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/064-ensalada-de-zanahoria-con-repollo.webp"
   },
   {
     "id": "065-ensalada-caprese-con-berenjena",
@@ -3489,7 +3553,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/065-ensalada-caprese-con-berenjena.webp"
   },
   {
     "id": "066-ensalada-de-jitomates-con-albahaca",
@@ -3542,7 +3607,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/066-ensalada-de-jitomates-con-albahaca.webp"
   },
   {
     "id": "067-ensalada-de-espinacas",
@@ -3593,7 +3659,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/067-ensalada-de-espinacas.webp"
   },
   {
     "id": "068-ensalada-de-papa-con-perejil",
@@ -3641,7 +3708,8 @@
         "count": "1"
       }
     ],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/068-ensalada-de-papa-con-perejil.webp"
   },
   {
     "id": "069-ensalada-de-betabel-con-naranja",
@@ -3699,7 +3767,8 @@
         "count": "1"
       }
     ],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/069-ensalada-de-betabel-con-naranja.webp"
   },
   {
     "id": "070-ensalada-tibia-de-nopales",
@@ -3751,7 +3820,8 @@
         "count": "1"
       }
     ],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/070-ensalada-tibia-de-nopales.webp"
   },
   {
     "id": "071-ensalada-de-espinaca-con-fresa-y-almendra",
@@ -3806,7 +3876,8 @@
         "count": "1"
       }
     ],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/071-ensalada-de-espinaca-con-fresa-y-almendra.webp"
   },
   {
     "id": "072-ensalada-de-zanahoria-con-pina",
@@ -3862,7 +3933,8 @@
         "count": "1"
       }
     ],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/072-ensalada-de-zanahoria-con-pina.webp"
   },
   {
     "id": "073-ensalada-verde-con-uvas-y-queso-panela",
@@ -3923,7 +3995,8 @@
         "count": "1"
       }
     ],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/073-ensalada-verde-con-uvas-y-queso-panela.webp"
   },
   {
     "id": "074-ensalada-de-granada-y-arugula",
@@ -3981,7 +4054,8 @@
         "count": "½"
       }
     ],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/074-ensalada-de-granada-y-arugula.webp"
   },
   {
     "id": "075-ensalada-de-col-morada-y-manzana",
@@ -4039,7 +4113,8 @@
         "count": "1"
       }
     ],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/075-ensalada-de-col-morada-y-manzana.webp"
   },
   {
     "id": "076-ensalada-de-lechuga-con-pavo-y-aguacate",
@@ -4102,7 +4177,8 @@
         "count": "0¼"
       }
     ],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/076-ensalada-de-lechuga-con-pavo-y-aguacate.webp"
   },
   {
     "id": "077-ensalada-de-calabacitas-con-queso-fresco",
@@ -4161,7 +4237,8 @@
         "count": "1"
       }
     ],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/077-ensalada-de-calabacitas-con-queso-fresco.webp"
   },
   {
     "id": "078-ensalada-de-jicama-y-pepino",
@@ -4219,7 +4296,8 @@
         "count": "1"
       }
     ],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/078-ensalada-de-jicama-y-pepino.webp"
   },
   {
     "id": "079-ensalada-tibia-de-lentejas-y-verduras-asadas",
@@ -4279,7 +4357,8 @@
         "count": "1"
       }
     ],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/079-ensalada-tibia-de-lentejas-y-verduras-asadas.webp"
   },
   {
     "id": "080-ensalada-de-pepino-menta-y-yogur",
@@ -4336,7 +4415,8 @@
         "count": "½"
       }
     ],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/080-ensalada-de-pepino-menta-y-yogur.webp"
   },
   {
     "id": "081-ensalada-de-atun-con-garbanzos",
@@ -4395,7 +4475,8 @@
         "count": "0½"
       }
     ],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/081-ensalada-de-atun-con-garbanzos.webp"
   },
   {
     "id": "082-ensalada-de-coliflor-asada-y-nueces",
@@ -4451,7 +4532,8 @@
         "count": "2"
       }
     ],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/082-ensalada-de-coliflor-asada-y-nueces.webp"
   },
   {
     "id": "083-ensalada-de-kale-con-citricos",
@@ -4512,7 +4594,8 @@
         "count": "1"
       }
     ],
-    "tip": "Empieza la cena con una ensalada: su fibra y volumen te ayudan a sentirte saciada más rápido y a controlar la porción del plato fuerte. Aliña con limón y un chorrito de aceite de oliva."
+    "tip": "Empieza la cena con una ensalada: su fibra y volumen te ayudan a sentirte saciada más rápido y a controlar la porción del plato fuerte. Aliña con limón y un chorrito de aceite de oliva.",
+    "image": "/images/recetas/083-ensalada-de-kale-con-citricos.webp"
   },
   {
     "id": "084-lomo-de-cerdo-con-champinones",
@@ -4573,7 +4656,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/084-lomo-de-cerdo-con-champinones.webp"
   },
   {
     "id": "085-pavo-horneado-con-gravy-ligero",
@@ -4622,7 +4706,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/085-pavo-horneado-con-gravy-ligero.webp"
   },
   {
     "id": "086-lomo-de-cerdo-en-salsa-de-manzana",
@@ -4666,7 +4751,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/086-lomo-de-cerdo-en-salsa-de-manzana.webp"
   },
   {
     "id": "087-tortitas-de-lentejas",
@@ -4729,7 +4815,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/087-tortitas-de-lentejas.webp"
   },
   {
     "id": "088-lasana-de-calabacita",
@@ -4772,7 +4859,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/088-lasana-de-calabacita.webp"
   },
   {
     "id": "089-bowl-de-garbanzos-rostizados",
@@ -4841,7 +4929,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/089-bowl-de-garbanzos-rostizados.webp"
   },
   {
     "id": "090-pollo-relleno-de-espinaca-y-nuez",
@@ -4881,7 +4970,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/090-pollo-relleno-de-espinaca-y-nuez.webp"
   },
   {
     "id": "091-pavo-en-mole-rojo-ligero",
@@ -4919,7 +5009,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/091-pavo-en-mole-rojo-ligero.webp"
   },
   {
     "id": "092-salmon-con-esparragos",
@@ -4969,7 +5060,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/092-salmon-con-esparragos.webp"
   },
   {
     "id": "093-lasana-navidena-de-verduras-y-pollo",
@@ -5009,7 +5101,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/093-lasana-navidena-de-verduras-y-pollo.webp"
   },
   {
     "id": "094-filete-de-pescado-en-salsa-de-almendra",
@@ -5059,7 +5152,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/094-filete-de-pescado-en-salsa-de-almendra.webp"
   },
   {
     "id": "095-carne-de-res-en-salsa-de-champinones",
@@ -5097,7 +5191,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/095-carne-de-res-en-salsa-de-champinones.webp"
   },
   {
     "id": "096-pastel-de-carne-con-glaseado-de-chipotle",
@@ -5165,7 +5260,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/096-pastel-de-carne-con-glaseado-de-chipotle.webp"
   },
   {
     "id": "097-romeritos-con-camaron",
@@ -5236,7 +5332,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/097-romeritos-con-camaron.webp"
   },
   {
     "id": "098-pierna-enchilada",
@@ -5288,7 +5385,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/098-pierna-enchilada.webp"
   },
   {
     "id": "099-lasana-vegana",
@@ -5329,7 +5427,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/099-lasana-vegana.webp"
   },
   {
     "id": "100-pierna-al-horno",
@@ -5391,7 +5490,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/100-pierna-al-horno.webp"
   },
   {
     "id": "101-pasta-cremosa-con-jamon",
@@ -5454,7 +5554,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/101-pasta-cremosa-con-jamon.webp"
   },
   {
     "id": "102-pavo-a-la-naranja",
@@ -5502,7 +5603,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/102-pavo-a-la-naranja.webp"
   },
   {
     "id": "103-pavo-al-achiote",
@@ -5555,7 +5657,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/103-pavo-al-achiote.webp"
   },
   {
     "id": "104-chiles-rellenos",
@@ -5615,7 +5718,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/104-chiles-rellenos.webp"
   },
   {
     "id": "105-paella-mixta",
@@ -5683,7 +5787,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/105-paella-mixta.webp"
   },
   {
     "id": "106-salmon-empapelado-con-finas-hierbas-al-vino-blanco",
@@ -5749,7 +5854,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/106-salmon-empapelado-con-finas-hierbas-al-vino-blanco.webp"
   },
   {
     "id": "107-salmon-empapelado-con-ensalada-de-rabanos-y-hojas-de-betabel",
@@ -5804,7 +5910,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/107-salmon-empapelado-con-ensalada-de-rabanos-y-hojas-de-betabel.webp"
   },
   {
     "id": "108-lonja-de-salmon-al-horno-con-vegetales",
@@ -5869,7 +5976,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/108-lonja-de-salmon-al-horno-con-vegetales.webp"
   },
   {
     "id": "109-salmon-empapelado-con-vegetales-a-la-mantequilla",
@@ -5923,7 +6031,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/109-salmon-empapelado-con-vegetales-a-la-mantequilla.webp"
   },
   {
     "id": "110-brochetas-de-camaron-con-salsa-de-cacahuate-con-limon",
@@ -5988,7 +6097,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/110-brochetas-de-camaron-con-salsa-de-cacahuate-con-limon.webp"
   },
   {
     "id": "111-costillas-en-salsa-bbq-de-jamaica",
@@ -6049,7 +6159,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/111-costillas-en-salsa-bbq-de-jamaica.webp"
   },
   {
     "id": "112-rollitos-de-pavo-ahumado-rellenos-de-espinaca-y-queso-panela",
@@ -6137,7 +6248,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/112-rollitos-de-pavo-ahumado-rellenos-de-espinaca-y-queso-panela.webp"
   },
   {
     "id": "113-pavo-ahumado-en-salsa-de-mostaza-y-miel-light",
@@ -6221,7 +6333,8 @@
         "count": "¼"
       }
     ],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/113-pavo-ahumado-en-salsa-de-mostaza-y-miel-light.webp"
   },
   {
     "id": "114-pechuga-de-pollo-al-romero-y-limon",
@@ -6275,7 +6388,8 @@
         "count": "1"
       }
     ],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/114-pechuga-de-pollo-al-romero-y-limon.webp"
   },
   {
     "id": "115-pescado-a-la-veracruzana-ligero",
@@ -6334,7 +6448,8 @@
         "count": "1"
       }
     ],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/115-pescado-a-la-veracruzana-ligero.webp"
   },
   {
     "id": "116-tinga-de-pollo-con-tostadas-horneadas",
@@ -6393,7 +6508,8 @@
         "count": "1"
       }
     ],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/116-tinga-de-pollo-con-tostadas-horneadas.webp"
   },
   {
     "id": "117-albondigas-de-pavo-en-salsa-de-jitomate",
@@ -6453,7 +6569,8 @@
         "count": "¼"
       }
     ],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/117-albondigas-de-pavo-en-salsa-de-jitomate.webp"
   },
   {
     "id": "118-berenjenas-rellenas-de-verduras-y-quinoa",
@@ -6516,7 +6633,8 @@
         "count": "1"
       }
     ],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/118-berenjenas-rellenas-de-verduras-y-quinoa.webp"
   },
   {
     "id": "119-camarones-al-ajillo-con-arroz-de-coliflor",
@@ -6575,7 +6693,8 @@
         "count": "1"
       }
     ],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/119-camarones-al-ajillo-con-arroz-de-coliflor.webp"
   },
   {
     "id": "120-pollo-en-salsa-de-tamarindo-ligero",
@@ -6629,7 +6748,8 @@
         "count": "½"
       }
     ],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/120-pollo-en-salsa-de-tamarindo-ligero.webp"
   },
   {
     "id": "121-medallones-de-res-con-chimichurri",
@@ -6683,7 +6803,8 @@
         "count": "1"
       }
     ],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/121-medallones-de-res-con-chimichurri.webp"
   },
   {
     "id": "122-enchiladas-verdes-de-pollo-con-calabacita",
@@ -6742,7 +6863,8 @@
         "count": "1"
       }
     ],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/122-enchiladas-verdes-de-pollo-con-calabacita.webp"
   },
   {
     "id": "123-rollo-de-pavo-relleno-de-manzana-y-espinaca",
@@ -6802,7 +6924,8 @@
         "count": "½"
       }
     ],
-    "tip": "Arma tu plato así: la mitad con verduras, un cuarto con proteína magra y un cuarto con cereal integral. Come despacio, mastica bien y sírvete una sola vez."
+    "tip": "Arma tu plato así: la mitad con verduras, un cuarto con proteína magra y un cuarto con cereal integral. Come despacio, mastica bien y sírvete una sola vez.",
+    "image": "/images/recetas/123-rollo-de-pavo-relleno-de-manzana-y-espinaca.webp"
   },
   {
     "id": "124-sopa-de-esparragos-y-limon",
@@ -6865,7 +6988,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/124-sopa-de-esparragos-y-limon.webp"
   },
   {
     "id": "125-pure-de-camote-con-canela",
@@ -6907,7 +7031,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/125-pure-de-camote-con-canela.webp"
   },
   {
     "id": "126-zanahorias-glaseadas-con-naranja-natural",
@@ -6945,7 +7070,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/126-zanahorias-glaseadas-con-naranja-natural.webp"
   },
   {
     "id": "127-betabel-y-durazno-con-pure-de-aguacate",
@@ -7041,7 +7167,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/127-betabel-y-durazno-con-pure-de-aguacate.webp"
   },
   {
     "id": "128-ensalada-de-vegetales-y-pina-a-la-parrilla",
@@ -7096,7 +7223,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/128-ensalada-de-vegetales-y-pina-a-la-parrilla.webp"
   },
   {
     "id": "129-burrata-con-tomates-cherry-rostizados",
@@ -7150,7 +7278,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/129-burrata-con-tomates-cherry-rostizados.webp"
   },
   {
     "id": "130-coles-de-bruselas-crujientes-con-alioli-de-dijon",
@@ -7200,7 +7329,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/130-coles-de-bruselas-crujientes-con-alioli-de-dijon.webp"
   },
   {
     "id": "131-crema-de-esparragos",
@@ -7254,7 +7384,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/131-crema-de-esparragos.webp"
   },
   {
     "id": "132-pure-de-papa",
@@ -7303,7 +7434,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/132-pure-de-papa.webp"
   },
   {
     "id": "133-crema-de-brocoli",
@@ -7357,7 +7489,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/133-crema-de-brocoli.webp"
   },
   {
     "id": "134-jitomates-cherry-salteados",
@@ -7407,7 +7540,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/134-jitomates-cherry-salteados.webp"
   },
   {
     "id": "135-pure-de-coliflor",
@@ -7449,7 +7583,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/135-pure-de-coliflor.webp"
   },
   {
     "id": "136-brocoli-al-vapor",
@@ -7499,7 +7634,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/136-brocoli-al-vapor.webp"
   },
   {
     "id": "137-calabacitas-al-ajillo",
@@ -7548,7 +7684,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/137-calabacitas-al-ajillo.webp"
   },
   {
     "id": "138-chips-de-kale-picantes",
@@ -7602,7 +7739,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/138-chips-de-kale-picantes.webp"
   },
   {
     "id": "139-caldo-de-pollo-aromatico-con-vegetales-y-jengibre",
@@ -7671,7 +7809,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/139-caldo-de-pollo-aromatico-con-vegetales-y-jengibre.webp"
   },
   {
     "id": "140-sopa-de-zanahoria-y-coliflor",
@@ -7741,7 +7880,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/140-sopa-de-zanahoria-y-coliflor.webp"
   },
   {
     "id": "141-arroz-integral-con-cilantro",
@@ -7797,7 +7937,8 @@
         "count": "0½"
       }
     ],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/141-arroz-integral-con-cilantro.webp"
   },
   {
     "id": "142-esparragos-a-la-parrilla-con-limon",
@@ -7853,7 +7994,8 @@
         "count": "½"
       }
     ],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/142-esparragos-a-la-parrilla-con-limon.webp"
   },
   {
     "id": "143-ejotes-con-almendras",
@@ -7909,7 +8051,8 @@
         "count": "1"
       }
     ],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/143-ejotes-con-almendras.webp"
   },
   {
     "id": "144-calabaza-de-castilla-asada-con-canela",
@@ -7970,7 +8113,8 @@
         "count": "0½"
       }
     ],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/144-calabaza-de-castilla-asada-con-canela.webp"
   },
   {
     "id": "145-pure-de-chicharo-con-menta",
@@ -8025,7 +8169,8 @@
         "count": "1"
       }
     ],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/145-pure-de-chicharo-con-menta.webp"
   },
   {
     "id": "146-champinones-al-ajillo",
@@ -8082,7 +8227,8 @@
         "count": "½"
       }
     ],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/146-champinones-al-ajillo.webp"
   },
   {
     "id": "147-esquites-ligeros-con-limon",
@@ -8138,7 +8284,8 @@
         "count": "½"
       }
     ],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/147-esquites-ligeros-con-limon.webp"
   },
   {
     "id": "148-papas-cambray-al-horno-con-romero",
@@ -8194,7 +8341,8 @@
         "count": "½"
       }
     ],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/148-papas-cambray-al-horno-con-romero.webp"
   },
   {
     "id": "149-espinacas-salteadas-con-ajo-y-limon",
@@ -8252,7 +8400,8 @@
         "count": "½"
       }
     ],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/149-espinacas-salteadas-con-ajo-y-limon.webp"
   },
   {
     "id": "150-quinoa-con-verduras",
@@ -8311,7 +8460,8 @@
         "count": "0½"
       }
     ],
-    "tip": "Las guarniciones también cuentan: elige verduras y cereales integrales, y cuida el tamaño de la porción de arroz, puré y papas. Una taza ya es suficiente."
+    "tip": "Las guarniciones también cuentan: elige verduras y cereales integrales, y cuida el tamaño de la porción de arroz, puré y papas. Una taza ya es suficiente.",
+    "image": "/images/recetas/150-quinoa-con-verduras.webp"
   },
   {
     "id": "151-trufas-de-datil-y-cacao",
@@ -8349,7 +8499,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/151-trufas-de-datil-y-cacao.webp"
   },
   {
     "id": "152-gelatina-de-frutos-rojos-con-yogur",
@@ -8392,7 +8543,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/152-gelatina-de-frutos-rojos-con-yogur.webp"
   },
   {
     "id": "153-flan-de-coco-ligero-sin-azucar",
@@ -8444,7 +8596,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/153-flan-de-coco-ligero-sin-azucar.webp"
   },
   {
     "id": "154-peras-al-vino-tinto-sin-azucar",
@@ -8483,7 +8636,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/154-peras-al-vino-tinto-sin-azucar.webp"
   },
   {
     "id": "155-manzana-canela",
@@ -8549,7 +8703,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/155-manzana-canela.webp"
   },
   {
     "id": "156-chips-de-manzana-y-canela",
@@ -8594,7 +8749,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/156-chips-de-manzana-y-canela.webp"
   },
   {
     "id": "157-mousse-de-yogurt-griego-y-frutos-rojos",
@@ -8631,7 +8787,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/157-mousse-de-yogurt-griego-y-frutos-rojos.webp"
   },
   {
     "id": "158-pastel-de-naranja-y-yogurt",
@@ -8699,7 +8856,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/158-pastel-de-naranja-y-yogurt.webp"
   },
   {
     "id": "159-carlota-de-limon",
@@ -8746,7 +8904,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/159-carlota-de-limon.webp"
   },
   {
     "id": "160-postre-de-frutas-y-aderezo-de-yogurt",
@@ -8796,7 +8955,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/160-postre-de-frutas-y-aderezo-de-yogurt.webp"
   },
   {
     "id": "161-brochetas-de-fruta",
@@ -8844,7 +9004,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/161-brochetas-de-fruta.webp"
   },
   {
     "id": "162-crepas-con-helado-de-yogurt-griego-y-platano",
@@ -8898,7 +9059,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/162-crepas-con-helado-de-yogurt-griego-y-platano.webp"
   },
   {
     "id": "163-pastel-de-chocolate-sin-azucar-con-centro-liquido",
@@ -8958,7 +9120,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/163-pastel-de-chocolate-sin-azucar-con-centro-liquido.webp"
   },
   {
     "id": "164-gelatina-de-jamaica-natural-con-frutos-rojos",
@@ -9002,7 +9165,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/164-gelatina-de-jamaica-natural-con-frutos-rojos.webp"
   },
   {
     "id": "165-enjambres-de-chocolate",
@@ -9041,7 +9205,8 @@
       "fiber": "N/D"
     },
     "equivalents": [],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/165-enjambres-de-chocolate.webp"
   },
   {
     "id": "166-arroz-con-leche-ligero",
@@ -9096,7 +9261,8 @@
         "count": "0½"
       }
     ],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/166-arroz-con-leche-ligero.webp"
   },
   {
     "id": "167-tarta-de-manzana-con-avena",
@@ -9155,7 +9321,8 @@
         "count": "1"
       }
     ],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/167-tarta-de-manzana-con-avena.webp"
   },
   {
     "id": "168-pay-de-queso-ligero-con-frutos-rojos",
@@ -9214,7 +9381,8 @@
         "count": "1½"
       }
     ],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/168-pay-de-queso-ligero-con-frutos-rojos.webp"
   },
   {
     "id": "169-capirotada-ligera",
@@ -9273,7 +9441,8 @@
         "count": "1"
       }
     ],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/169-capirotada-ligera.webp"
   },
   {
     "id": "170-brownie-de-camote-y-cacao",
@@ -9333,7 +9502,8 @@
         "count": "1"
       }
     ],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/170-brownie-de-camote-y-cacao.webp"
   },
   {
     "id": "171-natilla-de-vainilla",
@@ -9390,7 +9560,8 @@
         "count": "½"
       }
     ],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/171-natilla-de-vainilla.webp"
   },
   {
     "id": "172-bizcocho-de-zanahoria-con-nuez",
@@ -9445,7 +9616,8 @@
         "count": "2"
       }
     ],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/172-bizcocho-de-zanahoria-con-nuez.webp"
   },
   {
     "id": "173-galletas-de-avena-y-pasas",
@@ -9503,7 +9675,8 @@
         "count": "½"
       }
     ],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/173-galletas-de-avena-y-pasas.webp"
   },
   {
     "id": "174-gelatina-de-mango",
@@ -9556,7 +9729,8 @@
         "count": "1"
       }
     ],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/174-gelatina-de-mango.webp"
   },
   {
     "id": "175-bunuelos-horneados-con-canela",
@@ -9613,7 +9787,8 @@
         "count": "¼"
       }
     ],
-    "tip": "Disfruta una porción pequeña y saboréala sin culpa. Si habrá postre, elige un plato fuerte más ligero y da una caminata de 15 minutos después de comer."
+    "tip": "Disfruta una porción pequeña y saboréala sin culpa. Si habrá postre, elige un plato fuerte más ligero y da una caminata de 15 minutos después de comer.",
+    "image": "/images/recetas/175-bunuelos-horneados-con-canela.webp"
   },
   {
     "id": "176-mousse-de-aguacate-y-cacao",
@@ -9668,7 +9843,8 @@
         "count": "0¾"
       }
     ],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/176-mousse-de-aguacate-y-cacao.webp"
   },
   {
     "id": "177-pudin-de-chia-con-canela",
@@ -9730,7 +9906,8 @@
         "count": "0¼"
       }
     ],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/177-pudin-de-chia-con-canela.webp"
   },
   {
     "id": "178-galletas-de-almendra-sin-azucar",
@@ -9786,7 +9963,8 @@
         "count": "½"
       }
     ],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/178-galletas-de-almendra-sin-azucar.webp"
   },
   {
     "id": "179-gelatina-de-limon-con-fresas",
@@ -9844,7 +10022,8 @@
         "count": "1"
       }
     ],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/179-gelatina-de-limon-con-fresas.webp"
   },
   {
     "id": "180-pay-de-calabaza-sin-azucar",
@@ -9906,7 +10085,8 @@
         "count": "½"
       }
     ],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/180-pay-de-calabaza-sin-azucar.webp"
   },
   {
     "id": "181-flan-de-vainilla-con-stevia",
@@ -9963,7 +10143,8 @@
         "count": "0½"
       }
     ],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/181-flan-de-vainilla-con-stevia.webp"
   },
   {
     "id": "182-helado-de-platano-y-cacao",
@@ -10015,7 +10196,8 @@
         "count": "1½"
       }
     ],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/182-helado-de-platano-y-cacao.webp"
   },
   {
     "id": "183-manzana-horneada-con-nuez-y-canela",
@@ -10071,7 +10253,8 @@
         "count": "1"
       }
     ],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/183-manzana-horneada-con-nuez-y-canela.webp"
   },
   {
     "id": "184-barritas-de-avena-y-cacahuate",
@@ -10129,7 +10312,8 @@
         "count": "1"
       }
     ],
-    "tip": ""
+    "tip": "",
+    "image": "/images/recetas/184-barritas-de-avena-y-cacahuate.webp"
   },
   {
     "id": "185-parfait-de-yogur-griego-con-frutos-rojos",
@@ -10189,6 +10373,7 @@
         "count": "1"
       }
     ],
-    "tip": "No comas el postre solo: combínalo con una comida completa, respeta la porción indicada y mide tu glucosa como te indicó tu equipo de salud. Consulta a tu nutriólogo para ajustar el plan a ti."
+    "tip": "No comas el postre solo: combínalo con una comida completa, respeta la porción indicada y mide tu glucosa como te indicó tu equipo de salud. Consulta a tu nutriólogo para ajustar el plan a ti.",
+    "image": "/images/recetas/185-parfait-de-yogur-griego-con-frutos-rojos.webp"
   }
 ]

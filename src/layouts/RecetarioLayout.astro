@@ -25,45 +25,49 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://nutrilev
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
 
-    <!-- Google Fonts: Instrument Serif, Geist, JetBrains Mono -->
+    <!-- Google Fonts: Plus Jakarta Sans (super legible body/UI) and Playfair Display (warm elegant headers) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&family=JetBrains+Mono:wght@500;600&display=swap"
       rel="stylesheet"
     />
 
     <style is:global>
       :root {
-        --color-editorial-bg: #F8F7F4;
-        --color-editorial-surface: #FFFFFF;
-        --color-editorial-border: #E5E3DC;
-        --color-editorial-text: #141413;
-        --color-editorial-muted: #6E6D68;
-        --color-editorial-accent: #D94E28;
-        --color-editorial-accent-soft: #FBF0EC;
+        --color-nav-burgundy: #6e1026;
+        --color-nav-burgundy-dark: #540c1d;
+        --color-nav-burgundy-light: #8b1834;
+        --color-nav-emerald: #15803d;
+        --color-nav-gold: #b45309;
+        --color-nav-gold-light: #f59e0b;
+        --color-nav-bg: #fbf9f5;
+        --color-nav-card-bg: #ffffff;
+        --color-nav-border: #ede8df;
+        --color-nav-text: #1a1514;
+        --color-nav-muted: #6b635f;
       }
 
       body.recetario-body {
-        background-color: var(--color-editorial-bg);
-        color: var(--color-editorial-text);
-        font-family: 'Geist', -apple-system, BlinkMacSystemFont, sans-serif;
+        background-color: var(--color-nav-bg);
+        color: var(--color-nav-text);
+        font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         margin: 0;
         padding: 0;
       }
 
-      .font-instrument {
-        font-family: 'Instrument Serif', Georgia, serif;
+      .font-display {
+        font-family: 'Playfair Display', Georgia, serif;
       }
 
-      .font-geist {
-        font-family: 'Geist', -apple-system, BlinkMacSystemFont, sans-serif;
+      .font-sans-recetario {
+        font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
       }
 
-      .font-mono-editorial {
-        font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      .font-mono-recetario {
+        font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
       }
 
       /* Custom print styles for single recipe cards */
@@ -75,7 +79,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://nutrilev
           background: #ffffff !important;
           color: #000000 !important;
         }
-        #recipe-modal-backdrop {
+        #recipe-modal {
           position: static !important;
           background: none !important;
           padding: 0 !important;
@@ -89,7 +93,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://nutrilev
       }
     </style>
   </head>
-  <body class="recetario-body min-h-screen flex flex-col selection:bg-[#D94E28] selection:text-white">
+  <body class="recetario-body min-h-screen flex flex-col selection:bg-[#881337] selection:text-white">
     <slot />
     <SpeedInsights />
   </body>
