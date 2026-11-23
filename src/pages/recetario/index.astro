@@ -19,31 +19,31 @@ const categoryCounts = recipesData.reduce((acc, r) => {
 }, {} as Record<string, number>);
 
 const categories = [
-  { name: "Todas", slug: "todas", count: totalRecipes, color: "bg-slate-900 text-white border-slate-900" },
-  { name: "Bebidas", slug: "bebidas", count: categoryCounts["bebidas"] || 0, badge: "bg-rose-100 text-rose-900 border-rose-300" },
-  { name: "Ensaladas", slug: "ensaladas", count: categoryCounts["ensaladas"] || 0, badge: "bg-emerald-100 text-emerald-900 border-emerald-300" },
-  { name: "Platos Fuertes", slug: "platos-fuertes", count: categoryCounts["platos-fuertes"] || 0, badge: "bg-red-100 text-red-900 border-red-300" },
-  { name: "Guarniciones", slug: "guarniciones", count: categoryCounts["guarniciones"] || 0, badge: "bg-amber-100 text-amber-900 border-amber-300" },
-  { name: "Postres", slug: "postres", count: categoryCounts["postres"] || 0, badge: "bg-pink-100 text-pink-900 border-pink-300" },
-  { name: "Diabetes", slug: "diabetes", count: categoryCounts["diabetes"] || 0, badge: "bg-teal-100 text-teal-900 border-teal-300" },
+  { name: "Todas", slug: "todas", count: totalRecipes },
+  { name: "Bebidas", slug: "bebidas", count: categoryCounts["bebidas"] || 0 },
+  { name: "Ensaladas", slug: "ensaladas", count: categoryCounts["ensaladas"] || 0 },
+  { name: "Platos Fuertes", slug: "platos-fuertes", count: categoryCounts["platos-fuertes"] || 0 },
+  { name: "Guarniciones", slug: "guarniciones", count: categoryCounts["guarniciones"] || 0 },
+  { name: "Postres", slug: "postres", count: categoryCounts["postres"] || 0 },
+  { name: "Diabetes", slug: "diabetes", count: categoryCounts["diabetes"] || 0 },
 ];
 
 function getCategoryColor(slug: string) {
   switch (slug) {
     case "bebidas":
-      return "bg-rose-50 text-rose-800 border-rose-200";
+      return "bg-rose-50 text-rose-800 border-rose-200/80";
     case "ensaladas":
-      return "bg-emerald-50 text-emerald-800 border-emerald-200";
+      return "bg-emerald-50 text-emerald-800 border-emerald-200/80";
     case "platos-fuertes":
-      return "bg-red-50 text-red-900 border-red-200";
+      return "bg-red-50 text-red-900 border-red-200/80";
     case "guarniciones":
-      return "bg-amber-50 text-amber-900 border-amber-200";
+      return "bg-amber-50 text-amber-900 border-amber-200/80";
     case "postres":
-      return "bg-pink-50 text-pink-900 border-pink-200";
+      return "bg-pink-50 text-pink-900 border-pink-200/80";
     case "diabetes":
-      return "bg-teal-50 text-teal-900 border-teal-200";
+      return "bg-teal-50 text-teal-900 border-teal-200/80";
     default:
-      return "bg-slate-50 text-slate-800 border-slate-200";
+      return "bg-slate-50 text-slate-800 border-slate-200/80";
   }
 }
 ---
@@ -52,31 +52,31 @@ function getCategoryColor(slug: string) {
   title="Recetario Navideño 2026 · Edición Clínica VIP | Nutrilev"
   description="185 recetas decembrinas con fotografías reales, equivalentes SMAE, cálculo nutricional exacto y opciones aptas para diabetes por la Nutrióloga Velvet De la Cruz."
 >
-  <!-- TOP MASTHEAD FESTIVO -->
-  <header class="border-b border-[#E8E2D5] bg-[#FDFBF7] sticky top-0 z-30 shadow-xs">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-4">
+  <!-- TOP MASTHEAD FESTIVO MODERNO -->
+  <header class="border-b border-slate-200/70 bg-white/90 backdrop-blur-md sticky top-0 z-30 transition-all">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 sm:h-20 flex items-center justify-between gap-4">
       <div class="flex items-center gap-3 sm:gap-6">
         <a
           href="/"
-          class="font-sans-recetario text-xs sm:text-sm font-semibold tracking-wide text-slate-800 hover:text-[#881337] transition-colors flex items-center gap-2"
+          class="font-sans-recetario text-xs sm:text-sm font-bold tracking-wide text-slate-800 hover:text-[#881337] transition-all flex items-center gap-2 group"
         >
-          <span class="text-base">←</span>
+          <span class="w-8 h-8 rounded-full bg-slate-100 group-hover:bg-rose-50 group-hover:text-[#881337] flex items-center justify-center text-sm transition-colors">←</span>
           <span>NUTRILEV.COM</span>
         </a>
-        <span class="text-[#D8D2C5] hidden sm:inline">|</span>
+        <span class="text-slate-200 hidden sm:inline">|</span>
         <div class="flex items-center gap-2 hidden sm:flex">
-          <span class="w-2 h-2 rounded-full bg-[#881337] animate-pulse"></span>
-          <span class="font-sans-recetario text-xs font-bold text-[#881337] uppercase tracking-wider">
-            RECETARIO NAVIDEÑO 2026
+          <span class="w-2.5 h-2.5 rounded-full bg-[#881337] animate-pulse"></span>
+          <span class="font-sans-recetario text-xs font-bold text-[#881337] tracking-wider uppercase">
+            Recetario Navideño 2026
           </span>
         </div>
       </div>
 
-      <div class="flex items-center gap-2.5 sm:gap-3">
+      <div class="flex items-center gap-3">
         <!-- VIP Status Pill -->
         <div
           id="vip-status-pill"
-          class="font-sans-recetario text-xs font-semibold px-3 py-1.5 border border-[#E8E2D5] bg-white text-slate-700 rounded-lg flex items-center gap-2 shadow-xs"
+          class="font-sans-recetario text-xs font-semibold px-3.5 py-2 border border-slate-200 bg-slate-50/80 text-slate-700 rounded-full flex items-center gap-2 shadow-2xs"
         >
           <span id="vip-status-dot" class="w-2.5 h-2.5 rounded-full bg-slate-400"></span>
           <span id="vip-status-text">Acceso Restringido</span>
@@ -86,7 +86,7 @@ function getCategoryColor(slug: string) {
         <button
           id="btn-vip-toggle"
           type="button"
-          class="font-sans-recetario text-xs font-bold uppercase tracking-wider px-4 py-2 bg-[#881337] hover:bg-[#6e1026] text-white rounded-lg transition-all cursor-pointer shadow-sm hover:shadow active:scale-95"
+          class="font-sans-recetario text-xs font-bold tracking-wide px-4 sm:px-5 py-2 sm:py-2.5 bg-[#881337] hover:bg-[#6e1026] text-white rounded-full transition-all duration-200 shadow-sm hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 active:scale-95 cursor-pointer"
         >
           <span id="btn-vip-text">Ingresar Código</span>
         </button>
@@ -95,77 +95,77 @@ function getCategoryColor(slug: string) {
   </header>
 
   <!-- HERO FESTIVO CON COLOR Y CALIDEZ -->
-  <section class="relative bg-gradient-to-b from-[#FFFDF9] via-[#FDF7EE] to-[#FAF3E6] border-b border-[#E8E2D5] overflow-hidden">
-    <!-- Ambient Christmas botanical decorative glow -->
-    <div class="absolute -top-24 -right-24 w-96 h-96 bg-red-100/60 rounded-full blur-3xl pointer-events-none"></div>
-    <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-emerald-100/40 rounded-full blur-3xl pointer-events-none"></div>
+  <section class="relative bg-gradient-to-b from-[#FFFDF9] via-[#FAF6EE] to-[#F5EFE3] border-b border-slate-200/60 overflow-hidden">
+    <!-- Ambient festive glow -->
+    <div class="absolute -top-32 -right-32 w-96 h-96 bg-rose-200/50 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute -bottom-32 -left-32 w-96 h-96 bg-emerald-200/40 rounded-full blur-3xl pointer-events-none"></div>
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16 relative z-10">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
         
         <!-- Left: Hero Headline -->
         <div class="lg:col-span-7">
-          <div class="inline-flex items-center gap-2 px-3 py-1 bg-rose-100/80 border border-rose-200 text-[#881337] rounded-full text-xs font-bold uppercase tracking-wider mb-4">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 bg-rose-100/90 border border-rose-200 text-[#881337] rounded-full text-xs font-bold uppercase tracking-wider mb-5 shadow-2xs">
             <span>🎄</span>
             <span>Edición Navideña Clínica Exclusiva</span>
-            <span class="w-1 h-1 rounded-full bg-[#881337]"></span>
+            <span class="w-1.5 h-1.5 rounded-full bg-[#881337]"></span>
             <span>716 Páginas</span>
           </div>
 
-          <h1 class="font-display text-3xl sm:text-5xl lg:text-5xl text-[#2B0E14] leading-[1.15] font-bold tracking-tight mb-5">
+          <h1 class="font-display text-3xl sm:text-5xl lg:text-5xl text-slate-900 leading-[1.15] font-bold tracking-tight mb-5">
             El arte de celebrar con bienestar: 185 recetas navideñas con respaldo clínico.
           </h1>
 
-          <p class="font-sans-recetario text-base sm:text-lg text-slate-700 leading-relaxed mb-6 font-normal">
-            Elaborado por la <strong class="text-[#881337] font-semibold">Nutrióloga Velvet De la Cruz Villegas</strong> (Céd. Prof. 10622381) para disfrutar las celebraciones decembrinas sin culpa, con porciones equilibradas, conteo de equivalentes del <strong>SMAE</strong> y alternativas seguras para personas con diabetes.
+          <p class="font-sans-recetario text-base sm:text-lg text-slate-700 leading-relaxed mb-8 font-normal max-w-2xl">
+            Diseñadas por la <strong class="text-[#881337] font-semibold">Nutrióloga Velvet De la Cruz Villegas</strong> (Céd. Prof. 10622381) para disfrutar las cenas decembrinas con equilibrio metabólico, cálculo de equivalentes <strong>SMAE</strong> y opciones seguras para personas con diabetes.
           </p>
 
           <!-- Metrics Strip -->
-          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-xl">
-            <div class="bg-white/90 backdrop-blur-xs border border-[#E8E2D5] p-3.5 rounded-xl shadow-xs">
-              <span class="block font-sans-recetario text-[11px] font-bold text-slate-500 uppercase">Recetas</span>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3.5 max-w-xl">
+            <div class="bg-white/95 backdrop-blur-xs border border-slate-200/80 p-4 rounded-2xl shadow-xs">
+              <span class="block font-sans-recetario text-[11px] font-bold text-slate-500 uppercase tracking-wide">Recetas</span>
               <span class="font-display text-2xl sm:text-3xl font-bold text-[#881337]">185</span>
             </div>
-            <div class="bg-white/90 backdrop-blur-xs border border-[#E8E2D5] p-3.5 rounded-xl shadow-xs">
-              <span class="block font-sans-recetario text-[11px] font-bold text-slate-500 uppercase">Secciones</span>
+            <div class="bg-white/95 backdrop-blur-xs border border-slate-200/80 p-4 rounded-2xl shadow-xs">
+              <span class="block font-sans-recetario text-[11px] font-bold text-slate-500 uppercase tracking-wide">Secciones</span>
               <span class="font-display text-2xl sm:text-3xl font-bold text-emerald-800">06</span>
             </div>
-            <div class="bg-white/90 backdrop-blur-xs border border-[#E8E2D5] p-3.5 rounded-xl shadow-xs">
-              <span class="block font-sans-recetario text-[11px] font-bold text-slate-500 uppercase">Diabetes</span>
+            <div class="bg-white/95 backdrop-blur-xs border border-slate-200/80 p-4 rounded-2xl shadow-xs">
+              <span class="block font-sans-recetario text-[11px] font-bold text-slate-500 uppercase tracking-wide">Diabetes</span>
               <span class="font-display text-2xl sm:text-3xl font-bold text-teal-700">10</span>
             </div>
-            <div class="bg-white/90 backdrop-blur-xs border border-[#E8E2D5] p-3.5 rounded-xl shadow-xs">
-              <span class="block font-sans-recetario text-[11px] font-bold text-slate-500 uppercase">Sistema</span>
+            <div class="bg-white/95 backdrop-blur-xs border border-slate-200/80 p-4 rounded-2xl shadow-xs">
+              <span class="block font-sans-recetario text-[11px] font-bold text-slate-500 uppercase tracking-wide">Sistema</span>
               <span class="font-display text-2xl sm:text-3xl font-bold text-amber-700">SMAE</span>
             </div>
           </div>
         </div>
 
         <!-- Right: VIP Commercial Card -->
-        <div class="lg:col-span-5 bg-white border border-[#E2D9C8] rounded-2xl p-6 sm:p-8 shadow-sm relative">
-          <div class="flex items-center justify-between mb-4 pb-3 border-b border-[#F0EAE0]">
-            <span class="font-sans-recetario text-xs font-bold uppercase tracking-wider text-slate-800 flex items-center gap-1.5">
-              <span>⭐</span>
+        <div class="lg:col-span-5 bg-white/95 backdrop-blur-xs border border-slate-200/80 rounded-3xl p-6 sm:p-8 shadow-sm relative">
+          <div class="flex items-center justify-between mb-4 pb-3 border-b border-slate-100">
+            <span class="font-sans-recetario text-xs font-bold uppercase tracking-wider text-slate-800 flex items-center gap-2">
+              <span class="text-amber-500">⭐</span>
               <span>Acceso al Recetario Completo</span>
             </span>
-            <span class="text-[11px] font-bold px-2.5 py-0.5 bg-[#881337] text-white rounded-full">
-              Edición 2026
+            <span class="text-[11px] font-bold px-3 py-1 bg-[#881337] text-white rounded-full shadow-2xs">
+              Navidad 2026
             </span>
           </div>
 
           <div id="hero-vip-locked">
-            <h2 class="font-display text-2xl text-[#2B0E14] font-bold mb-2">
+            <h2 class="font-display text-2xl text-slate-900 font-bold mb-2">
               Desbloquea las 185 Recetas
             </h2>
             <p class="font-sans-recetario text-sm text-slate-600 leading-relaxed mb-6">
-              Tienes <strong>6 recetas de muestra gratuitas</strong> desbloqueadas para que pruebes el recetario. Para tener acceso ilimitado a las 185 recetas completas con fotografías, porciones e información nutricional, ingresa tu código de acceso o adquiérelo por WhatsApp.
+              Tienes <strong>6 recetas de muestra gratuitas</strong> para consultar de inmediato. Para desbloquear el catálogo completo con fotografías en alta definición, tabla de equivalentes y modo de impresión, ingresa tu código VIP.
             </p>
 
             <div class="space-y-3">
               <button
                 type="button"
                 id="btn-hero-unlock"
-                class="w-full py-3.5 px-4 bg-[#881337] hover:bg-[#6e1026] text-white font-sans-recetario font-bold text-sm rounded-xl transition-all shadow-sm hover:shadow cursor-pointer flex items-center justify-center gap-2 active:scale-98"
+                class="w-full py-3.5 px-5 bg-[#881337] hover:bg-[#6e1026] text-white font-sans-recetario font-bold text-sm rounded-2xl transition-all duration-200 shadow-sm hover:shadow-md hover:-translate-y-0.5 active:scale-98 cursor-pointer flex items-center justify-center gap-2"
               >
                 <span>🔑</span>
                 <span>Ingresar Código de Acceso</span>
@@ -175,7 +175,7 @@ function getCategoryColor(slug: string) {
                 href="https://wa.me/526143958598?text=Hola%20Nutri%C3%B3loga%20Velvet,%20me%20interesa%20adquirir%20el%20Recetario%20Navide%C3%B1o%202026%20completo%20(185%20recetas)."
                 target="_blank"
                 rel="noopener noreferrer"
-                class="w-full py-3.5 px-4 bg-emerald-700 hover:bg-emerald-800 text-white font-sans-recetario font-bold text-sm rounded-xl transition-all shadow-sm hover:shadow text-center flex items-center justify-center gap-2 active:scale-98"
+                class="w-full py-3.5 px-5 bg-emerald-600 hover:bg-emerald-700 text-white font-sans-recetario font-bold text-sm rounded-2xl transition-all duration-200 shadow-sm hover:shadow-md hover:-translate-y-0.5 active:scale-98 text-center flex items-center justify-center gap-2"
               >
                 <span>💬</span>
                 <span>Comprar Acceso por WhatsApp</span>
@@ -184,19 +184,19 @@ function getCategoryColor(slug: string) {
           </div>
 
           <div id="hero-vip-unlocked" class="hidden">
-            <div class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-emerald-100 text-emerald-800 rounded-md font-sans-recetario text-xs font-bold mb-2">
+            <div class="inline-flex items-center gap-2 px-3 py-1 bg-emerald-100 text-emerald-800 rounded-full font-sans-recetario text-xs font-bold mb-3">
               <span>✓</span>
               <span>SESIÓN VIP AUTORIZADA</span>
             </div>
-            <h2 class="font-display text-2xl text-[#2B0E14] font-bold mb-2">
+            <h2 class="font-display text-2xl text-slate-900 font-bold mb-2">
               ¡Bienvenido a tu Recetario Completo!
             </h2>
-            <p class="font-sans-recetario text-sm text-slate-600 mb-5">
-              Tienes acceso ilimitado a las 185 recetas con fotografías en alta definición, tablas de equivalentes clínicos del SMAE y buscador interactivo.
+            <p class="font-sans-recetario text-sm text-slate-600 mb-6">
+              Tienes acceso ilimitado a las 185 recetas con fotografías reales, tablas de equivalentes clínicos del SMAE y buscador interactivo.
             </p>
-            <div class="p-3.5 bg-[#FAF7F2] border border-[#E8E2D5] rounded-xl font-sans-recetario text-sm font-semibold text-slate-800 flex items-center justify-between">
+            <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl font-sans-recetario text-sm font-semibold text-slate-800 flex items-center justify-between">
               <span>ESTADO DE CUENTA:</span>
-              <span class="text-emerald-700 font-bold">185 RECETAS ACTIVAS</span>
+              <span class="text-emerald-700 font-bold font-mono-recetario">185 RECETAS ACTIVAS</span>
             </div>
           </div>
 
@@ -206,25 +206,29 @@ function getCategoryColor(slug: string) {
     </div>
   </section>
 
-  <!-- CONTROLS & FILTER BAR -->
-  <section class="border-b border-[#E8E2D5] bg-[#FDFBF7] sticky top-16 sm:top-20 z-20 shadow-xs">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5">
+  <!-- CONTROLS & FILTER BAR (MODERNO SHADCN STYLE) -->
+  <section class="border-b border-slate-200/70 bg-white/95 backdrop-blur-md sticky top-18 sm:top-20 z-20 shadow-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
       
       <!-- Top Row: Search and Quick Filters -->
-      <div class="flex flex-col md:flex-row items-stretch md:items-center gap-3 mb-3">
-        <!-- Search input -->
-        <div class="relative flex-1">
-          <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-base">🔍</span>
+      <div class="flex flex-col md:flex-row items-stretch md:items-center gap-3.5 mb-3.5">
+        <!-- Search input con estilo moderno y halo suave -->
+        <div class="relative flex-1 group">
+          <div class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-[#881337] transition-colors pointer-events-none">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+          </div>
           <input
             id="recipe-search"
             type="search"
-            placeholder="Buscar receta, ingrediente (pavo, lomo, ponche, avena, chocolate)..."
-            class="w-full h-11 pl-10 pr-12 bg-white border border-[#D8D2C5] text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-[#881337] focus:ring-1 focus:ring-[#881337] rounded-xl font-sans-recetario transition-colors"
+            placeholder="Buscar por receta o ingrediente (pavo, lomo, ponche, avena, chocolate)..."
+            class="w-full h-12 pl-12 pr-12 bg-slate-50/80 hover:bg-slate-50 focus:bg-white border border-slate-200 rounded-2xl text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-[#881337] focus:ring-4 focus:ring-rose-500/10 font-sans-recetario transition-all shadow-2xs"
           />
           <button
             id="clear-search-btn"
             type="button"
-            class="hidden absolute right-3 top-1/2 -translate-y-1/2 font-sans-recetario text-xs font-bold text-slate-400 hover:text-slate-700 px-1.5 py-0.5 rounded cursor-pointer"
+            class="hidden absolute right-3.5 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-slate-200 hover:bg-slate-300 text-slate-600 flex items-center justify-center text-xs font-bold transition-colors cursor-pointer"
           >
             ✕
           </button>
@@ -235,21 +239,21 @@ function getCategoryColor(slug: string) {
           <button
             type="button"
             data-filter-tag="Sin azúcar añadida"
-            class="filter-tag-btn font-sans-recetario text-xs font-semibold px-3 py-2 bg-white border border-[#D8D2C5] hover:border-slate-800 text-slate-700 rounded-lg whitespace-nowrap cursor-pointer transition-colors"
+            class="filter-tag-btn font-sans-recetario text-xs font-semibold px-4 py-2.5 bg-white border border-slate-200 hover:border-slate-300 text-slate-700 rounded-full whitespace-nowrap cursor-pointer transition-all shadow-2xs hover:shadow-xs active:scale-95"
           >
             Sin azúcar
           </button>
           <button
             type="button"
             data-filter-tag="Baja en grasa"
-            class="filter-tag-btn font-sans-recetario text-xs font-semibold px-3 py-2 bg-white border border-[#D8D2C5] hover:border-slate-800 text-slate-700 rounded-lg whitespace-nowrap cursor-pointer transition-colors"
+            class="filter-tag-btn font-sans-recetario text-xs font-semibold px-4 py-2.5 bg-white border border-slate-200 hover:border-slate-300 text-slate-700 rounded-full whitespace-nowrap cursor-pointer transition-all shadow-2xs hover:shadow-xs active:scale-95"
           >
             Baja en grasa
           </button>
           <button
             type="button"
             data-filter-tag="Rica en proteína"
-            class="filter-tag-btn font-sans-recetario text-xs font-semibold px-3 py-2 bg-white border border-[#D8D2C5] hover:border-slate-800 text-slate-700 rounded-lg whitespace-nowrap cursor-pointer transition-colors"
+            class="filter-tag-btn font-sans-recetario text-xs font-semibold px-4 py-2.5 bg-white border border-slate-200 hover:border-slate-300 text-slate-700 rounded-full whitespace-nowrap cursor-pointer transition-all shadow-2xs hover:shadow-xs active:scale-95"
           >
             Con proteína
           </button>
@@ -257,7 +261,7 @@ function getCategoryColor(slug: string) {
             type="button"
             data-filter-free="true"
             id="filter-free-btn"
-            class="font-sans-recetario text-xs font-bold px-3 py-2 bg-emerald-50 border border-emerald-300 hover:bg-emerald-600 hover:text-white text-emerald-800 rounded-lg whitespace-nowrap cursor-pointer transition-colors"
+            class="font-sans-recetario text-xs font-bold px-4 py-2.5 bg-emerald-50 border border-emerald-200 text-emerald-800 hover:bg-emerald-600 hover:text-white rounded-full whitespace-nowrap cursor-pointer transition-all shadow-2xs hover:shadow-xs active:scale-95"
           >
             ★ Muestras Gratis [6]
           </button>
@@ -271,14 +275,14 @@ function getCategoryColor(slug: string) {
             <button
               type="button"
               data-category={cat.slug}
-              class={`cat-tab-btn font-sans-recetario text-xs font-bold px-3.5 py-1.5 rounded-lg whitespace-nowrap transition-all cursor-pointer border ${
+              class={`cat-tab-btn font-sans-recetario text-xs font-bold px-4 py-2 rounded-full whitespace-nowrap transition-all duration-200 cursor-pointer border ${
                 idx === 0
                   ? "bg-[#881337] text-white border-[#881337] shadow-xs"
-                  : "bg-white text-slate-700 border-[#D8D2C5] hover:border-[#881337] hover:text-[#881337]"
+                  : "bg-white text-slate-600 border-slate-200 hover:border-slate-300 hover:text-slate-900 shadow-2xs"
               }`}
             >
               <span>{cat.name}</span>
-              <span class="opacity-75 ml-1 text-[11px] font-mono-recetario">({cat.count})</span>
+              <span class="opacity-75 ml-1.5 text-[11px] font-mono-recetario">({cat.count})</span>
             </button>
           ))}
         </div>
@@ -291,18 +295,21 @@ function getCategoryColor(slug: string) {
     </div>
   </section>
 
-  <!-- RECIPES CATALOG GRID CON FOTOGRAFÍAS REALES -->
+  <!-- RECIPES CATALOG GRID CON TARJETAS ELEGANTES -->
   <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-10">
     <!-- Active filters indication -->
-    <div id="filter-feedback" class="hidden mb-6 p-3 bg-white border border-[#E8E2D5] rounded-xl flex items-center justify-between font-sans-recetario text-xs font-semibold text-slate-800 shadow-xs">
-      <span id="filter-feedback-text">Filtro activo</span>
-      <button id="reset-all-filters" type="button" class="text-[#881337] hover:underline cursor-pointer font-bold">
+    <div id="filter-feedback" class="hidden mb-6 p-4 bg-white border border-slate-200 rounded-2xl flex items-center justify-between font-sans-recetario text-xs font-semibold text-slate-800 shadow-xs">
+      <div class="flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-[#881337]"></span>
+        <span id="filter-feedback-text">Filtro activo</span>
+      </div>
+      <button id="reset-all-filters" type="button" class="text-[#881337] hover:underline cursor-pointer font-bold px-2 py-1 rounded-lg hover:bg-rose-50 transition-colors">
         Limpiar Filtros ✕
       </button>
     </div>
 
     <!-- Empty Results State -->
-    <div id="empty-state" class="hidden text-left py-16 px-8 bg-white border border-[#E8E2D5] rounded-2xl shadow-xs">
+    <div id="empty-state" class="hidden text-left py-16 px-8 bg-white border border-slate-200 rounded-3xl shadow-xs">
       <div class="font-sans-recetario text-xs font-bold uppercase tracking-wider text-[#881337] mb-2">[0 RESULTADOS]</div>
       <h2 class="font-display text-3xl text-slate-900 mb-3 font-bold">No encontramos recetas con ese criterio</h2>
       <p class="font-sans-recetario text-sm text-slate-600 max-w-md mb-6 leading-relaxed">
@@ -311,7 +318,7 @@ function getCategoryColor(slug: string) {
       <button
         id="btn-reset-empty"
         type="button"
-        class="font-sans-recetario text-xs font-bold uppercase tracking-wider px-5 py-2.5 bg-[#881337] text-white rounded-lg cursor-pointer hover:bg-[#6e1026] transition-colors"
+        class="font-sans-recetario text-xs font-bold uppercase tracking-wider px-5 py-2.5 bg-[#881337] hover:bg-[#6e1026] text-white rounded-xl cursor-pointer transition-colors shadow-sm"
       >
         Restaurar Catálogo Completo
       </button>
@@ -332,10 +339,10 @@ function getCategoryColor(slug: string) {
             data-title={recipe.title.toLowerCase()}
             data-ingredients={recipe.ingredients.join(" ").toLowerCase()}
             data-free={isFree ? "true" : "false"}
-            class="recipe-card bg-white border border-[#E8E2D5] rounded-2xl overflow-hidden flex flex-col justify-between transition-all duration-300 hover:shadow-lg hover:border-[#881337]/50 group"
+            class="recipe-card bg-white border border-slate-200/80 rounded-3xl overflow-hidden flex flex-col justify-between transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:border-slate-300 group"
           >
             <!-- Top: Dish Photo -->
-            <div class="relative w-full h-52 bg-slate-100 overflow-hidden cursor-pointer" data-action="open-recipe" data-recipe-id={recipe.id}>
+            <div class="relative w-full h-56 bg-slate-100 overflow-hidden cursor-pointer" data-action="open-recipe" data-recipe-id={recipe.id}>
               {recipe.image ? (
                 <img
                   src={recipe.image}
@@ -345,58 +352,61 @@ function getCategoryColor(slug: string) {
                   class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
                 />
               ) : (
-                <div class="w-full h-full flex items-center justify-center bg-[#FAF7F2] text-slate-400 font-sans-recetario text-xs">
+                <div class="w-full h-full flex items-center justify-center bg-slate-50 text-slate-400 font-sans-recetario text-xs">
                   Fotografía de platillo
                 </div>
               )}
 
+              <!-- Overlay gradient for contrast -->
+              <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20 pointer-events-none"></div>
+
               <!-- Badges over image -->
-              <div class="absolute top-3 left-3 flex flex-wrap gap-1.5">
-                <span class={`font-sans-recetario text-[11px] font-bold px-2.5 py-0.5 rounded-full border shadow-xs ${categoryStyle}`}>
+              <div class="absolute top-3.5 left-3.5 flex flex-wrap gap-1.5 z-10">
+                <span class={`font-sans-recetario text-[11px] font-bold px-3 py-1 rounded-full border shadow-xs backdrop-blur-xs ${categoryStyle}`}>
                   {recipe.category}
                 </span>
                 {isFree && (
-                  <span class="font-sans-recetario text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-600 text-white shadow-xs">
+                  <span class="font-sans-recetario text-[11px] font-bold px-3 py-1 rounded-full bg-emerald-600 text-white shadow-xs">
                     ★ Muestra Libre
                   </span>
                 )}
               </div>
 
-              <div class="absolute top-3 right-3">
-                <span class="font-mono-recetario text-[11px] font-semibold px-2 py-0.5 rounded-md bg-black/60 backdrop-blur-xs text-white">
+              <div class="absolute top-3.5 right-3.5 z-10">
+                <span class="font-mono-recetario text-[11px] font-semibold px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md text-white border border-white/20">
                   P. {String(recipe.pdfPage).padStart(3, '0')}
                 </span>
               </div>
             </div>
 
             <!-- Card Content -->
-            <div class="p-5 flex-1 flex flex-col justify-between">
+            <div class="p-6 flex-1 flex flex-col justify-between">
               <div>
                 <!-- Title -->
                 <h3
                   data-action="open-recipe"
                   data-recipe-id={recipe.id}
-                  class="font-display text-xl sm:text-2xl text-slate-900 font-bold leading-snug tracking-tight mb-3 cursor-pointer group-hover:text-[#881337] transition-colors"
+                  class="font-display text-xl sm:text-2xl text-slate-900 font-bold leading-snug tracking-tight mb-3.5 cursor-pointer group-hover:text-[#881337] transition-colors"
                 >
                   {recipe.title}
                 </h3>
 
                 <!-- Metrics Strip -->
-                <div class="grid grid-cols-3 gap-2 py-2.5 px-3 mb-3.5 bg-[#FAF7F2] rounded-xl border border-[#EDE8DF] text-center font-sans-recetario">
+                <div class="grid grid-cols-3 gap-2 py-3 px-3.5 mb-4 bg-slate-50/80 rounded-2xl border border-slate-100 text-center font-sans-recetario">
                   <div>
-                    <span class="block text-[10px] font-bold uppercase text-slate-500">Calorías</span>
+                    <span class="block text-[10px] font-bold uppercase text-slate-400 tracking-wider">Calorías</span>
                     <span class="text-xs sm:text-sm font-bold text-[#881337] font-mono-recetario">
                       {recipe.calories ? `${recipe.calories} kcal` : "N/D"}
                     </span>
                   </div>
                   <div>
-                    <span class="block text-[10px] font-bold uppercase text-slate-500">Tiempo</span>
+                    <span class="block text-[10px] font-bold uppercase text-slate-400 tracking-wider">Tiempo</span>
                     <span class="text-xs sm:text-sm font-semibold text-slate-800">
                       {recipe.prepTime}
                     </span>
                   </div>
                   <div>
-                    <span class="block text-[10px] font-bold uppercase text-slate-500">Porción</span>
+                    <span class="block text-[10px] font-bold uppercase text-slate-400 tracking-wider">Porción</span>
                     <span class="text-xs sm:text-sm font-semibold text-slate-800 truncate block">
                       {recipe.portions}
                     </span>
@@ -405,9 +415,9 @@ function getCategoryColor(slug: string) {
 
                 <!-- Health Tags -->
                 {recipe.tags && recipe.tags.length > 0 && (
-                  <div class="flex flex-wrap gap-1.5 mb-3.5">
+                  <div class="flex flex-wrap gap-1.5 mb-4">
                     {recipe.tags.slice(0, 3).map((tag) => (
-                      <span class="font-sans-recetario text-[11px] font-medium px-2 py-0.5 bg-slate-50 border border-slate-200 text-slate-600 rounded-md">
+                      <span class="font-sans-recetario text-[11px] font-medium px-2.5 py-0.5 bg-slate-100/70 border border-slate-200/60 text-slate-600 rounded-full">
                         {tag}
                       </span>
                     ))}
@@ -420,19 +430,19 @@ function getCategoryColor(slug: string) {
                 )}
 
                 <!-- Ingredients Preview Teaser -->
-                <div class="mb-4">
-                  <span class="font-sans-recetario text-[10px] font-bold text-slate-500 uppercase tracking-wider block mb-1">
+                <div class="mb-5">
+                  <span class="font-sans-recetario text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1.5">
                     Ingredientes clave:
                   </span>
-                  <ul class="font-sans-recetario text-xs text-slate-600 space-y-1">
+                  <ul class="font-sans-recetario text-xs text-slate-600 space-y-1.5">
                     {recipe.ingredients.slice(0, 2).map((ing) => (
-                      <li class="truncate flex items-center gap-1.5">
+                      <li class="truncate flex items-center gap-2">
                         <span class="w-1.5 h-1.5 bg-[#881337] rounded-full inline-block shrink-0"></span>
                         <span class="truncate">{ing}</span>
                       </li>
                     ))}
                     {recipe.ingredients.length > 2 && (
-                      <li class="text-[11px] text-slate-400 italic">
+                      <li class="text-[11px] text-slate-400 italic pl-3.5">
                         ... y {recipe.ingredients.length - 2} ingredientes más
                       </li>
                     )}
@@ -441,13 +451,13 @@ function getCategoryColor(slug: string) {
               </div>
 
               <!-- Card Action Button -->
-              <div class="pt-3 border-t border-[#F0EAE0]">
+              <div class="pt-4 border-t border-slate-100">
                 {isFree ? (
                   <button
                     type="button"
                     data-action="open-recipe"
                     data-recipe-id={recipe.id}
-                    class="w-full py-2.5 px-4 bg-[#881337] hover:bg-[#6e1026] text-white font-sans-recetario font-bold text-xs uppercase tracking-wider rounded-xl transition-all cursor-pointer flex items-center justify-center gap-2 shadow-xs hover:shadow active:scale-98"
+                    class="w-full py-3 px-4 bg-[#881337] hover:bg-[#6e1026] text-white font-sans-recetario font-bold text-xs uppercase tracking-wider rounded-2xl transition-all duration-200 cursor-pointer flex items-center justify-center gap-2 shadow-sm hover:shadow-md hover:-translate-y-0.5 active:scale-98"
                   >
                     <span>Ver Receta Completa</span>
                     <span>→</span>
@@ -458,7 +468,7 @@ function getCategoryColor(slug: string) {
                       type="button"
                       data-action="open-recipe"
                       data-recipe-id={recipe.id}
-                      class="card-vip-btn w-full py-2.5 px-4 bg-white border border-[#D8D2C5] hover:border-[#881337] hover:text-[#881337] text-slate-800 font-sans-recetario font-bold text-xs uppercase tracking-wider rounded-xl transition-all cursor-pointer flex items-center justify-center gap-2 shadow-xs hover:shadow active:scale-98"
+                      class="card-vip-btn w-full py-3 px-4 bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-700 hover:text-[#881337] hover:border-[#881337]/50 font-sans-recetario font-bold text-xs uppercase tracking-wider rounded-2xl transition-all duration-200 cursor-pointer flex items-center justify-center gap-2 shadow-2xs hover:shadow-xs active:scale-98"
                     >
                       <span>🔒 Desbloquear Receta</span>
                       <span>→</span>
@@ -474,11 +484,11 @@ function getCategoryColor(slug: string) {
   </main>
 
   <!-- EDITORIAL FOOTER -->
-  <footer id="footer-editorial" class="border-t border-[#E8E2D5] bg-[#FDFBF7] py-12">
+  <footer id="footer-editorial" class="border-t border-slate-200 bg-white py-12">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start mb-8 pb-8 border-b border-[#E8E2D5]">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start mb-8 pb-8 border-b border-slate-100">
         <div class="md:col-span-6">
-          <span class="font-display text-2xl text-[#2B0E14] font-bold block mb-2">NUTRILEV NUTRICIÓN</span>
+          <span class="font-display text-2xl text-slate-900 font-bold block mb-2">NUTRILEV NUTRICIÓN</span>
           <p class="font-sans-recetario text-sm text-slate-600 max-w-sm leading-relaxed mb-4">
             Recetario Navideño 2026. Material clínico exclusivo diseñado para complementar el tratamiento nutricional personalizado. Prohibida su distribución no autorizada.
           </p>
@@ -488,19 +498,19 @@ function getCategoryColor(slug: string) {
         </div>
 
         <div class="md:col-span-3">
-          <span class="font-sans-recetario text-xs font-bold uppercase tracking-wider text-slate-500 block mb-3">
+          <span class="font-sans-recetario text-xs font-bold uppercase tracking-wider text-slate-400 block mb-3">
             SECCIONES
           </span>
           <ul class="space-y-2 font-sans-recetario text-sm text-slate-700">
-            <li><a href="/#services" class="hover:text-[#881337]">Consulta Nutricional</a></li>
-            <li><a href="/#equipment" class="hover:text-[#881337]">Bioimpedancia InBody</a></li>
-            <li><a href="/#about" class="hover:text-[#881337]">Sobre la Nutrióloga</a></li>
-            <li><a href="/blog" class="hover:text-[#881337]">Blog de Salud</a></li>
+            <li><a href="/#services" class="hover:text-[#881337] transition-colors">Consulta Nutricional</a></li>
+            <li><a href="/#equipment" class="hover:text-[#881337] transition-colors">Bioimpedancia InBody</a></li>
+            <li><a href="/#about" class="hover:text-[#881337] transition-colors">Sobre la Nutrióloga</a></li>
+            <li><a href="/blog" class="hover:text-[#881337] transition-colors">Blog de Salud</a></li>
           </ul>
         </div>
 
         <div class="md:col-span-3">
-          <span class="font-sans-recetario text-xs font-bold uppercase tracking-wider text-slate-500 block mb-3">
+          <span class="font-sans-recetario text-xs font-bold uppercase tracking-wider text-slate-400 block mb-3">
             ATENCIÓN A CLIENTES
           </span>
           <p class="font-sans-recetario text-xs text-slate-600 leading-relaxed mb-2">
@@ -517,7 +527,7 @@ function getCategoryColor(slug: string) {
         </div>
       </div>
 
-      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 font-sans-recetario text-xs text-slate-500">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 font-sans-recetario text-xs text-slate-400">
         <div>© 2026 NUTRILEV. TODOS LOS DERECHOS RESERVADOS.</div>
         <div>EDICIÓN CLÍNICA NAVIDEÑA</div>
       </div>
@@ -527,34 +537,34 @@ function getCategoryColor(slug: string) {
   <!-- RECIPE DETAIL MODAL CON FOTOGRAFÍA EN ALTA DEFINICIÓN -->
   <div
     id="recipe-modal"
-    class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-xs p-3 sm:p-6 lg:p-10 flex items-center justify-center overflow-y-auto"
+    class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-md p-3 sm:p-6 lg:p-10 flex items-center justify-center overflow-y-auto"
     role="dialog"
     aria-modal="true"
   >
     <div
       id="recipe-modal-dialog"
-      class="bg-white border border-[#E8E2D5] w-full max-w-4xl my-auto p-6 sm:p-8 rounded-2xl shadow-2xl max-h-[92vh] overflow-y-auto relative font-sans-recetario"
+      class="bg-white border border-slate-200 w-full max-w-4xl my-auto p-6 sm:p-9 rounded-3xl shadow-2xl max-h-[92vh] overflow-y-auto relative font-sans-recetario"
     >
       <!-- Close Bar -->
-      <div class="flex items-center justify-between pb-4 mb-6 border-b border-[#F0EAE0]">
+      <div class="flex items-center justify-between pb-4 mb-6 border-b border-slate-100">
         <div class="flex items-center gap-2">
-          <span id="modal-category" class="font-sans-recetario text-xs font-bold uppercase px-2.5 py-0.5 rounded-full border"></span>
-          <span class="text-[#D8D2C5]">·</span>
-          <span id="modal-page" class="font-mono-recetario text-xs text-slate-500"></span>
+          <span id="modal-category" class="font-sans-recetario text-xs font-bold uppercase px-3 py-1 rounded-full border shadow-2xs"></span>
+          <span class="text-slate-200">·</span>
+          <span id="modal-page" class="font-mono-recetario text-xs text-slate-400"></span>
         </div>
         <button
           id="btn-close-modal"
           type="button"
-          class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center font-bold text-sm transition-colors cursor-pointer"
+          class="w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center font-bold text-sm transition-all hover:rotate-90 cursor-pointer"
         >
           ✕
         </button>
       </div>
 
       <!-- Top Section with Photo and Title -->
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center mb-6">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-6 lg:gap-8 items-center mb-8">
         <div class="md:col-span-5">
-          <div class="w-full h-64 sm:h-72 rounded-xl overflow-hidden bg-slate-100 border border-[#EDE8DF]">
+          <div class="w-full h-64 sm:h-72 rounded-2xl overflow-hidden bg-slate-100 border border-slate-200/80 shadow-xs">
             <img
               id="modal-image"
               src=""
@@ -567,42 +577,42 @@ function getCategoryColor(slug: string) {
           <h2 id="modal-title" class="font-display text-2xl sm:text-3xl lg:text-4xl text-slate-900 font-bold leading-tight mb-4"></h2>
 
           <!-- Metrics Grid -->
-          <div class="grid grid-cols-3 gap-2 p-3 bg-[#FAF7F2] rounded-xl border border-[#EDE8DF] text-center mb-4">
+          <div class="grid grid-cols-3 gap-2.5 p-3.5 bg-slate-50 rounded-2xl border border-slate-100 text-center mb-5">
             <div>
-              <span class="block text-[10px] font-bold uppercase text-slate-500">Calorías</span>
-              <span id="modal-calories" class="font-mono-recetario text-base font-bold text-[#881337]"></span>
+              <span class="block text-[10px] font-bold uppercase text-slate-400 tracking-wider">Calorías</span>
+              <span id="modal-calories" class="font-mono-recetario text-lg font-bold text-[#881337]"></span>
             </div>
             <div>
-              <span class="block text-[10px] font-bold uppercase text-slate-500">Tiempo</span>
+              <span class="block text-[10px] font-bold uppercase text-slate-400 tracking-wider">Tiempo</span>
               <span id="modal-time" class="text-sm font-semibold text-slate-800"></span>
             </div>
             <div>
-              <span class="block text-[10px] font-bold uppercase text-slate-500">Porciones</span>
+              <span class="block text-[10px] font-bold uppercase text-slate-400 tracking-wider">Porciones</span>
               <span id="modal-portions" class="text-sm font-semibold text-slate-800"></span>
             </div>
           </div>
 
           <!-- Nutritional Breakdown Pills -->
-          <div class="p-3.5 bg-white border border-[#E8E2D5] rounded-xl">
-            <span class="font-sans-recetario text-[11px] font-bold text-slate-700 uppercase tracking-wider block mb-2">
+          <div class="p-4 bg-white border border-slate-200 rounded-2xl shadow-2xs">
+            <span class="font-sans-recetario text-[11px] font-bold text-slate-600 uppercase tracking-wider block mb-2.5">
               Información Nutricional por Porción
             </span>
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
-              <div class="p-2 bg-emerald-50 border border-emerald-200 rounded-lg text-emerald-900">
+              <div class="p-2.5 bg-emerald-50 border border-emerald-200/80 rounded-xl text-emerald-900">
                 <span class="block text-[10px] text-emerald-700 font-bold uppercase">Proteína</span>
-                <span id="modal-prot" class="font-bold font-mono-recetario"></span>
+                <span id="modal-prot" class="font-bold font-mono-recetario text-sm"></span>
               </div>
-              <div class="p-2 bg-amber-50 border border-amber-200 rounded-lg text-amber-900">
+              <div class="p-2.5 bg-amber-50 border border-amber-200/80 rounded-xl text-amber-900">
                 <span class="block text-[10px] text-amber-700 font-bold uppercase">Grasas</span>
-                <span id="modal-fat" class="font-bold font-mono-recetario"></span>
+                <span id="modal-fat" class="font-bold font-mono-recetario text-sm"></span>
               </div>
-              <div class="p-2 bg-rose-50 border border-rose-200 rounded-lg text-rose-900">
+              <div class="p-2.5 bg-rose-50 border border-rose-200/80 rounded-xl text-rose-900">
                 <span class="block text-[10px] text-rose-700 font-bold uppercase">Carbohidratos</span>
-                <span id="modal-carb" class="font-bold font-mono-recetario"></span>
+                <span id="modal-carb" class="font-bold font-mono-recetario text-sm"></span>
               </div>
-              <div class="p-2 bg-teal-50 border border-teal-200 rounded-lg text-teal-900">
+              <div class="p-2.5 bg-teal-50 border border-teal-200/80 rounded-xl text-teal-900">
                 <span class="block text-[10px] text-teal-700 font-bold uppercase">Fibra</span>
-                <span id="modal-fib" class="font-bold font-mono-recetario"></span>
+                <span id="modal-fib" class="font-bold font-mono-recetario text-sm"></span>
               </div>
             </div>
           </div>
@@ -611,7 +621,7 @@ function getCategoryColor(slug: string) {
 
       <!-- SMAE Clinical Equivalents Table -->
       <div id="modal-equivalents-section" class="mb-6 hidden">
-        <div class="font-sans-recetario text-xs font-bold text-slate-800 uppercase tracking-wider mb-2.5 flex items-center gap-2">
+        <div class="font-sans-recetario text-xs font-bold text-slate-800 uppercase tracking-wider mb-3 flex items-center gap-2">
           <span class="w-2 h-2 rounded-full bg-[#881337]"></span>
           <span>Equivalentes Clínicos SMAE</span>
         </div>
@@ -623,19 +633,19 @@ function getCategoryColor(slug: string) {
       <!-- Two-column Ingredients & Instructions -->
       <div class="grid grid-cols-1 md:grid-cols-12 gap-8 mb-6">
         <!-- Ingredients with Checkboxes -->
-        <div class="md:col-span-5 bg-[#FAF7F2] p-5 rounded-xl border border-[#EDE8DF]">
-          <div class="font-sans-recetario text-xs font-bold text-slate-800 uppercase tracking-wider mb-3 pb-2 border-b border-[#E8E2D5] flex items-center justify-between">
+        <div class="md:col-span-5 bg-slate-50 p-5 sm:p-6 rounded-2xl border border-slate-200/80">
+          <div class="font-sans-recetario text-xs font-bold text-slate-800 uppercase tracking-wider mb-3.5 pb-2 border-b border-slate-200 flex items-center justify-between">
             <span>Ingredientes</span>
-            <span class="text-[10px] text-slate-500 font-normal">(Toca para tachar)</span>
+            <span class="text-[10px] text-slate-400 font-normal">(Toca para tachar)</span>
           </div>
-          <ul id="modal-ingredients-list" class="space-y-2 text-xs text-slate-700">
+          <ul id="modal-ingredients-list" class="space-y-2.5 text-xs text-slate-700">
             <!-- Injected via JS -->
           </ul>
         </div>
 
         <!-- Numbered Instructions -->
         <div class="md:col-span-7">
-          <div class="font-sans-recetario text-xs font-bold text-slate-800 uppercase tracking-wider mb-3 pb-2 border-b border-[#F0EAE0]">
+          <div class="font-sans-recetario text-xs font-bold text-slate-800 uppercase tracking-wider mb-3.5 pb-2 border-b border-slate-100">
             Procedimiento Paso a Paso
           </div>
           <ol id="modal-instructions-list" class="space-y-3.5 text-xs text-slate-800">
@@ -645,7 +655,7 @@ function getCategoryColor(slug: string) {
       </div>
 
       <!-- Nutri Tip if present -->
-      <div id="modal-tip-box" class="hidden mb-6 p-4 bg-rose-50 border-l-4 border-[#881337] rounded-r-xl">
+      <div id="modal-tip-box" class="hidden mb-6 p-4 bg-rose-50 border-l-4 border-[#881337] rounded-r-2xl">
         <span class="font-sans-recetario text-xs font-bold uppercase tracking-wider text-[#881337] block mb-1">
           💡 Consejo Clínico de tu Nutrióloga
         </span>
@@ -653,11 +663,11 @@ function getCategoryColor(slug: string) {
       </div>
 
       <!-- Modal Actions -->
-      <div class="pt-5 border-t border-[#F0EAE0] flex flex-wrap items-center justify-between gap-3 no-print">
+      <div class="pt-5 border-t border-slate-100 flex flex-wrap items-center justify-between gap-3 no-print">
         <button
           type="button"
           onclick="window.print()"
-          class="font-sans-recetario text-xs font-bold px-4 py-2.5 bg-white border border-slate-300 hover:border-slate-800 text-slate-800 rounded-xl transition-colors cursor-pointer flex items-center gap-2"
+          class="font-sans-recetario text-xs font-bold px-4 py-2.5 bg-white border border-slate-200 hover:border-slate-300 text-slate-700 rounded-xl transition-all shadow-2xs hover:shadow-xs cursor-pointer flex items-center gap-2"
         >
           <span>Imprimir Receta</span>
           <span>⎙</span>
@@ -666,7 +676,7 @@ function getCategoryColor(slug: string) {
         <button
           id="btn-close-modal-bottom"
           type="button"
-          class="font-sans-recetario text-xs font-bold px-5 py-2.5 bg-[#881337] hover:bg-[#6e1026] text-white rounded-xl transition-colors cursor-pointer"
+          class="font-sans-recetario text-xs font-bold px-6 py-2.5 bg-[#881337] hover:bg-[#6e1026] text-white rounded-xl transition-all shadow-sm hover:shadow-md cursor-pointer"
         >
           Cerrar Ventana
         </button>
@@ -675,15 +685,15 @@ function getCategoryColor(slug: string) {
     </div>
   </div>
 
-  <!-- VIP CODE UNLOCK MODAL (SIN EJEMPLO DE CONTRASEÑA EN EL PLACEHOLDER) -->
+  <!-- VIP CODE UNLOCK MODAL (MODERNO Y SIN EJEMPLO DE CONTRASEÑA) -->
   <div
     id="unlock-modal"
-    class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-xs p-4 flex items-center justify-center font-sans-recetario"
+    class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-md p-4 flex items-center justify-center font-sans-recetario"
     role="dialog"
     aria-modal="true"
   >
-    <div class="bg-white border border-[#E8E2D5] w-full max-w-md p-6 sm:p-8 rounded-2xl shadow-2xl relative">
-      <div class="flex items-center justify-between pb-3 mb-4 border-b border-[#F0EAE0]">
+    <div class="bg-white border border-slate-200 w-full max-w-md p-6 sm:p-8 rounded-3xl shadow-2xl relative">
+      <div class="flex items-center justify-between pb-3 mb-4 border-b border-slate-100">
         <span class="font-sans-recetario text-xs font-bold uppercase tracking-wider text-[#881337] flex items-center gap-1.5">
           <span>🔒</span>
           <span>Acceso Privado</span>
@@ -691,7 +701,7 @@ function getCategoryColor(slug: string) {
         <button
           id="btn-close-unlock-modal"
           type="button"
-          class="w-7 h-7 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center font-bold text-xs cursor-pointer"
+          class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center font-bold text-xs transition-colors cursor-pointer"
         >
           ✕
         </button>
@@ -706,7 +716,7 @@ function getCategoryColor(slug: string) {
 
       <form id="unlock-form" class="space-y-4">
         <div>
-          <label for="vip-input-code" class="block font-sans-recetario text-xs font-bold uppercase tracking-wider text-slate-800 mb-2">
+          <label for="vip-input-code" class="block font-sans-recetario text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
             Código de Desbloqueo
           </label>
           <input
@@ -715,23 +725,23 @@ function getCategoryColor(slug: string) {
             required
             autocomplete="off"
             placeholder="Ingresa tu código de acceso"
-            class="w-full h-12 px-4 bg-slate-50 border border-slate-300 font-sans-recetario text-sm uppercase font-semibold text-slate-900 focus:outline-none focus:border-[#881337] focus:ring-1 focus:ring-[#881337] rounded-xl transition-colors tracking-wider"
+            class="w-full h-12 px-4 bg-slate-50 border border-slate-200 font-sans-recetario text-sm uppercase font-semibold text-slate-900 focus:outline-none focus:border-[#881337] focus:ring-4 focus:ring-rose-500/10 rounded-2xl transition-all tracking-wider shadow-2xs"
           />
         </div>
 
-        <div id="unlock-error" class="hidden p-3 bg-rose-50 border border-rose-300 rounded-xl font-sans-recetario text-xs font-semibold text-rose-800">
+        <div id="unlock-error" class="hidden p-3 bg-rose-50 border border-rose-200 rounded-2xl font-sans-recetario text-xs font-semibold text-rose-800">
           Código no válido. Verifica mayúsculas o solicita asistencia vía WhatsApp.
         </div>
 
         <button
           type="submit"
-          class="w-full py-3.5 px-4 bg-[#881337] hover:bg-[#6e1026] text-white font-sans-recetario font-bold text-xs uppercase tracking-wider rounded-xl transition-all shadow-sm hover:shadow cursor-pointer active:scale-98"
+          class="w-full py-3.5 px-4 bg-[#881337] hover:bg-[#6e1026] text-white font-sans-recetario font-bold text-xs uppercase tracking-wider rounded-2xl transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 cursor-pointer active:scale-98"
         >
           Activar Acceso Completo
         </button>
       </form>
 
-      <div class="mt-6 pt-4 border-t border-[#F0EAE0] text-center">
+      <div class="mt-6 pt-4 border-t border-slate-100 text-center">
         <span class="block font-sans-recetario text-xs text-slate-600 mb-2">¿Aún no has adquirido el recetario?</span>
         <a
           href="https://wa.me/526143958598?text=Hola%20Nutri%C3%B3loga%20Velvet,%20quiero%20comprar%20mi%20c%C3%B3digo%20de%20acceso%20para%20el%20Recetario%20Navide%C3%B1o%202026."
@@ -742,6 +752,70 @@ function getCategoryColor(slug: string) {
           Comprar acceso por WhatsApp →
         </a>
       </div>
+    </div>
+  </div>
+
+  <!-- MODAL ESTILIZADO DE CONFIRMACIÓN PARA CERRAR SESIÓN (REEMPLAZA EL CONFIRM NATIVO) -->
+  <div
+    id="logout-modal"
+    class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-md p-4 flex items-center justify-center font-sans-recetario"
+    role="dialog"
+    aria-modal="true"
+  >
+    <div class="bg-white border border-slate-200 w-full max-w-sm p-6 sm:p-7 rounded-3xl shadow-2xl text-center transform transition-all">
+      <div class="w-12 h-12 rounded-2xl bg-rose-50 text-[#881337] flex items-center justify-center mx-auto mb-4 border border-rose-100 text-xl font-bold">
+        <span>🔒</span>
+      </div>
+      <h3 class="font-display text-xl text-slate-900 font-bold mb-2">
+        ¿Cerrar sesión VIP?
+      </h3>
+      <p class="font-sans-recetario text-xs text-slate-600 leading-relaxed mb-6">
+        Para volver a consultar las recetas bloqueadas tendrás que ingresar nuevamente tu código de acceso.
+      </p>
+
+      <div class="flex items-center gap-3">
+        <button
+          type="button"
+          id="btn-cancel-logout"
+          class="flex-1 py-2.5 px-4 bg-slate-100 hover:bg-slate-200 text-slate-700 font-sans-recetario text-xs font-bold rounded-xl transition-colors cursor-pointer"
+        >
+          Cancelar
+        </button>
+        <button
+          type="button"
+          id="btn-confirm-logout"
+          class="flex-1 py-2.5 px-4 bg-[#881337] hover:bg-[#6e1026] text-white font-sans-recetario text-xs font-bold rounded-xl transition-all shadow-sm cursor-pointer"
+        >
+          Sí, cerrar sesión
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION ESTILIZADO (REEMPLAZA EL ALERT NATIVO) -->
+  <div
+    id="toast-notification"
+    class="fixed top-6 right-6 z-50 transition-all duration-300 transform -translate-y-6 opacity-0 pointer-events-none"
+  >
+    <div class="bg-white border border-emerald-200 rounded-2xl shadow-xl p-4 flex items-center gap-3.5 max-w-sm font-sans-recetario">
+      <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 border border-emerald-100 flex items-center justify-center text-lg font-bold shrink-0">
+        ✓
+      </div>
+      <div class="flex-1">
+        <div id="toast-title" class="font-bold text-xs text-slate-900">
+          ¡Acceso VIP Activado!
+        </div>
+        <div id="toast-message" class="text-xs text-slate-500 mt-0.5">
+          Las 185 recetas han sido desbloqueadas con éxito.
+        </div>
+      </div>
+      <button
+        type="button"
+        id="btn-close-toast"
+        class="text-slate-400 hover:text-slate-600 text-xs font-bold p-1 cursor-pointer"
+      >
+        ✕
+      </button>
     </div>
   </div>
 
@@ -764,6 +838,57 @@ function getCategoryColor(slug: string) {
     let activeTag = null;
     let onlyFree = false;
     let searchQuery = "";
+
+    // Toast logic
+    const toast = document.getElementById("toast-notification");
+    const toastTitle = document.getElementById("toast-title");
+    const toastMessage = document.getElementById("toast-message");
+    let toastTimeout = null;
+
+    function showToast(title, message) {
+      if (!toast) return;
+      if (toastTitle) toastTitle.textContent = title;
+      if (toastMessage) toastMessage.textContent = message;
+
+      toast.classList.remove("-translate-y-6", "opacity-0", "pointer-events-none");
+      toast.classList.add("translate-y-0", "opacity-100", "pointer-events-auto");
+
+      if (toastTimeout) clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        hideToast();
+      }, 4000);
+    }
+
+    function hideToast() {
+      if (!toast) return;
+      toast.classList.add("-translate-y-6", "opacity-0", "pointer-events-none");
+      toast.classList.remove("translate-y-0", "opacity-100", "pointer-events-auto");
+    }
+
+    document.getElementById("btn-close-toast")?.addEventListener("click", hideToast);
+
+    // Logout Modal Logic
+    const logoutModal = document.getElementById("logout-modal");
+
+    function openLogoutModal() {
+      logoutModal?.classList.remove("hidden");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeLogoutModal() {
+      logoutModal?.classList.add("hidden");
+      document.body.style.overflow = "";
+    }
+
+    document.getElementById("btn-cancel-logout")?.addEventListener("click", closeLogoutModal);
+    document.getElementById("btn-confirm-logout")?.addEventListener("click", () => {
+      setAuth(false);
+      closeLogoutModal();
+      showToast("Sesión cerrada", "Has cerrado tu sesión VIP correctamente.");
+    });
+    logoutModal?.addEventListener("click", (e) => {
+      if (e.target === logoutModal) closeLogoutModal();
+    });
 
     function checkAuth() {
       try {
@@ -801,14 +926,14 @@ function getCategoryColor(slug: string) {
         if (dot) dot.className = "w-2.5 h-2.5 rounded-full bg-emerald-500";
         if (text) text.textContent = "Acceso VIP Activo";
         if (btnText) btnText.textContent = "Cerrar Sesión";
-        if (btn) btn.className = "font-sans-recetario text-xs font-bold uppercase tracking-wider px-3.5 py-2 bg-white border border-[#D8D2C5] text-slate-700 hover:bg-slate-50 rounded-lg transition-all cursor-pointer";
+        if (btn) btn.className = "font-sans-recetario text-xs font-bold tracking-wide px-4 sm:px-5 py-2 sm:py-2.5 bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 rounded-full transition-all cursor-pointer shadow-2xs";
         if (heroLocked) heroLocked.classList.add("hidden");
         if (heroUnlocked) heroUnlocked.classList.remove("hidden");
       } else {
         if (dot) dot.className = "w-2.5 h-2.5 rounded-full bg-slate-400";
         if (text) text.textContent = "Acceso Restringido";
         if (btnText) btnText.textContent = "Ingresar Código";
-        if (btn) btn.className = "font-sans-recetario text-xs font-bold uppercase tracking-wider px-4 py-2 bg-[#881337] hover:bg-[#6e1026] text-white rounded-lg transition-all cursor-pointer shadow-sm hover:shadow";
+        if (btn) btn.className = "font-sans-recetario text-xs font-bold tracking-wide px-4 sm:px-5 py-2 sm:py-2.5 bg-[#881337] hover:bg-[#6e1026] text-white rounded-full transition-all duration-200 shadow-sm hover:shadow-md cursor-pointer";
         if (heroLocked) heroLocked.classList.remove("hidden");
         if (heroUnlocked) heroUnlocked.classList.add("hidden");
       }
@@ -820,14 +945,14 @@ function getCategoryColor(slug: string) {
         if (isVip) {
           if (btnAction) {
             btnAction.innerHTML = "<span>Ver Receta Completa</span> <span>→</span>";
-            btnAction.classList.remove("bg-white", "text-slate-800", "border-[#D8D2C5]");
+            btnAction.classList.remove("bg-slate-50", "text-slate-700", "border-slate-200");
             btnAction.classList.add("bg-[#881337]", "text-white", "border-[#881337]");
           }
         } else {
           if (btnAction) {
             btnAction.innerHTML = "<span>🔒 Desbloquear Receta</span> <span>→</span>";
             btnAction.classList.remove("bg-[#881337]", "text-white", "border-[#881337]");
-            btnAction.classList.add("bg-white", "text-slate-800", "border-[#D8D2C5]");
+            btnAction.classList.add("bg-slate-50", "text-slate-700", "border-slate-200");
           }
         }
       });
@@ -856,7 +981,7 @@ function getCategoryColor(slug: string) {
 
       const modalCat = document.getElementById("modal-category");
       modalCat.textContent = recipe.category;
-      modalCat.className = "font-sans-recetario text-xs font-bold uppercase px-2.5 py-0.5 rounded-full border bg-rose-50 text-rose-800 border-rose-200";
+      modalCat.className = "font-sans-recetario text-xs font-bold uppercase px-3 py-1 rounded-full border bg-rose-50 text-rose-800 border-rose-200/80";
 
       document.getElementById("modal-page").textContent = "Diapositiva " + String(recipe.pdfPage).padStart(3, '0');
       document.getElementById("modal-title").textContent = recipe.title;
@@ -877,7 +1002,7 @@ function getCategoryColor(slug: string) {
       if (recipe.equivalents && recipe.equivalents.length > 0) {
         recipe.equivalents.forEach((eq) => {
           const div = document.createElement("div");
-          div.className = "p-2.5 bg-[#FAF7F2] border border-[#EDE8DF] rounded-xl font-sans-recetario text-xs flex justify-between items-center";
+          div.className = "p-3 bg-slate-50 border border-slate-100 rounded-2xl font-sans-recetario text-xs flex justify-between items-center";
           div.innerHTML = `<span class="text-slate-600 font-medium">${eq.group}:</span><span class="text-[#881337] font-bold font-mono-recetario text-sm">${eq.count}</span>`;
           eqList.appendChild(div);
         });
@@ -1024,12 +1149,10 @@ function getCategoryColor(slug: string) {
     document.addEventListener("DOMContentLoaded", () => {
       checkAuth();
 
-      // VIP Toggle in header
+      // VIP Toggle in header -> now opens custom modal if logged in, instead of native confirm()
       document.getElementById("btn-vip-toggle")?.addEventListener("click", () => {
         if (isVip) {
-          if (confirm("¿Deseas cerrar tu sesión VIP?")) {
-            setAuth(false);
-          }
+          openLogoutModal();
         } else {
           openUnlockModal();
         }
@@ -1049,7 +1172,7 @@ function getCategoryColor(slug: string) {
         if (VALID_CODES.includes(val)) {
           setAuth(true);
           closeUnlockModal();
-          alert("¡Acceso VIP Activado! Las 185 recetas han sido desbloqueadas con éxito.");
+          showToast("¡Acceso VIP Activado!", "Las 185 recetas completas han sido desbloqueadas con éxito.");
         } else {
           if (err) err.classList.remove("hidden");
         }
@@ -1080,6 +1203,7 @@ function getCategoryColor(slug: string) {
         if (e.key === "Escape") {
           closeRecipeModal();
           closeUnlockModal();
+          closeLogoutModal();
         }
       });
 
@@ -1089,9 +1213,9 @@ function getCategoryColor(slug: string) {
         btn.addEventListener("click", () => {
           catBtns.forEach((b) => {
             b.classList.remove("bg-[#881337]", "text-white", "border-[#881337]", "shadow-xs");
-            b.classList.add("bg-white", "text-slate-700", "border-[#D8D2C5]");
+            b.classList.add("bg-white", "text-slate-600", "border-slate-200", "shadow-2xs");
           });
-          btn.classList.remove("bg-white", "text-slate-700", "border-[#D8D2C5]");
+          btn.classList.remove("bg-white", "text-slate-600", "border-slate-200", "shadow-2xs");
           btn.classList.add("bg-[#881337]", "text-white", "border-[#881337]", "shadow-xs");
 
           activeCategory = btn.getAttribute("data-category") || "todas";
@@ -1107,14 +1231,14 @@ function getCategoryColor(slug: string) {
           if (activeTag === tag) {
             activeTag = null;
             btn.classList.remove("bg-[#881337]", "text-white", "border-[#881337]");
-            btn.classList.add("bg-white", "text-slate-700", "border-[#D8D2C5]");
+            btn.classList.add("bg-white", "text-slate-700", "border-slate-200");
           } else {
             tagBtns.forEach((b) => {
               b.classList.remove("bg-[#881337]", "text-white", "border-[#881337]");
-              b.classList.add("bg-white", "text-slate-700", "border-[#D8D2C5]");
+              b.classList.add("bg-white", "text-slate-700", "border-slate-200");
             });
             activeTag = tag;
-            btn.classList.remove("bg-white", "text-slate-700", "border-[#D8D2C5]");
+            btn.classList.remove("bg-white", "text-slate-700", "border-slate-200");
             btn.classList.add("bg-[#881337]", "text-white", "border-[#881337]");
           }
           applyFilters();
@@ -1126,11 +1250,11 @@ function getCategoryColor(slug: string) {
       freeBtn?.addEventListener("click", () => {
         onlyFree = !onlyFree;
         if (onlyFree) {
-          freeBtn.classList.remove("bg-emerald-50", "text-emerald-800");
-          freeBtn.classList.add("bg-emerald-700", "text-white");
+          freeBtn.classList.remove("bg-emerald-50", "text-emerald-800", "border-emerald-200");
+          freeBtn.classList.add("bg-emerald-600", "text-white", "border-emerald-600");
         } else {
-          freeBtn.classList.remove("bg-emerald-700", "text-white");
-          freeBtn.classList.add("bg-emerald-50", "text-emerald-800");
+          freeBtn.classList.remove("bg-emerald-600", "text-white", "border-emerald-600");
+          freeBtn.classList.add("bg-emerald-50", "text-emerald-800", "border-emerald-200");
         }
         applyFilters();
       });
@@ -1167,10 +1291,10 @@ function getCategoryColor(slug: string) {
         catBtns.forEach((b, idx) => {
           if (idx === 0) {
             b.classList.add("bg-[#881337]", "text-white", "border-[#881337]");
-            b.classList.remove("bg-white", "text-slate-700", "border-[#D8D2C5]");
+            b.classList.remove("bg-white", "text-slate-600", "border-slate-200");
           } else {
             b.classList.remove("bg-[#881337]", "text-white", "border-[#881337]");
-            b.classList.add("bg-white", "text-slate-700", "border-[#D8D2C5]");
+            b.classList.add("bg-white", "text-slate-600", "border-slate-200");
           }
         });
 
@@ -1180,7 +1304,7 @@ function getCategoryColor(slug: string) {
         });
 
         if (freeBtn) {
-          freeBtn.classList.remove("bg-emerald-700", "text-white");
+          freeBtn.classList.remove("bg-emerald-600", "text-white");
           freeBtn.classList.add("bg-emerald-50", "text-emerald-800");
         }
 
