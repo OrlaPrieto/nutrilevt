@@ -534,17 +534,17 @@ function getCategoryContour(slug: string) {
                   )}
                 </div>
 
-                <!-- Card Action Button suavizado -->
+                <!-- Card Action Button estilizado con alta visibilidad y contraste -->
                 <div class="pt-3 border-t border-[#E6A635]/15 mt-3">
                   {isFree ? (
                     <button
                       type="button"
                       data-action="open-recipe"
                       data-recipe-id={recipe.id}
-                      class="w-full py-2.5 px-4 bg-[#3B0B14] hover:bg-[#520F1C] border border-[#E6A635]/30 hover:border-[#F5D061] text-amber-100 font-semibold text-xs rounded-xl transition-all duration-200 cursor-pointer flex items-center justify-center gap-1.5 group/btn"
+                      class="w-full py-3 px-4 bg-gradient-to-r from-[#E6A635] via-[#F5D061] to-[#D49522] hover:from-[#F5D061] hover:to-[#E6A635] text-[#28050D] font-extrabold text-xs sm:text-sm uppercase tracking-wider rounded-xl transition-all duration-200 shadow-[0_4px_16px_rgba(230,166,53,0.35)] hover:shadow-[0_6px_22px_rgba(245,208,97,0.5)] active:scale-98 cursor-pointer flex items-center justify-center gap-2 group/btn"
                     >
-                      <span>Ver receta</span>
-                      <svg class="w-3.5 h-3.5 text-[#F5D061] group-hover/btn:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                      <span>Ver Receta Completa</span>
+                      <svg class="w-4 h-4 text-[#28050D] group-hover/btn:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
                       </svg>
                     </button>
@@ -554,12 +554,12 @@ function getCategoryContour(slug: string) {
                         type="button"
                         data-action="open-recipe"
                         data-recipe-id={recipe.id}
-                        class="card-vip-btn w-full py-2.5 px-4 bg-transparent hover:bg-white/5 border border-[#E6A635]/25 hover:border-[#E6A635]/50 text-amber-200/70 hover:text-amber-100 font-medium text-xs rounded-xl transition-all duration-200 cursor-pointer flex items-center justify-center gap-1.5"
+                        class="card-vip-btn w-full py-3 px-4 bg-[#1E0308] hover:bg-[#340811] border border-[#E6A635]/40 hover:border-[#F5D061] text-amber-200 hover:text-white font-bold text-xs uppercase tracking-wider rounded-xl transition-all duration-200 cursor-pointer flex items-center justify-center gap-2"
                       >
-                        <svg class="w-3.5 h-3.5 text-[#E6A635]" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                        <svg class="w-4 h-4 text-[#F5D061]" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
                           <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
                         </svg>
-                        <span>Desbloquear</span>
+                        <span>Desbloquear Receta</span>
                       </button>
                     </div>
                   )}
@@ -820,12 +820,12 @@ function getCategoryContour(slug: string) {
             required
             autocomplete="off"
             placeholder="Ingresa tu código de acceso"
-            class="w-full h-12 px-4 bg-[#1E0308] border border-[#E6A635]/40 text-sm uppercase font-semibold text-[#F5D061] focus:outline-none focus:border-[#F5D061] focus:ring-2 focus:ring-[#E6A635]/30 rounded-xl transition-all tracking-wider placeholder-amber-200/30"
+            class="w-full h-12 px-4 bg-[#1E0308] border border-[#E6A635]/40 text-sm font-semibold text-[#F5D061] focus:outline-none focus:border-[#F5D061] focus:ring-2 focus:ring-[#E6A635]/30 rounded-xl transition-all tracking-wider placeholder-amber-200/30"
           />
         </div>
 
         <div id="unlock-error" class="hidden p-3 bg-red-950/70 border border-red-500/60 rounded-xl text-xs font-semibold text-red-200">
-          Código no válido. Verifica mayúsculas o solicita asistencia vía WhatsApp.
+          Código no válido. Verifica tu contraseña o solicita asistencia vía WhatsApp.
         </div>
 
         <button
@@ -1080,14 +1080,8 @@ function getCategoryContour(slug: string) {
 
   <!-- SCRIPT DE INTERACCIÓN CLIENTE -->
   <script is:inline data-astro-rerun define:vars={{ recipesData, FREE_SAMPLE_IDS }}>
-    // Valid passcodes for instant VIP access
-    const VALID_CODES = [
-      "NAVIDAD2026",
-      "NUTRILEV2026",
-      "VELVET2026",
-      "RECETARIO2026",
-      "VIP2026"
-    ];
+    // Única contraseña válida para acceso completo al recetario
+    const VALID_PASSCODE = "Cuidandomeal100";
 
     const STORAGE_KEY = "nutrilev_recetario_vip_active";
 
@@ -1201,13 +1195,13 @@ function getCategoryContour(slug: string) {
         const btnAction = div.querySelector(".card-vip-btn");
         if (isVip) {
           if (btnAction) {
-            btnAction.innerHTML = '<span>Ver receta</span> <svg class="w-3.5 h-3.5 text-[#F5D061] transition-transform" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>';
-            btnAction.className = "card-vip-btn w-full py-2.5 px-4 bg-[#3B0B14] hover:bg-[#520F1C] border border-[#E6A635]/30 hover:border-[#F5D061] text-amber-100 font-semibold text-xs rounded-xl transition-all duration-200 cursor-pointer flex items-center justify-center gap-1.5";
+            btnAction.innerHTML = '<span>Ver Receta Completa</span> <svg class="w-4 h-4 text-[#28050D] transition-transform" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>';
+            btnAction.className = "card-vip-btn w-full py-3 px-4 bg-gradient-to-r from-[#E6A635] via-[#F5D061] to-[#D49522] hover:from-[#F5D061] hover:to-[#E6A635] text-[#28050D] font-extrabold text-xs sm:text-sm uppercase tracking-wider rounded-xl transition-all duration-200 shadow-[0_4px_16px_rgba(230,166,53,0.35)] hover:shadow-[0_6px_22px_rgba(245,208,97,0.5)] active:scale-98 cursor-pointer flex items-center justify-center gap-2 group/btn";
           }
         } else {
           if (btnAction) {
-            btnAction.innerHTML = '<svg class="w-3.5 h-3.5 text-[#E6A635]" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" /></svg> <span>Desbloquear</span>';
-            btnAction.className = "card-vip-btn w-full py-2.5 px-4 bg-transparent hover:bg-white/5 border border-[#E6A635]/25 hover:border-[#E6A635]/50 text-amber-200/70 hover:text-amber-100 font-medium text-xs rounded-xl transition-all duration-200 cursor-pointer flex items-center justify-center gap-1.5";
+            btnAction.innerHTML = '<svg class="w-4 h-4 text-[#F5D061]" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" /></svg> <span>Desbloquear Receta</span>';
+            btnAction.className = "card-vip-btn w-full py-3 px-4 bg-[#1E0308] hover:bg-[#340811] border border-[#E6A635]/40 hover:border-[#F5D061] text-amber-200 hover:text-white font-bold text-xs uppercase tracking-wider rounded-xl transition-all duration-200 cursor-pointer flex items-center justify-center gap-2";
           }
         }
       });
@@ -1565,10 +1559,10 @@ function getCategoryContour(slug: string) {
       document.getElementById("unlock-form")?.addEventListener("submit", (e) => {
         e.preventDefault();
         const input = document.getElementById("vip-input-code");
-        const val = input ? input.value.trim().toUpperCase() : "";
+        const val = input ? input.value.trim() : "";
         const err = document.getElementById("unlock-error");
 
-        if (VALID_CODES.includes(val)) {
+        if (val.toLowerCase() === VALID_PASSCODE.toLowerCase()) {
           setAuth(true);
           closeUnlockModal();
           showToast("¡Acceso VIP Activado!", "Las 185 recetas completas han sido desbloqueadas con éxito.");
