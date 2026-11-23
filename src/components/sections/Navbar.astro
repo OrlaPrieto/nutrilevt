@@ -165,7 +165,17 @@ const langPath = lang === "es" ? "" : `/${lang}`;
             class="text-slate-600 hover:text-primary px-4 py-2 text-sm font-semibold transition-colors"
             >{t("nav.blog")}</a
           >
-          <div class="ml-4">
+
+          <a
+            href="/recetario"
+            data-astro-prefetch="hover"
+            class="group inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold rounded-lg border border-[#D94E28]/30 bg-[#FBF0EC] text-[#D94E28] hover:bg-[#D94E28] hover:text-white transition-all ml-1"
+          >
+            <span class="w-1.5 h-1.5 rounded-full bg-[#D94E28] group-hover:bg-white animate-pulse"></span>
+            <span>Recetario 2026</span>
+          </a>
+
+          <div class="ml-3">
             <a
               href={`${langPath}/#booking`}
               class="relative inline-block bg-primary text-white px-8 py-3 rounded-full text-sm font-bold transition-all shadow-glow hover:shadow-glow-lg hover:scale-110 active:scale-95 animate-gentle-pulse animate-shimmer"
@@ -228,7 +238,16 @@ const langPath = lang === "es" ? "" : `/${lang}`;
         class="mobile-link text-2xl font-bold text-slate-800 hover:text-primary transition-colors"
         >{t("nav.blog")}</a
       >
-      <div class="pt-6 w-full">
+
+      <a
+        href="/recetario"
+        class="mobile-link text-sm font-bold text-[#D94E28] bg-[#FBF0EC] border border-[#D94E28]/30 px-5 py-2.5 rounded-xl transition-colors flex items-center justify-center gap-2 w-full max-w-xs"
+      >
+        <span>❄</span>
+        <span>Recetario Navideño 2026 (VIP)</span>
+      </a>
+
+      <div class="pt-4 w-full max-w-xs">
         <a
           href={`${langPath}/#booking`}
           class="mobile-link block w-full bg-primary text-white py-5 rounded-2xl text-xl font-bold shadow-xl shadow-pink-100 active:scale-95 transition-transform"

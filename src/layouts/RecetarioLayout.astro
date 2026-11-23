@@ -1,0 +1,96 @@
+---
+import SpeedInsights from "@vercel/speed-insights/astro";
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const {
+  title = "Recetario Navideño 2026 · Edición Clínica VIP | Nutrilev",
+  description = "185 recetas navideñas con respaldo clínico, porciones controladas y conteo de equivalentes SMAE por la Nutrióloga Velvet De la Cruz."
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://nutrilev.com');
+---
+
+<!doctype html>
+<html lang="es" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="/favicon2.png" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Google Fonts: Instrument Serif, Geist, JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style is:global>
+      :root {
+        --color-editorial-bg: #F8F7F4;
+        --color-editorial-surface: #FFFFFF;
+        --color-editorial-border: #E5E3DC;
+        --color-editorial-text: #141413;
+        --color-editorial-muted: #6E6D68;
+        --color-editorial-accent: #D94E28;
+        --color-editorial-accent-soft: #FBF0EC;
+      }
+
+      body.recetario-body {
+        background-color: var(--color-editorial-bg);
+        color: var(--color-editorial-text);
+        font-family: 'Geist', -apple-system, BlinkMacSystemFont, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        margin: 0;
+        padding: 0;
+      }
+
+      .font-instrument {
+        font-family: 'Instrument Serif', Georgia, serif;
+      }
+
+      .font-geist {
+        font-family: 'Geist', -apple-system, BlinkMacSystemFont, sans-serif;
+      }
+
+      .font-mono-editorial {
+        font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      }
+
+      /* Custom print styles for single recipe cards */
+      @media print {
+        header, nav, #filter-section, #vip-banner, #footer-editorial, .no-print {
+          display: none !important;
+        }
+        body {
+          background: #ffffff !important;
+          color: #000000 !important;
+        }
+        #recipe-modal-backdrop {
+          position: static !important;
+          background: none !important;
+          padding: 0 !important;
+        }
+        #recipe-modal-dialog {
+          box-shadow: none !important;
+          border: none !important;
+          max-width: 100% !important;
+          width: 100% !important;
+        }
+      }
+    </style>
+  </head>
+  <body class="recetario-body min-h-screen flex flex-col selection:bg-[#D94E28] selection:text-white">
+    <slot />
+    <SpeedInsights />
+  </body>
+</html>

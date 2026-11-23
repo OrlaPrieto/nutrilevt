@@ -1,0 +1,1093 @@
+---
+import RecetarioLayout from "../../layouts/RecetarioLayout.astro";
+import recipesData from "../../data/recipes.json";
+
+// Free preview sample recipe IDs (one per major chapter)
+const FREE_SAMPLE_IDS = [
+  "001-champurrado-ligero",
+  "043-ensalada-campera",
+  "085-lomo-de-cerdo-con-champinones",
+  "125-pure-de-camote-con-canela",
+  "151-trufas-de-datil-y-cacao",
+  "176-mousse-de-aguacate-y-cacao"
+];
+
+const totalRecipes = recipesData.length;
+const categoryCounts = recipesData.reduce((acc, r) => {
+  acc[r.categorySlug] = (acc[r.categorySlug] || 0) + 1;
+  return acc;
+}, {} as Record<string, number>);
+
+const categories = [
+  { name: "Todas", slug: "todas", count: totalRecipes },
+  { name: "Bebidas", slug: "bebidas", count: categoryCounts["bebidas"] || 0 },
+  { name: "Ensaladas", slug: "ensaladas", count: categoryCounts["ensaladas"] || 0 },
+  { name: "Platos Fuertes", slug: "platos-fuertes", count: categoryCounts["platos-fuertes"] || 0 },
+  { name: "Guarniciones", slug: "guarniciones", count: categoryCounts["guarniciones"] || 0 },
+  { name: "Postres", slug: "postres", count: categoryCounts["postres"] || 0 },
+  { name: "Diabetes", slug: "diabetes", count: categoryCounts["diabetes"] || 0 },
+];
+---
+
+<RecetarioLayout
+  title="Recetario Navideño 2026 · Edición Clínica VIP | Nutrilev"
+  description="185 recetas decembrinas con equivalentes SMAE, cálculo nutricional exacto y opciones aptas para diabetes por la Nutrióloga Velvet De la Cruz."
+>
+  <!-- TOP MASTHEAD -->
+  <header class="border-b border-[#E5E3DC] bg-[#F8F7F4] sticky top-0 z-30">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+      <div class="flex items-center gap-4">
+        <a
+          href="/"
+          class="font-mono-editorial text-xs uppercase tracking-wider text-[#141413] hover:text-[#D94E28] transition-colors flex items-center gap-1.5"
+        >
+          <span>←</span>
+          <span>NUTRILEV.COM</span>
+        </a>
+        <span class="text-[#E5E3DC] hidden sm:inline">|</span>
+        <span class="font-mono-editorial text-xs text-[#6E6D68] uppercase hidden sm:inline tracking-wider">
+          EDICIÓN NAVIDEÑA 2026
+        </span>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <!-- VIP Status Pill -->
+        <div
+          id="vip-status-pill"
+          class="font-mono-editorial text-[11px] px-2.5 py-1 border border-[#E5E3DC] bg-white text-[#6E6D68] uppercase tracking-wider flex items-center gap-1.5"
+        >
+          <span id="vip-status-dot" class="w-2 h-2 rounded-full bg-[#6E6D68]"></span>
+          <span id="vip-status-text">ACCESO RESTRINGIDO</span>
+        </div>
+
+        <!-- Unlock / Lock Action Button -->
+        <button
+          id="btn-vip-toggle"
+          type="button"
+          class="font-mono-editorial text-xs uppercase tracking-wider px-3.5 py-1.5 bg-[#141413] hover:bg-[#D94E28] text-white rounded-[2px] transition-colors cursor-pointer"
+        >
+          <span id="btn-vip-text">INGRESAR CÓDIGO</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- EDITORIAL HERO / MANIFESTO -->
+  <section class="border-b border-[#E5E3DC] bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        
+        <!-- Left: Editorial Headline -->
+        <div class="lg:col-span-8">
+          <div class="font-mono-editorial text-xs uppercase tracking-widest text-[#D94E28] mb-3 flex items-center gap-2">
+            <span>[VOLUMEN CLÍNICO EXCLUSIVO]</span>
+            <span>·</span>
+            <span>716 PÁGINAS</span>
+          </div>
+
+          <h1 class="font-instrument text-4xl sm:text-5xl lg:text-6xl text-[#141413] leading-[1.08] tracking-tight mb-6">
+            El arte de celebrar con bienestar: 185 recetas navideñas con respaldo clínico.
+          </h1>
+
+          <p class="font-geist text-base sm:text-lg text-[#6E6D68] max-w-2xl leading-relaxed mb-6">
+            Curadas por la <strong class="text-[#141413] font-medium">Nutrióloga Velvet De la Cruz Villegas</strong> (Céd. Prof. 10622381) para pacientes y familias que buscan disfrutar las fiestas decembrinas con equilibrio metabólico, cálculo exacto de equivalentes SMAE y alternativas para personas con diabetes.
+          </p>
+
+          <!-- Metrics Strip -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-px bg-[#E5E3DC] border border-[#E5E3DC] max-w-2xl">
+            <div class="bg-white p-3.5">
+              <span class="block font-mono-editorial text-[11px] text-[#6E6D68] uppercase">RECETAS</span>
+              <span class="font-instrument text-3xl text-[#141413]">185</span>
+            </div>
+            <div class="bg-white p-3.5">
+              <span class="block font-mono-editorial text-[11px] text-[#6E6D68] uppercase">CATEGORÍAS</span>
+              <span class="font-instrument text-3xl text-[#141413]">06</span>
+            </div>
+            <div class="bg-white p-3.5">
+              <span class="block font-mono-editorial text-[11px] text-[#6E6D68] uppercase">POSTRES DIABETES</span>
+              <span class="font-instrument text-3xl text-[#141413]">10</span>
+            </div>
+            <div class="bg-white p-3.5">
+              <span class="block font-mono-editorial text-[11px] text-[#6E6D68] uppercase">SISTEMA</span>
+              <span class="font-instrument text-3xl text-[#D94E28]">SMAE</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: VIP Commercial Card -->
+        <div class="lg:col-span-4 bg-[#F8F7F4] border border-[#E5E3DC] p-6 lg:p-7">
+          <div class="flex items-center justify-between mb-4 pb-3 border-b border-[#E5E3DC]">
+            <span class="font-mono-editorial text-xs uppercase tracking-wider text-[#141413]">
+              ESTADO DEL PRODUCTO
+            </span>
+            <span class="font-mono-editorial text-[11px] px-2 py-0.5 bg-[#D94E28] text-white rounded-[2px]">
+              EDICIÓN LIMITADA
+            </span>
+          </div>
+
+          <div id="hero-vip-locked">
+            <h2 class="font-instrument text-2xl text-[#141413] mb-2 leading-tight">
+              Desbloquea el recetario completo
+            </h2>
+            <p class="font-geist text-xs text-[#6E6D68] leading-relaxed mb-5">
+              Tienes <strong>6 recetas de muestra gratuita</strong> disponibles para consulta inmediata. Para acceder a las 179 recetas restantes, sus tablas nutricionales y el PDF descargable de 716 páginas, ingresa tu código o adquiérelo vía WhatsApp.
+            </p>
+
+            <div class="space-y-2.5">
+              <button
+                type="button"
+                id="btn-hero-unlock"
+                class="w-full py-3 px-4 bg-[#D94E28] hover:bg-[#b83e1c] text-white font-mono-editorial text-xs uppercase tracking-wider text-center rounded-[2px] transition-colors cursor-pointer block"
+              >
+                INGRESAR CÓDIGO DE ACCESO
+              </button>
+
+              <a
+                href="https://wa.me/526143958598?text=Hola%20Nutri%C3%B3loga%20Velvet,%20me%20interesa%20adquirir%20el%20Recetario%20Navide%C3%B1o%202026%20completo%20(185%20recetas)."
+                target="_blank"
+                rel="noopener noreferrer"
+                class="w-full py-3 px-4 bg-white hover:bg-[#F2F0EB] text-[#141413] border border-[#E5E3DC] font-mono-editorial text-xs uppercase tracking-wider text-center rounded-[2px] transition-colors block"
+              >
+                ADQUIRIR ACCESO POR WHATSAPP →
+              </a>
+            </div>
+          </div>
+
+          <div id="hero-vip-unlocked" class="hidden">
+            <div class="font-mono-editorial text-xs text-[#D94E28] mb-1">
+              [SESIÓN VIP AUTORIZADA]
+            </div>
+            <h2 class="font-instrument text-2xl text-[#141413] mb-2">
+              Bienvenido al Recetario Completo
+            </h2>
+            <p class="font-geist text-xs text-[#6E6D68] mb-5">
+              Tienes acceso ilimitado a las 185 recetas, tablas de equivalentes clínicos y buscador por ingredientes.
+            </p>
+            <div class="p-3 bg-white border border-[#E5E3DC] font-mono-editorial text-xs text-[#141413] flex items-center justify-between">
+              <span>ESTADO:</span>
+              <span class="text-[#D94E28]">185 RECETAS DISPONIBLES</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTROLS & FILTER BAR -->
+  <section class="border-b border-[#E5E3DC] bg-[#F8F7F4] sticky top-16 z-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+      
+      <!-- Top Row: Search and Tags -->
+      <div class="flex flex-col md:flex-row items-stretch md:items-center gap-3 mb-4">
+        <!-- Search input -->
+        <div class="relative flex-1">
+          <input
+            id="recipe-search"
+            type="search"
+            placeholder="Buscar por nombre, ingrediente o palabra clave (ej. pavo, cacao, avena)..."
+            class="w-full h-11 px-4 bg-white border border-[#E5E3DC] text-sm text-[#141413] placeholder-[#6E6D68] focus:outline-none focus:border-[#D94E28] rounded-[2px] font-geist"
+          />
+          <button
+            id="clear-search-btn"
+            type="button"
+            class="hidden absolute right-3 top-1/2 -translate-y-1/2 font-mono-editorial text-xs text-[#6E6D68] hover:text-[#141413]"
+          >
+            [BORRAR]
+          </button>
+        </div>
+
+        <!-- Quick Filters -->
+        <div class="flex items-center gap-2 overflow-x-auto pb-1 md:pb-0 scrollbar-none">
+          <button
+            type="button"
+            data-filter-tag="Sin azúcar añadida"
+            class="filter-tag-btn font-mono-editorial text-[11px] uppercase tracking-wider px-3 py-2 bg-white border border-[#E5E3DC] hover:border-[#141413] text-[#141413] rounded-[2px] whitespace-nowrap cursor-pointer transition-colors"
+          >
+            SIN AZÚCAR
+          </button>
+          <button
+            type="button"
+            data-filter-tag="Baja en grasa"
+            class="filter-tag-btn font-mono-editorial text-[11px] uppercase tracking-wider px-3 py-2 bg-white border border-[#E5E3DC] hover:border-[#141413] text-[#141413] rounded-[2px] whitespace-nowrap cursor-pointer transition-colors"
+          >
+            BAJA EN GRASA
+          </button>
+          <button
+            type="button"
+            data-filter-tag="Rica en proteína"
+            class="filter-tag-btn font-mono-editorial text-[11px] uppercase tracking-wider px-3 py-2 bg-white border border-[#E5E3DC] hover:border-[#141413] text-[#141413] rounded-[2px] whitespace-nowrap cursor-pointer transition-colors"
+          >
+            CON PROTEÍNA
+          </button>
+          <button
+            type="button"
+            data-filter-free="true"
+            id="filter-free-btn"
+            class="font-mono-editorial text-[11px] uppercase tracking-wider px-3 py-2 bg-white border border-[#E5E3DC] hover:border-[#D94E28] text-[#D94E28] rounded-[2px] whitespace-nowrap cursor-pointer transition-colors"
+          >
+            MUESTRAS GRATIS [6]
+          </button>
+        </div>
+      </div>
+
+      <!-- Bottom Row: Category Tabs -->
+      <div class="flex items-center justify-between gap-4 overflow-x-auto scrollbar-none pt-1">
+        <div class="flex items-center gap-1.5 flex-nowrap">
+          {categories.map((cat, idx) => (
+            <button
+              type="button"
+              data-category={cat.slug}
+              class={`cat-tab-btn font-mono-editorial text-xs uppercase px-3 py-1.5 rounded-[2px] whitespace-nowrap transition-colors cursor-pointer border ${
+                idx === 0
+                  ? "bg-[#141413] text-white border-[#141413]"
+                  : "bg-white text-[#141413] border-[#E5E3DC] hover:border-[#141413]"
+              }`}
+            >
+              <span>{cat.name}</span>
+              <span class="opacity-60 ml-1">[{String(cat.count).padStart(3, '0')}]</span>
+            </button>
+          ))}
+        </div>
+
+        <div class="hidden lg:block font-mono-editorial text-xs text-[#6E6D68] whitespace-nowrap">
+          MOSTRANDO: <span id="count-visible" class="text-[#141413] font-bold">185</span> / 185
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- RECIPES CATALOG GRID -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <!-- Active filters indication -->
+    <div id="filter-feedback" class="hidden mb-6 p-3 bg-white border border-[#E5E3DC] flex items-center justify-between font-mono-editorial text-xs text-[#141413]">
+      <span id="filter-feedback-text">Filtro activo</span>
+      <button id="reset-all-filters" type="button" class="text-[#D94E28] hover:underline cursor-pointer">
+        [LIMPIAR FILTROS]
+      </button>
+    </div>
+
+    <!-- Empty Results State -->
+    <div id="empty-state" class="hidden text-left py-16 px-6 bg-white border border-[#E5E3DC]">
+      <div class="font-mono-editorial text-xs uppercase tracking-widest text-[#D94E28] mb-2">[0 RESULTADOS]</div>
+      <h2 class="font-instrument text-3xl text-[#141413] mb-3">No encontramos recetas con ese criterio</h2>
+      <p class="font-geist text-sm text-[#6E6D68] max-w-md mb-6 leading-relaxed">
+        Prueba buscando con términos más generales como "lomo", "ensalada", "avena" o selecciona "Todas" las categorías.
+      </p>
+      <button
+        id="btn-reset-empty"
+        type="button"
+        class="font-mono-editorial text-xs uppercase tracking-wider px-4 py-2 bg-[#141413] text-white rounded-[2px] cursor-pointer"
+      >
+        RESTAURAR CATÁLOGO COMPLETO
+      </button>
+    </div>
+
+    <!-- The 185 Recipes Grid -->
+    <div id="recipes-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {recipesData.map((recipe) => {
+        const isFree = FREE_SAMPLE_IDS.includes(recipe.id);
+        return (
+          <article
+            data-id={recipe.id}
+            data-category={recipe.categorySlug}
+            data-calories={recipe.calories}
+            data-tags={recipe.tags.join("|")}
+            data-title={recipe.title.toLowerCase()}
+            data-ingredients={recipe.ingredients.join(" ").toLowerCase()}
+            data-free={isFree ? "true" : "false"}
+            class="recipe-card bg-white border border-[#E5E3DC] p-6 flex flex-col justify-between transition-colors hover:border-[#141413] relative group"
+          >
+            <!-- Card Header -->
+            <div>
+              <div class="flex items-center justify-between gap-2 pb-3 mb-3 border-b border-[#E5E3DC]">
+                <span class="font-mono-editorial text-[11px] uppercase tracking-wider text-[#D94E28]">
+                  {recipe.category}
+                </span>
+                <span class="font-mono-editorial text-[11px] text-[#6E6D68]">
+                  P. {String(recipe.pdfPage).padStart(3, '0')}
+                </span>
+              </div>
+
+              <!-- Recipe Title -->
+              <h3 class="font-instrument text-2xl text-[#141413] leading-snug tracking-tight mb-3">
+                {recipe.title}
+              </h3>
+
+              <!-- Metrics Strip -->
+              <div class="font-mono-editorial text-[11px] text-[#6E6D68] grid grid-cols-3 gap-1 py-2 mb-3 border-y border-[#E5E3DC] bg-[#F8F7F4]/50">
+                <div>
+                  <span class="block text-[9px] uppercase text-[#6E6D68]">KCAL</span>
+                  <span class="text-[#141413] font-semibold">{recipe.calories || "N/D"}</span>
+                </div>
+                <div>
+                  <span class="block text-[9px] uppercase text-[#6E6D68]">TIEMPO</span>
+                  <span class="text-[#141413]">{recipe.prepTime}</span>
+                </div>
+                <div>
+                  <span class="block text-[9px] uppercase text-[#6E6D68]">PORCIÓN</span>
+                  <span class="text-[#141413] truncate">{recipe.portions}</span>
+                </div>
+              </div>
+
+              <!-- Tags -->
+              {recipe.tags && recipe.tags.length > 0 && (
+                <div class="flex flex-wrap gap-1.5 mb-4">
+                  {recipe.tags.slice(0, 3).map((tag) => (
+                    <span class="font-mono-editorial text-[10px] uppercase px-1.5 py-0.5 border border-[#E5E3DC] text-[#6E6D68] rounded-[2px]">
+                      {tag}
+                    </span>
+                  ))}
+                  {recipe.tags.length > 3 && (
+                    <span class="font-mono-editorial text-[10px] text-[#6E6D68] self-center">
+                      +{recipe.tags.length - 3}
+                    </span>
+                  )}
+                </div>
+              )}
+
+              <!-- Ingredients preview teaser -->
+              <div class="mb-5">
+                <span class="font-mono-editorial text-[10px] text-[#6E6D68] uppercase tracking-wider block mb-1">
+                  INGREDIENTES CLAVE:
+                </span>
+                <ul class="font-geist text-xs text-[#141413] space-y-1">
+                  {recipe.ingredients.slice(0, 2).map((ing) => (
+                    <li class="truncate text-[#6E6D68] flex items-center gap-1.5">
+                      <span class="w-1 h-1 bg-[#D94E28] rounded-full inline-block shrink-0"></span>
+                      <span class="truncate">{ing}</span>
+                    </li>
+                  ))}
+                  {recipe.ingredients.length > 2 && (
+                    <li class="font-mono-editorial text-[10px] text-[#6E6D68]">
+                      ... y {recipe.ingredients.length - 2} ingredientes más
+                    </li>
+                  )}
+                </ul>
+              </div>
+            </div>
+
+            <!-- Card Action Footer -->
+            <div class="pt-4 border-t border-[#E5E3DC]">
+              {isFree ? (
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-mono-editorial text-[10px] text-[#D94E28] uppercase tracking-wider">
+                    [MUESTRA GRATUITA]
+                  </span>
+                  <button
+                    type="button"
+                    data-action="open-recipe"
+                    data-recipe-id={recipe.id}
+                    class="font-mono-editorial text-xs uppercase px-3 py-1.5 bg-[#141413] text-white hover:bg-[#D94E28] rounded-[2px] transition-colors cursor-pointer"
+                  >
+                    VER RECETA →
+                  </button>
+                </div>
+              ) : (
+                <div class="card-vip-action flex items-center justify-between gap-2">
+                  <span class="card-vip-label font-mono-editorial text-[10px] text-[#6E6D68] uppercase tracking-wider">
+                    [CÓDIGO VIP REQUERIDO]
+                  </span>
+                  <button
+                    type="button"
+                    data-action="open-recipe"
+                    data-recipe-id={recipe.id}
+                    class="card-vip-btn font-mono-editorial text-xs uppercase px-3 py-1.5 bg-white border border-[#E5E3DC] text-[#141413] hover:border-[#141413] rounded-[2px] transition-colors cursor-pointer"
+                  >
+                    DESBLOQUEAR →
+                  </button>
+                </div>
+              )}
+            </div>
+          </article>
+        );
+      })}
+    </div>
+  </main>
+
+  <!-- EDITORIAL FOOTER -->
+  <footer id="footer-editorial" class="border-t border-[#E5E3DC] bg-white py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start mb-8 pb-8 border-b border-[#E5E3DC]">
+        <div class="md:col-span-6">
+          <span class="font-instrument text-2xl text-[#141413] block mb-2">NUTRILEV NUTRICIÓN</span>
+          <p class="font-geist text-xs text-[#6E6D68] max-w-sm leading-relaxed mb-4">
+            Recetario Navideño 2026. Material clínico exclusivo diseñado para complementar el tratamiento nutricional personalizado. Prohibida su distribución no autorizada.
+          </p>
+          <div class="font-mono-editorial text-xs text-[#141413]">
+            M.P.C. Velvet Anakaren De la Cruz Villegas · Céd. Prof. 10622381
+          </div>
+        </div>
+
+        <div class="md:col-span-3">
+          <span class="font-mono-editorial text-xs uppercase tracking-wider text-[#6E6D68] block mb-3">
+            SECCIONES
+          </span>
+          <ul class="space-y-1.5 font-geist text-xs text-[#141413]">
+            <li><a href="/#services" class="hover:text-[#D94E28]">Consulta Nutricional</a></li>
+            <li><a href="/#equipment" class="hover:text-[#D94E28]">Bioimpedancia InBody</a></li>
+            <li><a href="/#about" class="hover:text-[#D94E28]">Sobre la Nutrióloga</a></li>
+            <li><a href="/blog" class="hover:text-[#D94E28]">Blog de Salud</a></li>
+          </ul>
+        </div>
+
+        <div class="md:col-span-3">
+          <span class="font-mono-editorial text-xs uppercase tracking-wider text-[#6E6D68] block mb-3">
+            ATENCIÓN A CLIENTES
+          </span>
+          <p class="font-geist text-xs text-[#6E6D68] leading-relaxed mb-2">
+            ¿Adquiriste tu recetario y necesitas ayuda con tu código de acceso?
+          </p>
+          <a
+            href="https://wa.me/526143958598?text=Hola%20Nutri%C3%B3loga%20Velvet,%20necesito%20soporte%20con%20mi%20c%C3%B3digo%20de%20acceso%20al%20Recetario%20Navide%C3%B1o."
+            target="_blank"
+            rel="noopener noreferrer"
+            class="font-mono-editorial text-xs text-[#D94E28] hover:underline block"
+          >
+            WHATSAPP: +52 (614) 395 8598
+          </a>
+        </div>
+      </div>
+
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 font-mono-editorial text-[11px] text-[#6E6D68]">
+        <div>© 2026 NUTRILEV. TODOS LOS DERECHOS RESERVADOS.</div>
+        <div>DISEÑO EDITORIAL CLÍNICO · VERSIÓN 2.0</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- RECIPE DETAIL DRAWER / MODAL -->
+  <div
+    id="recipe-modal"
+    class="fixed inset-0 z-50 hidden bg-[#141413]/70 p-4 sm:p-6 lg:p-10 flex items-center justify-center overflow-y-auto"
+    role="dialog"
+    aria-modal="true"
+  >
+    <div
+      id="recipe-modal-dialog"
+      class="bg-white border border-[#E5E3DC] w-full max-w-3xl my-auto p-6 sm:p-10 max-h-[90vh] overflow-y-auto rounded-none relative"
+    >
+      <!-- Close Bar -->
+      <div class="flex items-center justify-between pb-4 mb-6 border-b border-[#E5E3DC]">
+        <div class="flex items-center gap-2">
+          <span id="modal-category" class="font-mono-editorial text-xs text-[#D94E28] uppercase tracking-wider"></span>
+          <span class="text-[#E5E3DC]">·</span>
+          <span id="modal-page" class="font-mono-editorial text-xs text-[#6E6D68]"></span>
+        </div>
+        <button
+          id="btn-close-modal"
+          type="button"
+          class="font-mono-editorial text-xs text-[#141413] hover:text-[#D94E28] px-2 py-1 uppercase tracking-wider cursor-pointer"
+        >
+          [CERRAR ✕]
+        </button>
+      </div>
+
+      <!-- Title & Headline -->
+      <h2 id="modal-title" class="font-instrument text-3xl sm:text-4xl text-[#141413] leading-tight mb-4"></h2>
+
+      <!-- Metrics Bar -->
+      <div class="grid grid-cols-3 gap-px bg-[#E5E3DC] border border-[#E5E3DC] mb-6">
+        <div class="bg-[#F8F7F4] p-3 text-left">
+          <span class="block font-mono-editorial text-[10px] text-[#6E6D68] uppercase">CALORÍAS</span>
+          <span id="modal-calories" class="font-mono-editorial text-base font-bold text-[#141413]"></span>
+        </div>
+        <div class="bg-[#F8F7F4] p-3 text-left">
+          <span class="block font-mono-editorial text-[10px] text-[#6E6D68] uppercase">TIEMPO</span>
+          <span id="modal-time" class="font-mono-editorial text-base text-[#141413]"></span>
+        </div>
+        <div class="bg-[#F8F7F4] p-3 text-left">
+          <span class="block font-mono-editorial text-[10px] text-[#6E6D68] uppercase">PORCIONES</span>
+          <span id="modal-portions" class="font-mono-editorial text-base text-[#141413]"></span>
+        </div>
+      </div>
+
+      <!-- Nutritional Breakdown Panel -->
+      <div class="mb-6 p-4 bg-white border border-[#E5E3DC]">
+        <div class="font-mono-editorial text-xs text-[#141413] uppercase tracking-wider mb-2">
+          INFORMACIÓN NUTRICIONAL APROXIMADA
+        </div>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 font-mono-editorial text-xs text-[#6E6D68]">
+          <div>PROTEÍNA: <span id="modal-prot" class="text-[#141413] font-semibold"></span></div>
+          <div>GRASAS: <span id="modal-fat" class="text-[#141413] font-semibold"></span></div>
+          <div>CARBOHIDRATOS: <span id="modal-carb" class="text-[#141413] font-semibold"></span></div>
+          <div>FIBRA: <span id="modal-fib" class="text-[#141413] font-semibold"></span></div>
+        </div>
+      </div>
+
+      <!-- SMAE Clinical Equivalents Table -->
+      <div id="modal-equivalents-section" class="mb-6 hidden">
+        <div class="font-mono-editorial text-xs text-[#141413] uppercase tracking-wider mb-2">
+          SISTEMA MEXICANO DE ALIMENTOS EQUIVALENTES (SMAE)
+        </div>
+        <div id="modal-equivalents-list" class="grid grid-cols-2 sm:grid-cols-3 gap-2">
+          <!-- Injected via JS -->
+        </div>
+      </div>
+
+      <!-- Two-column Ingredients & Instructions -->
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 mb-8">
+        <!-- Ingredients with Checkboxes -->
+        <div class="md:col-span-5">
+          <div class="font-mono-editorial text-xs text-[#141413] uppercase tracking-wider mb-3 pb-1 border-b border-[#E5E3DC] flex items-center justify-between">
+            <span>INGREDIENTES</span>
+            <span class="text-[10px] text-[#6E6D68]">(TOCA PARA MARCAR)</span>
+          </div>
+          <ul id="modal-ingredients-list" class="space-y-2 font-geist text-xs text-[#141413]">
+            <!-- Injected via JS -->
+          </ul>
+        </div>
+
+        <!-- Numbered Instructions -->
+        <div class="md:col-span-7">
+          <div class="font-mono-editorial text-xs text-[#141413] uppercase tracking-wider mb-3 pb-1 border-b border-[#E5E3DC]">
+            PROCEDIMIENTO PASO A PASO
+          </div>
+          <ol id="modal-instructions-list" class="space-y-3 font-geist text-xs text-[#141413]">
+            <!-- Injected via JS -->
+          </ol>
+        </div>
+      </div>
+
+      <!-- Nutri Tip if present -->
+      <div id="modal-tip-box" class="hidden mb-8 p-4 bg-[#F8F7F4] border-l-2 border-[#D94E28]">
+        <span class="font-mono-editorial text-xs uppercase tracking-wider text-[#D94E28] block mb-1">
+          CONSEJO CLÍNICO DE TU NUTRIÓLOGA
+        </span>
+        <p id="modal-tip-text" class="font-geist text-xs text-[#141413] leading-relaxed"></p>
+      </div>
+
+      <!-- Modal Actions -->
+      <div class="pt-6 border-t border-[#E5E3DC] flex flex-wrap items-center justify-between gap-3 no-print">
+        <button
+          type="button"
+          onclick="window.print()"
+          class="font-mono-editorial text-xs uppercase tracking-wider px-3.5 py-2 bg-white border border-[#E5E3DC] hover:border-[#141413] text-[#141413] rounded-[2px] transition-colors cursor-pointer"
+        >
+          IMPRIMIR RECETA ⎙
+        </button>
+
+        <button
+          id="btn-close-modal-bottom"
+          type="button"
+          class="font-mono-editorial text-xs uppercase tracking-wider px-4 py-2 bg-[#141413] hover:bg-[#D94E28] text-white rounded-[2px] transition-colors cursor-pointer"
+        >
+          CERRAR VENTANA
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- VIP CODE UNLOCK MODAL -->
+  <div
+    id="unlock-modal"
+    class="fixed inset-0 z-50 hidden bg-[#141413]/70 p-4 flex items-center justify-center"
+    role="dialog"
+    aria-modal="true"
+  >
+    <div class="bg-white border border-[#E5E3DC] w-full max-w-md p-6 sm:p-8 rounded-none relative">
+      <div class="flex items-center justify-between pb-3 mb-4 border-b border-[#E5E3DC]">
+        <span class="font-mono-editorial text-xs uppercase tracking-wider text-[#D94E28]">
+          [ACCESO PRIVADO]
+        </span>
+        <button
+          id="btn-close-unlock-modal"
+          type="button"
+          class="font-mono-editorial text-xs text-[#141413] hover:text-[#D94E28] cursor-pointer"
+        >
+          [✕]
+        </button>
+      </div>
+
+      <h3 class="font-instrument text-2xl text-[#141413] leading-snug mb-2">
+        Ingresa tu código de acceso VIP
+      </h3>
+      <p class="font-geist text-xs text-[#6E6D68] leading-relaxed mb-6">
+        Introduce el código que recibiste al comprar tu Recetario Navideño para desbloquear las 185 recetas completas.
+      </p>
+
+      <form id="unlock-form" class="space-y-4">
+        <div>
+          <label for="vip-input-code" class="block font-mono-editorial text-[11px] uppercase tracking-wider text-[#141413] mb-1.5">
+            CÓDIGO DE DESBLOQUEO
+          </label>
+          <input
+            type="text"
+            id="vip-input-code"
+            required
+            autocomplete="off"
+            placeholder="EJEMPLO: NAVIDAD2026"
+            class="w-full h-11 px-3.5 bg-white border border-[#E5E3DC] font-mono-editorial text-sm uppercase text-[#141413] focus:outline-none focus:border-[#D94E28] rounded-[2px]"
+          />
+        </div>
+
+        <div id="unlock-error" class="hidden p-2.5 bg-[#FBF0EC] border border-[#D94E28] font-mono-editorial text-[11px] text-[#D94E28]">
+          Código no válido. Revisa mayúsculas o contáctanos por WhatsApp.
+        </div>
+
+        <button
+          type="submit"
+          class="w-full py-3 px-4 bg-[#D94E28] hover:bg-[#b83e1c] text-white font-mono-editorial text-xs uppercase tracking-wider rounded-[2px] transition-colors cursor-pointer"
+        >
+          ACTIVAR ACCESO COMPLETO
+        </button>
+      </form>
+
+      <div class="mt-6 pt-4 border-t border-[#E5E3DC] text-center">
+        <span class="block font-geist text-xs text-[#6E6D68] mb-2">¿Aún no has adquirido el recetario?</span>
+        <a
+          href="https://wa.me/526143958598?text=Hola%20Nutri%C3%B3loga%20Velvet,%20quiero%20comprar%20mi%20c%C3%B3digo%20de%20acceso%20para%20el%20Recetario%20Navide%C3%B1o%202026."
+          target="_blank"
+          rel="noopener noreferrer"
+          class="font-mono-editorial text-xs text-[#141413] hover:text-[#D94E28] underline"
+        >
+          COMPRAR ACCESO POR WHATSAPP →
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- EMBEDDED DATA & CLIENT SCRIPT -->
+  <script is:inline define:vars={{ recipesData, FREE_SAMPLE_IDS }}>
+    // Valid passcodes for instant VIP access
+    const VALID_CODES = [
+      "NAVIDAD2026",
+      "NUTRILEV2026",
+      "VELVET2026",
+      "RECETARIO2026",
+      "VIP2026"
+    ];
+
+    const STORAGE_KEY = "nutrilev_recetario_vip_active";
+
+    // Application state
+    let isVip = false;
+    let activeCategory = "todas";
+    let activeTag = null;
+    let onlyFree = false;
+    let searchQuery = "";
+
+    function checkAuth() {
+      try {
+        const stored = localStorage.getItem(STORAGE_KEY);
+        if (stored === "true") {
+          isVip = true;
+        }
+      } catch (e) {
+        // fallback
+      }
+      updateAuthUI();
+    }
+
+    function setAuth(status) {
+      isVip = status;
+      try {
+        if (status) {
+          localStorage.setItem(STORAGE_KEY, "true");
+        } else {
+          localStorage.removeItem(STORAGE_KEY);
+        }
+      } catch (e) {}
+      updateAuthUI();
+      applyFilters();
+    }
+
+    function updateAuthUI() {
+      const pill = document.getElementById("vip-status-pill");
+      const dot = document.getElementById("vip-status-dot");
+      const text = document.getElementById("vip-status-text");
+      const btn = document.getElementById("btn-vip-toggle");
+      const btnText = document.getElementById("btn-vip-text");
+      const heroLocked = document.getElementById("hero-vip-locked");
+      const heroUnlocked = document.getElementById("hero-vip-unlocked");
+
+      if (isVip) {
+        if (dot) dot.className = "w-2 h-2 rounded-full bg-[#D94E28]";
+        if (text) text.textContent = "ACCESO VIP ACTIVO";
+        if (btnText) btnText.textContent = "CERRAR SESIÓN";
+        if (btn) btn.className = "font-mono-editorial text-xs uppercase tracking-wider px-3.5 py-1.5 bg-white border border-[#E5E3DC] text-[#141413] hover:border-[#141413] rounded-[2px] transition-colors cursor-pointer";
+        if (heroLocked) heroLocked.classList.add("hidden");
+        if (heroUnlocked) heroUnlocked.classList.remove("hidden");
+      } else {
+        if (dot) dot.className = "w-2 h-2 rounded-full bg-[#6E6D68]";
+        if (text) text.textContent = "ACCESO RESTRINGIDO";
+        if (btnText) btnText.textContent = "INGRESAR CÓDIGO";
+        if (btn) btn.className = "font-mono-editorial text-xs uppercase tracking-wider px-3.5 py-1.5 bg-[#141413] hover:bg-[#D94E28] text-white rounded-[2px] transition-colors cursor-pointer";
+        if (heroLocked) heroLocked.classList.remove("hidden");
+        if (heroUnlocked) heroUnlocked.classList.add("hidden");
+      }
+
+      // Update card buttons
+      const cardVipButtons = document.querySelectorAll(".card-vip-action");
+      cardVipButtons.forEach((div) => {
+        const label = div.querySelector(".card-vip-label");
+        const btnAction = div.querySelector(".card-vip-btn");
+        if (isVip) {
+          if (label) label.textContent = "[DISPONIBLE]";
+          if (btnAction) {
+            btnAction.textContent = "VER RECETA →";
+            btnAction.classList.remove("bg-white", "text-[#141413]");
+            btnAction.classList.add("bg-[#141413]", "text-white");
+          }
+        } else {
+          if (label) label.textContent = "[CÓDIGO VIP REQUERIDO]";
+          if (btnAction) {
+            btnAction.textContent = "DESBLOQUEAR →";
+            btnAction.classList.remove("bg-[#141413]", "text-white");
+            btnAction.classList.add("bg-white", "text-[#141413]");
+          }
+        }
+      });
+    }
+
+    // Modal logic
+    const recipeModal = document.getElementById("recipe-modal");
+    const unlockModal = document.getElementById("unlock-modal");
+
+    function openRecipeModal(recipeId) {
+      const recipe = recipesData.find((r) => r.id === recipeId);
+      if (!recipe) return;
+
+      const isFree = FREE_SAMPLE_IDS.includes(recipeId);
+      if (!isFree && !isVip) {
+        // Must unlock first
+        openUnlockModal();
+        return;
+      }
+
+      // Populate modal
+      document.getElementById("modal-category").textContent = recipe.category;
+      document.getElementById("modal-page").textContent = "P. " + String(recipe.pdfPage).padStart(3, '0');
+      document.getElementById("modal-title").textContent = recipe.title;
+      document.getElementById("modal-calories").textContent = (recipe.calories || "N/D") + " kcal";
+      document.getElementById("modal-time").textContent = recipe.prepTime;
+      document.getElementById("modal-portions").textContent = recipe.portions;
+
+      // Nutrition
+      document.getElementById("modal-prot").textContent = recipe.nutrition.protein || "N/D";
+      document.getElementById("modal-fat").textContent = recipe.nutrition.fats || "N/D";
+      document.getElementById("modal-carb").textContent = recipe.nutrition.carbs || "N/D";
+      document.getElementById("modal-fib").textContent = recipe.nutrition.fiber || "N/D";
+
+      // Equivalents
+      const eqSec = document.getElementById("modal-equivalents-section");
+      const eqList = document.getElementById("modal-equivalents-list");
+      eqList.innerHTML = "";
+      if (recipe.equivalents && recipe.equivalents.length > 0) {
+        recipe.equivalents.forEach((eq) => {
+          const div = document.createElement("div");
+          div.className = "p-2 bg-[#F8F7F4] border border-[#E5E3DC] font-mono-editorial text-xs flex justify-between";
+          div.innerHTML = `<span class="text-[#6E6D68] uppercase">${eq.group}:</span><span class="text-[#141413] font-bold">${eq.count}</span>`;
+          eqList.appendChild(div);
+        });
+        eqSec.classList.remove("hidden");
+      } else {
+        eqSec.classList.add("hidden");
+      }
+
+      // Ingredients
+      const ingList = document.getElementById("modal-ingredients-list");
+      ingList.innerHTML = "";
+      recipe.ingredients.forEach((ing, i) => {
+        const li = document.createElement("li");
+        li.className = "flex items-start gap-2.5 cursor-pointer py-1 select-none";
+        li.innerHTML = `
+          <input type="checkbox" id="ing-${i}" class="mt-0.5 rounded-[2px] border-[#E5E3DC] accent-[#D94E28] cursor-pointer" />
+          <label for="ing-${i}" class="cursor-pointer leading-tight">${ing}</label>
+        `;
+        li.addEventListener("click", (e) => {
+          if (e.target.tagName !== "INPUT") {
+            const cb = li.querySelector("input");
+            cb.checked = !cb.checked;
+          }
+          const label = li.querySelector("label");
+          if (li.querySelector("input").checked) {
+            label.classList.add("line-through", "text-[#6E6D68]");
+          } else {
+            label.classList.remove("line-through", "text-[#6E6D68]");
+          }
+        });
+        ingList.appendChild(li);
+      });
+
+      // Instructions
+      const instList = document.getElementById("modal-instructions-list");
+      instList.innerHTML = "";
+      recipe.instructions.forEach((step) => {
+        const li = document.createElement("li");
+        li.className = "flex items-start gap-3 py-1";
+        li.innerHTML = `
+          <span class="font-mono-editorial text-xs text-[#D94E28] font-bold shrink-0 mt-0.5">
+            ${String(step.step).padStart(2, '0')}.
+          </span>
+          <span class="leading-relaxed">${step.text}</span>
+        `;
+        instList.appendChild(li);
+      });
+
+      // Tip
+      const tipBox = document.getElementById("modal-tip-box");
+      const tipText = document.getElementById("modal-tip-text");
+      if (recipe.tip) {
+        tipText.textContent = recipe.tip;
+        tipBox.classList.remove("hidden");
+      } else {
+        tipBox.classList.add("hidden");
+      }
+
+      recipeModal.classList.remove("hidden");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeRecipeModal() {
+      recipeModal.classList.add("hidden");
+      document.body.style.overflow = "";
+    }
+
+    function openUnlockModal() {
+      const err = document.getElementById("unlock-error");
+      if (err) err.classList.add("hidden");
+      unlockModal.classList.remove("hidden");
+      document.body.style.overflow = "hidden";
+      setTimeout(() => {
+        document.getElementById("vip-input-code")?.focus();
+      }, 50);
+    }
+
+    function closeUnlockModal() {
+      unlockModal.classList.add("hidden");
+      document.body.style.overflow = "";
+    }
+
+    // Filter Logic
+    function applyFilters() {
+      const articles = document.querySelectorAll(".recipe-card");
+      let visibleCount = 0;
+
+      articles.forEach((card) => {
+        const cat = card.getAttribute("data-category");
+        const tags = card.getAttribute("data-tags") || "";
+        const title = card.getAttribute("data-title") || "";
+        const ingredients = card.getAttribute("data-ingredients") || "";
+        const isFree = card.getAttribute("data-free") === "true";
+
+        let matchesCat = activeCategory === "todas" || cat === activeCategory;
+        let matchesTag = !activeTag || tags.includes(activeTag);
+        let matchesFree = !onlyFree || isFree;
+        let matchesSearch = true;
+
+        if (searchQuery) {
+          const q = searchQuery.toLowerCase();
+          matchesSearch = title.includes(q) || ingredients.includes(q) || tags.toLowerCase().includes(q);
+        }
+
+        if (matchesCat && matchesTag && matchesFree && matchesSearch) {
+          card.classList.remove("hidden");
+          visibleCount++;
+        } else {
+          card.classList.add("hidden");
+        }
+      });
+
+      const countSpan = document.getElementById("count-visible");
+      if (countSpan) countSpan.textContent = visibleCount;
+
+      const emptyState = document.getElementById("empty-state");
+      const recipesGrid = document.getElementById("recipes-grid");
+      if (visibleCount === 0) {
+        emptyState?.classList.remove("hidden");
+        recipesGrid?.classList.add("hidden");
+      } else {
+        emptyState?.classList.add("hidden");
+        recipesGrid?.classList.remove("hidden");
+      }
+
+      // Filter feedback
+      const feedback = document.getElementById("filter-feedback");
+      const feedbackText = document.getElementById("filter-feedback-text");
+      const activeFilters = [];
+      if (activeCategory !== "todas") activeFilters.push(`Categoría: ${activeCategory}`);
+      if (activeTag) activeFilters.push(`Etiqueta: ${activeTag}`);
+      if (onlyFree) activeFilters.push("Solo Muestras Gratis");
+      if (searchQuery) activeFilters.push(`Búsqueda: "${searchQuery}"`);
+
+      if (activeFilters.length > 0 && feedback && feedbackText) {
+        feedback.classList.remove("hidden");
+        feedbackText.textContent = `FILTROS: ${activeFilters.join(" | ")} (${visibleCount} encontradas)`;
+      } else if (feedback) {
+        feedback.classList.add("hidden");
+      }
+    }
+
+    // Event Listeners setup
+    document.addEventListener("DOMContentLoaded", () => {
+      checkAuth();
+
+      // VIP Toggle in header
+      document.getElementById("btn-vip-toggle")?.addEventListener("click", () => {
+        if (isVip) {
+          if (confirm("¿Deseas cerrar tu sesión VIP?")) {
+            setAuth(false);
+          }
+        } else {
+          openUnlockModal();
+        }
+      });
+
+      document.getElementById("btn-hero-unlock")?.addEventListener("click", () => {
+        openUnlockModal();
+      });
+
+      // Unlock modal form
+      document.getElementById("unlock-form")?.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const input = document.getElementById("vip-input-code");
+        const val = input ? input.value.trim().toUpperCase() : "";
+        const err = document.getElementById("unlock-error");
+
+        if (VALID_CODES.includes(val)) {
+          setAuth(true);
+          closeUnlockModal();
+          alert("¡Acceso VIP Activado! Las 185 recetas han sido desbloqueadas con éxito.");
+        } else {
+          if (err) err.classList.remove("hidden");
+        }
+      });
+
+      document.getElementById("btn-close-unlock-modal")?.addEventListener("click", closeUnlockModal);
+      unlockModal?.addEventListener("click", (e) => {
+        if (e.target === unlockModal) closeUnlockModal();
+      });
+
+      // Recipe modal triggers
+      document.addEventListener("click", (e) => {
+        const btn = e.target.closest('[data-action="open-recipe"]');
+        if (btn) {
+          const recipeId = btn.getAttribute("data-recipe-id");
+          if (recipeId) openRecipeModal(recipeId);
+        }
+      });
+
+      document.getElementById("btn-close-modal")?.addEventListener("click", closeRecipeModal);
+      document.getElementById("btn-close-modal-bottom")?.addEventListener("click", closeRecipeModal);
+      recipeModal?.addEventListener("click", (e) => {
+        if (e.target === recipeModal) closeRecipeModal();
+      });
+
+      // Escape key to close modals
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+          closeRecipeModal();
+          closeUnlockModal();
+        }
+      });
+
+      // Category tab buttons
+      const catBtns = document.querySelectorAll(".cat-tab-btn");
+      catBtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          catBtns.forEach((b) => {
+            b.classList.remove("bg-[#141413]", "text-white", "border-[#141413]");
+            b.classList.add("bg-white", "text-[#141413]", "border-[#E5E3DC]");
+          });
+          btn.classList.remove("bg-white", "text-[#141413]", "border-[#E5E3DC]");
+          btn.classList.add("bg-[#141413]", "text-white", "border-[#141413]");
+
+          activeCategory = btn.getAttribute("data-category") || "todas";
+          applyFilters();
+        });
+      });
+
+      // Tag filter buttons
+      const tagBtns = document.querySelectorAll(".filter-tag-btn");
+      tagBtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const tag = btn.getAttribute("data-filter-tag");
+          if (activeTag === tag) {
+            activeTag = null;
+            btn.classList.remove("bg-[#141413]", "text-white");
+            btn.classList.add("bg-white", "text-[#141413]");
+          } else {
+            tagBtns.forEach((b) => b.classList.remove("bg-[#141413]", "text-white"));
+            activeTag = tag;
+            btn.classList.remove("bg-white", "text-[#141413]");
+            btn.classList.add("bg-[#141413]", "text-white");
+          }
+          applyFilters();
+        });
+      });
+
+      // Free filter button
+      const freeBtn = document.getElementById("filter-free-btn");
+      freeBtn?.addEventListener("click", () => {
+        onlyFree = !onlyFree;
+        if (onlyFree) {
+          freeBtn.classList.remove("bg-white", "text-[#D94E28]");
+          freeBtn.classList.add("bg-[#D94E28]", "text-white");
+        } else {
+          freeBtn.classList.remove("bg-[#D94E28]", "text-white");
+          freeBtn.classList.add("bg-white", "text-[#D94E28]");
+        }
+        applyFilters();
+      });
+
+      // Search input
+      const searchInput = document.getElementById("recipe-search");
+      const clearBtn = document.getElementById("clear-search-btn");
+      searchInput?.addEventListener("input", (e) => {
+        searchQuery = e.target.value.trim();
+        if (searchQuery) {
+          clearBtn?.classList.remove("hidden");
+        } else {
+          clearBtn?.classList.add("hidden");
+        }
+        applyFilters();
+      });
+
+      clearBtn?.addEventListener("click", () => {
+        if (searchInput) searchInput.value = "";
+        searchQuery = "";
+        clearBtn.classList.add("hidden");
+        applyFilters();
+      });
+
+      // Reset filters
+      const resetFilters = () => {
+        activeCategory = "todas";
+        activeTag = null;
+        onlyFree = false;
+        searchQuery = "";
+        if (searchInput) searchInput.value = "";
+        clearBtn?.classList.add("hidden");
+
+        catBtns.forEach((b, idx) => {
+          if (idx === 0) {
+            b.classList.add("bg-[#141413]", "text-white", "border-[#141413]");
+            b.classList.remove("bg-white", "text-[#141413]", "border-[#E5E3DC]");
+          } else {
+            b.classList.remove("bg-[#141413]", "text-white", "border-[#141413]");
+            b.classList.add("bg-white", "text-[#141413]", "border-[#E5E3DC]");
+          }
+        });
+
+        tagBtns.forEach((b) => {
+          b.classList.remove("bg-[#141413]", "text-white");
+          b.classList.add("bg-white", "text-[#141413]");
+        });
+
+        if (freeBtn) {
+          freeBtn.classList.remove("bg-[#D94E28]", "text-white");
+          freeBtn.classList.add("bg-white", "text-[#D94E28]");
+        }
+
+        applyFilters();
+      };
+
+      document.getElementById("reset-all-filters")?.addEventListener("click", resetFilters);
+      document.getElementById("btn-reset-empty")?.addEventListener("click", resetFilters);
+    });
+  </script>
+</RecetarioLayout>
