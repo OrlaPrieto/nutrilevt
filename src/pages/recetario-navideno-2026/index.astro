@@ -350,7 +350,7 @@ function getCategoryContour(slug: string) {
         <div class="flex items-center gap-2.5 sm:gap-3.5 mb-2.5">
           <!-- Search Input with Clear Button -->
           <div class="relative flex-1 group">
-            <div class="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#F5D061] pointer-events-none">
+            <div class="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#8B1A2B] group-focus-within:text-[#B87A1E] pointer-events-none transition-colors">
               <svg
                 class="w-4.5 h-4.5"
                 fill="none"
@@ -369,12 +369,12 @@ function getCategoryContour(slug: string) {
               id="recipe-search"
               type="search"
               placeholder="Buscar receta o ingrediente..."
-              class="w-full h-11 sm:h-12 pl-10 sm:pl-11 pr-10 bg-[#1E0308]/90 hover:bg-[#1E0308] focus:bg-[#20040A] border border-[#E6A635]/40 focus:border-[#F5D061] focus:ring-4 focus:ring-[#E6A635]/20 rounded-xl sm:rounded-2xl text-xs sm:text-sm text-white placeholder-amber-200/40 focus:outline-none transition-all shadow-inner"
+              class="w-full h-11 sm:h-12 pl-10 sm:pl-11 pr-10 bg-[#FFFDF7] hover:bg-white focus:bg-white border-2 border-[#E6A635] focus:border-[#C48825] focus:ring-4 focus:ring-[#E6A635]/25 rounded-xl sm:rounded-2xl text-xs sm:text-sm text-[#28050D] font-medium placeholder-[#8C6D48] focus:outline-none transition-all shadow-md [&::-webkit-search-cancel-button]:hidden [&::-webkit-search-decoration]:hidden"
             />
             <button
               id="clear-search-btn"
               type="button"
-              class="hidden absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 rounded-full bg-[#E6A635]/20 hover:bg-[#E6A635]/40 text-[#F5D061] flex items-center justify-center text-[10px] font-bold transition-colors cursor-pointer"
+              class="hidden absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 rounded-full bg-[#28050D]/10 hover:bg-[#28050D]/20 text-[#28050D] flex items-center justify-center text-[10px] font-bold transition-colors cursor-pointer"
               title="Borrar búsqueda"
             >
               ✕
