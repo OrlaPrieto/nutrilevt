@@ -12,23 +12,42 @@ const FREE_SAMPLE_IDS = [
   "085-lomo-de-cerdo-con-champinones",
   "125-pure-de-camote-con-canela",
   "151-trufas-de-datil-y-cacao",
-  "176-mousse-de-aguacate-y-cacao"
+  "176-mousse-de-aguacate-y-cacao",
 ];
 
 const totalRecipes = recipesData.length;
-const categoryCounts = recipesData.reduce((acc, r) => {
-  acc[r.categorySlug] = (acc[r.categorySlug] || 0) + 1;
-  return acc;
-}, {} as Record<string, number>);
+const categoryCounts = recipesData.reduce(
+  (acc, r) => {
+    acc[r.categorySlug] = (acc[r.categorySlug] || 0) + 1;
+    return acc;
+  },
+  {} as Record<string, number>,
+);
 
 const categories = [
   { name: "Todas", slug: "todas", count: totalRecipes },
   { name: "Bebidas", slug: "bebidas", count: categoryCounts["bebidas"] || 0 },
-  { name: "Ensaladas", slug: "ensaladas", count: categoryCounts["ensaladas"] || 0 },
-  { name: "Platos Fuertes", slug: "platos-fuertes", count: categoryCounts["platos-fuertes"] || 0 },
-  { name: "Guarniciones", slug: "guarniciones", count: categoryCounts["guarniciones"] || 0 },
+  {
+    name: "Ensaladas",
+    slug: "ensaladas",
+    count: categoryCounts["ensaladas"] || 0,
+  },
+  {
+    name: "Platos Fuertes",
+    slug: "platos-fuertes",
+    count: categoryCounts["platos-fuertes"] || 0,
+  },
+  {
+    name: "Guarniciones",
+    slug: "guarniciones",
+    count: categoryCounts["guarniciones"] || 0,
+  },
   { name: "Postres", slug: "postres", count: categoryCounts["postres"] || 0 },
-  { name: "Diabetes", slug: "diabetes", count: categoryCounts["diabetes"] || 0 },
+  {
+    name: "Diabetes",
+    slug: "diabetes",
+    count: categoryCounts["diabetes"] || 0,
+  },
 ];
 
 // Color contours and badges by category matching the holiday aesthetic
@@ -40,7 +59,7 @@ function getCategoryContour(slug: string) {
         glow: "hover:shadow-[0_12px_32px_rgba(0,0,0,0.6),0_0_22px_rgba(251,113,133,0.18)]",
         badge: "bg-rose-500/15 text-rose-300 border-rose-400/30",
         accent: "#FB7185",
-        label: "Bebidas"
+        label: "Bebidas",
       };
     case "ensaladas":
       return {
@@ -48,7 +67,7 @@ function getCategoryContour(slug: string) {
         glow: "hover:shadow-[0_12px_32px_rgba(0,0,0,0.6),0_0_22px_rgba(52,211,153,0.18)]",
         badge: "bg-emerald-500/15 text-emerald-300 border-emerald-400/30",
         accent: "#34D399",
-        label: "Ensaladas"
+        label: "Ensaladas",
       };
     case "platos-fuertes":
       return {
@@ -56,7 +75,7 @@ function getCategoryContour(slug: string) {
         glow: "hover:shadow-[0_12px_32px_rgba(0,0,0,0.6),0_0_22px_rgba(248,113,113,0.18)]",
         badge: "bg-red-500/15 text-red-300 border-red-400/30",
         accent: "#F87171",
-        label: "Platos Fuertes"
+        label: "Platos Fuertes",
       };
     case "guarniciones":
       return {
@@ -64,7 +83,7 @@ function getCategoryContour(slug: string) {
         glow: "hover:shadow-[0_12px_32px_rgba(0,0,0,0.6),0_0_22px_rgba(251,146,60,0.18)]",
         badge: "bg-orange-500/15 text-orange-300 border-orange-400/30",
         accent: "#FB923C",
-        label: "Guarniciones"
+        label: "Guarniciones",
       };
     case "postres":
       return {
@@ -72,7 +91,7 @@ function getCategoryContour(slug: string) {
         glow: "hover:shadow-[0_12px_32px_rgba(0,0,0,0.6),0_0_22px_rgba(245,208,97,0.18)]",
         badge: "bg-amber-500/15 text-amber-300 border-amber-400/30",
         accent: "#F5D061",
-        label: "Postres"
+        label: "Postres",
       };
     case "diabetes":
       return {
@@ -80,7 +99,7 @@ function getCategoryContour(slug: string) {
         glow: "hover:shadow-[0_12px_32px_rgba(0,0,0,0.6),0_0_22px_rgba(34,211,238,0.18)]",
         badge: "bg-cyan-500/15 text-cyan-300 border-cyan-400/30",
         accent: "#22D3EE",
-        label: "Diabetes"
+        label: "Diabetes",
       };
     default:
       return {
@@ -88,14 +107,14 @@ function getCategoryContour(slug: string) {
         glow: "hover:shadow-[0_12px_32px_rgba(0,0,0,0.6),0_0_22px_rgba(230,166,53,0.18)]",
         badge: "bg-[#E6A635]/15 text-[#F5D061] border-[#E6A635]/30",
         accent: "#F5D061",
-        label: "Receta"
+        label: "Receta",
       };
   }
 }
 ---
 
 <Layout
-  title="Recetario Navideño 2026 · Edición Clínica VIP | Nutrilev"
+  title="Recetario Navideño 2026 · Edición Clínica | Nutrilev"
   description="185 recetas navideñas con respaldo clínico, porciones controladas y conteo de equivalentes SMAE por la Nutrióloga Velvet De la Cruz."
   hideFloatingCTA={true}
 >
@@ -109,39 +128,53 @@ function getCategoryContour(slug: string) {
 
   <style is:inline>
     .font-script {
-      font-family: 'Dancing Script', cursive, sans-serif;
+      font-family: "Dancing Script", cursive, sans-serif;
     }
     .font-display {
-      font-family: 'Playfair Display', Georgia, serif;
+      font-family: "Playfair Display", Georgia, serif;
     }
     .font-sans-recetario {
-      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-family:
+        "Plus Jakarta Sans",
+        -apple-system,
+        BlinkMacSystemFont,
+        sans-serif;
     }
     .font-mono-recetario {
-      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-family: "JetBrains Mono", ui-monospace, monospace;
     }
 
     /* Festive background pattern with subtle snowflake watermarks */
     .bg-holiday-canvas {
-      background: radial-gradient(circle at 15% 10%, #520f1c 0%, #350811 50%, #20040a 100%);
+      background: radial-gradient(
+        circle at 15% 10%,
+        #520f1c 0%,
+        #350811 50%,
+        #20040a 100%
+      );
       background-attachment: fixed;
     }
 
     /* Asegurar fondo vino festivo y título dorado permanentemente visible en tarjetas */
     .recipe-card {
-      background-color: #28050D !important;
+      background-color: #28050d !important;
       color: #ffffff !important;
     }
     .recipe-card h3 {
-      color: #F5D061 !important;
+      color: #f5d061 !important;
     }
     .recipe-card:hover h3 {
-      color: #FFFFFF !important;
+      color: #ffffff !important;
     }
 
     /* Custom print styles for recipe detail */
     @media print {
-      header, nav, footer, #filter-section, #vip-banner, .no-print {
+      header,
+      nav,
+      footer,
+      #filter-section,
+      #vip-banner,
+      .no-print {
         display: none !important;
       }
       body {
@@ -168,8 +201,7 @@ function getCategoryContour(slug: string) {
   <Navbar />
 
   <!-- CONTENEDOR PRINCIPAL CON EL FONDO NAVIDEÑO DE LA IMAGEN (VINO PROFUNDO Y DESTELLOS DORADOS) -->
-  <div class="bg-holiday-canvas text-white pt-32 sm:pt-36 md:pt-44 lg:pt-48 pb-20 min-h-screen relative overflow-hidden font-sans-recetario selection:bg-[#E6A635] selection:text-[#2E060E]">
-    
+  <div class="bg-holiday-canvas text-white pt-36 sm:pt-40 md:pt-52 lg:pt-56 pb-20 min-h-screen relative overflow-hidden font-sans-recetario selection:bg-[#E6A635] selection:text-[#2E060E]">
     <!-- EFECTOS NAVIDEÑOS MODULARES 2026 (NIEVE, ESFERAS, TRINEO Y CONTROL) -->
     <HolidayEffects />
 
@@ -181,7 +213,6 @@ function getCategoryContour(slug: string) {
     <!-- HERO EDITORIAL FESTIVO -->
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 sm:pt-8 md:pt-10 pb-12 sm:pb-16 relative z-10">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-        
         <!-- Left: Headline & Manifesto -->
         <div class="lg:col-span-7">
           <!-- Holiday Festive Tag (Sin emojis) -->
@@ -194,11 +225,22 @@ function getCategoryContour(slug: string) {
           </div>
 
           <h1 class="font-display text-3xl sm:text-5xl lg:text-5.5xl text-white font-bold leading-[1.12] tracking-tight mb-5">
-            El arte de celebrar con bienestar: <span class="font-script text-4xl sm:text-6xl lg:text-7xl text-[#F5D061] block font-normal mt-1">185 recetas navideñas</span> con respaldo clínico.
+            El arte de celebrar con bienestar:{" "}
+            <span class="font-script text-4xl sm:text-6xl lg:text-7xl text-[#F5D061] block font-normal mt-1">
+              185 recetas navideñas
+            </span>{" "}
+            con respaldo clínico.
           </h1>
 
           <p class="text-amber-100/80 text-base sm:text-lg leading-relaxed max-w-2xl font-light">
-            Recetario exclusivo desarrollado por la <strong class="text-white font-semibold">Nutrióloga Velvet De la Cruz Villegas</strong> (Céd. Prof. 10622381) para disfrutar las cenas decembrinas con equilibrio metabólico, cálculo de porciones y equivalentes del <strong>SMAE</strong> y alternativas seguras para personas con diabetes.
+            Recetario exclusivo desarrollado por la{" "}
+            <strong class="text-white font-semibold">
+              Nutrióloga Velvet De la Cruz Villegas
+            </strong>{" "}
+            (Céd. Prof. 10622381) para disfrutar las cenas decembrinas con
+            equilibrio metabólico, cálculo de porciones y equivalentes del{" "}
+            <strong>SMAE</strong> y alternativas seguras para personas con
+            diabetes.
           </p>
         </div>
 
@@ -218,7 +260,10 @@ function getCategoryContour(slug: string) {
               Desbloquea las 185 Recetas
             </h2>
             <p class="text-amber-100/75 text-sm leading-relaxed mb-6 font-light">
-              Tienes <strong>6 recetas de muestra gratuitas</strong> disponibles. Para tener acceso ilimitado a las 185 recetas completas con fotografías, porciones e información nutricional, ingresa tu código VIP o adquiérelo por WhatsApp.
+              Tienes <strong>6 recetas de muestra gratuitas</strong>{" "}
+              disponibles. Para tener acceso ilimitado a las 185 recetas
+              completas con fotografías, porciones e información nutricional,
+              ingresa tu código o adquiérelo por WhatsApp.
             </p>
 
             <div class="space-y-3">
@@ -228,8 +273,18 @@ function getCategoryContour(slug: string) {
                 id="btn-hero-unlock"
                 class="w-full py-3.5 px-5 bg-gradient-to-r from-[#E6A635] to-[#D49522] hover:from-[#F5D061] hover:to-[#E6A635] text-[#28050D] font-bold text-xs uppercase tracking-wider rounded-xl transition-all duration-200 shadow-md hover:shadow-[0_4px_20px_rgba(230,166,53,0.35)] active:scale-98 cursor-pointer flex items-center justify-center gap-2"
               >
-                <svg class="w-4 h-4 text-[#28050D]" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 5.25a3 3 0 013 3m3 0a6 6 0 01-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25v-2.818c0-.597.237-1.17.659-1.591l6.499-6.499c.404-.404.527-1 .43-1.563A6 6 0 1121.75 8.25z" />
+                <svg
+                  class="w-4 h-4 text-[#28050D]"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M15.75 5.25a3 3 0 013 3m3 0a6 6 0 01-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25v-2.818c0-.597.237-1.17.659-1.591l6.499-6.499c.404-.404.527-1 .43-1.563A6 6 0 1121.75 8.25z"
+                  />
                 </svg>
                 <span>Ingresar Código de Acceso</span>
               </button>
@@ -241,7 +296,11 @@ function getCategoryContour(slug: string) {
                 rel="noopener noreferrer"
                 class="w-full py-3.5 px-5 bg-[#25D366] hover:bg-[#20ba59] text-white font-bold text-xs uppercase tracking-wider rounded-xl transition-all duration-200 shadow-md hover:shadow-[0_4px_20px_rgba(37,211,102,0.35)] active:scale-98 text-center flex items-center justify-center gap-2"
               >
-                <svg class="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24" fill="currentColor">
+                <svg
+                  class="w-4 h-4 fill-current shrink-0"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
                   <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
                 </svg>
                 <span>Comprar Acceso por WhatsApp</span>
@@ -251,8 +310,18 @@ function getCategoryContour(slug: string) {
 
           <div id="hero-vip-unlocked" class="hidden">
             <div class="inline-flex items-center gap-1.5 px-3 py-1 bg-emerald-500/15 border border-emerald-400/35 text-emerald-300 rounded-full text-xs font-semibold mb-3">
-              <svg class="w-3.5 h-3.5 text-emerald-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+              <svg
+                class="w-3.5 h-3.5 text-emerald-400"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M4.5 12.75l6 6 9-13.5"
+                />
               </svg>
               <span>SESIÓN VIP AUTORIZADA</span>
             </div>
@@ -260,11 +329,15 @@ function getCategoryContour(slug: string) {
               ¡Bienvenido a tu Recetario Completo!
             </h2>
             <p class="text-amber-100/75 text-sm mb-6 font-light">
-              Tienes acceso total a las 185 recetas con fotografías en alta definición, tabla de equivalentes clínicos del SMAE y buscador interactivo.
+              Tienes acceso total a las 185 recetas con fotografías en alta
+              definición, tabla de equivalentes clínicos del SMAE y buscador
+              interactivo.
             </p>
             <div class="p-3.5 bg-[#1E0308] border border-[#E6A635]/30 rounded-xl text-xs font-semibold text-white flex items-center justify-between">
               <span class="text-[#E6A635]">ESTADO:</span>
-              <span class="text-emerald-400 font-bold font-mono-recetario">185 RECETAS ACTIVAS</span>
+              <span class="text-emerald-400 font-bold font-mono-recetario">
+                185 RECETAS ACTIVAS
+              </span>
             </div>
           </div>
         </div>
@@ -272,16 +345,25 @@ function getCategoryContour(slug: string) {
     </section>
 
     <!-- BARRA DE CONTROLES, BÚSQUEDA Y FILTROS ESTILIZADA (COMPACTA Y ADAPTABLE EN MÓVIL) -->
-    <section class="border-y border-[#E6A635]/25 bg-[#2B050D]/95 backdrop-blur-xl sticky top-[116px] md:top-[164px] z-20 shadow-xl transition-all">
+    <section class="border-y border-[#E6A635]/25 bg-[#2B050D]/95 backdrop-blur-xl sticky top-[150px] md:top-[198px] z-20 shadow-xl transition-all">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5 sm:py-3.5">
-        
         <!-- Top Row: Compact Search + Mobile Filter Trigger + Desktop Quick Chips -->
         <div class="flex items-center gap-2.5 sm:gap-3.5 mb-2.5">
           <!-- Search Input with Clear Button -->
           <div class="relative flex-1 group">
             <div class="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#F5D061] pointer-events-none">
-              <svg class="w-4.5 h-4.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+              <svg
+                class="w-4.5 h-4.5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2.5"
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                ></path>
               </svg>
             </div>
             <input
@@ -307,14 +389,26 @@ function getCategoryContour(slug: string) {
             class="h-11 sm:h-12 px-3.5 sm:px-4 bg-[#3B0B14] hover:bg-[#4E0E1C] active:scale-95 border border-[#E6A635]/40 hover:border-[#F5D061] text-amber-100 rounded-xl sm:rounded-2xl font-bold text-xs flex items-center gap-1.5 transition-all shadow-sm shrink-0 cursor-pointer"
             title="Abrir filtros avanzados"
           >
-            <svg class="w-4 h-4 text-[#F5D061]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path>
+            <svg
+              class="w-4 h-4 text-[#F5D061]"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"
+              ></path>
             </svg>
             <span class="hidden xs:inline">Filtros</span>
             <span
               id="filter-badge-count"
               class="hidden px-1.5 py-0.2 rounded-full text-[10px] font-extrabold bg-[#E6A635] text-[#28050D] shadow-sm font-mono-recetario"
-            >0</span>
+            >
+              0
+            </span>
           </button>
 
           <!-- Desktop Quick Filter Chips (Solo pantallas medianas y grandes) -->
@@ -365,13 +459,24 @@ function getCategoryContour(slug: string) {
                 }`}
               >
                 <span>{cat.name}</span>
-                <span class="opacity-80 ml-1 text-[11px] font-mono-recetario">({cat.count})</span>
+                <span class="opacity-80 ml-1 text-[11px] font-mono-recetario">
+                  ({cat.count})
+                </span>
               </button>
             ))}
           </div>
 
           <div class="hidden lg:flex items-center gap-3 text-xs text-amber-200/70 whitespace-nowrap shrink-0">
-            <span>Visibles: <strong id="count-visible" class="text-[#F5D061] font-mono-recetario font-bold">185</strong> / 185</span>
+            <span>
+              Visibles:{" "}
+              <strong
+                id="count-visible"
+                class="text-[#F5D061] font-mono-recetario font-bold"
+              >
+                185
+              </strong>{" "}
+              / 185
+            </span>
             <button
               id="btn-vip-header-pill"
               type="button"
@@ -381,30 +486,43 @@ function getCategoryContour(slug: string) {
             </button>
           </div>
         </div>
-
       </div>
     </section>
 
     <!-- CATÁLOGO DE 185 TARJETAS CON CONTORNO DE COLOR POR CATEGORÍA -->
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 relative z-10">
-      
       <!-- Feedback de Filtros Activos -->
-      <div id="filter-feedback" class="hidden mb-6 p-4 bg-[#28050D] border border-[#E6A635]/40 rounded-2xl flex items-center justify-between text-xs font-semibold text-amber-100 shadow-md">
+      <div
+        id="filter-feedback"
+        class="hidden mb-6 p-4 bg-[#28050D] border border-[#E6A635]/40 rounded-2xl flex items-center justify-between text-xs font-semibold text-amber-100 shadow-md"
+      >
         <div class="flex items-center gap-2">
           <span class="w-2.5 h-2.5 rounded-full bg-[#F5D061] animate-ping"></span>
           <span id="filter-feedback-text">Filtros activos</span>
         </div>
-        <button id="reset-all-filters" type="button" class="text-[#F5D061] hover:underline font-bold px-3 py-1 rounded-lg hover:bg-[#3D0A14] transition-colors cursor-pointer">
+        <button
+          id="reset-all-filters"
+          type="button"
+          class="text-[#F5D061] hover:underline font-bold px-3 py-1 rounded-lg hover:bg-[#3D0A14] transition-colors cursor-pointer"
+        >
           Limpiar Filtros ✕
         </button>
       </div>
 
       <!-- Empty Results State -->
-      <div id="empty-state" class="hidden text-left py-16 px-8 bg-[#2A050D] border border-[#E6A635]/30 rounded-3xl shadow-xl">
-        <div class="text-xs font-bold uppercase tracking-wider text-[#F5D061] mb-2">[0 RESULTADOS]</div>
-        <h2 class="font-display text-3xl text-white mb-3 font-bold">No encontramos recetas con ese criterio</h2>
+      <div
+        id="empty-state"
+        class="hidden text-left py-16 px-8 bg-[#2A050D] border border-[#E6A635]/30 rounded-3xl shadow-xl"
+      >
+        <div class="text-xs font-bold uppercase tracking-wider text-[#F5D061] mb-2">
+          [0 RESULTADOS]
+        </div>
+        <h2 class="font-display text-3xl text-white mb-3 font-bold">
+          No encontramos recetas con ese criterio
+        </h2>
         <p class="text-amber-100/75 text-sm max-w-md mb-6 leading-relaxed font-light">
-          Prueba buscando con términos como "lomo", "pavo", "chocolate", "manzana" o selecciona la categoría "Todas".
+          Prueba buscando con términos como "lomo", "pavo", "chocolate",
+          "manzana" o selecciona la categoría "Todas".
         </p>
         <button
           id="btn-reset-empty"
@@ -416,7 +534,10 @@ function getCategoryContour(slug: string) {
       </div>
 
       <!-- Grid de 185 Recetas -->
-      <div id="recipes-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 sm:gap-8">
+      <div
+        id="recipes-grid"
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 sm:gap-8"
+      >
         {recipesData.map((recipe) => {
           const isFree = FREE_SAMPLE_IDS.includes(recipe.id);
           const style = getCategoryContour(recipe.categorySlug);
@@ -458,7 +579,10 @@ function getCategoryContour(slug: string) {
                 <!-- Badges sobrios en vidrio oscuro sobre la fotografía -->
                 <div class="absolute top-3 left-3 flex flex-wrap items-center gap-1.5 z-10">
                   <span class="text-[11px] font-medium px-2.5 py-0.5 rounded-full bg-black/60 backdrop-blur-md text-white/90 border border-white/15 shadow-sm flex items-center gap-1.5">
-                    <span class="w-1.5 h-1.5 rounded-full" style={`background-color: ${style.accent};`}></span>
+                    <span
+                      class="w-1.5 h-1.5 rounded-full"
+                      style={`background-color: ${style.accent};`}
+                    ></span>
                     <span>{recipe.category}</span>
                   </span>
                   {isFree && (
@@ -474,8 +598,14 @@ function getCategoryContour(slug: string) {
                 <div>
                   <!-- Indicador de categoría sobrio -->
                   <div class="flex items-center gap-1.5 mb-1.5">
-                    <span class="w-1.5 h-1.5 rounded-full" style={`background-color: ${style.accent};`}></span>
-                    <span class="text-[11px] font-semibold uppercase tracking-wider font-mono-recetario" style={`color: ${style.accent};`}>
+                    <span
+                      class="w-1.5 h-1.5 rounded-full"
+                      style={`background-color: ${style.accent};`}
+                    ></span>
+                    <span
+                      class="text-[11px] font-semibold uppercase tracking-wider font-mono-recetario"
+                      style={`color: ${style.accent};`}
+                    >
                       {recipe.category}
                     </span>
                   </div>
@@ -493,7 +623,9 @@ function getCategoryContour(slug: string) {
                   <div class="grid grid-cols-3 py-2.5 my-3 border-y border-[#E6A635]/15 text-center">
                     <div>
                       <span class="block font-bold text-base text-[#F5D061] font-mono-recetario">
-                        {recipe.portions.replace(/porci[oó]n(es)?/i, "").trim() || "1"}
+                        {recipe.portions
+                          .replace(/porci[oó]n(es)?/i, "")
+                          .trim() || "1"}
                       </span>
                       <span class="text-[10px] text-amber-200/60 uppercase tracking-wider font-medium block">
                         porciones
@@ -509,7 +641,9 @@ function getCategoryContour(slug: string) {
                     </div>
                     <div>
                       <span class="block font-bold text-base text-[#F5D061] font-mono-recetario truncate">
-                        {recipe.prepTime.replace(/prep\.? estimada|preparaci[oó]n/i, "").trim()}
+                        {recipe.prepTime
+                          .replace(/prep\.? estimada|preparaci[oó]n/i, "")
+                          .trim()}
                       </span>
                       <span class="text-[10px] text-amber-200/60 uppercase tracking-wider font-medium block truncate">
                         tiempo
@@ -544,8 +678,18 @@ function getCategoryContour(slug: string) {
                       class="w-full py-3 px-4 bg-gradient-to-r from-[#E6A635] via-[#F5D061] to-[#D49522] hover:from-[#F5D061] hover:to-[#E6A635] text-[#28050D] font-extrabold text-xs sm:text-sm uppercase tracking-wider rounded-xl transition-all duration-200 shadow-[0_4px_16px_rgba(230,166,53,0.35)] hover:shadow-[0_6px_22px_rgba(245,208,97,0.5)] active:scale-98 cursor-pointer flex items-center justify-center gap-2 group/btn"
                     >
                       <span>Ver Receta Completa</span>
-                      <svg class="w-4 h-4 text-[#28050D] group-hover/btn:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                      <svg
+                        class="w-4 h-4 text-[#28050D] group-hover/btn:translate-x-1 transition-transform"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2.5"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+                        />
                       </svg>
                     </button>
                   ) : (
@@ -556,8 +700,18 @@ function getCategoryContour(slug: string) {
                         data-recipe-id={recipe.id}
                         class="card-vip-btn w-full py-3 px-4 bg-[#1E0308] hover:bg-[#340811] border border-[#E6A635]/40 hover:border-[#F5D061] text-amber-200 hover:text-white font-bold text-xs uppercase tracking-wider rounded-xl transition-all duration-200 cursor-pointer flex items-center justify-center gap-2"
                       >
-                        <svg class="w-4 h-4 text-[#F5D061]" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                          <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
+                        <svg
+                          class="w-4 h-4 text-[#F5D061]"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="1.5"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"
+                          />
                         </svg>
                         <span>Desbloquear Receta</span>
                       </button>
@@ -571,10 +725,23 @@ function getCategoryContour(slug: string) {
       </div>
 
       <!-- BANNER DE BLOQUEO VIP REFINADO (Sin contenedor doble, borde fino y botones sobrios) -->
-      <div id="locked-recipes-banner" class="mt-14 rounded-2xl border border-[#E6A635]/35 bg-[#2B050D]/90 backdrop-blur-md p-8 sm:p-12 text-center max-w-3xl mx-auto text-white shadow-[0_15px_50px_rgba(0,0,0,0.5)]">
+      <div
+        id="locked-recipes-banner"
+        class="mt-14 rounded-2xl border border-[#E6A635]/35 bg-[#2B050D]/90 backdrop-blur-md p-8 sm:p-12 text-center max-w-3xl mx-auto text-white shadow-[0_15px_50px_rgba(0,0,0,0.5)]"
+      >
         <div class="w-12 h-12 rounded-xl bg-[#E6A635]/10 border border-[#E6A635]/30 text-[#F5D061] flex items-center justify-center mx-auto mb-4">
-          <svg class="w-5 h-5 text-[#F5D061]" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
+          <svg
+            class="w-5 h-5 text-[#F5D061]"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"
+            />
           </svg>
         </div>
 
@@ -587,7 +754,11 @@ function getCategoryContour(slug: string) {
         </h3>
 
         <p class="text-amber-100/80 text-sm sm:text-base leading-relaxed mb-8 max-w-xl mx-auto font-light">
-          Estas son únicamente las <strong>6 recetas de muestra gratuita</strong>. Para hacer visibles las <strong>179 recetas restantes</strong> con sus fotografías, tablas de equivalentes SMAE e información nutricional completa, introduce tu contraseña VIP.
+          Estas son únicamente las{" "}
+          <strong>6 recetas de muestra gratuita</strong>. Para hacer visibles
+          las <strong>179 recetas restantes</strong> con sus fotografías, tablas
+          de equivalentes SMAE e información nutricional completa, introduce tu
+          contraseña VIP.
         </p>
 
         <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -596,8 +767,18 @@ function getCategoryContour(slug: string) {
             id="btn-banner-unlock"
             class="w-full sm:w-auto py-3.5 px-7 bg-gradient-to-r from-[#E6A635] to-[#D49522] hover:from-[#F5D061] hover:to-[#E6A635] text-[#28050D] font-bold text-xs uppercase tracking-wider rounded-xl transition-all shadow-md active:scale-98 cursor-pointer flex items-center justify-center gap-2"
           >
-            <svg class="w-4 h-4 text-[#28050D]" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 5.25a3 3 0 013 3m3 0a6 6 0 01-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25v-2.818c0-.597.237-1.17.659-1.591l6.499-6.499c.404-.404.527-1 .43-1.563A6 6 0 1121.75 8.25z" />
+            <svg
+              class="w-4 h-4 text-[#28050D]"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M15.75 5.25a3 3 0 013 3m3 0a6 6 0 01-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25v-2.818c0-.597.237-1.17.659-1.591l6.499-6.499c.404-.404.527-1 .43-1.563A6 6 0 1121.75 8.25z"
+              />
             </svg>
             <span>Ingresar Código de Acceso</span>
           </button>
@@ -608,7 +789,11 @@ function getCategoryContour(slug: string) {
             rel="noopener noreferrer"
             class="w-full sm:w-auto py-3.5 px-7 bg-[#25D366] hover:bg-[#20ba59] text-white font-bold text-xs uppercase tracking-wider rounded-xl transition-all shadow-md hover:shadow-[0_4px_20px_rgba(37,211,102,0.35)] active:scale-98 text-center flex items-center justify-center gap-2"
           >
-            <svg class="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24" fill="currentColor">
+            <svg
+              class="w-4 h-4 fill-current shrink-0"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+            >
               <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
             </svg>
             <span>Comprar Acceso por WhatsApp</span>
@@ -616,7 +801,6 @@ function getCategoryContour(slug: string) {
         </div>
       </div>
     </main>
-
   </div>
 
   <!-- MISMO FOOTER QUE TODA LA PÁGINA WEB -->
@@ -636,9 +820,15 @@ function getCategoryContour(slug: string) {
       <!-- Close Bar -->
       <div class="flex items-center justify-between pb-4 mb-6 border-b border-[#E6A635]/20">
         <div class="flex items-center gap-2">
-          <span id="modal-category" class="text-xs font-semibold uppercase px-3 py-1 rounded-full border bg-[#E6A635]/15 text-[#F5D061] border-[#E6A635]/30"></span>
+          <span
+            id="modal-category"
+            class="text-xs font-semibold uppercase px-3 py-1 rounded-full border bg-[#E6A635]/15 text-[#F5D061] border-[#E6A635]/30"
+          ></span>
           <span class="text-[#E6A635]/40">·</span>
-          <span id="modal-page" class="font-mono-recetario text-xs text-[#E6A635]"></span>
+          <span
+            id="modal-page"
+            class="font-mono-recetario text-xs text-[#E6A635]"
+          ></span>
         </div>
         <button
           id="btn-close-modal"
@@ -663,21 +853,39 @@ function getCategoryContour(slug: string) {
         </div>
 
         <div class="md:col-span-7">
-          <h2 id="modal-title" class="font-script text-3xl sm:text-4.5xl lg:text-5xl text-[#F5D061] font-bold leading-tight mb-4"></h2>
+          <h2
+            id="modal-title"
+            class="font-script text-3xl sm:text-4.5xl lg:text-5xl text-[#F5D061] font-bold leading-tight mb-4"
+          ></h2>
 
           <!-- Metrics Grid -->
           <div class="grid grid-cols-3 gap-2 py-3 border-y border-[#E6A635]/20 text-center mb-5">
             <div>
-              <span id="modal-portions" class="block font-bold text-lg text-[#F5D061] font-mono-recetario"></span>
-              <span class="text-[10px] text-amber-200/60 uppercase font-medium block">porciones</span>
+              <span
+                id="modal-portions"
+                class="block font-bold text-lg text-[#F5D061] font-mono-recetario"
+              ></span>
+              <span class="text-[10px] text-amber-200/60 uppercase font-medium block">
+                porciones
+              </span>
             </div>
             <div class="border-x border-[#E6A635]/20">
-              <span id="modal-calories" class="block font-bold text-lg text-[#F5D061] font-mono-recetario"></span>
-              <span class="text-[10px] text-amber-200/60 uppercase font-medium block">kcal</span>
+              <span
+                id="modal-calories"
+                class="block font-bold text-lg text-[#F5D061] font-mono-recetario"
+              ></span>
+              <span class="text-[10px] text-amber-200/60 uppercase font-medium block">
+                kcal
+              </span>
             </div>
             <div>
-              <span id="modal-time" class="block font-bold text-lg text-[#F5D061] font-mono-recetario truncate"></span>
-              <span class="text-[10px] text-amber-200/60 uppercase font-medium block truncate">tiempo est.</span>
+              <span
+                id="modal-time"
+                class="block font-bold text-lg text-[#F5D061] font-mono-recetario truncate"
+              ></span>
+              <span class="text-[10px] text-amber-200/60 uppercase font-medium block truncate">
+                tiempo est.
+              </span>
             </div>
           </div>
 
@@ -688,20 +896,40 @@ function getCategoryContour(slug: string) {
             </span>
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
               <div class="p-2.5 bg-emerald-950/60 border border-emerald-400/30 rounded-xl text-emerald-300">
-                <span class="block text-[10px] uppercase font-medium">Proteína</span>
-                <span id="modal-prot" class="font-bold font-mono-recetario text-sm"></span>
+                <span class="block text-[10px] uppercase font-medium">
+                  Proteína
+                </span>
+                <span
+                  id="modal-prot"
+                  class="font-bold font-mono-recetario text-sm"
+                ></span>
               </div>
               <div class="p-2.5 bg-amber-950/60 border border-amber-400/30 rounded-xl text-amber-300">
-                <span class="block text-[10px] uppercase font-medium">Grasas</span>
-                <span id="modal-fat" class="font-bold font-mono-recetario text-sm"></span>
+                <span class="block text-[10px] uppercase font-medium">
+                  Grasas
+                </span>
+                <span
+                  id="modal-fat"
+                  class="font-bold font-mono-recetario text-sm"
+                ></span>
               </div>
               <div class="p-2.5 bg-rose-950/60 border border-rose-400/30 rounded-xl text-rose-300">
-                <span class="block text-[10px] uppercase font-medium">Carbohidratos</span>
-                <span id="modal-carb" class="font-bold font-mono-recetario text-sm"></span>
+                <span class="block text-[10px] uppercase font-medium">
+                  Carbohidratos
+                </span>
+                <span
+                  id="modal-carb"
+                  class="font-bold font-mono-recetario text-sm"
+                ></span>
               </div>
               <div class="p-2.5 bg-teal-950/60 border border-teal-400/30 rounded-xl text-teal-300">
-                <span class="block text-[10px] uppercase font-medium">Fibra</span>
-                <span id="modal-fib" class="font-bold font-mono-recetario text-sm"></span>
+                <span class="block text-[10px] uppercase font-medium">
+                  Fibra
+                </span>
+                <span
+                  id="modal-fib"
+                  class="font-bold font-mono-recetario text-sm"
+                ></span>
               </div>
             </div>
           </div>
@@ -714,7 +942,10 @@ function getCategoryContour(slug: string) {
           <span class="w-1.5 h-1.5 rounded-full bg-[#E6A635]"></span>
           <span>Sistema Mexicano de Alimentos Equivalentes (SMAE)</span>
         </div>
-        <div id="modal-equivalents-list" class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+        <div
+          id="modal-equivalents-list"
+          class="grid grid-cols-2 sm:grid-cols-4 gap-2.5"
+        >
           <!-- Injected via JS -->
         </div>
       </div>
@@ -725,9 +956,14 @@ function getCategoryContour(slug: string) {
         <div class="md:col-span-5 bg-[#1E0308] p-5 sm:p-6 rounded-2xl border border-[#E6A635]/25">
           <div class="text-xs font-semibold text-[#F5D061] uppercase tracking-wider mb-3.5 pb-2 border-b border-[#E6A635]/20 flex items-center justify-between">
             <span>Ingredientes</span>
-            <span class="text-[10px] text-amber-200/50 font-normal">(Toca para tachar)</span>
+            <span class="text-[10px] text-amber-200/50 font-normal">
+              (Toca para tachar)
+            </span>
           </div>
-          <ul id="modal-ingredients-list" class="space-y-2.5 text-xs text-amber-100/90">
+          <ul
+            id="modal-ingredients-list"
+            class="space-y-2.5 text-xs text-amber-100/90"
+          >
             <!-- Injected via JS -->
           </ul>
         </div>
@@ -737,21 +973,40 @@ function getCategoryContour(slug: string) {
           <div class="text-xs font-semibold text-[#F5D061] uppercase tracking-wider mb-3.5 pb-2 border-b border-[#E6A635]/20">
             Procedimiento Paso a Paso
           </div>
-          <ol id="modal-instructions-list" class="space-y-3.5 text-xs text-amber-100">
+          <ol
+            id="modal-instructions-list"
+            class="space-y-3.5 text-xs text-amber-100"
+          >
             <!-- Injected via JS -->
           </ol>
         </div>
       </div>
 
       <!-- Nutri Tip if present -->
-      <div id="modal-tip-box" class="hidden mb-6 p-4 bg-[#1E0308] border-l-2 border-[#F5D061] rounded-r-2xl border border-r-[#E6A635]/20 border-y-[#E6A635]/20">
+      <div
+        id="modal-tip-box"
+        class="hidden mb-6 p-4 bg-[#1E0308] border-l-2 border-[#F5D061] rounded-r-2xl border border-r-[#E6A635]/20 border-y-[#E6A635]/20"
+      >
         <span class="text-xs font-semibold uppercase tracking-wider text-[#F5D061] flex items-center gap-1.5 mb-1.5">
-          <svg class="w-4 h-4 text-[#F5D061]" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 10-7.516 0c.85.493 1.509 1.333 1.509 2.316V18" />
+          <svg
+            class="w-4 h-4 text-[#F5D061]"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 10-7.516 0c.85.493 1.509 1.333 1.509 2.316V18"
+            />
           </svg>
           <span>Consejo Clínico de tu Nutrióloga</span>
         </span>
-        <p id="modal-tip-text" class="text-xs text-amber-100/80 leading-relaxed font-light"></p>
+        <p
+          id="modal-tip-text"
+          class="text-xs text-amber-100/80 leading-relaxed font-light"
+        ></p>
       </div>
 
       <!-- Modal Actions -->
@@ -761,8 +1016,18 @@ function getCategoryContour(slug: string) {
           onclick="window.print()"
           class="text-xs font-medium px-5 py-2.5 bg-[#1E0308] hover:bg-[#340811] border border-[#E6A635]/35 text-[#F5D061] rounded-xl transition-all cursor-pointer flex items-center gap-2"
         >
-          <svg class="w-4 h-4 text-[#F5D061]" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 6.75V4.5a2.25 2.25 0 012.25-2.25h6a2.25 2.25 0 012.25 2.25v2.25m-10.5 0h10.5m-10.5 0A2.25 2.25 0 004.5 9v6.75a2.25 2.25 0 002.25 2.25h.75m10.5-9A2.25 2.25 0 0120.25 9v6.75a2.25 2.25 0 01-2.25 2.25h-.75m-10.5 0v3.75a1.5 1.5 0 001.5 1.5h7.5a1.5 1.5 0 001.5-1.5v-3.75m-10.5 0h10.5" />
+          <svg
+            class="w-4 h-4 text-[#F5D061]"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M6.75 6.75V4.5a2.25 2.25 0 012.25-2.25h6a2.25 2.25 0 012.25 2.25v2.25m-10.5 0h10.5m-10.5 0A2.25 2.25 0 004.5 9v6.75a2.25 2.25 0 002.25 2.25h.75m10.5-9A2.25 2.25 0 0120.25 9v6.75a2.25 2.25 0 01-2.25 2.25h-.75m-10.5 0v3.75a1.5 1.5 0 001.5 1.5h7.5a1.5 1.5 0 001.5-1.5v-3.75m-10.5 0h10.5"
+            />
           </svg>
           <span>Imprimir Ficha</span>
         </button>
@@ -788,8 +1053,18 @@ function getCategoryContour(slug: string) {
     <div class="w-full max-w-md rounded-2xl border border-[#E6A635]/35 bg-[#2B050D] p-6 sm:p-8 shadow-2xl relative text-white">
       <div class="flex items-center justify-between pb-3 mb-4 border-b border-[#E6A635]/20">
         <span class="text-xs font-semibold uppercase tracking-wider text-[#F5D061] flex items-center gap-2">
-          <svg class="w-4 h-4 text-[#F5D061]" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
+          <svg
+            class="w-4 h-4 text-[#F5D061]"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"
+            />
           </svg>
           <span>Acceso Privado</span>
         </span>
@@ -806,12 +1081,16 @@ function getCategoryContour(slug: string) {
         Ingresa tu código de acceso VIP
       </h3>
       <p class="text-xs text-amber-100/70 leading-relaxed mb-6 font-light">
-        Introduce el código que recibiste al adquirir tu Recetario Navideño 2026 para desbloquear las 185 recetas completas.
+        Introduce el código que recibiste al adquirir tu Recetario Navideño 2026
+        para desbloquear las 185 recetas completas.
       </p>
 
       <form id="unlock-form" class="space-y-4">
         <div>
-          <label for="vip-input-code" class="block text-xs font-semibold uppercase tracking-wider text-[#E6A635] mb-2">
+          <label
+            for="vip-input-code"
+            class="block text-xs font-semibold uppercase tracking-wider text-[#E6A635] mb-2"
+          >
             Código de Desbloqueo
           </label>
           <input
@@ -824,8 +1103,12 @@ function getCategoryContour(slug: string) {
           />
         </div>
 
-        <div id="unlock-error" class="hidden p-3 bg-red-950/70 border border-red-500/60 rounded-xl text-xs font-semibold text-red-200">
-          Código no válido. Verifica tu contraseña o solicita asistencia vía WhatsApp.
+        <div
+          id="unlock-error"
+          class="hidden p-3 bg-red-950/70 border border-red-500/60 rounded-xl text-xs font-semibold text-red-200"
+        >
+          Código no válido. Verifica tu contraseña o solicita asistencia vía
+          WhatsApp.
         </div>
 
         <button
@@ -837,14 +1120,20 @@ function getCategoryContour(slug: string) {
       </form>
 
       <div class="mt-6 pt-4 border-t border-[#E6A635]/20 text-center">
-        <span class="block text-xs text-amber-100/70 mb-2 font-light">¿Aún no has adquirido el recetario?</span>
+        <span class="block text-xs text-amber-100/70 mb-2 font-light">
+          ¿Aún no has adquirido el recetario?
+        </span>
         <a
           href="https://wa.me/526143958598?text=Hola%20Nutri%C3%B3loga%20Velvet,%20quiero%20comprar%20mi%20c%C3%B3digo%20de%20acceso%20para%20el%20Recetario%20Navide%C3%B1o%202026."
           target="_blank"
           rel="noopener noreferrer"
           class="text-xs font-semibold text-[#25D366] hover:text-[#20ba59] hover:underline inline-flex items-center gap-1.5"
         >
-          <svg class="w-3.5 h-3.5 fill-current shrink-0" viewBox="0 0 24 24" fill="currentColor">
+          <svg
+            class="w-3.5 h-3.5 fill-current shrink-0"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+          >
             <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
           </svg>
           <span>Comprar acceso por WhatsApp →</span>
@@ -862,15 +1151,26 @@ function getCategoryContour(slug: string) {
   >
     <div class="w-full max-w-sm rounded-2xl border border-[#E6A635]/35 bg-[#2B050D] p-6 sm:p-7 shadow-2xl text-center text-white relative">
       <div class="w-12 h-12 rounded-xl bg-[#E6A635]/10 border border-[#E6A635]/30 text-[#F5D061] flex items-center justify-center mx-auto mb-4">
-        <svg class="w-5 h-5 text-[#F5D061]" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
+        <svg
+          class="w-5 h-5 text-[#F5D061]"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"
+          />
         </svg>
       </div>
       <h3 class="font-display text-xl text-white font-bold mb-2">
         ¿Cerrar sesión VIP?
       </h3>
       <p class="text-xs text-amber-100/70 leading-relaxed mb-6 font-light">
-        Para volver a consultar las recetas bloqueadas tendrás que ingresar nuevamente tu código de acceso.
+        Para volver a consultar las recetas bloqueadas tendrás que ingresar
+        nuevamente tu código de acceso.
       </p>
 
       <div class="flex items-center gap-3">
@@ -912,13 +1212,27 @@ function getCategoryContour(slug: string) {
       <div class="px-5 py-3 border-b border-[#E6A635]/20 flex items-center justify-between">
         <div class="flex items-center gap-2.5">
           <span class="w-8 h-8 rounded-full bg-[#E6A635]/15 border border-[#E6A635]/30 text-[#F5D061] flex items-center justify-center text-sm shadow-inner">
-            <svg class="w-4 h-4 text-[#F5D061]" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9.75 0h9.75" />
+            <svg
+              class="w-4 h-4 text-[#F5D061]"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9.75 0h9.75"
+              />
             </svg>
           </span>
           <div>
-            <h3 class="font-display text-lg font-bold text-white">Filtros de Recetas</h3>
-            <span class="text-[11px] text-amber-200/60 block font-light">Refina por calorías, nutrición y acceso</span>
+            <h3 class="font-display text-lg font-bold text-white">
+              Filtros de Recetas
+            </h3>
+            <span class="text-[11px] text-amber-200/60 block font-light">
+              Refina por calorías, nutrición y acceso
+            </span>
           </div>
         </div>
         <button
@@ -933,7 +1247,6 @@ function getCategoryContour(slug: string) {
 
       <!-- Drawer Scrollable Content -->
       <div class="px-5 py-4 overflow-y-auto space-y-6 flex-1 text-xs">
-        
         <!-- Bloque 1: Tipo de Acceso -->
         <div>
           <span class="font-bold text-[11px] uppercase tracking-wider text-[#E6A635] block mb-2.5">
@@ -945,8 +1258,13 @@ function getCategoryContour(slug: string) {
             class="w-full p-3 rounded-2xl border flex items-center justify-between transition-all bg-[#1E0308] border-[#E6A635]/30 text-amber-100 cursor-pointer active:scale-98"
           >
             <div class="flex items-center gap-2.5">
-              <span id="drawer-free-dot" class="w-2.5 h-2.5 rounded-full bg-slate-500"></span>
-              <span class="font-semibold text-xs text-left">Solo recetas de Muestra Libre</span>
+              <span
+                id="drawer-free-dot"
+                class="w-2.5 h-2.5 rounded-full bg-slate-500"
+              ></span>
+              <span class="font-semibold text-xs text-left">
+                Solo recetas de Muestra Libre
+              </span>
             </div>
             <span class="text-[11px] font-mono-recetario px-2.5 py-0.5 rounded-full bg-emerald-950/90 text-emerald-300 border border-emerald-400/40">
               6 recetas
@@ -960,11 +1278,17 @@ function getCategoryContour(slug: string) {
             <span class="font-bold text-[11px] uppercase tracking-wider text-[#E6A635]">
               Calorías por porción
             </span>
-            <span id="drawer-calories-label" class="text-[11px] text-[#F5D061] font-mono-recetario">
+            <span
+              id="drawer-calories-label"
+              class="text-[11px] text-[#F5D061] font-mono-recetario"
+            >
               Todas
             </span>
           </div>
-          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2" id="drawer-calories-grid">
+          <div
+            class="grid grid-cols-2 sm:grid-cols-4 gap-2"
+            id="drawer-calories-grid"
+          >
             <button
               type="button"
               data-cal-range="all"
@@ -1009,7 +1333,7 @@ function getCategoryContour(slug: string) {
               "Con fibra",
               "Con fruta",
               "Ligero",
-              "Receta casera"
+              "Receta casera",
             ].map((tag) => (
               <button
                 type="button"
@@ -1017,8 +1341,18 @@ function getCategoryContour(slug: string) {
                 class="drawer-tag-btn px-3.5 py-2 rounded-full border border-[#E6A635]/30 bg-[#1E0308] text-amber-100/90 font-medium text-xs transition-all flex items-center gap-1.5 cursor-pointer active:scale-95"
               >
                 <span class="tag-check opacity-0 inline-flex items-center">
-                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                  <svg
+                    class="w-3.5 h-3.5"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M4.5 12.75l6 6 9-13.5"
+                    />
                   </svg>
                 </span>
                 <span>{tag}</span>
@@ -1026,7 +1360,6 @@ function getCategoryContour(slug: string) {
             ))}
           </div>
         </div>
-
       </div>
 
       <!-- Drawer / Modal Fixed Footer Action Bar -->
@@ -1052,19 +1385,32 @@ function getCategoryContour(slug: string) {
   <!-- TOAST NOTIFICATION -->
   <div
     id="toast-notification"
-    class="fixed top-32 md:top-44 right-6 z-[60] transition-all duration-300 transform -translate-y-6 opacity-0 pointer-events-none max-w-sm font-sans-recetario"
+    class="fixed top-40 md:top-56 right-6 z-[60] transition-all duration-300 transform -translate-y-6 opacity-0 pointer-events-none max-w-sm font-sans-recetario"
   >
     <div class="rounded-2xl border border-[#E6A635]/35 bg-[#2B050D]/95 backdrop-blur-md p-4 shadow-2xl flex items-center gap-3.5 text-white">
       <div class="w-9 h-9 rounded-xl bg-emerald-500/15 border border-emerald-400/40 text-emerald-300 flex items-center justify-center shrink-0">
-        <svg class="w-4 h-4 text-emerald-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+        <svg
+          class="w-4 h-4 text-emerald-300"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M4.5 12.75l6 6 9-13.5"
+          />
         </svg>
       </div>
       <div class="flex-1">
         <div id="toast-title" class="font-bold text-xs text-[#F5D061]">
           ¡Acceso VIP Activado!
         </div>
-        <div id="toast-message" class="text-xs text-amber-100/80 mt-0.5 font-light">
+        <div
+          id="toast-message"
+          class="text-xs text-amber-100/80 mt-0.5 font-light"
+        >
           Las 185 recetas han sido desbloqueadas con éxito.
         </div>
       </div>
@@ -1079,7 +1425,11 @@ function getCategoryContour(slug: string) {
   </div>
 
   <!-- SCRIPT DE INTERACCIÓN CLIENTE -->
-  <script is:inline data-astro-rerun define:vars={{ recipesData, FREE_SAMPLE_IDS }}>
+  <script
+    is:inline
+    data-astro-rerun
+    define:vars={{ recipesData, FREE_SAMPLE_IDS }}
+  >
     // Única contraseña válida para acceso completo al recetario
     const VALID_PASSCODE = "Cuidandomeal100";
 
@@ -1104,8 +1454,16 @@ function getCategoryContour(slug: string) {
       if (toastTitle) toastTitle.textContent = title;
       if (toastMessage) toastMessage.textContent = message;
 
-      toast.classList.remove("-translate-y-6", "opacity-0", "pointer-events-none");
-      toast.classList.add("translate-y-0", "opacity-100", "pointer-events-auto");
+      toast.classList.remove(
+        "-translate-y-6",
+        "opacity-0",
+        "pointer-events-none",
+      );
+      toast.classList.add(
+        "translate-y-0",
+        "opacity-100",
+        "pointer-events-auto",
+      );
 
       if (toastTimeout) clearTimeout(toastTimeout);
       toastTimeout = setTimeout(() => {
@@ -1116,10 +1474,16 @@ function getCategoryContour(slug: string) {
     function hideToast() {
       if (!toast) return;
       toast.classList.add("-translate-y-6", "opacity-0", "pointer-events-none");
-      toast.classList.remove("translate-y-0", "opacity-100", "pointer-events-auto");
+      toast.classList.remove(
+        "translate-y-0",
+        "opacity-100",
+        "pointer-events-auto",
+      );
     }
 
-    document.getElementById("btn-close-toast")?.addEventListener("click", hideToast);
+    document
+      .getElementById("btn-close-toast")
+      ?.addEventListener("click", hideToast);
 
     // Logout Modal Logic
     const logoutModal = document.getElementById("logout-modal");
@@ -1134,12 +1498,16 @@ function getCategoryContour(slug: string) {
       document.body.style.overflow = "";
     }
 
-    document.getElementById("btn-cancel-logout")?.addEventListener("click", closeLogoutModal);
-    document.getElementById("btn-confirm-logout")?.addEventListener("click", () => {
-      setAuth(false);
-      closeLogoutModal();
-      showToast("Sesión cerrada", "Has cerrado tu sesión VIP correctamente.");
-    });
+    document
+      .getElementById("btn-cancel-logout")
+      ?.addEventListener("click", closeLogoutModal);
+    document
+      .getElementById("btn-confirm-logout")
+      ?.addEventListener("click", () => {
+        setAuth(false);
+        closeLogoutModal();
+        showToast("Sesión cerrada", "Has cerrado tu sesión VIP correctamente.");
+      });
     logoutModal?.addEventListener("click", (e) => {
       if (e.target === logoutModal) closeLogoutModal();
     });
@@ -1177,13 +1545,17 @@ function getCategoryContour(slug: string) {
 
       if (isVip) {
         if (pillText) pillText.textContent = "VIP Activo";
-        if (pillBtn) pillBtn.className = "px-3 py-1 bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-400/50 text-emerald-300 text-[11px] font-medium rounded-full transition-colors cursor-pointer";
+        if (pillBtn)
+          pillBtn.className =
+            "px-3 py-1 bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-400/50 text-emerald-300 text-[11px] font-medium rounded-full transition-colors cursor-pointer";
         if (heroLocked) heroLocked.classList.add("hidden");
         if (heroUnlocked) heroUnlocked.classList.remove("hidden");
         if (lockedBanner) lockedBanner.classList.add("hidden");
       } else {
         if (pillText) pillText.textContent = "Ingresar Código";
-        if (pillBtn) pillBtn.className = "px-3 py-1 bg-[#E6A635]/15 hover:bg-[#E6A635]/25 border border-[#E6A635]/40 text-[#F5D061] text-[11px] font-medium rounded-full transition-colors cursor-pointer";
+        if (pillBtn)
+          pillBtn.className =
+            "px-3 py-1 bg-[#E6A635]/15 hover:bg-[#E6A635]/25 border border-[#E6A635]/40 text-[#F5D061] text-[11px] font-medium rounded-full transition-colors cursor-pointer";
         if (heroLocked) heroLocked.classList.remove("hidden");
         if (heroUnlocked) heroUnlocked.classList.add("hidden");
         if (lockedBanner) lockedBanner.classList.remove("hidden");
@@ -1195,13 +1567,17 @@ function getCategoryContour(slug: string) {
         const btnAction = div.querySelector(".card-vip-btn");
         if (isVip) {
           if (btnAction) {
-            btnAction.innerHTML = '<span>Ver Receta Completa</span> <svg class="w-4 h-4 text-[#28050D] transition-transform" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>';
-            btnAction.className = "card-vip-btn w-full py-3 px-4 bg-gradient-to-r from-[#E6A635] via-[#F5D061] to-[#D49522] hover:from-[#F5D061] hover:to-[#E6A635] text-[#28050D] font-extrabold text-xs sm:text-sm uppercase tracking-wider rounded-xl transition-all duration-200 shadow-[0_4px_16px_rgba(230,166,53,0.35)] hover:shadow-[0_6px_22px_rgba(245,208,97,0.5)] active:scale-98 cursor-pointer flex items-center justify-center gap-2 group/btn";
+            btnAction.innerHTML =
+              '<span>Ver Receta Completa</span> <svg class="w-4 h-4 text-[#28050D] transition-transform" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>';
+            btnAction.className =
+              "card-vip-btn w-full py-3 px-4 bg-gradient-to-r from-[#E6A635] via-[#F5D061] to-[#D49522] hover:from-[#F5D061] hover:to-[#E6A635] text-[#28050D] font-extrabold text-xs sm:text-sm uppercase tracking-wider rounded-xl transition-all duration-200 shadow-[0_4px_16px_rgba(230,166,53,0.35)] hover:shadow-[0_6px_22px_rgba(245,208,97,0.5)] active:scale-98 cursor-pointer flex items-center justify-center gap-2 group/btn";
           }
         } else {
           if (btnAction) {
-            btnAction.innerHTML = '<svg class="w-4 h-4 text-[#F5D061]" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" /></svg> <span>Desbloquear Receta</span>';
-            btnAction.className = "card-vip-btn w-full py-3 px-4 bg-[#1E0308] hover:bg-[#340811] border border-[#E6A635]/40 hover:border-[#F5D061] text-amber-200 hover:text-white font-bold text-xs uppercase tracking-wider rounded-xl transition-all duration-200 cursor-pointer flex items-center justify-center gap-2";
+            btnAction.innerHTML =
+              '<svg class="w-4 h-4 text-[#F5D061]" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" /></svg> <span>Desbloquear Receta</span>';
+            btnAction.className =
+              "card-vip-btn w-full py-3 px-4 bg-[#1E0308] hover:bg-[#340811] border border-[#E6A635]/40 hover:border-[#F5D061] text-amber-200 hover:text-white font-bold text-xs uppercase tracking-wider rounded-xl transition-all duration-200 cursor-pointer flex items-center justify-center gap-2";
           }
         }
       });
@@ -1224,24 +1600,34 @@ function getCategoryContour(slug: string) {
       // Populate modal
       const modalImg = document.getElementById("modal-image");
       if (modalImg) {
-        modalImg.src = recipe.image || "/images/recetas/001-champurrado-ligero.webp";
+        modalImg.src =
+          recipe.image || "/images/recetas/001-champurrado-ligero.webp";
         modalImg.alt = recipe.title;
       }
 
       const modalCat = document.getElementById("modal-category");
       modalCat.textContent = recipe.category;
 
-      document.getElementById("modal-page").textContent = "Receta #" + String(recipe.number).padStart(3, '0');
+      document.getElementById("modal-page").textContent =
+        "Receta #" + String(recipe.number).padStart(3, "0");
       document.getElementById("modal-title").textContent = recipe.title;
-      document.getElementById("modal-calories").textContent = (recipe.calories || "150");
-      document.getElementById("modal-time").textContent = recipe.prepTime.replace(/prep\.? estimada|preparaci[oó]n/i, "").trim();
-      document.getElementById("modal-portions").textContent = recipe.portions.replace(/porci[oó]n(es)?/i, "").trim() || "1";
+      document.getElementById("modal-calories").textContent =
+        recipe.calories || "150";
+      document.getElementById("modal-time").textContent = recipe.prepTime
+        .replace(/prep\.? estimada|preparaci[oó]n/i, "")
+        .trim();
+      document.getElementById("modal-portions").textContent =
+        recipe.portions.replace(/porci[oó]n(es)?/i, "").trim() || "1";
 
       // Nutrition
-      document.getElementById("modal-prot").textContent = recipe.nutrition.protein || "N/D";
-      document.getElementById("modal-fat").textContent = recipe.nutrition.fats || "N/D";
-      document.getElementById("modal-carb").textContent = recipe.nutrition.carbs || "N/D";
-      document.getElementById("modal-fib").textContent = recipe.nutrition.fiber || "N/D";
+      document.getElementById("modal-prot").textContent =
+        recipe.nutrition.protein || "N/D";
+      document.getElementById("modal-fat").textContent =
+        recipe.nutrition.fats || "N/D";
+      document.getElementById("modal-carb").textContent =
+        recipe.nutrition.carbs || "N/D";
+      document.getElementById("modal-fib").textContent =
+        recipe.nutrition.fiber || "N/D";
 
       // Equivalents
       const eqSec = document.getElementById("modal-equivalents-section");
@@ -1250,7 +1636,8 @@ function getCategoryContour(slug: string) {
       if (recipe.equivalents && recipe.equivalents.length > 0) {
         recipe.equivalents.forEach((eq) => {
           const div = document.createElement("div");
-          div.className = "p-3 bg-[#1E0308] border border-[#E6A635]/35 rounded-2xl text-xs flex justify-between items-center";
+          div.className =
+            "p-3 bg-[#1E0308] border border-[#E6A635]/35 rounded-2xl text-xs flex justify-between items-center";
           div.innerHTML = `<span class="text-amber-200/80 font-medium">${eq.group}:</span><span class="text-[#F5D061] font-bold font-mono-recetario text-sm">${eq.count}</span>`;
           eqList.appendChild(div);
         });
@@ -1264,7 +1651,8 @@ function getCategoryContour(slug: string) {
       ingList.innerHTML = "";
       recipe.ingredients.forEach((ing, i) => {
         const li = document.createElement("li");
-        li.className = "flex items-start gap-2.5 cursor-pointer py-1.5 select-none";
+        li.className =
+          "flex items-start gap-2.5 cursor-pointer py-1.5 select-none";
         li.innerHTML = `
           <input type="checkbox" id="ing-${i}" class="mt-0.5 rounded border-[#E6A635]/50 accent-[#E6A635] cursor-pointer" />
           <label for="ing-${i}" class="cursor-pointer leading-tight text-amber-100/90 font-medium">${ing}</label>
@@ -1341,16 +1729,32 @@ function getCategoryContour(slug: string) {
       if (!drawerBackdrop || !drawerPanel) return;
       drawerBackdrop.classList.remove("hidden");
       requestAnimationFrame(() => {
-        drawerPanel.classList.remove("translate-y-full", "sm:scale-95", "sm:opacity-0");
-        drawerPanel.classList.add("translate-y-0", "sm:scale-100", "sm:opacity-100");
+        drawerPanel.classList.remove(
+          "translate-y-full",
+          "sm:scale-95",
+          "sm:opacity-0",
+        );
+        drawerPanel.classList.add(
+          "translate-y-0",
+          "sm:scale-100",
+          "sm:opacity-100",
+        );
       });
       document.body.style.overflow = "hidden";
     }
 
     function closeFilterDrawer() {
       if (!drawerBackdrop || !drawerPanel) return;
-      drawerPanel.classList.add("translate-y-full", "sm:scale-95", "sm:opacity-0");
-      drawerPanel.classList.remove("translate-y-0", "sm:scale-100", "sm:opacity-100");
+      drawerPanel.classList.add(
+        "translate-y-full",
+        "sm:scale-95",
+        "sm:opacity-0",
+      );
+      drawerPanel.classList.remove(
+        "translate-y-0",
+        "sm:scale-100",
+        "sm:opacity-100",
+      );
       setTimeout(() => {
         drawerBackdrop.classList.add("hidden");
         document.body.style.overflow = "";
@@ -1363,9 +1767,11 @@ function getCategoryContour(slug: string) {
       tagBtns.forEach((btn) => {
         const tag = btn.getAttribute("data-filter-tag");
         if (activeTag === tag) {
-          btn.className = "filter-tag-btn text-xs font-bold px-3.5 py-2.5 bg-gradient-to-r from-[#E6A635] to-[#D49522] text-[#28050D] border border-[#FFF0C0] rounded-full whitespace-nowrap cursor-pointer transition-all shadow-md active:scale-95";
+          btn.className =
+            "filter-tag-btn text-xs font-bold px-3.5 py-2.5 bg-gradient-to-r from-[#E6A635] to-[#D49522] text-[#28050D] border border-[#FFF0C0] rounded-full whitespace-nowrap cursor-pointer transition-all shadow-md active:scale-95";
         } else {
-          btn.className = "filter-tag-btn text-xs font-semibold px-3.5 py-2.5 bg-[#3B0B14] border border-[#E6A635]/30 hover:border-[#F5D061] text-amber-100/90 rounded-full whitespace-nowrap cursor-pointer transition-all shadow-sm active:scale-95";
+          btn.className =
+            "filter-tag-btn text-xs font-semibold px-3.5 py-2.5 bg-[#3B0B14] border border-[#E6A635]/30 hover:border-[#F5D061] text-amber-100/90 rounded-full whitespace-nowrap cursor-pointer transition-all shadow-sm active:scale-95";
         }
       });
 
@@ -1374,10 +1780,12 @@ function getCategoryContour(slug: string) {
         const tag = btn.getAttribute("data-drawer-tag");
         const check = btn.querySelector(".tag-check");
         if (activeTag === tag) {
-          btn.className = "drawer-tag-btn px-3.5 py-2 rounded-full border border-[#FFF0C0] bg-gradient-to-r from-[#E6A635] to-[#D49522] text-[#28050D] font-bold text-xs transition-all flex items-center gap-1.5 cursor-pointer shadow-md";
+          btn.className =
+            "drawer-tag-btn px-3.5 py-2 rounded-full border border-[#FFF0C0] bg-gradient-to-r from-[#E6A635] to-[#D49522] text-[#28050D] font-bold text-xs transition-all flex items-center gap-1.5 cursor-pointer shadow-md";
           if (check) check.classList.remove("opacity-0");
         } else {
-          btn.className = "drawer-tag-btn px-3.5 py-2 rounded-full border border-[#E6A635]/30 bg-[#1E0308] text-amber-100/90 font-medium text-xs transition-all flex items-center gap-1.5 cursor-pointer active:scale-95";
+          btn.className =
+            "drawer-tag-btn px-3.5 py-2 rounded-full border border-[#E6A635]/30 bg-[#1E0308] text-amber-100/90 font-medium text-xs transition-all flex items-center gap-1.5 cursor-pointer active:scale-95";
           if (check) check.classList.add("opacity-0");
         }
       });
@@ -1387,9 +1795,11 @@ function getCategoryContour(slug: string) {
       const freeBtn = document.getElementById("filter-free-btn");
       if (freeBtn) {
         if (onlyFree) {
-          freeBtn.className = "text-xs font-bold px-3.5 py-2.5 bg-emerald-500 text-white border border-emerald-300 rounded-full whitespace-nowrap cursor-pointer transition-all shadow-[0_0_15px_rgba(52,211,153,0.4)] active:scale-95";
+          freeBtn.className =
+            "text-xs font-bold px-3.5 py-2.5 bg-emerald-500 text-white border border-emerald-300 rounded-full whitespace-nowrap cursor-pointer transition-all shadow-[0_0_15px_rgba(52,211,153,0.4)] active:scale-95";
         } else {
-          freeBtn.className = "text-xs font-bold px-3.5 py-2.5 bg-emerald-950/80 border border-emerald-400/60 text-emerald-300 hover:bg-emerald-600 hover:text-white rounded-full whitespace-nowrap cursor-pointer transition-all shadow-sm active:scale-95";
+          freeBtn.className =
+            "text-xs font-bold px-3.5 py-2.5 bg-emerald-950/80 border border-emerald-400/60 text-emerald-300 hover:bg-emerald-600 hover:text-white rounded-full whitespace-nowrap cursor-pointer transition-all shadow-sm active:scale-95";
         }
       }
 
@@ -1397,10 +1807,13 @@ function getCategoryContour(slug: string) {
       const drawerFreeDot = document.getElementById("drawer-free-dot");
       if (drawerFreeToggle && drawerFreeDot) {
         if (onlyFree) {
-          drawerFreeToggle.className = "w-full p-3 rounded-2xl border flex items-center justify-between transition-all bg-emerald-950/70 border-emerald-400/80 text-white cursor-pointer shadow-sm";
-          drawerFreeDot.className = "w-2.5 h-2.5 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]";
+          drawerFreeToggle.className =
+            "w-full p-3 rounded-2xl border flex items-center justify-between transition-all bg-emerald-950/70 border-emerald-400/80 text-white cursor-pointer shadow-sm";
+          drawerFreeDot.className =
+            "w-2.5 h-2.5 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]";
         } else {
-          drawerFreeToggle.className = "w-full p-3 rounded-2xl border flex items-center justify-between transition-all bg-[#1E0308] border-[#E6A635]/30 text-amber-100 cursor-pointer active:scale-98";
+          drawerFreeToggle.className =
+            "w-full p-3 rounded-2xl border flex items-center justify-between transition-all bg-[#1E0308] border-[#E6A635]/30 text-amber-100 cursor-pointer active:scale-98";
           drawerFreeDot.className = "w-2.5 h-2.5 rounded-full bg-slate-500";
         }
       }
@@ -1412,9 +1825,11 @@ function getCategoryContour(slug: string) {
       calBtns.forEach((btn) => {
         const range = btn.getAttribute("data-cal-range");
         if (calorieRange === range) {
-          btn.className = "cal-pill-btn p-2.5 rounded-xl border text-center font-bold text-xs transition-all bg-[#E6A635] text-[#28050D] border-[#FFF0C0] shadow-sm cursor-pointer";
+          btn.className =
+            "cal-pill-btn p-2.5 rounded-xl border text-center font-bold text-xs transition-all bg-[#E6A635] text-[#28050D] border-[#FFF0C0] shadow-sm cursor-pointer";
         } else {
-          btn.className = "cal-pill-btn p-2.5 rounded-xl border text-center font-semibold text-xs transition-all bg-[#1E0308] text-amber-100/90 border-[#E6A635]/30 hover:border-[#F5D061] cursor-pointer";
+          btn.className =
+            "cal-pill-btn p-2.5 rounded-xl border text-center font-semibold text-xs transition-all bg-[#1E0308] text-amber-100/90 border-[#E6A635]/30 hover:border-[#F5D061] cursor-pointer";
         }
       });
       if (calLabel) {
@@ -1422,7 +1837,7 @@ function getCategoryContour(slug: string) {
           all: "Todas",
           under100: "< 100 kcal",
           "100to200": "100–200 kcal",
-          over200: "> 200 kcal"
+          over200: "> 200 kcal",
         };
         calLabel.textContent = labels[calorieRange] || "Todas";
       }
@@ -1452,16 +1867,26 @@ function getCategoryContour(slug: string) {
         let matchesFree = !onlyFree || isFree;
         let matchesCal = true;
         if (calorieRange === "under100") matchesCal = cals > 0 && cals < 100;
-        else if (calorieRange === "100to200") matchesCal = cals >= 100 && cals <= 200;
+        else if (calorieRange === "100to200")
+          matchesCal = cals >= 100 && cals <= 200;
         else if (calorieRange === "over200") matchesCal = cals > 200;
 
         let matchesSearch = true;
         if (searchQuery) {
           const q = searchQuery.toLowerCase();
-          matchesSearch = title.includes(q) || ingredients.includes(q) || tags.toLowerCase().includes(q);
+          matchesSearch =
+            title.includes(q) ||
+            ingredients.includes(q) ||
+            tags.toLowerCase().includes(q);
         }
 
-        if (matchesCat && matchesTag && matchesFree && matchesCal && matchesSearch) {
+        if (
+          matchesCat &&
+          matchesTag &&
+          matchesFree &&
+          matchesCal &&
+          matchesSearch
+        ) {
           card.classList.remove("hidden");
           visibleCount++;
         } else {
@@ -1496,10 +1921,20 @@ function getCategoryContour(slug: string) {
         if (activeFiltersCount > 0) {
           badge.textContent = activeFiltersCount;
           badge.classList.remove("hidden");
-          btnOpenDrawer?.classList.add("border-[#F5D061]", "bg-[#4E0E1C]", "text-[#F5D061]", "shadow-[0_0_15px_rgba(230,166,53,0.3)]");
+          btnOpenDrawer?.classList.add(
+            "border-[#F5D061]",
+            "bg-[#4E0E1C]",
+            "text-[#F5D061]",
+            "shadow-[0_0_15px_rgba(230,166,53,0.3)]",
+          );
         } else {
           badge.classList.add("hidden");
-          btnOpenDrawer?.classList.remove("border-[#F5D061]", "bg-[#4E0E1C]", "text-[#F5D061]", "shadow-[0_0_15px_rgba(230,166,53,0.3)]");
+          btnOpenDrawer?.classList.remove(
+            "border-[#F5D061]",
+            "bg-[#4E0E1C]",
+            "text-[#F5D061]",
+            "shadow-[0_0_15px_rgba(230,166,53,0.3)]",
+          );
         }
       }
 
@@ -1517,12 +1952,19 @@ function getCategoryContour(slug: string) {
       const feedback = document.getElementById("filter-feedback");
       const feedbackText = document.getElementById("filter-feedback-text");
       const activeFilters = [];
-      if (activeCategory !== "todas") activeFilters.push(`Categoría: ${activeCategory}`);
+      if (activeCategory !== "todas")
+        activeFilters.push(`Categoría: ${activeCategory}`);
       if (activeTag) activeFilters.push(`Etiqueta: ${activeTag}`);
       if (onlyFree) activeFilters.push("Solo Muestras Gratis");
       if (calorieRange !== "all") {
-        const calNames = { under100: "< 100 kcal", "100to200": "100–200 kcal", over200: "> 200 kcal" };
-        activeFilters.push(`Calorías: ${calNames[calorieRange] || calorieRange}`);
+        const calNames = {
+          under100: "< 100 kcal",
+          "100to200": "100–200 kcal",
+          over200: "> 200 kcal",
+        };
+        activeFilters.push(
+          `Calorías: ${calNames[calorieRange] || calorieRange}`,
+        );
       }
       if (searchQuery) activeFilters.push(`Búsqueda: "${searchQuery}"`);
 
@@ -1539,39 +1981,52 @@ function getCategoryContour(slug: string) {
       checkAuth();
 
       // VIP Toggle in header
-      document.getElementById("btn-vip-header-pill")?.addEventListener("click", () => {
-        if (isVip) {
-          openLogoutModal();
-        } else {
+      document
+        .getElementById("btn-vip-header-pill")
+        ?.addEventListener("click", () => {
+          if (isVip) {
+            openLogoutModal();
+          } else {
+            openUnlockModal();
+          }
+        });
+
+      document
+        .getElementById("btn-hero-unlock")
+        ?.addEventListener("click", () => {
           openUnlockModal();
-        }
-      });
+        });
 
-      document.getElementById("btn-hero-unlock")?.addEventListener("click", () => {
-        openUnlockModal();
-      });
-
-      document.getElementById("btn-banner-unlock")?.addEventListener("click", () => {
-        openUnlockModal();
-      });
+      document
+        .getElementById("btn-banner-unlock")
+        ?.addEventListener("click", () => {
+          openUnlockModal();
+        });
 
       // Unlock modal form
-      document.getElementById("unlock-form")?.addEventListener("submit", (e) => {
-        e.preventDefault();
-        const input = document.getElementById("vip-input-code");
-        const val = input ? input.value.trim() : "";
-        const err = document.getElementById("unlock-error");
+      document
+        .getElementById("unlock-form")
+        ?.addEventListener("submit", (e) => {
+          e.preventDefault();
+          const input = document.getElementById("vip-input-code");
+          const val = input ? input.value.trim() : "";
+          const err = document.getElementById("unlock-error");
 
-        if (val.toLowerCase() === VALID_PASSCODE.toLowerCase()) {
-          setAuth(true);
-          closeUnlockModal();
-          showToast("¡Acceso VIP Activado!", "Las 185 recetas completas han sido desbloqueadas con éxito.");
-        } else {
-          if (err) err.classList.remove("hidden");
-        }
-      });
+          if (val.toLowerCase() === VALID_PASSCODE.toLowerCase()) {
+            setAuth(true);
+            closeUnlockModal();
+            showToast(
+              "¡Acceso VIP Activado!",
+              "Las 185 recetas completas han sido desbloqueadas con éxito.",
+            );
+          } else {
+            if (err) err.classList.remove("hidden");
+          }
+        });
 
-      document.getElementById("btn-close-unlock-modal")?.addEventListener("click", closeUnlockModal);
+      document
+        .getElementById("btn-close-unlock-modal")
+        ?.addEventListener("click", closeUnlockModal);
       unlockModal?.addEventListener("click", (e) => {
         if (e.target === unlockModal) closeUnlockModal();
       });
@@ -1585,8 +2040,12 @@ function getCategoryContour(slug: string) {
         }
       });
 
-      document.getElementById("btn-close-modal")?.addEventListener("click", closeRecipeModal);
-      document.getElementById("btn-close-modal-bottom")?.addEventListener("click", closeRecipeModal);
+      document
+        .getElementById("btn-close-modal")
+        ?.addEventListener("click", closeRecipeModal);
+      document
+        .getElementById("btn-close-modal-bottom")
+        ?.addEventListener("click", closeRecipeModal);
       recipeModal?.addEventListener("click", (e) => {
         if (e.target === recipeModal) closeRecipeModal();
       });
@@ -1602,9 +2061,15 @@ function getCategoryContour(slug: string) {
       });
 
       // Filter Drawer triggers
-      document.getElementById("btn-open-filters-drawer")?.addEventListener("click", openFilterDrawer);
-      document.getElementById("btn-close-filters-drawer")?.addEventListener("click", closeFilterDrawer);
-      document.getElementById("btn-drawer-apply")?.addEventListener("click", closeFilterDrawer);
+      document
+        .getElementById("btn-open-filters-drawer")
+        ?.addEventListener("click", openFilterDrawer);
+      document
+        .getElementById("btn-close-filters-drawer")
+        ?.addEventListener("click", closeFilterDrawer);
+      document
+        .getElementById("btn-drawer-apply")
+        ?.addEventListener("click", closeFilterDrawer);
       drawerBackdrop?.addEventListener("click", (e) => {
         if (e.target === drawerBackdrop) closeFilterDrawer();
       });
@@ -1621,9 +2086,11 @@ function getCategoryContour(slug: string) {
 
         catBtns.forEach((b, idx) => {
           if (idx === 0) {
-            b.className = "cat-tab-btn text-xs font-bold px-4 py-2 rounded-full whitespace-nowrap transition-all duration-300 cursor-pointer border bg-gradient-to-r from-[#E6A635] to-[#D49522] text-[#28050D] font-extrabold shadow-[0_0_15px_rgba(230,166,53,0.4)] border-[#FFF0C0]";
+            b.className =
+              "cat-tab-btn text-xs font-bold px-4 py-2 rounded-full whitespace-nowrap transition-all duration-300 cursor-pointer border bg-gradient-to-r from-[#E6A635] to-[#D49522] text-[#28050D] font-extrabold shadow-[0_0_15px_rgba(230,166,53,0.4)] border-[#FFF0C0]";
           } else {
-            b.className = "cat-tab-btn text-xs font-bold px-4 py-2 rounded-full whitespace-nowrap transition-all duration-300 cursor-pointer border bg-[#25040B]/80 text-amber-100/80 border-[#E6A635]/30 hover:border-[#F5D061] hover:text-[#F5D061] hover:bg-[#380A13]";
+            b.className =
+              "cat-tab-btn text-xs font-bold px-4 py-2 rounded-full whitespace-nowrap transition-all duration-300 cursor-pointer border bg-[#25040B]/80 text-amber-100/80 border-[#E6A635]/30 hover:border-[#F5D061] hover:text-[#F5D061] hover:bg-[#380A13]";
           }
         });
 
@@ -1659,23 +2126,29 @@ function getCategoryContour(slug: string) {
       });
 
       // Drawer Free Toggle
-      document.getElementById("drawer-free-toggle")?.addEventListener("click", () => {
-        onlyFree = !onlyFree;
-        syncFreeButtons();
-        applyFilters();
-      });
+      document
+        .getElementById("drawer-free-toggle")
+        ?.addEventListener("click", () => {
+          onlyFree = !onlyFree;
+          syncFreeButtons();
+          applyFilters();
+        });
 
       // Drawer Reset Button
-      document.getElementById("btn-drawer-reset")?.addEventListener("click", resetFilters);
+      document
+        .getElementById("btn-drawer-reset")
+        ?.addEventListener("click", resetFilters);
 
       // Category tab buttons
       const catBtns = document.querySelectorAll(".cat-tab-btn");
       catBtns.forEach((btn) => {
         btn.addEventListener("click", () => {
           catBtns.forEach((b) => {
-            b.className = "cat-tab-btn text-xs font-bold px-4 py-2 rounded-full whitespace-nowrap transition-all duration-300 cursor-pointer border bg-[#25040B]/80 text-amber-100/80 border-[#E6A635]/30 hover:border-[#F5D061] hover:text-[#F5D061] hover:bg-[#380A13]";
+            b.className =
+              "cat-tab-btn text-xs font-bold px-4 py-2 rounded-full whitespace-nowrap transition-all duration-300 cursor-pointer border bg-[#25040B]/80 text-amber-100/80 border-[#E6A635]/30 hover:border-[#F5D061] hover:text-[#F5D061] hover:bg-[#380A13]";
           });
-          btn.className = "cat-tab-btn text-xs font-bold px-4 py-2 rounded-full whitespace-nowrap transition-all duration-300 cursor-pointer border bg-gradient-to-r from-[#E6A635] to-[#D49522] text-[#28050D] font-extrabold shadow-[0_0_15px_rgba(230,166,53,0.4)] border-[#FFF0C0]";
+          btn.className =
+            "cat-tab-btn text-xs font-bold px-4 py-2 rounded-full whitespace-nowrap transition-all duration-300 cursor-pointer border bg-gradient-to-r from-[#E6A635] to-[#D49522] text-[#28050D] font-extrabold shadow-[0_0_15px_rgba(230,166,53,0.4)] border-[#FFF0C0]";
 
           activeCategory = btn.getAttribute("data-category") || "todas";
           applyFilters();
@@ -1725,8 +2198,12 @@ function getCategoryContour(slug: string) {
         applyFilters();
       });
 
-      document.getElementById("reset-all-filters")?.addEventListener("click", resetFilters);
-      document.getElementById("btn-reset-empty")?.addEventListener("click", resetFilters);
+      document
+        .getElementById("reset-all-filters")
+        ?.addEventListener("click", resetFilters);
+      document
+        .getElementById("btn-reset-empty")
+        ?.addEventListener("click", resetFilters);
     }
 
     if (document.readyState === "loading") {

@@ -10,6 +10,10 @@ import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const langPath = lang === "es" ? "" : `/${lang}`;
+
+// Control de vigencia: Visible hasta el 31 de Diciembre del 2026 (23:59:59)
+const holidayBannerExpiry = new Date("2026-12-31T23:59:59");
+const isHolidayBannerActive = new Date() <= holidayBannerExpiry;
 ---
 
 <header class="fixed top-0 left-0 w-full z-50">
@@ -166,15 +170,6 @@ const langPath = lang === "es" ? "" : `/${lang}`;
             >{t("nav.blog")}</a
           >
 
-          <a
-            href="/recetario"
-            data-astro-prefetch="hover"
-            class="group inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold rounded-lg border border-[#D94E28]/30 bg-[#FBF0EC] text-[#D94E28] hover:bg-[#D94E28] hover:text-white transition-all ml-1"
-          >
-            <span class="w-1.5 h-1.5 rounded-full bg-[#D94E28] group-hover:bg-white animate-pulse"></span>
-            <span>Recetario 2026</span>
-          </a>
-
           <div class="ml-3">
             <a
               href={`${langPath}/#booking`}
@@ -188,10 +183,92 @@ const langPath = lang === "es" ? "" : `/${lang}`;
     </div>
   </nav>
 
+  <!-- Banner Navideño Delgado (Debajo del Header, visible hasta el 31 de Diciembre del 2026) -->
+  {isHolidayBannerActive && (
+    <aside
+      id="holiday-navbar-banner"
+      class="holiday-banner-element relative z-40 bg-gradient-to-r from-[#1E0207] via-[#480816] to-[#1E0207] border-y border-[#E6A635]/35 shadow-md no-print overflow-hidden"
+      aria-label={lang === "es" ? "Banner Recetario Navideño 2026" : "Holiday Recipe Book 2026 Banner"}
+    >
+      <a
+        href={`${langPath}/recetario`}
+        data-astro-prefetch="hover"
+        class="group relative block w-full py-1.5 sm:py-2 px-3 sm:px-6 transition-all duration-300 hover:brightness-110"
+      >
+        <!-- Background subtle Christmas glows & sparkles -->
+        <div class="absolute inset-0 pointer-events-none opacity-20 bg-[radial-gradient(#F5D061_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        <div class="absolute -top-6 left-1/4 w-32 h-16 bg-[#F5D061]/15 rounded-full blur-xl pointer-events-none"></div>
+        <div class="absolute -bottom-6 right-1/4 w-32 h-16 bg-emerald-500/15 rounded-full blur-xl pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto flex items-center justify-between sm:justify-center gap-2.5 sm:gap-5 relative z-10 text-white text-xs sm:text-sm font-medium">
+          
+          <!-- Figuras Navideñas Izquierda: Copo de Nieve y Pino SVG en Trazo Fino -->
+          <div class="flex items-center gap-1.5 text-[#F5D061] shrink-0">
+            <svg class="w-4 h-4 text-[#F5D061] animate-spin-slow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="2" x2="12" y2="22"></line>
+              <line x1="2" y1="12" x2="22" y2="12"></line>
+              <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line>
+              <line x1="4.93" y1="19.07" x2="19.07" y2="4.93"></line>
+              <path d="M10 4 L12 2 L14 4"></path>
+              <path d="M10 20 L12 22 L14 20"></path>
+              <path d="M4 10 L2 12 L4 14"></path>
+              <path d="M20 10 L22 12 L20 14"></path>
+            </svg>
+            <svg class="w-3.5 h-3.5 text-[#34D399] hidden sm:block" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2L4 12H7L2 19H10V22H14V19H22L17 12H20L12 2Z" opacity="0.9" />
+            </svg>
+          </div>
+
+          <!-- Contenido Central: Badge Esmeralda + Anuncio Editorial -->
+          <div class="flex items-center gap-2 sm:gap-3 truncate">
+            <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-[#157347]/90 border border-[#34D399]/40 text-[#A7F3D0] text-[10px] sm:text-[11px] font-bold uppercase tracking-wider shrink-0 shadow-sm">
+              <span class="w-1.5 h-1.5 rounded-full bg-[#34D399] animate-pulse"></span>
+              <span>{lang === "es" ? "Navidad 2026" : "Holiday 2026"}</span>
+            </span>
+
+            <span class="text-amber-100/90 text-xs sm:text-sm font-medium truncate">
+              {
+                lang === "es" ? (
+                  <>
+                    <strong class="text-white font-semibold">Recetario Navideño:</strong>{" "}
+                    <span class="hidden md:inline text-amber-200/80">185 recetas saludables con respaldo clínico</span>
+                  </>
+                ) : (
+                  <>
+                    <strong class="text-white font-semibold">Holiday Recipe Book:</strong>{" "}
+                    <span class="hidden md:inline text-amber-200/80">185 clinical-backed healthy recipes</span>
+                  </>
+                )
+              }
+            </span>
+          </div>
+
+          <!-- Figuras Navideñas Derecha: Botón Dorado CTA y Destello de Estrella -->
+          <div class="flex items-center gap-2 shrink-0">
+            <span class="inline-flex items-center gap-1 px-2.5 sm:px-3 py-1 rounded-full bg-gradient-to-r from-[#E6A635] via-[#F5D061] to-[#D49522] group-hover:from-[#F5D061] group-hover:to-[#E6A635] text-[#28050D] font-extrabold text-[10px] sm:text-xs uppercase tracking-wider shadow-sm transition-all">
+              <span>{lang === "es" ? "Ver Recetario" : "View Recipes"}</span>
+              <svg class="w-3 h-3 transform group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"></path>
+              </svg>
+            </span>
+
+            <svg class="w-3.5 h-3.5 text-[#F5D061] hidden sm:block animate-pulse" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0L14.5 9.5L24 12L14.5 14.5L12 24L9.5 14.5L0 12L9.5 9.5L12 0Z"></path>
+            </svg>
+          </div>
+
+        </div>
+      </a>
+    </aside>
+  )}
+
   <!-- Mobile Menu Overlay -->
   <div
     id="mobile-menu"
-    class="fixed inset-0 top-[120px] md:hidden bg-[#FFFFFF] z-50 transform translate-x-full transition-transform duration-300 ease-in-out border-t border-pink-50"
+    class:list={[
+      "fixed inset-0 md:hidden bg-[#FFFFFF] z-50 transform translate-x-full transition-transform duration-300 ease-in-out border-t border-pink-50",
+      isHolidayBannerActive ? "top-[152px]" : "top-[120px]"
+    ]}
   >
     <div
       class="flex flex-col items-center justify-start h-full pt-12 space-y-8 px-6 text-center"
@@ -238,14 +315,6 @@ const langPath = lang === "es" ? "" : `/${lang}`;
         class="mobile-link text-2xl font-bold text-slate-800 hover:text-primary transition-colors"
         >{t("nav.blog")}</a
       >
-
-      <a
-        href="/recetario"
-        class="mobile-link text-sm font-bold text-[#D94E28] bg-[#FBF0EC] border border-[#D94E28]/30 px-5 py-2.5 rounded-xl transition-colors flex items-center justify-center gap-2 w-full max-w-xs"
-      >
-        <span>❄</span>
-        <span>Recetario Navideño 2026 (VIP)</span>
-      </a>
 
       <div class="pt-4 w-full max-w-xs">
         <a
@@ -409,4 +478,39 @@ const langPath = lang === "es" ? "" : `/${lang}`;
       height: 96px; /* Desktop height equivalent */
     }
   }
+
+  @keyframes spin-slow {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .animate-spin-slow {
+    animation: spin-slow 24s linear infinite;
+  }
 </style>
+
+<script is:inline>
+  // Verificación en runtime: ocultar automáticamente el banner al iniciar 2027
+  (() => {
+    function checkBannerExpiry() {
+      const banner = document.getElementById("holiday-navbar-banner");
+      if (banner) {
+        const expiryTime = new Date("2026-12-31T23:59:59").getTime();
+        if (Date.now() > expiryTime) {
+          banner.remove();
+          const mobileMenu = document.getElementById("mobile-menu");
+          if (mobileMenu) {
+            mobileMenu.classList.remove("top-[152px]");
+            mobileMenu.classList.add("top-[120px]");
+          }
+        }
+      }
+    }
+    checkBannerExpiry();
+    document.addEventListener("astro:page-load", checkBannerExpiry);
+  })();
+</script>

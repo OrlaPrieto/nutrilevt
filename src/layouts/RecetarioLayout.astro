@@ -1,6 +1,6 @@
 ---
 import SpeedInsights from "@vercel/speed-insights/astro";
-import '../styles/global.css';
+import "../styles/global.css";
 
 interface Props {
   title: string;
@@ -8,11 +8,14 @@ interface Props {
 }
 
 const {
-  title = "Recetario Navideño 2026 · Edición Clínica VIP | Nutrilev",
-  description = "185 recetas navideñas con respaldo clínico, porciones controladas y conteo de equivalentes SMAE por la Nutrióloga Velvet De la Cruz."
+  title = "Recetario Navideño 2026 · Edición Clínica| Nutrilev",
+  description = "185 recetas navideñas con respaldo clínico, porciones controladas y conteo de equivalentes SMAE por la Nutrióloga Velvet De la Cruz.",
 } = Astro.props;
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://nutrilev.com');
+const canonicalURL = new URL(
+  Astro.url.pathname,
+  Astro.site || "https://nutrilev.com",
+);
 ---
 
 <!doctype html>
@@ -51,7 +54,11 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://nutrilev
       body.recetario-body {
         background-color: var(--color-nav-bg);
         color: var(--color-nav-text);
-        font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+        font-family:
+          "Plus Jakarta Sans",
+          -apple-system,
+          BlinkMacSystemFont,
+          sans-serif;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         margin: 0;
@@ -59,20 +66,29 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://nutrilev
       }
 
       .font-display {
-        font-family: 'Playfair Display', Georgia, serif;
+        font-family: "Playfair Display", Georgia, serif;
       }
 
       .font-sans-recetario {
-        font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+        font-family:
+          "Plus Jakarta Sans",
+          -apple-system,
+          BlinkMacSystemFont,
+          sans-serif;
       }
 
       .font-mono-recetario {
-        font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+        font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
       }
 
       /* Custom print styles for single recipe cards */
       @media print {
-        header, nav, #filter-section, #vip-banner, #footer-editorial, .no-print {
+        header,
+        nav,
+        #filter-section,
+        #vip-banner,
+        #footer-editorial,
+        .no-print {
           display: none !important;
         }
         body {
