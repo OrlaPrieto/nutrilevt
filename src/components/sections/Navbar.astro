@@ -14,6 +14,11 @@ const langPath = lang === "es" ? "" : `/${lang}`;
 // Control de vigencia: Visible hasta el 31 de Diciembre del 2026 (23:59:59)
 const holidayBannerExpiry = new Date("2026-12-31T23:59:59");
 const isHolidayBannerActive = new Date() <= holidayBannerExpiry;
+
+// Solo visible en la página principal (Home en español o inglés)
+const rawPathname = Astro.url.pathname.replace(/\/$/, "") || "/";
+const isHomePage = rawPathname === "/" || rawPathname === "/en";
+const isBannerVisible = isHolidayBannerActive && isHomePage;
 ---
 
 <header class="fixed top-0 left-0 w-full z-50">
@@ -183,8 +188,8 @@ const isHolidayBannerActive = new Date() <= holidayBannerExpiry;
     </div>
   </nav>
 
-  <!-- Banner Navideño Editorial (Debajo del Header, visible hasta el 31 de Diciembre del 2026) -->
-  {isHolidayBannerActive && (
+  <!-- Banner Navideño Editorial (Debajo del Header, solo en la página principal, visible hasta el 31 de Diciembre del 2026) -->
+  {isBannerVisible && (
     <aside
       id="holiday-navbar-banner"
       class="holiday-banner-element relative z-40 bg-[#350811] border-b border-[#E6A635]/20 no-print"
@@ -195,7 +200,19 @@ const isHolidayBannerActive = new Date() <= holidayBannerExpiry;
         data-astro-prefetch="hover"
         class="group block w-full py-2 px-4 transition-colors hover:bg-[#3D0A14] focus:outline-none focus:bg-[#3D0A14]"
       >
-        <div class="max-w-7xl mx-auto flex items-center justify-center gap-2 sm:gap-2.5 text-xs sm:text-sm text-center">
+        <div class="max-w-7xl mx-auto flex items-center justify-center gap-2 sm:gap-3 text-xs sm:text-sm text-center">
+          <!-- Guirnalda Botánica Izquierda Minimalista -->
+          <svg class="w-7 sm:w-10 h-3.5 sm:h-4 text-[#E6A635]/60 hidden xs:block shrink-0" viewBox="0 0 60 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M2 4 C15 14, 35 14, 58 6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+            <path d="M12 9 C10 13, 14 15, 16 11" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+            <path d="M22 12 C24 16, 28 15, 27 11" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+            <path d="M34 12 C36 16, 40 15, 39 11" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+            <path d="M46 9 C48 13, 52 12, 50 8" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+            <circle cx="15" cy="8" r="1.2" fill="#F5D061"/>
+            <circle cx="28" cy="10" r="1.2" fill="#F5D061"/>
+            <circle cx="41" cy="9" r="1.2" fill="#F5D061"/>
+          </svg>
+
           <!-- Prefijo discreto en dorado -->
           <span class="text-[#E6A635] text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.18em] hidden sm:inline shrink-0">
             {lang === "es" ? "EDICIÓN 2026" : "2026 EDITION"}
@@ -218,6 +235,18 @@ const isHolidayBannerActive = new Date() <= holidayBannerExpiry;
               <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
             </svg>
           </span>
+
+          <!-- Guirnalda Botánica Derecha Minimalista -->
+          <svg class="w-7 sm:w-10 h-3.5 sm:h-4 text-[#E6A635]/60 hidden xs:block shrink-0 transform scale-x-[-1]" viewBox="0 0 60 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M2 4 C15 14, 35 14, 58 6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+            <path d="M12 9 C10 13, 14 15, 16 11" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+            <path d="M22 12 C24 16, 28 15, 27 11" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+            <path d="M34 12 C36 16, 40 15, 39 11" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+            <path d="M46 9 C48 13, 52 12, 50 8" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+            <circle cx="15" cy="8" r="1.2" fill="#F5D061"/>
+            <circle cx="28" cy="10" r="1.2" fill="#F5D061"/>
+            <circle cx="41" cy="9" r="1.2" fill="#F5D061"/>
+          </svg>
         </div>
       </a>
     </aside>
@@ -228,7 +257,7 @@ const isHolidayBannerActive = new Date() <= holidayBannerExpiry;
     id="mobile-menu"
     class:list={[
       "fixed inset-0 md:hidden bg-[#FFFFFF] z-50 transform translate-x-full transition-transform duration-300 ease-in-out border-t border-pink-50",
-      isHolidayBannerActive ? "top-[156px]" : "top-[120px]"
+      isBannerVisible ? "top-[156px]" : "top-[120px]"
     ]}
   >
     <div
