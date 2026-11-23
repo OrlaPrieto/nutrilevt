@@ -544,13 +544,15 @@ function getCategoryContour(slug: string) {
           return (
             <article
               data-id={recipe.id}
+              data-action="open-recipe"
+              data-recipe-id={recipe.id}
               data-category={recipe.categorySlug}
               data-calories={recipe.calories}
               data-tags={recipe.tags.join("|")}
               data-title={recipe.title.toLowerCase()}
               data-ingredients={recipe.ingredients.join(" ").toLowerCase()}
               data-free={isFree ? "true" : "false"}
-              class={`recipe-card bg-[#28050D] rounded-2xl overflow-hidden border ${style.border} ${style.glow} flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 group relative ${!isFree ? "hidden" : ""}`}
+              class={`recipe-card bg-[#28050D] rounded-2xl overflow-hidden border ${style.border} ${style.glow} flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 group relative cursor-pointer ${!isFree ? "hidden" : ""}`}
             >
               <!-- Top Dish Photo (Ocupa todo el ancho superior sin marco grueso exterior) -->
               <div
@@ -1416,7 +1418,7 @@ function getCategoryContour(slug: string) {
     // Application state
     let isVip = false;
     let activeCategory = "todas";
-    let activeTag = null;
+    let activeTags = new Set();
     let onlyFree = false;
     let searchQuery = "";
     let calorieRange = "all";
@@ -1744,7 +1746,7 @@ function getCategoryContour(slug: string) {
       const tagBtns = document.querySelectorAll(".filter-tag-btn");
       tagBtns.forEach((btn) => {
         const tag = btn.getAttribute("data-filter-tag");
-        if (activeTag === tag) {
+        if (tag && activeTags.has(tag)) {
           btn.className =
             "filter-tag-btn text-xs font-bold px-3.5 py-2.5 bg-gradient-to-r from-[#E6A635] to-[#D49522] text-[#28050D] border border-[#FFF0C0] rounded-full whitespace-nowrap cursor-pointer transition-all shadow-md active:scale-95";
         } else {
@@ -1757,7 +1759,7 @@ function getCategoryContour(slug: string) {
       drawerTagBtns.forEach((btn) => {
         const tag = btn.getAttribute("data-drawer-tag");
         const check = btn.querySelector(".tag-check");
-        if (activeTag === tag) {
+        if (tag && activeTags.has(tag)) {
           btn.className =
             "drawer-tag-btn px-3.5 py-2 rounded-full border border-[#FFF0C0] bg-gradient-to-r from-[#E6A635] to-[#D49522] text-[#28050D] font-bold text-xs transition-all flex items-center gap-1.5 cursor-pointer shadow-md";
           if (check) check.classList.remove("opacity-0");
@@ -1841,7 +1843,9 @@ function getCategoryContour(slug: string) {
         }
 
         let matchesCat = activeCategory === "todas" || cat === activeCategory;
-        let matchesTag = !activeTag || tags.includes(activeTag);
+        let matchesTag =
+          activeTags.size === 0 ||
+          Array.from(activeTags).every((t) => tags.includes(t));
         let matchesFree = !onlyFree || isFree;
         let matchesCal = true;
         if (calorieRange === "under100") matchesCal = cals > 0 && cals < 100;
@@ -1888,7 +1892,7 @@ function getCategoryContour(slug: string) {
       // Actualizar insignia numérica de filtros activos
       let activeFiltersCount = 0;
       if (activeCategory !== "todas") activeFiltersCount++;
-      if (activeTag) activeFiltersCount++;
+      if (activeTags.size > 0) activeFiltersCount += activeTags.size;
       if (onlyFree) activeFiltersCount++;
       if (calorieRange !== "all") activeFiltersCount++;
       if (searchQuery) activeFiltersCount++;
@@ -1932,7 +1936,8 @@ function getCategoryContour(slug: string) {
       const activeFilters = [];
       if (activeCategory !== "todas")
         activeFilters.push(`Categoría: ${activeCategory}`);
-      if (activeTag) activeFilters.push(`Etiqueta: ${activeTag}`);
+      if (activeTags.size > 0)
+        activeFilters.push(`Etiquetas: ${Array.from(activeTags).join(", ")}`);
       if (onlyFree) activeFilters.push("Solo Muestras Gratis");
       if (calorieRange !== "all") {
         const calNames = {
@@ -2010,13 +2015,8 @@ function getCategoryContour(slug: string) {
       });
 
       // Recipe modal triggers
-      document.addEventListener("click", (e) => {
-        const btn = e.target.closest('[data-action="open-recipe"]');
-        if (btn) {
-          const recipeId = btn.getAttribute("data-recipe-id");
-          if (recipeId) openRecipeModal(recipeId);
-        }
-      });
+      document.removeEventListener("click", handleDocumentClick);
+      document.addEventListener("click", handleDocumentClick);
 
       document
         .getElementById("btn-close-modal")
@@ -2029,14 +2029,8 @@ function getCategoryContour(slug: string) {
       });
 
       // Escape key to close modals and drawer
-      document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape") {
-          closeRecipeModal();
-          closeUnlockModal();
-          closeLogoutModal();
-          closeFilterDrawer();
-        }
-      });
+      document.removeEventListener("keydown", handleDocumentKeydown);
+      document.addEventListener("keydown", handleDocumentKeydown);
 
       // Filter Drawer triggers
       document
@@ -2055,13 +2049,14 @@ function getCategoryContour(slug: string) {
       // Reset filters logic
       const resetFilters = () => {
         activeCategory = "todas";
-        activeTag = null;
+        activeTags.clear();
         onlyFree = false;
         calorieRange = "all";
         searchQuery = "";
         if (searchInput) searchInput.value = "";
         clearBtn?.classList.add("hidden");
 
+        const catBtns = document.querySelectorAll(".cat-tab-btn");
         catBtns.forEach((b, idx) => {
           if (idx === 0) {
             b.className =
@@ -2093,10 +2088,11 @@ function getCategoryContour(slug: string) {
       drawerTagBtns.forEach((btn) => {
         btn.addEventListener("click", () => {
           const tag = btn.getAttribute("data-drawer-tag");
-          if (activeTag === tag) {
-            activeTag = null;
+          if (!tag) return;
+          if (activeTags.has(tag)) {
+            activeTags.delete(tag);
           } else {
-            activeTag = tag;
+            activeTags.add(tag);
           }
           syncTagButtons();
           applyFilters();
@@ -2138,10 +2134,11 @@ function getCategoryContour(slug: string) {
       tagBtns.forEach((btn) => {
         btn.addEventListener("click", () => {
           const tag = btn.getAttribute("data-filter-tag");
-          if (activeTag === tag) {
-            activeTag = null;
+          if (!tag) return;
+          if (activeTags.has(tag)) {
+            activeTags.delete(tag);
           } else {
-            activeTag = tag;
+            activeTags.add(tag);
           }
           syncTagButtons();
           applyFilters();
@@ -2197,11 +2194,39 @@ function getCategoryContour(slug: string) {
       window.addEventListener("scroll", updateStickyOffset, { passive: true });
     }
 
-    if (document.readyState === "loading") {
-      document.addEventListener("DOMContentLoaded", initRecetario);
-    } else {
+    function handleDocumentClick(e) {
+      const btn = e.target.closest('[data-action="open-recipe"]');
+      if (btn) {
+        const recipeId = btn.getAttribute("data-recipe-id");
+        if (recipeId) openRecipeModal(recipeId);
+      }
+    }
+
+    function handleDocumentKeydown(e) {
+      if (e.key === "Escape") {
+        closeRecipeModal();
+        closeUnlockModal();
+        closeLogoutModal();
+        closeFilterDrawer();
+      }
+    }
+
+    let hasLoaded = false;
+    function safeInit() {
+      if (hasLoaded) return;
+      hasLoaded = true;
       initRecetario();
     }
-    document.addEventListener("astro:page-load", initRecetario);
+
+    document.addEventListener("astro:page-load", () => {
+      hasLoaded = false;
+      safeInit();
+    });
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", safeInit, { once: true });
+    } else {
+      safeInit();
+    }
   </script>
 </Layout>
