@@ -414,7 +414,7 @@ function getCategoryContour(slug: string) {
               data-title={recipe.title.toLowerCase()}
               data-ingredients={recipe.ingredients.join(" ").toLowerCase()}
               data-free={isFree ? "true" : "false"}
-              class={`recipe-card bg-[#28050D]/95 backdrop-blur-md rounded-3xl p-5 border-2 ${style.border} ${style.glow} flex flex-col justify-between transition-all duration-300 hover:-translate-y-1.5 shadow-2xl group relative`}
+              class={`recipe-card bg-[#28050D]/95 backdrop-blur-md rounded-3xl p-5 border-2 ${style.border} ${style.glow} flex flex-col justify-between transition-all duration-300 hover:-translate-y-1.5 shadow-2xl group relative ${!isFree ? "hidden" : ""}`}
             >
               <div>
                 <!-- Top Dish Photo con Marco Dorado idéntico a la imagen del PDF -->
@@ -556,6 +556,46 @@ function getCategoryContour(slug: string) {
             </article>
           );
         })}
+      </div>
+
+      <!-- BANNER DE BLOQUEO VIP (SOLO VISIBLE CUANDO NO SE TIENE LA CONTRASEÑA) -->
+      <div id="locked-recipes-banner" class="mt-14 p-1 bg-gradient-to-br from-[#F5D061] via-[#E6A635] to-[#B37B1B] rounded-3xl shadow-[0_15px_50px_rgba(0,0,0,0.6)]">
+        <div class="bg-[#2B050D] p-8 sm:p-12 rounded-[22px] text-center max-w-3xl mx-auto text-white">
+          <div class="w-16 h-16 rounded-2xl bg-[#E6A635]/15 border-2 border-[#E6A635]/40 text-[#F5D061] flex items-center justify-center mx-auto mb-5 text-3xl font-bold shadow-lg">
+            <span>🔒</span>
+          </div>
+
+          <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-rose-500/20 border border-rose-400/40 text-rose-300 rounded-full text-xs font-bold uppercase tracking-wider mb-4">
+            <span>179 Recetas Adicionales Protegidas</span>
+          </div>
+
+          <h3 class="font-display text-2xl sm:text-4xl text-white font-bold leading-tight mb-4">
+            Desbloquea las 179 Recetas Restantes
+          </h3>
+
+          <p class="text-amber-100/80 text-sm sm:text-base leading-relaxed mb-8 max-w-xl mx-auto font-light">
+            Estas son únicamente las <strong>6 recetas de muestra gratuita</strong>. Para hacer visibles las <strong>179 recetas restantes</strong> con sus fotografías, tablas de equivalentes SMAE e información nutricional completa, introduce tu contraseña VIP.
+          </p>
+
+          <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <button
+              type="button"
+              id="btn-banner-unlock"
+              class="w-full sm:w-auto py-4 px-8 bg-gradient-to-r from-[#991B32] via-[#800F24] to-[#991B32] hover:from-[#A51F38] hover:to-[#A51F38] border border-[#F5D061]/70 text-white font-bold text-sm uppercase tracking-wider rounded-2xl transition-all shadow-[0_4px_20px_rgba(153,27,50,0.6)] hover:shadow-[0_6px_25px_rgba(245,208,97,0.4)] cursor-pointer active:scale-98"
+            >
+              🔑 Ingresar Código de Acceso
+            </button>
+
+            <a
+              href="https://wa.me/526143958598?text=Hola%20Nutri%C3%B3loga%20Velvet,%20me%20interesa%20adquirir%20el%20Recetario%20Navide%C3%B1o%202026%20completo%20(185%20recetas)."
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-full sm:w-auto py-4 px-8 bg-gradient-to-r from-[#0F5132] via-[#157347] to-[#0F5132] hover:from-[#13653F] hover:to-[#13653F] border border-emerald-400/50 text-white font-bold text-sm uppercase tracking-wider rounded-2xl transition-all shadow-[0_4px_16px_rgba(21,115,71,0.5)] hover:shadow-[0_6px_25px_rgba(52,211,153,0.4)] cursor-pointer active:scale-98 text-center"
+            >
+              💬 Comprar Acceso por WhatsApp
+            </a>
+          </div>
+        </div>
       </div>
     </main>
 
@@ -962,16 +1002,20 @@ function getCategoryContour(slug: string) {
       const heroLocked = document.getElementById("hero-vip-locked");
       const heroUnlocked = document.getElementById("hero-vip-unlocked");
 
+      const lockedBanner = document.getElementById("locked-recipes-banner");
+
       if (isVip) {
         if (pillText) pillText.textContent = "✓ VIP Activo (Cerrar)";
         if (pillBtn) pillBtn.className = "px-3 py-1 bg-emerald-500/20 hover:bg-emerald-500/30 border border-emerald-400 text-emerald-300 text-[11px] font-bold rounded-full transition-colors cursor-pointer";
         if (heroLocked) heroLocked.classList.add("hidden");
         if (heroUnlocked) heroUnlocked.classList.remove("hidden");
+        if (lockedBanner) lockedBanner.classList.add("hidden");
       } else {
         if (pillText) pillText.textContent = "🔑 Ingresar Código";
         if (pillBtn) pillBtn.className = "px-3 py-1 bg-[#E6A635]/20 hover:bg-[#E6A635]/30 border border-[#E6A635]/50 text-[#F5D061] text-[11px] font-bold rounded-full transition-colors cursor-pointer";
         if (heroLocked) heroLocked.classList.remove("hidden");
         if (heroUnlocked) heroUnlocked.classList.add("hidden");
+        if (lockedBanner) lockedBanner.classList.remove("hidden");
       }
 
       // Update card buttons
@@ -1130,6 +1174,12 @@ function getCategoryContour(slug: string) {
         const ingredients = card.getAttribute("data-ingredients") || "";
         const isFree = card.getAttribute("data-free") === "true";
 
+        // SI NO TIENE LA CONTRASEÑA (NO VIP), LAS RECETAS QUE NO SON DE MUESTRA QUEDAN COMPLETAMENTE OCULTAS
+        if (!isVip && !isFree) {
+          card.classList.add("hidden");
+          return;
+        }
+
         let matchesCat = activeCategory === "todas" || cat === activeCategory;
         let matchesTag = !activeTag || tags.includes(activeTag);
         let matchesFree = !onlyFree || isFree;
@@ -1149,7 +1199,13 @@ function getCategoryContour(slug: string) {
       });
 
       const countSpan = document.getElementById("count-visible");
-      if (countSpan) countSpan.textContent = visibleCount;
+      if (countSpan) {
+        if (isVip) {
+          countSpan.textContent = visibleCount;
+        } else {
+          countSpan.textContent = `${visibleCount} de muestra (179 bloqueadas)`;
+        }
+      }
 
       const emptyState = document.getElementById("empty-state");
       const recipesGrid = document.getElementById("recipes-grid");
@@ -1192,6 +1248,10 @@ function getCategoryContour(slug: string) {
       });
 
       document.getElementById("btn-hero-unlock")?.addEventListener("click", () => {
+        openUnlockModal();
+      });
+
+      document.getElementById("btn-banner-unlock")?.addEventListener("click", () => {
         openUnlockModal();
       });
 
