@@ -183,86 +183,41 @@ const isHolidayBannerActive = new Date() <= holidayBannerExpiry;
     </div>
   </nav>
 
-  <!-- Banner Navideño (Debajo del Header, visible hasta el 31 de Diciembre del 2026) -->
+  <!-- Banner Navideño Editorial (Debajo del Header, visible hasta el 31 de Diciembre del 2026) -->
   {isHolidayBannerActive && (
     <aside
       id="holiday-navbar-banner"
-      class="holiday-banner-element relative z-40 bg-gradient-to-r from-[#1A0206] via-[#480816] to-[#1A0206] border-y border-[#E6A635]/40 shadow-[0_4px_20px_rgba(0,0,0,0.35)] no-print overflow-hidden"
+      class="holiday-banner-element relative z-40 bg-[#350811] border-b border-[#E6A635]/20 no-print"
       aria-label={lang === "es" ? "Banner Recetario Navideño 2026" : "Holiday Recipe Book 2026 Banner"}
     >
       <a
         href={`${langPath}/recetario`}
         data-astro-prefetch="hover"
-        class="group relative block w-full py-2.5 sm:py-3.5 px-4 sm:px-6 transition-all duration-300 hover:brightness-110"
+        class="group block w-full py-2 px-4 transition-colors hover:bg-[#3D0A14] focus:outline-none focus:bg-[#3D0A14]"
       >
-        <!-- Background subtle Christmas glows & sparkles -->
-        <div class="absolute inset-0 pointer-events-none opacity-20 bg-[radial-gradient(#F5D061_1px,transparent_1px)] [background-size:16px_16px]"></div>
-        <div class="absolute -top-6 left-1/4 w-40 h-20 bg-[#F5D061]/15 rounded-full blur-xl pointer-events-none"></div>
-        <div class="absolute -bottom-6 right-1/4 w-40 h-20 bg-emerald-500/15 rounded-full blur-xl pointer-events-none"></div>
+        <div class="max-w-7xl mx-auto flex items-center justify-center gap-2 sm:gap-2.5 text-xs sm:text-sm text-center">
+          <!-- Prefijo discreto en dorado -->
+          <span class="text-[#E6A635] text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.18em] hidden sm:inline shrink-0">
+            {lang === "es" ? "EDICIÓN 2026" : "2026 EDITION"}
+          </span>
 
-        <div class="max-w-7xl mx-auto flex items-center justify-between sm:justify-center gap-3 sm:gap-6 relative z-10 text-white font-medium">
-          
-          <!-- Figuras Navideñas Izquierda: Copo de Nieve y Pino SVG en Trazo Fino -->
-          <div class="flex items-center gap-2 text-[#F5D061] shrink-0">
-            <!-- Copo de nieve elegante más visible SVG -->
-            <svg class="w-5 h-5 sm:w-6 sm:h-6 text-[#F5D061] animate-spin-slow drop-shadow-[0_0_8px_rgba(245,208,97,0.5)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="12" y1="2" x2="12" y2="22"></line>
-              <line x1="2" y1="12" x2="22" y2="12"></line>
-              <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line>
-              <line x1="4.93" y1="19.07" x2="19.07" y2="4.93"></line>
-              <!-- Ramitas del copo -->
-              <path d="M10 4 L12 2 L14 4"></path>
-              <path d="M10 20 L12 22 L14 20"></path>
-              <path d="M4 10 L2 12 L4 14"></path>
-              <path d="M20 10 L22 12 L20 14"></path>
+          <!-- Separador sutil -->
+          <span class="text-white/25 hidden sm:inline select-none" aria-hidden="true">·</span>
+
+          <!-- Texto principal en blanco/crema -->
+          <span class="text-amber-50/90 font-normal truncate sm:overflow-visible">
+            {lang === "es" ? "Recetario Navideño con respaldo clínico" : "Holiday Recipe Book with clinical backing"}
+          </span>
+
+          <span class="text-white/25 hidden xs:inline select-none" aria-hidden="true">·</span>
+
+          <!-- Enlace de acción limpio en dorado -->
+          <span class="text-[#F5D061] font-semibold group-hover:text-white underline-offset-4 group-hover:underline inline-flex items-center gap-1 transition-colors shrink-0">
+            <span>{lang === "es" ? "Ver recetario" : "View recipe book"}</span>
+            <svg class="w-3.5 h-3.5 transform group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
             </svg>
-            <!-- Pino navideño minimalista en verde esmeralda -->
-            <svg class="w-4 h-4 sm:w-4.5 sm:h-4.5 text-[#34D399] hidden sm:block drop-shadow-[0_0_6px_rgba(52,211,153,0.4)]" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2L4 12H7L2 19H10V22H14V19H22L17 12H20L12 2Z" opacity="0.95" />
-            </svg>
-          </div>
-
-          <!-- Contenido Central: Badge Esmeralda + Anuncio Editorial -->
-          <div class="flex items-center gap-2.5 sm:gap-3.5 truncate">
-            <!-- Badge esmeralda / dorado más nítido -->
-            <span class="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-full bg-[#157347] border border-[#34D399]/50 text-[#A7F3D0] text-[11px] sm:text-xs font-bold uppercase tracking-wider shrink-0 shadow-sm">
-              <span class="w-2 h-2 rounded-full bg-[#34D399] animate-pulse"></span>
-              <span>{lang === "es" ? "Navidad 2026" : "Holiday 2026"}</span>
-            </span>
-
-            <!-- Texto Principal Más Grande y Legible -->
-            <span class="text-amber-100/95 text-xs sm:text-sm md:text-base font-medium truncate">
-              {
-                lang === "es" ? (
-                  <>
-                    <strong class="text-white font-bold tracking-tight">Recetario Navideño Exclusivo:</strong>{" "}
-                    <span class="hidden md:inline text-amber-200/90 font-normal">185 recetas saludables con respaldo clínico</span>
-                  </>
-                ) : (
-                  <>
-                    <strong class="text-white font-bold tracking-tight">Exclusive Holiday Recipe Book:</strong>{" "}
-                    <span class="hidden md:inline text-amber-200/90 font-normal">185 clinical-backed healthy festive recipes</span>
-                  </>
-                )
-              }
-            </span>
-          </div>
-
-          <!-- Figuras Navideñas Derecha: Botón Dorado CTA y Destello de Estrella -->
-          <div class="flex items-center gap-2.5 shrink-0">
-            <span class="inline-flex items-center gap-1.5 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full bg-gradient-to-r from-[#E6A635] via-[#F5D061] to-[#D49522] group-hover:from-[#F5D061] group-hover:to-[#E6A635] text-[#28050D] font-extrabold text-xs sm:text-sm uppercase tracking-wider shadow-md transition-all">
-              <span>{lang === "es" ? "Ver Recetario" : "View Recipes"}</span>
-              <svg class="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"></path>
-              </svg>
-            </span>
-
-            <!-- Estrella de 4 puntas dorada SVG -->
-            <svg class="w-4 h-4 sm:w-5 sm:h-5 text-[#F5D061] hidden sm:block animate-pulse drop-shadow-[0_0_8px_rgba(245,208,97,0.6)]" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 0L14.5 9.5L24 12L14.5 14.5L12 24L9.5 14.5L0 12L9.5 9.5L12 0Z"></path>
-            </svg>
-          </div>
-
+          </span>
         </div>
       </a>
     </aside>
@@ -273,7 +228,7 @@ const isHolidayBannerActive = new Date() <= holidayBannerExpiry;
     id="mobile-menu"
     class:list={[
       "fixed inset-0 md:hidden bg-[#FFFFFF] z-50 transform translate-x-full transition-transform duration-300 ease-in-out border-t border-pink-50",
-      isHolidayBannerActive ? "top-[160px]" : "top-[120px]"
+      isHolidayBannerActive ? "top-[156px]" : "top-[120px]"
     ]}
   >
     <div
@@ -484,19 +439,6 @@ const isHolidayBannerActive = new Date() <= holidayBannerExpiry;
       height: 96px; /* Desktop height equivalent */
     }
   }
-
-  @keyframes spin-slow {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
-
-  .animate-spin-slow {
-    animation: spin-slow 24s linear infinite;
-  }
 </style>
 
 <script is:inline>
@@ -510,7 +452,7 @@ const isHolidayBannerActive = new Date() <= holidayBannerExpiry;
           banner.remove();
           const mobileMenu = document.getElementById("mobile-menu");
           if (mobileMenu) {
-            mobileMenu.classList.remove("top-[160px]");
+            mobileMenu.classList.remove("top-[156px]");
             mobileMenu.classList.add("top-[120px]");
           }
         }
