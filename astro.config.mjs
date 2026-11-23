@@ -17,6 +17,11 @@ export default defineConfig({
   },
 
   site: 'https://nutrilev.com', // Replace with the actual domain later
+  redirects: {
+    '/recetario': '/recetario-navideno-2026',
+    '/en/recetario': '/recetario-navideno-2026',
+    '/en/recetario-navideno-2026': '/recetario-navideno-2026',
+  },
   i18n: {
     defaultLocale: 'es',
     locales: ['es', 'en'],
