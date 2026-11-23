@@ -263,27 +263,35 @@
   </div>
 </div>
 
-<!-- 3. BOTÓN FLOTANTE DE CONTROL (Activar / Desactivar efectos) -->
-<div class="fixed bottom-5 right-5 z-40 no-print font-sans-recetario">
+<!-- 3. BOTÓN FLOTANTE DE CONTROL MINIMALISTA (Activar / Desactivar efectos) -->
+<div class="fixed bottom-5 right-5 z-40 no-print">
   <button
     id="btn-toggle-holiday-fx"
     type="button"
-    class="group relative h-11 px-3.5 sm:px-4 rounded-full bg-[#2B050D]/95 hover:bg-[#3D0A15] active:scale-95 border border-[#E6A635]/60 hover:border-[#F5D061] text-[#F5D061] shadow-[0_6px_25px_rgba(0,0,0,0.6)] backdrop-blur-md flex items-center gap-2 transition-all duration-300 cursor-pointer"
+    class="w-10 h-10 rounded-full bg-[#2B050D]/90 hover:bg-[#3D0A15] active:scale-95 border border-[#E6A635]/40 hover:border-[#F5D061] text-[#F5D061] shadow-[0_4px_16px_rgba(0,0,0,0.6)] backdrop-blur-md flex items-center justify-center transition-all duration-300 cursor-pointer"
     aria-label="Activar o desactivar efectos navideños"
     title="Efectos festivos activos (Clic para pausar)"
   >
-    <!-- Ícono festivo interactivo -->
-    <span id="holiday-fx-icon" class="text-base sm:text-lg transition-transform duration-300 group-hover:rotate-45">
-      ✨
-    </span>
-    <span id="holiday-fx-label" class="text-[11px] font-bold tracking-wide text-amber-100 hidden sm:inline">
-      Navidad
-    </span>
-    <!-- Indicador de estado (luz de encendido/apagado) -->
-    <span
-      id="holiday-fx-status-dot"
-      class="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]"
-    ></span>
+    <!-- Ícono SVG minimalista de copo de nieve con trazo fino -->
+    <svg
+      id="holiday-fx-icon"
+      class="w-4 h-4 transition-transform duration-300 hover:rotate-45"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <line x1="12" y1="2" x2="12" y2="22"></line>
+      <line x1="2" y1="12" x2="22" y2="12"></line>
+      <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line>
+      <line x1="19.07" y1="4.93" x2="4.93" y2="19.07"></line>
+      <polyline points="10 5 12 3 14 5"></polyline>
+      <polyline points="10 19 12 21 14 19"></polyline>
+      <polyline points="5 10 3 12 5 14"></polyline>
+      <polyline points="19 10 21 12 19 14"></polyline>
+    </svg>
   </button>
 </div>
 
@@ -526,34 +534,23 @@
     // Actualizar interfaz visual y clases según estado
     function updateEffectsUI() {
       const btn = document.getElementById("btn-toggle-holiday-fx");
-      const icon = document.getElementById("holiday-fx-icon");
-      const dot = document.getElementById("holiday-fx-status-dot");
-      const label = document.getElementById("holiday-fx-label");
 
       if (isEffectsActive) {
         document.documentElement.classList.remove("holiday-effects-disabled");
         if (btn) {
           btn.title = "Efectos festivos activos (Clic para pausar)";
-          btn.classList.remove("border-zinc-700", "bg-[#1E0308]/90", "text-zinc-400");
-          btn.classList.add("border-[#E6A635]/60", "text-[#F5D061]", "bg-[#2B050D]/95");
-        }
-        if (icon) icon.textContent = "✨";
-        if (label) label.textContent = "Navidad";
-        if (dot) {
-          dot.className = "w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]";
+          btn.setAttribute("aria-pressed", "true");
+          btn.classList.remove("opacity-35", "border-zinc-700", "bg-[#1E0308]/70", "text-zinc-500");
+          btn.classList.add("opacity-100", "border-[#E6A635]/40", "text-[#F5D061]", "bg-[#2B050D]/90");
         }
         startAnimation();
       } else {
         document.documentElement.classList.add("holiday-effects-disabled");
         if (btn) {
           btn.title = "Efectos festivos pausados (Clic para activar)";
-          btn.classList.remove("border-[#E6A635]/60", "text-[#F5D061]", "bg-[#2B050D]/95");
-          btn.classList.add("border-zinc-700", "bg-[#1E0308]/90", "text-zinc-400");
-        }
-        if (icon) icon.textContent = "❄️";
-        if (label) label.textContent = "Pausado";
-        if (dot) {
-          dot.className = "w-2 h-2 rounded-full bg-zinc-600";
+          btn.setAttribute("aria-pressed", "false");
+          btn.classList.remove("opacity-100", "border-[#E6A635]/40", "text-[#F5D061]", "bg-[#2B050D]/90");
+          btn.classList.add("opacity-35", "border-zinc-700", "bg-[#1E0308]/70", "text-zinc-500");
         }
         stopAnimation();
       }

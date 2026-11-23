@@ -184,11 +184,12 @@ function getCategoryContour(slug: string) {
         
         <!-- Left: Headline & Manifesto -->
         <div class="lg:col-span-7">
-          <!-- Holiday Festive Tag -->
-          <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#E6A635]/15 border border-[#E6A635]/40 text-[#F5D061] text-xs font-bold uppercase tracking-wider mb-5 backdrop-blur-md shadow-[0_0_15px_rgba(230,166,53,0.15)]">
-            <span>✨</span>
-            <span>Edición Navideña 2026 · 716 Páginas</span>
-            <span class="w-1.5 h-1.5 rounded-full bg-[#E6A635]"></span>
+          <!-- Holiday Festive Tag (Sin emojis) -->
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E6A635]/10 border border-[#E6A635]/30 text-[#F5D061] text-xs font-semibold tracking-wide mb-5 backdrop-blur-md">
+            <span>Edición Navideña 2026</span>
+            <span class="w-1 h-1 rounded-full bg-[#E6A635]/60"></span>
+            <span>716 Páginas</span>
+            <span class="w-1 h-1 rounded-full bg-[#E6A635]/60"></span>
             <span>185 Recetas</span>
           </div>
 
@@ -201,71 +202,72 @@ function getCategoryContour(slug: string) {
           </p>
         </div>
 
-        <!-- Right: VIP Card con marco metálico dorado -->
-        <div class="lg:col-span-5 p-1 bg-gradient-to-br from-[#F5D061] via-[#E6A635] to-[#B37B1B] rounded-3xl shadow-[0_10px_40px_rgba(0,0,0,0.5)]">
-          <div class="bg-[#2B050D] p-6 sm:p-8 rounded-[22px]">
-            <div class="flex items-center justify-between mb-4 pb-3 border-b border-[#E6A635]/25">
-              <span class="text-xs font-bold uppercase tracking-wider text-[#F5D061] flex items-center gap-2">
-                <span>⭐</span>
-                <span>Recetario Navideño Completo</span>
-              </span>
-              <span class="text-[11px] font-bold px-3 py-1 bg-gradient-to-r from-[#E6A635] to-[#D49522] text-[#28050D] rounded-full shadow-sm">
-                Edición 2026
-              </span>
+        <!-- Right: VIP Card refinada (Sin caja dentro de caja, borde fino elegante) -->
+        <div class="lg:col-span-5 rounded-2xl border border-[#E6A635]/35 bg-[#2B050D]/90 backdrop-blur-md p-6 sm:p-8 shadow-[0_10px_40px_rgba(0,0,0,0.4)]">
+          <div class="flex items-center justify-between mb-4 pb-3 border-b border-[#E6A635]/20">
+            <span class="text-xs font-semibold uppercase tracking-wider text-[#F5D061]">
+              Recetario Navideño Completo
+            </span>
+            <span class="text-[11px] font-medium px-2.5 py-0.5 rounded-full border border-[#E6A635]/35 text-[#F5D061] bg-[#E6A635]/10">
+              Edición 2026
+            </span>
+          </div>
+
+          <div id="hero-vip-locked">
+            <h2 class="font-display text-2xl text-white font-bold mb-2">
+              Desbloquea las 185 Recetas
+            </h2>
+            <p class="text-amber-100/75 text-sm leading-relaxed mb-6 font-light">
+              Tienes <strong>6 recetas de muestra gratuitas</strong> disponibles. Para tener acceso ilimitado a las 185 recetas completas con fotografías, porciones e información nutricional, ingresa tu código VIP o adquiérelo por WhatsApp.
+            </p>
+
+            <div class="space-y-3">
+              <!-- Botón primario: Ingresar Código de Acceso (Elegante dorado sólido con icono fino) -->
+              <button
+                type="button"
+                id="btn-hero-unlock"
+                class="w-full py-3.5 px-5 bg-gradient-to-r from-[#E6A635] to-[#D49522] hover:from-[#F5D061] hover:to-[#E6A635] text-[#28050D] font-bold text-xs uppercase tracking-wider rounded-xl transition-all duration-200 shadow-md hover:shadow-[0_4px_20px_rgba(230,166,53,0.35)] active:scale-98 cursor-pointer flex items-center justify-center gap-2"
+              >
+                <svg class="w-4 h-4 text-[#28050D]" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 5.25a3 3 0 013 3m3 0a6 6 0 01-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25v-2.818c0-.597.237-1.17.659-1.591l6.499-6.499c.404-.404.527-1 .43-1.563A6 6 0 1121.75 8.25z" />
+                </svg>
+                <span>Ingresar Código de Acceso</span>
+              </button>
+
+              <!-- Botón secundario limpio: Comprar por WhatsApp (Estilo outline sutil sin verde chillón) -->
+              <a
+                href="https://wa.me/526143958598?text=Hola%20Nutri%C3%B3loga%20Velvet,%20me%20interesa%20adquirir%20el%20Recetario%20Navide%C3%B1o%202026%20completo%20(185%20recetas)."
+                target="_blank"
+                rel="noopener noreferrer"
+                class="w-full py-3 px-5 bg-transparent hover:bg-white/5 border border-white/25 hover:border-white/40 text-amber-100/90 hover:text-white font-medium text-xs tracking-wider rounded-xl transition-all duration-200 active:scale-98 text-center flex items-center justify-center gap-2"
+              >
+                <svg class="w-4 h-4 text-white/80" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a.75.75 0 01-1.074-.865 5.25 5.25 0 001.026-3.032A8.196 8.196 0 013 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z" />
+                </svg>
+                <span>Comprar Acceso por WhatsApp</span>
+              </a>
             </div>
+          </div>
 
-            <div id="hero-vip-locked">
-              <h2 class="font-display text-2xl text-white font-bold mb-2">
-                Desbloquea las 185 Recetas
-              </h2>
-              <p class="text-amber-100/75 text-sm leading-relaxed mb-6">
-                Tienes <strong>6 recetas de muestra gratuitas</strong> disponibles. Para tener acceso ilimitado a las 185 recetas completas con fotografías, porciones e información nutricional, ingresa tu código VIP o adquiérelo por WhatsApp.
-              </p>
-
-              <div class="space-y-3">
-                <!-- Botón único con brillo dorado -->
-                <button
-                  type="button"
-                  id="btn-hero-unlock"
-                  class="w-full py-4 px-5 bg-gradient-to-r from-[#991B32] via-[#800F24] to-[#991B32] hover:from-[#A51F38] hover:to-[#A51F38] border border-[#F5D061]/70 text-white font-bold text-sm rounded-2xl transition-all duration-300 shadow-[0_4px_20px_rgba(153,27,50,0.6)] hover:shadow-[0_6px_25px_rgba(245,208,97,0.4)] hover:-translate-y-0.5 active:scale-98 cursor-pointer flex items-center justify-center gap-2"
-                >
-                  <span>🔑</span>
-                  <span>Ingresar Código de Acceso</span>
-                </button>
-
-                <!-- Botón único esmeralda de WhatsApp -->
-                <a
-                  href="https://wa.me/526143958598?text=Hola%20Nutri%C3%B3loga%20Velvet,%20me%20interesa%20adquirir%20el%20Recetario%20Navide%C3%B1o%202026%20completo%20(185%20recetas)."
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="w-full py-3.5 px-5 bg-gradient-to-r from-[#0F5132] via-[#157347] to-[#0F5132] hover:from-[#13653F] hover:to-[#13653F] border border-emerald-400/50 text-white font-bold text-sm rounded-2xl transition-all duration-300 shadow-[0_4px_16px_rgba(21,115,71,0.5)] hover:shadow-[0_6px_25px_rgba(52,211,153,0.4)] hover:-translate-y-0.5 active:scale-98 text-center flex items-center justify-center gap-2"
-                >
-                  <span>💬</span>
-                  <span>Comprar Acceso por WhatsApp</span>
-                </a>
-              </div>
+          <div id="hero-vip-unlocked" class="hidden">
+            <div class="inline-flex items-center gap-1.5 px-3 py-1 bg-emerald-500/15 border border-emerald-400/35 text-emerald-300 rounded-full text-xs font-semibold mb-3">
+              <svg class="w-3.5 h-3.5 text-emerald-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+              </svg>
+              <span>SESIÓN VIP AUTORIZADA</span>
             </div>
-
-            <div id="hero-vip-unlocked" class="hidden">
-              <div class="inline-flex items-center gap-2 px-3.5 py-1 bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 rounded-full text-xs font-bold mb-3">
-                <span>✓</span>
-                <span>SESIÓN VIP AUTORIZADA</span>
-              </div>
-              <h2 class="font-display text-2xl text-white font-bold mb-2">
-                ¡Bienvenido a tu Recetario Completo!
-              </h2>
-              <p class="text-amber-100/75 text-sm mb-6">
-                Tienes acceso total a las 185 recetas con fotografías en alta definición, tabla de equivalentes clínicos del SMAE y buscador interactivo.
-              </p>
-              <div class="p-4 bg-[#1E0308] border border-[#E6A635]/40 rounded-2xl text-sm font-semibold text-white flex items-center justify-between">
-                <span class="text-[#E6A635]">ESTADO:</span>
-                <span class="text-emerald-400 font-bold font-mono-recetario">185 RECETAS ACTIVAS</span>
-              </div>
+            <h2 class="font-display text-2xl text-white font-bold mb-2">
+              ¡Bienvenido a tu Recetario Completo!
+            </h2>
+            <p class="text-amber-100/75 text-sm mb-6 font-light">
+              Tienes acceso total a las 185 recetas con fotografías en alta definición, tabla de equivalentes clínicos del SMAE y buscador interactivo.
+            </p>
+            <div class="p-3.5 bg-[#1E0308] border border-[#E6A635]/30 rounded-xl text-xs font-semibold text-white flex items-center justify-between">
+              <span class="text-[#E6A635]">ESTADO:</span>
+              <span class="text-emerald-400 font-bold font-mono-recetario">185 RECETAS ACTIVAS</span>
             </div>
-
           </div>
         </div>
-
       </div>
     </section>
 
@@ -342,9 +344,9 @@ function getCategoryContour(slug: string) {
               type="button"
               data-filter-free="true"
               id="filter-free-btn"
-              class="text-xs font-bold px-3.5 py-2.5 bg-emerald-950/80 border border-emerald-400/60 text-emerald-300 hover:bg-emerald-600 hover:text-white rounded-full whitespace-nowrap cursor-pointer transition-all shadow-sm active:scale-95"
+              class="text-xs font-medium px-3.5 py-2 bg-emerald-950/70 border border-emerald-400/40 text-emerald-300 hover:bg-emerald-600 hover:text-white rounded-full whitespace-nowrap cursor-pointer transition-all shadow-sm active:scale-95"
             >
-              ★ Muestras [6]
+              Muestras gratuitas (6)
             </button>
           </div>
         </div>
@@ -428,181 +430,189 @@ function getCategoryContour(slug: string) {
               data-title={recipe.title.toLowerCase()}
               data-ingredients={recipe.ingredients.join(" ").toLowerCase()}
               data-free={isFree ? "true" : "false"}
-              class={`recipe-card bg-[#28050D]/95 backdrop-blur-md rounded-3xl p-5 border-2 ${style.border} ${style.glow} flex flex-col justify-between transition-all duration-300 hover:-translate-y-1.5 shadow-2xl group relative ${!isFree ? "hidden" : ""}`}
+              class={`recipe-card bg-[#28050D] rounded-2xl overflow-hidden border border-[#E6A635]/20 hover:border-[#E6A635]/50 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(0,0,0,0.6)] group relative ${!isFree ? "hidden" : ""}`}
             >
-              <div>
-                <!-- Top Dish Photo con Marco Dorado idéntico a la imagen del PDF -->
-                <div class="p-1 bg-gradient-to-br from-[#F5D061] via-[#E6A635] to-[#996813] rounded-2xl shadow-md mb-5 overflow-hidden">
-                  <div class="relative w-full h-56 rounded-[14px] overflow-hidden bg-[#1E0308] cursor-pointer" data-action="open-recipe" data-recipe-id={recipe.id}>
-                    {recipe.image ? (
-                      <img
-                        src={recipe.image}
-                        alt={recipe.title}
-                        loading="lazy"
-                        decoding="async"
-                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
-                      />
-                    ) : (
-                      <div class="w-full h-full flex items-center justify-center text-amber-200/50 text-xs">
-                        Fotografía de platillo
-                      </div>
-                    )}
+              <!-- Top Dish Photo (Ocupa todo el ancho superior sin marco grueso exterior) -->
+              <div
+                class="relative w-full h-52 sm:h-56 overflow-hidden bg-[#1E0308] cursor-pointer shrink-0"
+                data-action="open-recipe"
+                data-recipe-id={recipe.id}
+              >
+                {recipe.image ? (
+                  <img
+                    src={recipe.image}
+                    alt={recipe.title}
+                    loading="lazy"
+                    decoding="async"
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+                  />
+                ) : (
+                  <div class="w-full h-full flex items-center justify-center text-amber-200/50 text-xs">
+                    Fotografía de platillo
+                  </div>
+                )}
 
-                    <!-- Overlay sutil -->
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 pointer-events-none"></div>
+                <!-- Overlay sutil -->
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 pointer-events-none"></div>
 
-                    <!-- Category Badge & Free Sample -->
-                    <div class="absolute top-3 left-3 flex flex-wrap gap-1.5 z-10">
-                      <span class={`text-[11px] font-bold px-3 py-1 rounded-full border shadow-sm backdrop-blur-md ${style.badge}`}>
-                        {recipe.category}
+                <!-- Badges sobrios en vidrio oscuro sobre la fotografía -->
+                <div class="absolute top-3 left-3 flex flex-wrap items-center gap-1.5 z-10">
+                  <span class="text-[11px] font-medium px-2.5 py-0.5 rounded-full bg-black/60 backdrop-blur-md text-white/90 border border-white/15 shadow-sm flex items-center gap-1.5">
+                    <span class="w-1.5 h-1.5 rounded-full" style={`background-color: ${style.accent};`}></span>
+                    <span>{recipe.category}</span>
+                  </span>
+                  {isFree && (
+                    <span class="text-[11px] font-medium px-2.5 py-0.5 rounded-full bg-black/60 backdrop-blur-md text-emerald-300 border border-emerald-400/30 shadow-sm">
+                      Muestra libre
+                    </span>
+                  )}
+                </div>
+              </div>
+
+              <!-- Card Content Body -->
+              <div class="p-5 flex flex-col flex-1 justify-between">
+                <div>
+                  <!-- Indicador de categoría sobrio -->
+                  <div class="flex items-center gap-1.5 mb-1.5">
+                    <span class="w-1.5 h-1.5 rounded-full" style={`background-color: ${style.accent};`}></span>
+                    <span class="text-[11px] font-semibold uppercase tracking-wider text-amber-200/60 font-mono-recetario">
+                      {recipe.category}
+                    </span>
+                  </div>
+
+                  <!-- Recipe Title -->
+                  <h3
+                    data-action="open-recipe"
+                    data-recipe-id={recipe.id}
+                    class="font-script text-2.5xl sm:text-3xl text-[#F5D061] hover:text-white font-bold leading-tight mb-3 cursor-pointer transition-colors line-clamp-2"
+                  >
+                    {recipe.title}
+                  </h3>
+
+                  <!-- Fila limpia de métricas separada únicamente por líneas divisorias sutiles -->
+                  <div class="grid grid-cols-3 py-2.5 my-3 border-y border-[#E6A635]/15 text-center">
+                    <div>
+                      <span class="block font-bold text-base text-[#F5D061] font-mono-recetario">
+                        {recipe.portions.replace(/porci[oó]n(es)?/i, "").trim() || "1"}
                       </span>
-                      {isFree && (
-                        <span class="text-[11px] font-bold px-3 py-1 rounded-full bg-emerald-600 text-white shadow-sm border border-emerald-400">
-                          ★ Muestra Libre
-                        </span>
-                      )}
+                      <span class="text-[10px] text-amber-200/60 uppercase tracking-wider font-medium block">
+                        porciones
+                      </span>
+                    </div>
+                    <div class="border-x border-[#E6A635]/15">
+                      <span class="block font-bold text-base text-[#F5D061] font-mono-recetario">
+                        {recipe.calories || "150"}
+                      </span>
+                      <span class="text-[10px] text-amber-200/60 uppercase tracking-wider font-medium block">
+                        kcal
+                      </span>
+                    </div>
+                    <div>
+                      <span class="block font-bold text-base text-[#F5D061] font-mono-recetario truncate">
+                        {recipe.prepTime.replace(/prep\.? estimada|preparaci[oó]n/i, "").trim()}
+                      </span>
+                      <span class="text-[10px] text-amber-200/60 uppercase tracking-wider font-medium block truncate">
+                        tiempo
+                      </span>
                     </div>
                   </div>
-                </div>
 
-                <!-- Sub-header Ficha de Receta en Oro (Igual al PDF) -->
-                <div class="flex items-center justify-between pb-1.5 mb-2 border-b border-[#E6A635]/20">
-                  <span class="font-bold text-[11px] uppercase tracking-widest text-[#E6A635]">
-                    FICHA DE RECETA
-                  </span>
-                  <span class="text-[11px] text-[#F5D061]/80 font-mono-recetario uppercase tracking-wider font-semibold">
-                    {recipe.category}
-                  </span>
-                </div>
-
-                <!-- Recipe Title (Letra cursiva festiva en oro permanente, visible siempre) -->
-                <h3
-                  data-action="open-recipe"
-                  data-recipe-id={recipe.id}
-                  class="font-script text-3xl sm:text-3.5xl text-[#F5D061] hover:text-white font-bold leading-tight mb-4 cursor-pointer transition-colors"
-                >
-                  {recipe.title}
-                </h3>
-
-                <!-- 3 Metric Boxes con borde dorado idénticos a la imagen del PDF -->
-                <div class="grid grid-cols-3 gap-2 py-2.5 px-2 mb-4 bg-[#1E0308] rounded-2xl border border-[#E6A635]/35 text-center">
-                  <div>
-                    <span class="block font-bold text-base text-[#F5D061] font-mono-recetario">
-                      {recipe.portions.replace(/porci[oó]n(es)?/i, "").trim() || "1"}
-                    </span>
-                    <span class="text-[10px] text-[#E6A635] uppercase font-bold block">
-                      porciones
-                    </span>
-                  </div>
-                  <div class="border-x border-[#E6A635]/20">
-                    <span class="block font-bold text-base text-[#F5D061] font-mono-recetario">
-                      {recipe.calories || "150"}
-                    </span>
-                    <span class="text-[10px] text-[#E6A635] uppercase font-bold block">
-                      kcal
-                    </span>
-                  </div>
-                  <div>
-                    <span class="block font-bold text-base text-[#F5D061] font-mono-recetario truncate">
-                      {recipe.prepTime.replace(/prep\.? estimada|preparaci[oó]n/i, "").trim()}
-                    </span>
-                    <span class="text-[10px] text-[#E6A635] uppercase font-bold block truncate">
-                      tiempo est.
-                    </span>
-                  </div>
-                </div>
-
-                <!-- Etiquetas Saludables Doradas idénticas a la imagen del PDF -->
-                {recipe.tags && recipe.tags.length > 0 && (
-                  <div class="mb-4">
-                    <span class="text-[10px] font-bold text-[#E6A635] uppercase tracking-wider block mb-2">
-                      ETIQUETAS SALUDABLES
-                    </span>
-                    <div class="flex flex-wrap gap-1.5">
+                  <!-- Etiquetas Saludables: outline sutil sin texto redundante ni emojis -->
+                  {recipe.tags && recipe.tags.length > 0 && (
+                    <div class="flex flex-wrap gap-1.5 my-2.5">
                       {recipe.tags.slice(0, 3).map((tag) => (
-                        <span class="inline-flex items-center gap-1 text-[11px] font-bold px-3 py-1 bg-gradient-to-r from-[#E6A635] to-[#D49522] text-[#28050D] rounded-full shadow-sm">
-                          <span>✓</span>
-                          <span>{tag}</span>
+                        <span class="text-[11px] font-normal px-2.5 py-0.5 rounded-full bg-transparent border border-[#E6A635]/30 text-amber-100/80">
+                          {tag}
                         </span>
                       ))}
                       {recipe.tags.length > 3 && (
-                        <span class="text-[11px] text-amber-200/60 font-mono-recetario self-center px-1">
+                        <span class="text-[11px] text-amber-200/50 font-mono-recetario self-center px-1">
                           +{recipe.tags.length - 3}
                         </span>
                       )}
                     </div>
-                  </div>
-                )}
-              </div>
+                  )}
+                </div>
 
-              <!-- Card Action Button (Bespoke Luxury) -->
-              <div class="pt-3 border-t border-[#E6A635]/20 mt-2">
-                {isFree ? (
-                  <button
-                    type="button"
-                    data-action="open-recipe"
-                    data-recipe-id={recipe.id}
-                    class="w-full py-3.5 px-4 bg-gradient-to-r from-[#991B32] via-[#800F24] to-[#991B32] hover:from-[#A51F38] hover:to-[#A51F38] border border-[#F5D061]/70 text-white font-bold text-xs uppercase tracking-wider rounded-2xl transition-all duration-200 cursor-pointer flex items-center justify-center gap-2 shadow-[0_4px_16px_rgba(153,27,50,0.5)] hover:shadow-[0_6px_22px_rgba(245,208,97,0.35)] hover:-translate-y-0.5 active:scale-98"
-                  >
-                    <span>Ver Ficha Completa</span>
-                    <span>→</span>
-                  </button>
-                ) : (
-                  <div class="card-vip-action">
+                <!-- Card Action Button suavizado -->
+                <div class="pt-3 border-t border-[#E6A635]/15 mt-3">
+                  {isFree ? (
                     <button
                       type="button"
                       data-action="open-recipe"
                       data-recipe-id={recipe.id}
-                      class="card-vip-btn w-full py-3.5 px-4 bg-[#1E0308] hover:bg-[#340811] border border-[#E6A635]/40 hover:border-[#F5D061] text-amber-100 font-bold text-xs uppercase tracking-wider rounded-2xl transition-all duration-200 cursor-pointer flex items-center justify-center gap-2 shadow-sm hover:shadow-[0_0_15px_rgba(230,166,53,0.25)] hover:-translate-y-0.5 active:scale-98"
+                      class="w-full py-2.5 px-4 bg-[#3B0B14] hover:bg-[#520F1C] border border-[#E6A635]/30 hover:border-[#F5D061] text-amber-100 font-semibold text-xs rounded-xl transition-all duration-200 cursor-pointer flex items-center justify-center gap-1.5 group/btn"
                     >
-                      <span>🔒 Desbloquear Receta</span>
-                      <span>→</span>
+                      <span>Ver receta</span>
+                      <svg class="w-3.5 h-3.5 text-[#F5D061] group-hover/btn:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                      </svg>
                     </button>
-                  </div>
-                )}
+                  ) : (
+                    <div class="card-vip-action">
+                      <button
+                        type="button"
+                        data-action="open-recipe"
+                        data-recipe-id={recipe.id}
+                        class="card-vip-btn w-full py-2.5 px-4 bg-transparent hover:bg-white/5 border border-[#E6A635]/25 hover:border-[#E6A635]/50 text-amber-200/70 hover:text-amber-100 font-medium text-xs rounded-xl transition-all duration-200 cursor-pointer flex items-center justify-center gap-1.5"
+                      >
+                        <svg class="w-3.5 h-3.5 text-[#E6A635]" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
+                        </svg>
+                        <span>Desbloquear</span>
+                      </button>
+                    </div>
+                  )}
+                </div>
               </div>
             </article>
           );
         })}
       </div>
 
-      <!-- BANNER DE BLOQUEO VIP (SOLO VISIBLE CUANDO NO SE TIENE LA CONTRASEÑA) -->
-      <div id="locked-recipes-banner" class="mt-14 p-1 bg-gradient-to-br from-[#F5D061] via-[#E6A635] to-[#B37B1B] rounded-3xl shadow-[0_15px_50px_rgba(0,0,0,0.6)]">
-        <div class="bg-[#2B050D] p-8 sm:p-12 rounded-[22px] text-center max-w-3xl mx-auto text-white">
-          <div class="w-16 h-16 rounded-2xl bg-[#E6A635]/15 border-2 border-[#E6A635]/40 text-[#F5D061] flex items-center justify-center mx-auto mb-5 text-3xl font-bold shadow-lg">
-            <span>🔒</span>
-          </div>
+      <!-- BANNER DE BLOQUEO VIP REFINADO (Sin contenedor doble, borde fino y botones sobrios) -->
+      <div id="locked-recipes-banner" class="mt-14 rounded-2xl border border-[#E6A635]/35 bg-[#2B050D]/90 backdrop-blur-md p-8 sm:p-12 text-center max-w-3xl mx-auto text-white shadow-[0_15px_50px_rgba(0,0,0,0.5)]">
+        <div class="w-12 h-12 rounded-xl bg-[#E6A635]/10 border border-[#E6A635]/30 text-[#F5D061] flex items-center justify-center mx-auto mb-4">
+          <svg class="w-5 h-5 text-[#F5D061]" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
+          </svg>
+        </div>
 
-          <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-rose-500/20 border border-rose-400/40 text-rose-300 rounded-full text-xs font-bold uppercase tracking-wider mb-4">
-            <span>179 Recetas Adicionales Protegidas</span>
-          </div>
+        <div class="inline-flex items-center gap-2 px-3.5 py-1 bg-rose-500/15 border border-rose-400/30 text-rose-300 rounded-full text-xs font-semibold uppercase tracking-wider mb-4">
+          <span>179 Recetas Adicionales Protegidas</span>
+        </div>
 
-          <h3 class="font-display text-2xl sm:text-4xl text-white font-bold leading-tight mb-4">
-            Desbloquea las 179 Recetas Restantes
-          </h3>
+        <h3 class="font-display text-2xl sm:text-4xl text-white font-bold leading-tight mb-4">
+          Desbloquea las 179 Recetas Restantes
+        </h3>
 
-          <p class="text-amber-100/80 text-sm sm:text-base leading-relaxed mb-8 max-w-xl mx-auto font-light">
-            Estas son únicamente las <strong>6 recetas de muestra gratuita</strong>. Para hacer visibles las <strong>179 recetas restantes</strong> con sus fotografías, tablas de equivalentes SMAE e información nutricional completa, introduce tu contraseña VIP.
-          </p>
+        <p class="text-amber-100/80 text-sm sm:text-base leading-relaxed mb-8 max-w-xl mx-auto font-light">
+          Estas son únicamente las <strong>6 recetas de muestra gratuita</strong>. Para hacer visibles las <strong>179 recetas restantes</strong> con sus fotografías, tablas de equivalentes SMAE e información nutricional completa, introduce tu contraseña VIP.
+        </p>
 
-          <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <button
-              type="button"
-              id="btn-banner-unlock"
-              class="w-full sm:w-auto py-4 px-8 bg-gradient-to-r from-[#991B32] via-[#800F24] to-[#991B32] hover:from-[#A51F38] hover:to-[#A51F38] border border-[#F5D061]/70 text-white font-bold text-sm uppercase tracking-wider rounded-2xl transition-all shadow-[0_4px_20px_rgba(153,27,50,0.6)] hover:shadow-[0_6px_25px_rgba(245,208,97,0.4)] cursor-pointer active:scale-98"
-            >
-              🔑 Ingresar Código de Acceso
-            </button>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <button
+            type="button"
+            id="btn-banner-unlock"
+            class="w-full sm:w-auto py-3.5 px-7 bg-gradient-to-r from-[#E6A635] to-[#D49522] hover:from-[#F5D061] hover:to-[#E6A635] text-[#28050D] font-bold text-xs uppercase tracking-wider rounded-xl transition-all shadow-md active:scale-98 cursor-pointer flex items-center justify-center gap-2"
+          >
+            <svg class="w-4 h-4 text-[#28050D]" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 5.25a3 3 0 013 3m3 0a6 6 0 01-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25v-2.818c0-.597.237-1.17.659-1.591l6.499-6.499c.404-.404.527-1 .43-1.563A6 6 0 1121.75 8.25z" />
+            </svg>
+            <span>Ingresar Código de Acceso</span>
+          </button>
 
-            <a
-              href="https://wa.me/526143958598?text=Hola%20Nutri%C3%B3loga%20Velvet,%20me%20interesa%20adquirir%20el%20Recetario%20Navide%C3%B1o%202026%20completo%20(185%20recetas)."
-              target="_blank"
-              rel="noopener noreferrer"
-              class="w-full sm:w-auto py-4 px-8 bg-gradient-to-r from-[#0F5132] via-[#157347] to-[#0F5132] hover:from-[#13653F] hover:to-[#13653F] border border-emerald-400/50 text-white font-bold text-sm uppercase tracking-wider rounded-2xl transition-all shadow-[0_4px_16px_rgba(21,115,71,0.5)] hover:shadow-[0_6px_25px_rgba(52,211,153,0.4)] cursor-pointer active:scale-98 text-center"
-            >
-              💬 Comprar Acceso por WhatsApp
-            </a>
-          </div>
+          <a
+            href="https://wa.me/526143958598?text=Hola%20Nutri%C3%B3loga%20Velvet,%20me%20interesa%20adquirir%20el%20Recetario%20Navide%C3%B1o%202026%20completo%20(185%20recetas)."
+            target="_blank"
+            rel="noopener noreferrer"
+            class="w-full sm:w-auto py-3 px-6 bg-transparent hover:bg-white/5 border border-white/25 hover:border-white/40 text-amber-100/90 hover:text-white font-medium text-xs tracking-wider rounded-xl transition-all active:scale-98 text-center flex items-center justify-center gap-2"
+          >
+            <svg class="w-4 h-4 text-white/80" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a.75.75 0 01-1.074-.865 5.25 5.25 0 001.026-3.032A8.196 8.196 0 013 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z" />
+            </svg>
+            <span>Comprar Acceso por WhatsApp</span>
+          </a>
         </div>
       </div>
     </main>
@@ -612,7 +622,7 @@ function getCategoryContour(slug: string) {
   <!-- MISMO FOOTER QUE TODA LA PÁGINA WEB -->
   <Footer />
 
-  <!-- MODAL DE DETALLE DE RECETA (CON ESTILO NAVIDEÑO DE LA IMAGEN) -->
+  <!-- MODAL DE DETALLE DE RECETA -->
   <div
     id="recipe-modal"
     class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md p-3 sm:p-6 lg:p-10 flex items-center justify-center overflow-y-auto font-sans-recetario"
@@ -621,262 +631,260 @@ function getCategoryContour(slug: string) {
   >
     <div
       id="recipe-modal-dialog"
-      class="p-1 bg-gradient-to-br from-[#F5D061] via-[#E6A635] to-[#B37B1B] rounded-3xl shadow-[0_15px_60px_rgba(0,0,0,0.8)] w-full max-w-4xl my-auto relative"
+      class="rounded-3xl border border-[#E6A635]/35 bg-[#2B050D] p-6 sm:p-9 shadow-[0_15px_60px_rgba(0,0,0,0.8)] w-full max-w-4xl my-auto relative max-h-[90vh] overflow-y-auto text-white"
     >
-      <div class="bg-[#2B050D] p-6 sm:p-9 rounded-[22px] max-h-[90vh] overflow-y-auto text-white">
-        <!-- Close Bar -->
-        <div class="flex items-center justify-between pb-4 mb-6 border-b border-[#E6A635]/25">
-          <div class="flex items-center gap-2">
-            <span id="modal-category" class="text-xs font-bold uppercase px-3 py-1 rounded-full border bg-[#E6A635]/20 text-[#F5D061] border-[#E6A635]/50"></span>
-            <span class="text-[#E6A635]/40">·</span>
-            <span id="modal-page" class="font-mono-recetario text-xs text-[#E6A635]"></span>
+      <!-- Close Bar -->
+      <div class="flex items-center justify-between pb-4 mb-6 border-b border-[#E6A635]/20">
+        <div class="flex items-center gap-2">
+          <span id="modal-category" class="text-xs font-semibold uppercase px-3 py-1 rounded-full border bg-[#E6A635]/15 text-[#F5D061] border-[#E6A635]/30"></span>
+          <span class="text-[#E6A635]/40">·</span>
+          <span id="modal-page" class="font-mono-recetario text-xs text-[#E6A635]"></span>
+        </div>
+        <button
+          id="btn-close-modal"
+          type="button"
+          class="w-9 h-9 rounded-full bg-[#1E0308] hover:bg-[#E6A635] text-[#F5D061] hover:text-[#28050D] flex items-center justify-center font-bold text-sm transition-all border border-[#E6A635]/40 hover:rotate-90 cursor-pointer"
+        >
+          ✕
+        </button>
+      </div>
+
+      <!-- Top Section with Photo -->
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-7 items-center mb-8">
+        <div class="md:col-span-5">
+          <div class="w-full h-64 sm:h-72 rounded-2xl overflow-hidden bg-[#1E0308] border border-[#E6A635]/25 shadow-lg">
+            <img
+              id="modal-image"
+              src=""
+              alt=""
+              class="w-full h-full object-cover"
+            />
           </div>
-          <button
-            id="btn-close-modal"
-            type="button"
-            class="w-9 h-9 rounded-full bg-[#1E0308] hover:bg-[#E6A635] text-[#F5D061] hover:text-[#28050D] flex items-center justify-center font-bold text-sm transition-all border border-[#E6A635]/40 hover:rotate-90 cursor-pointer"
-          >
-            ✕
-          </button>
         </div>
 
-        <!-- Top Section with Photo & Gold Frame -->
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-7 items-center mb-8">
-          <div class="md:col-span-5">
-            <div class="p-1 bg-gradient-to-br from-[#F5D061] via-[#E6A635] to-[#B37B1B] rounded-2xl shadow-lg">
-              <div class="w-full h-64 sm:h-72 rounded-[14px] overflow-hidden bg-[#1E0308]">
-                <img
-                  id="modal-image"
-                  src=""
-                  alt=""
-                  class="w-full h-full object-cover"
-                />
-              </div>
+        <div class="md:col-span-7">
+          <h2 id="modal-title" class="font-script text-3xl sm:text-4.5xl lg:text-5xl text-[#F5D061] font-bold leading-tight mb-4"></h2>
+
+          <!-- Metrics Grid -->
+          <div class="grid grid-cols-3 gap-2 py-3 border-y border-[#E6A635]/20 text-center mb-5">
+            <div>
+              <span id="modal-portions" class="block font-bold text-lg text-[#F5D061] font-mono-recetario"></span>
+              <span class="text-[10px] text-amber-200/60 uppercase font-medium block">porciones</span>
+            </div>
+            <div class="border-x border-[#E6A635]/20">
+              <span id="modal-calories" class="block font-bold text-lg text-[#F5D061] font-mono-recetario"></span>
+              <span class="text-[10px] text-amber-200/60 uppercase font-medium block">kcal</span>
+            </div>
+            <div>
+              <span id="modal-time" class="block font-bold text-lg text-[#F5D061] font-mono-recetario truncate"></span>
+              <span class="text-[10px] text-amber-200/60 uppercase font-medium block truncate">tiempo est.</span>
             </div>
           </div>
 
-          <div class="md:col-span-7">
-            <span class="font-bold text-xs uppercase tracking-widest text-[#E6A635] block mb-1">
-              FICHA DE RECETA
+          <!-- Nutritional Breakdown -->
+          <div class="p-4 bg-[#1E0308] border border-[#E6A635]/25 rounded-2xl">
+            <span class="text-[11px] font-semibold text-[#E6A635] uppercase tracking-wider block mb-2.5">
+              Información Nutricional por Porción
             </span>
-            <h2 id="modal-title" class="font-script text-3xl sm:text-4.5xl lg:text-5xl text-[#F5D061] font-bold leading-tight mb-4"></h2>
-
-            <!-- Metrics Grid -->
-            <div class="grid grid-cols-3 gap-2.5 p-3.5 bg-[#1E0308] rounded-2xl border border-[#E6A635]/35 text-center mb-5">
-              <div>
-                <span id="modal-portions" class="block font-bold text-lg text-[#F5D061] font-mono-recetario"></span>
-                <span class="text-[10px] text-[#E6A635] uppercase font-bold block">porciones</span>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
+              <div class="p-2.5 bg-emerald-950/60 border border-emerald-400/30 rounded-xl text-emerald-300">
+                <span class="block text-[10px] uppercase font-medium">Proteína</span>
+                <span id="modal-prot" class="font-bold font-mono-recetario text-sm"></span>
               </div>
-              <div class="border-x border-[#E6A635]/20">
-                <span id="modal-calories" class="block font-bold text-lg text-[#F5D061] font-mono-recetario"></span>
-                <span class="text-[10px] text-[#E6A635] uppercase font-bold block">kcal</span>
+              <div class="p-2.5 bg-amber-950/60 border border-amber-400/30 rounded-xl text-amber-300">
+                <span class="block text-[10px] uppercase font-medium">Grasas</span>
+                <span id="modal-fat" class="font-bold font-mono-recetario text-sm"></span>
               </div>
-              <div>
-                <span id="modal-time" class="block font-bold text-lg text-[#F5D061] font-mono-recetario truncate"></span>
-                <span class="text-[10px] text-[#E6A635] uppercase font-bold block truncate">tiempo est.</span>
+              <div class="p-2.5 bg-rose-950/60 border border-rose-400/30 rounded-xl text-rose-300">
+                <span class="block text-[10px] uppercase font-medium">Carbohidratos</span>
+                <span id="modal-carb" class="font-bold font-mono-recetario text-sm"></span>
               </div>
-            </div>
-
-            <!-- Nutritional Breakdown -->
-            <div class="p-4 bg-[#1E0308] border border-[#E6A635]/30 rounded-2xl">
-              <span class="text-[11px] font-bold text-[#E6A635] uppercase tracking-wider block mb-2.5">
-                Información Nutricional por Porción
-              </span>
-              <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
-                <div class="p-2.5 bg-emerald-950/60 border border-emerald-400/40 rounded-xl text-emerald-300">
-                  <span class="block text-[10px] uppercase font-bold">Proteína</span>
-                  <span id="modal-prot" class="font-bold font-mono-recetario text-sm"></span>
-                </div>
-                <div class="p-2.5 bg-amber-950/60 border border-amber-400/40 rounded-xl text-amber-300">
-                  <span class="block text-[10px] uppercase font-bold">Grasas</span>
-                  <span id="modal-fat" class="font-bold font-mono-recetario text-sm"></span>
-                </div>
-                <div class="p-2.5 bg-rose-950/60 border border-rose-400/40 rounded-xl text-rose-300">
-                  <span class="block text-[10px] uppercase font-bold">Carbohidratos</span>
-                  <span id="modal-carb" class="font-bold font-mono-recetario text-sm"></span>
-                </div>
-                <div class="p-2.5 bg-teal-950/60 border border-teal-400/40 rounded-xl text-teal-300">
-                  <span class="block text-[10px] uppercase font-bold">Fibra</span>
-                  <span id="modal-fib" class="font-bold font-mono-recetario text-sm"></span>
-                </div>
+              <div class="p-2.5 bg-teal-950/60 border border-teal-400/30 rounded-xl text-teal-300">
+                <span class="block text-[10px] uppercase font-medium">Fibra</span>
+                <span id="modal-fib" class="font-bold font-mono-recetario text-sm"></span>
               </div>
             </div>
           </div>
         </div>
+      </div>
 
-        <!-- SMAE Clinical Equivalents Table -->
-        <div id="modal-equivalents-section" class="mb-6 hidden">
-          <div class="text-xs font-bold text-[#F5D061] uppercase tracking-wider mb-3 flex items-center gap-2">
-            <span class="w-2 h-2 rounded-full bg-[#E6A635]"></span>
-            <span>Sistema Mexicano de Alimentos Equivalentes (SMAE)</span>
+      <!-- SMAE Clinical Equivalents Table -->
+      <div id="modal-equivalents-section" class="mb-6 hidden">
+        <div class="text-xs font-semibold text-[#F5D061] uppercase tracking-wider mb-3 flex items-center gap-2">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#E6A635]"></span>
+          <span>Sistema Mexicano de Alimentos Equivalentes (SMAE)</span>
+        </div>
+        <div id="modal-equivalents-list" class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+          <!-- Injected via JS -->
+        </div>
+      </div>
+
+      <!-- Ingredients & Steps -->
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-7 mb-6">
+        <!-- Ingredients with Checkboxes -->
+        <div class="md:col-span-5 bg-[#1E0308] p-5 sm:p-6 rounded-2xl border border-[#E6A635]/25">
+          <div class="text-xs font-semibold text-[#F5D061] uppercase tracking-wider mb-3.5 pb-2 border-b border-[#E6A635]/20 flex items-center justify-between">
+            <span>Ingredientes</span>
+            <span class="text-[10px] text-amber-200/50 font-normal">(Toca para tachar)</span>
           </div>
-          <div id="modal-equivalents-list" class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+          <ul id="modal-ingredients-list" class="space-y-2.5 text-xs text-amber-100/90">
             <!-- Injected via JS -->
+          </ul>
+        </div>
+
+        <!-- Numbered Instructions -->
+        <div class="md:col-span-7 bg-[#1E0308] p-5 sm:p-6 rounded-2xl border border-[#E6A635]/25">
+          <div class="text-xs font-semibold text-[#F5D061] uppercase tracking-wider mb-3.5 pb-2 border-b border-[#E6A635]/20">
+            Procedimiento Paso a Paso
           </div>
+          <ol id="modal-instructions-list" class="space-y-3.5 text-xs text-amber-100">
+            <!-- Injected via JS -->
+          </ol>
         </div>
+      </div>
 
-        <!-- Ingredients & Steps -->
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-7 mb-6">
-          <!-- Ingredients with Checkboxes -->
-          <div class="md:col-span-5 bg-[#1E0308] p-5 sm:p-6 rounded-2xl border border-[#E6A635]/35">
-            <div class="text-xs font-bold text-[#F5D061] uppercase tracking-wider mb-3.5 pb-2 border-b border-[#E6A635]/25 flex items-center justify-between">
-              <span>Ingredientes</span>
-              <span class="text-[10px] text-amber-200/50 font-normal">(Toca para tachar)</span>
-            </div>
-            <ul id="modal-ingredients-list" class="space-y-2.5 text-xs text-amber-100/90">
-              <!-- Injected via JS -->
-            </ul>
-          </div>
+      <!-- Nutri Tip if present -->
+      <div id="modal-tip-box" class="hidden mb-6 p-4 bg-[#1E0308] border-l-2 border-[#F5D061] rounded-r-2xl border border-r-[#E6A635]/20 border-y-[#E6A635]/20">
+        <span class="text-xs font-semibold uppercase tracking-wider text-[#F5D061] flex items-center gap-1.5 mb-1.5">
+          <svg class="w-4 h-4 text-[#F5D061]" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 10-7.516 0c.85.493 1.509 1.333 1.509 2.316V18" />
+          </svg>
+          <span>Consejo Clínico de tu Nutrióloga</span>
+        </span>
+        <p id="modal-tip-text" class="text-xs text-amber-100/80 leading-relaxed font-light"></p>
+      </div>
 
-          <!-- Numbered Instructions -->
-          <div class="md:col-span-7 bg-[#1E0308] p-5 sm:p-6 rounded-2xl border border-[#E6A635]/35">
-            <div class="text-xs font-bold text-[#F5D061] uppercase tracking-wider mb-3.5 pb-2 border-b border-[#E6A635]/25">
-              Procedimiento Paso a Paso
-            </div>
-            <ol id="modal-instructions-list" class="space-y-3.5 text-xs text-amber-100">
-              <!-- Injected via JS -->
-            </ol>
-          </div>
-        </div>
+      <!-- Modal Actions -->
+      <div class="pt-5 border-t border-[#E6A635]/20 flex flex-wrap items-center justify-between gap-3 no-print">
+        <button
+          type="button"
+          onclick="window.print()"
+          class="text-xs font-medium px-5 py-2.5 bg-[#1E0308] hover:bg-[#340811] border border-[#E6A635]/35 text-[#F5D061] rounded-xl transition-all cursor-pointer flex items-center gap-2"
+        >
+          <svg class="w-4 h-4 text-[#F5D061]" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 6.75V4.5a2.25 2.25 0 012.25-2.25h6a2.25 2.25 0 012.25 2.25v2.25m-10.5 0h10.5m-10.5 0A2.25 2.25 0 004.5 9v6.75a2.25 2.25 0 002.25 2.25h.75m10.5-9A2.25 2.25 0 0120.25 9v6.75a2.25 2.25 0 01-2.25 2.25h-.75m-10.5 0v3.75a1.5 1.5 0 001.5 1.5h7.5a1.5 1.5 0 001.5-1.5v-3.75m-10.5 0h10.5" />
+          </svg>
+          <span>Imprimir Ficha</span>
+        </button>
 
-        <!-- Nutri Tip if present -->
-        <div id="modal-tip-box" class="hidden mb-6 p-4 bg-[#1E0308] border-l-4 border-[#F5D061] rounded-r-2xl">
-          <span class="text-xs font-bold uppercase tracking-wider text-[#F5D061] block mb-1">
-            💡 Consejo Clínico de tu Nutrióloga
-          </span>
-          <p id="modal-tip-text" class="text-xs text-amber-100/80 leading-relaxed"></p>
-        </div>
-
-        <!-- Modal Actions -->
-        <div class="pt-5 border-t border-[#E6A635]/25 flex flex-wrap items-center justify-between gap-3 no-print">
-          <button
-            type="button"
-            onclick="window.print()"
-            class="text-xs font-bold px-5 py-3 bg-[#1E0308] hover:bg-[#340811] border border-[#E6A635]/50 text-[#F5D061] rounded-xl transition-all shadow-sm cursor-pointer flex items-center gap-2"
-          >
-            <span>Imprimir Ficha</span>
-            <span>⎙</span>
-          </button>
-
-          <button
-            id="btn-close-modal-bottom"
-            type="button"
-            class="text-xs font-bold px-7 py-3 bg-gradient-to-r from-[#E6A635] to-[#D49522] hover:from-[#F5D061] hover:to-[#E6A635] text-[#28050D] rounded-xl transition-all shadow-lg hover:shadow-[0_0_20px_rgba(230,166,53,0.4)] cursor-pointer"
-          >
-            Cerrar Ficha
-          </button>
-        </div>
+        <button
+          id="btn-close-modal-bottom"
+          type="button"
+          class="text-xs font-bold px-7 py-2.5 bg-gradient-to-r from-[#E6A635] to-[#D49522] hover:from-[#F5D061] hover:to-[#E6A635] text-[#28050D] rounded-xl transition-all shadow-md cursor-pointer"
+        >
+          Cerrar Ficha
+        </button>
       </div>
     </div>
   </div>
 
-  <!-- VIP CODE UNLOCK MODAL (MODERNO CON MARCO METÁLICO DORADO) -->
+  <!-- VIP CODE UNLOCK MODAL -->
   <div
     id="unlock-modal"
     class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md p-4 flex items-center justify-center font-sans-recetario"
     role="dialog"
     aria-modal="true"
   >
-    <div class="p-1 bg-gradient-to-br from-[#F5D061] via-[#E6A635] to-[#B37B1B] rounded-3xl shadow-2xl w-full max-w-md relative">
-      <div class="bg-[#2B050D] p-6 sm:p-8 rounded-[22px] text-white">
-        <div class="flex items-center justify-between pb-3 mb-4 border-b border-[#E6A635]/25">
-          <span class="text-xs font-bold uppercase tracking-wider text-[#F5D061] flex items-center gap-1.5">
-            <span>🔒</span>
-            <span>Acceso Privado</span>
-          </span>
-          <button
-            id="btn-close-unlock-modal"
-            type="button"
-            class="w-8 h-8 rounded-full bg-[#1E0308] hover:bg-[#E6A635] text-[#F5D061] hover:text-[#28050D] flex items-center justify-center font-bold text-xs transition-colors cursor-pointer"
-          >
-            ✕
-          </button>
+    <div class="w-full max-w-md rounded-2xl border border-[#E6A635]/35 bg-[#2B050D] p-6 sm:p-8 shadow-2xl relative text-white">
+      <div class="flex items-center justify-between pb-3 mb-4 border-b border-[#E6A635]/20">
+        <span class="text-xs font-semibold uppercase tracking-wider text-[#F5D061] flex items-center gap-2">
+          <svg class="w-4 h-4 text-[#F5D061]" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
+          </svg>
+          <span>Acceso Privado</span>
+        </span>
+        <button
+          id="btn-close-unlock-modal"
+          type="button"
+          class="w-8 h-8 rounded-full bg-[#1E0308] hover:bg-[#E6A635] text-[#F5D061] hover:text-[#28050D] flex items-center justify-center font-bold text-xs transition-colors cursor-pointer"
+        >
+          ✕
+        </button>
+      </div>
+
+      <h3 class="font-display text-2xl text-white font-bold leading-snug mb-2">
+        Ingresa tu código de acceso VIP
+      </h3>
+      <p class="text-xs text-amber-100/70 leading-relaxed mb-6 font-light">
+        Introduce el código que recibiste al adquirir tu Recetario Navideño 2026 para desbloquear las 185 recetas completas.
+      </p>
+
+      <form id="unlock-form" class="space-y-4">
+        <div>
+          <label for="vip-input-code" class="block text-xs font-semibold uppercase tracking-wider text-[#E6A635] mb-2">
+            Código de Desbloqueo
+          </label>
+          <input
+            type="text"
+            id="vip-input-code"
+            required
+            autocomplete="off"
+            placeholder="Ingresa tu código de acceso"
+            class="w-full h-12 px-4 bg-[#1E0308] border border-[#E6A635]/40 text-sm uppercase font-semibold text-[#F5D061] focus:outline-none focus:border-[#F5D061] focus:ring-2 focus:ring-[#E6A635]/30 rounded-xl transition-all tracking-wider placeholder-amber-200/30"
+          />
         </div>
 
-        <h3 class="font-display text-2xl text-white font-bold leading-snug mb-2">
-          Ingresa tu código de acceso VIP
-        </h3>
-        <p class="text-xs text-amber-100/70 leading-relaxed mb-6 font-light">
-          Introduce el código que recibiste al adquirir tu Recetario Navideño 2026 para desbloquear las 185 recetas completas.
-        </p>
-
-        <form id="unlock-form" class="space-y-4">
-          <div>
-            <label for="vip-input-code" class="block text-xs font-bold uppercase tracking-wider text-[#E6A635] mb-2">
-              Código de Desbloqueo
-            </label>
-            <input
-              type="text"
-              id="vip-input-code"
-              required
-              autocomplete="off"
-              placeholder="Ingresa tu código de acceso"
-              class="w-full h-12.5 px-4 bg-[#1E0308] border border-[#E6A635]/50 text-sm uppercase font-semibold text-[#F5D061] focus:outline-none focus:border-[#F5D061] focus:ring-4 focus:ring-[#E6A635]/25 rounded-2xl transition-all tracking-wider placeholder-amber-200/30"
-            />
-          </div>
-
-          <div id="unlock-error" class="hidden p-3 bg-red-950/70 border border-red-500/60 rounded-2xl text-xs font-semibold text-red-200">
-            Código no válido. Verifica mayúsculas o solicita asistencia vía WhatsApp.
-          </div>
-
-          <button
-            type="submit"
-            class="w-full py-4 px-4 bg-gradient-to-r from-[#E6A635] to-[#D49522] hover:from-[#F5D061] hover:to-[#E6A635] text-[#28050D] font-extrabold text-xs uppercase tracking-wider rounded-2xl transition-all shadow-lg hover:shadow-[0_0_25px_rgba(230,166,53,0.4)] cursor-pointer active:scale-98"
-          >
-            Activar Acceso Completo
-          </button>
-        </form>
-
-        <div class="mt-6 pt-4 border-t border-[#E6A635]/25 text-center">
-          <span class="block text-xs text-amber-100/70 mb-2">¿Aún no has adquirido el recetario?</span>
-          <a
-            href="https://wa.me/526143958598?text=Hola%20Nutri%C3%B3loga%20Velvet,%20quiero%20comprar%20mi%20c%C3%B3digo%20de%20acceso%20para%20el%20Recetario%20Navide%C3%B1o%202026."
-            target="_blank"
-            rel="noopener noreferrer"
-            class="text-xs font-bold text-[#F5D061] hover:underline"
-          >
-            Comprar acceso por WhatsApp →
-          </a>
+        <div id="unlock-error" class="hidden p-3 bg-red-950/70 border border-red-500/60 rounded-xl text-xs font-semibold text-red-200">
+          Código no válido. Verifica mayúsculas o solicita asistencia vía WhatsApp.
         </div>
+
+        <button
+          type="submit"
+          class="w-full py-3.5 px-4 bg-gradient-to-r from-[#E6A635] to-[#D49522] hover:from-[#F5D061] hover:to-[#E6A635] text-[#28050D] font-bold text-xs uppercase tracking-wider rounded-xl transition-all shadow-md cursor-pointer active:scale-98"
+        >
+          Activar Acceso Completo
+        </button>
+      </form>
+
+      <div class="mt-6 pt-4 border-t border-[#E6A635]/20 text-center">
+        <span class="block text-xs text-amber-100/70 mb-2 font-light">¿Aún no has adquirido el recetario?</span>
+        <a
+          href="https://wa.me/526143958598?text=Hola%20Nutri%C3%B3loga%20Velvet,%20quiero%20comprar%20mi%20c%C3%B3digo%20de%20acceso%20para%20el%20Recetario%20Navide%C3%B1o%202026."
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-xs font-medium text-[#F5D061] hover:underline"
+        >
+          Comprar acceso por WhatsApp →
+        </a>
       </div>
     </div>
   </div>
 
-  <!-- MODAL ESTILIZADO DE CONFIRMACIÓN PARA CERRAR SESIÓN (SIN CONFIRM NATIVO) -->
+  <!-- MODAL DE CONFIRMACIÓN PARA CERRAR SESIÓN -->
   <div
     id="logout-modal"
     class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md p-4 flex items-center justify-center font-sans-recetario"
     role="dialog"
     aria-modal="true"
   >
-    <div class="p-1 bg-gradient-to-br from-[#F5D061] via-[#E6A635] to-[#B37B1B] rounded-3xl shadow-2xl w-full max-w-sm text-center">
-      <div class="bg-[#2B050D] p-6 sm:p-7 rounded-[22px] text-white">
-        <div class="w-14 h-14 rounded-2xl bg-[#E6A635]/15 border border-[#E6A635]/40 text-[#F5D061] flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
-          <span>🔒</span>
-        </div>
-        <h3 class="font-display text-xl text-white font-bold mb-2">
-          ¿Cerrar sesión VIP?
-        </h3>
-        <p class="text-xs text-amber-100/70 leading-relaxed mb-6 font-light">
-          Para volver a consultar las recetas bloqueadas tendrás que ingresar nuevamente tu código de acceso.
-        </p>
+    <div class="w-full max-w-sm rounded-2xl border border-[#E6A635]/35 bg-[#2B050D] p-6 sm:p-7 shadow-2xl text-center text-white relative">
+      <div class="w-12 h-12 rounded-xl bg-[#E6A635]/10 border border-[#E6A635]/30 text-[#F5D061] flex items-center justify-center mx-auto mb-4">
+        <svg class="w-5 h-5 text-[#F5D061]" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
+        </svg>
+      </div>
+      <h3 class="font-display text-xl text-white font-bold mb-2">
+        ¿Cerrar sesión VIP?
+      </h3>
+      <p class="text-xs text-amber-100/70 leading-relaxed mb-6 font-light">
+        Para volver a consultar las recetas bloqueadas tendrás que ingresar nuevamente tu código de acceso.
+      </p>
 
-        <div class="flex items-center gap-3">
-          <button
-            type="button"
-            id="btn-cancel-logout"
-            class="flex-1 py-3 px-4 bg-[#1E0308] hover:bg-[#340811] border border-[#E6A635]/40 text-amber-100 text-xs font-bold rounded-xl transition-colors cursor-pointer"
-          >
-            Cancelar
-          </button>
-          <button
-            type="button"
-            id="btn-confirm-logout"
-            class="flex-1 py-3 px-4 bg-gradient-to-r from-[#991B32] to-[#800F24] hover:from-[#A51F38] hover:to-[#A51F38] text-white text-xs font-bold rounded-xl transition-all shadow-md cursor-pointer"
-          >
-            Sí, cerrar sesión
-          </button>
-        </div>
+      <div class="flex items-center gap-3">
+        <button
+          type="button"
+          id="btn-cancel-logout"
+          class="flex-1 py-2.5 px-4 bg-[#1E0308] hover:bg-[#340811] border border-[#E6A635]/35 text-amber-100 text-xs font-semibold rounded-xl transition-colors cursor-pointer"
+        >
+          Cancelar
+        </button>
+        <button
+          type="button"
+          id="btn-confirm-logout"
+          class="flex-1 py-2.5 px-4 bg-gradient-to-r from-[#991B32] to-[#800F24] hover:from-[#A51F38] hover:to-[#A51F38] text-white text-xs font-semibold rounded-xl transition-all shadow-md cursor-pointer"
+        >
+          Sí, cerrar sesión
+        </button>
       </div>
     </div>
   </div>
@@ -890,7 +898,7 @@ function getCategoryContour(slug: string) {
   >
     <div
       id="filters-drawer-panel"
-      class="relative w-full sm:max-w-xl max-h-[88vh] sm:max-h-[82vh] bg-[#22040B] border-t-2 sm:border-2 border-[#E6A635] rounded-t-[28px] sm:rounded-3xl shadow-[0_-15px_50px_rgba(0,0,0,0.85)] sm:shadow-[0_20px_60px_rgba(0,0,0,0.9),0_0_35px_rgba(230,166,53,0.2)] flex flex-col text-white transform translate-y-full sm:translate-y-0 sm:scale-95 sm:opacity-0 transition-all duration-300 ease-out"
+      class="relative w-full sm:max-w-xl max-h-[88vh] sm:max-h-[82vh] bg-[#22040B] border-t sm:border border-[#E6A635]/40 rounded-t-[28px] sm:rounded-3xl shadow-[0_-15px_50px_rgba(0,0,0,0.85)] sm:shadow-[0_20px_60px_rgba(0,0,0,0.9)] flex flex-col text-white transform translate-y-full sm:translate-y-0 sm:scale-95 sm:opacity-0 transition-all duration-300 ease-out"
     >
       <!-- Drag Handle / Visual pill (Solo visible en móvil) -->
       <div class="pt-3 pb-1 flex justify-center sm:hidden">
@@ -898,10 +906,12 @@ function getCategoryContour(slug: string) {
       </div>
 
       <!-- Drawer Header -->
-      <div class="px-5 py-3 border-b border-[#E6A635]/25 flex items-center justify-between">
+      <div class="px-5 py-3 border-b border-[#E6A635]/20 flex items-center justify-between">
         <div class="flex items-center gap-2.5">
-          <span class="w-8 h-8 rounded-full bg-[#E6A635]/15 border border-[#E6A635]/40 text-[#F5D061] flex items-center justify-center text-sm shadow-inner">
-            🎛️
+          <span class="w-8 h-8 rounded-full bg-[#E6A635]/15 border border-[#E6A635]/30 text-[#F5D061] flex items-center justify-center text-sm shadow-inner">
+            <svg class="w-4 h-4 text-[#F5D061]" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9.75 0h9.75" />
+            </svg>
           </span>
           <div>
             <h3 class="font-display text-lg font-bold text-white">Filtros de Recetas</h3>
@@ -1003,7 +1013,11 @@ function getCategoryContour(slug: string) {
                 data-drawer-tag={tag}
                 class="drawer-tag-btn px-3.5 py-2 rounded-full border border-[#E6A635]/30 bg-[#1E0308] text-amber-100/90 font-medium text-xs transition-all flex items-center gap-1.5 cursor-pointer active:scale-95"
               >
-                <span class="tag-check opacity-0 font-bold text-[#F5D061]">✓</span>
+                <span class="tag-check opacity-0 inline-flex items-center">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                  </svg>
+                </span>
                 <span>{tag}</span>
               </button>
             ))}
@@ -1032,32 +1046,32 @@ function getCategoryContour(slug: string) {
     </div>
   </div>
 
-  <!-- TOAST NOTIFICATION ESTILIZADO (SIN ALERT NATIVO) -->
+  <!-- TOAST NOTIFICATION -->
   <div
     id="toast-notification"
-    class="fixed top-24 right-6 z-50 transition-all duration-300 transform -translate-y-6 opacity-0 pointer-events-none"
+    class="fixed top-24 right-6 z-50 transition-all duration-300 transform -translate-y-6 opacity-0 pointer-events-none max-w-sm font-sans-recetario"
   >
-    <div class="p-1 bg-gradient-to-br from-[#F5D061] via-[#E6A635] to-[#B37B1B] rounded-2xl shadow-2xl">
-      <div class="bg-[#2B050D] p-4 rounded-[14px] flex items-center gap-3.5 max-w-sm font-sans-recetario text-white">
-        <div class="w-10 h-10 rounded-xl bg-emerald-500/20 border border-emerald-400 text-emerald-300 flex items-center justify-center text-lg font-bold shrink-0">
-          ✓
-        </div>
-        <div class="flex-1">
-          <div id="toast-title" class="font-bold text-xs text-[#F5D061]">
-            ¡Acceso VIP Activado!
-          </div>
-          <div id="toast-message" class="text-xs text-amber-100/80 mt-0.5 font-light">
-            Las 185 recetas han sido desbloqueadas con éxito.
-          </div>
-        </div>
-        <button
-          type="button"
-          id="btn-close-toast"
-          class="text-amber-200/50 hover:text-white text-xs font-bold p-1 cursor-pointer"
-        >
-          ✕
-        </button>
+    <div class="rounded-2xl border border-[#E6A635]/35 bg-[#2B050D]/95 backdrop-blur-md p-4 shadow-2xl flex items-center gap-3.5 text-white">
+      <div class="w-9 h-9 rounded-xl bg-emerald-500/15 border border-emerald-400/40 text-emerald-300 flex items-center justify-center shrink-0">
+        <svg class="w-4 h-4 text-emerald-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+        </svg>
       </div>
+      <div class="flex-1">
+        <div id="toast-title" class="font-bold text-xs text-[#F5D061]">
+          ¡Acceso VIP Activado!
+        </div>
+        <div id="toast-message" class="text-xs text-amber-100/80 mt-0.5 font-light">
+          Las 185 recetas han sido desbloqueadas con éxito.
+        </div>
+      </div>
+      <button
+        type="button"
+        id="btn-close-toast"
+        class="text-amber-200/50 hover:text-white text-xs font-bold p-1 cursor-pointer"
+      >
+        ✕
+      </button>
     </div>
   </div>
 
@@ -1165,14 +1179,14 @@ function getCategoryContour(slug: string) {
       const lockedBanner = document.getElementById("locked-recipes-banner");
 
       if (isVip) {
-        if (pillText) pillText.textContent = "✓ VIP Activo (Cerrar)";
-        if (pillBtn) pillBtn.className = "px-3 py-1 bg-emerald-500/20 hover:bg-emerald-500/30 border border-emerald-400 text-emerald-300 text-[11px] font-bold rounded-full transition-colors cursor-pointer";
+        if (pillText) pillText.textContent = "VIP Activo";
+        if (pillBtn) pillBtn.className = "px-3 py-1 bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-400/50 text-emerald-300 text-[11px] font-medium rounded-full transition-colors cursor-pointer";
         if (heroLocked) heroLocked.classList.add("hidden");
         if (heroUnlocked) heroUnlocked.classList.remove("hidden");
         if (lockedBanner) lockedBanner.classList.add("hidden");
       } else {
-        if (pillText) pillText.textContent = "🔑 Ingresar Código";
-        if (pillBtn) pillBtn.className = "px-3 py-1 bg-[#E6A635]/20 hover:bg-[#E6A635]/30 border border-[#E6A635]/50 text-[#F5D061] text-[11px] font-bold rounded-full transition-colors cursor-pointer";
+        if (pillText) pillText.textContent = "Ingresar Código";
+        if (pillBtn) pillBtn.className = "px-3 py-1 bg-[#E6A635]/15 hover:bg-[#E6A635]/25 border border-[#E6A635]/40 text-[#F5D061] text-[11px] font-medium rounded-full transition-colors cursor-pointer";
         if (heroLocked) heroLocked.classList.remove("hidden");
         if (heroUnlocked) heroUnlocked.classList.add("hidden");
         if (lockedBanner) lockedBanner.classList.remove("hidden");
@@ -1184,13 +1198,13 @@ function getCategoryContour(slug: string) {
         const btnAction = div.querySelector(".card-vip-btn");
         if (isVip) {
           if (btnAction) {
-            btnAction.innerHTML = "<span>Ver Ficha Completa</span> <span>→</span>";
-            btnAction.className = "card-vip-btn w-full py-3.5 px-4 bg-gradient-to-r from-[#991B32] via-[#800F24] to-[#991B32] hover:from-[#A51F38] hover:to-[#A51F38] border border-[#F5D061]/70 text-white font-bold text-xs uppercase tracking-wider rounded-2xl transition-all duration-200 cursor-pointer flex items-center justify-center gap-2 shadow-[0_4px_16px_rgba(153,27,50,0.5)] hover:shadow-[0_6px_22px_rgba(245,208,97,0.35)] hover:-translate-y-0.5 active:scale-98";
+            btnAction.innerHTML = '<span>Ver receta</span> <svg class="w-3.5 h-3.5 text-[#F5D061] transition-transform" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>';
+            btnAction.className = "card-vip-btn w-full py-2.5 px-4 bg-[#3B0B14] hover:bg-[#520F1C] border border-[#E6A635]/30 hover:border-[#F5D061] text-amber-100 font-semibold text-xs rounded-xl transition-all duration-200 cursor-pointer flex items-center justify-center gap-1.5";
           }
         } else {
           if (btnAction) {
-            btnAction.innerHTML = "<span>🔒 Desbloquear Receta</span> <span>→</span>";
-            btnAction.className = "card-vip-btn w-full py-3.5 px-4 bg-[#1E0308] hover:bg-[#340811] border border-[#E6A635]/40 hover:border-[#F5D061] text-amber-100 font-bold text-xs uppercase tracking-wider rounded-2xl transition-all duration-200 cursor-pointer flex items-center justify-center gap-2 shadow-sm hover:shadow-[0_0_15px_rgba(230,166,53,0.25)] hover:-translate-y-0.5 active:scale-98";
+            btnAction.innerHTML = '<svg class="w-3.5 h-3.5 text-[#E6A635]" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" /></svg> <span>Desbloquear</span>';
+            btnAction.className = "card-vip-btn w-full py-2.5 px-4 bg-transparent hover:bg-white/5 border border-[#E6A635]/25 hover:border-[#E6A635]/50 text-amber-200/70 hover:text-amber-100 font-medium text-xs rounded-xl transition-all duration-200 cursor-pointer flex items-center justify-center gap-1.5";
           }
         }
       });
