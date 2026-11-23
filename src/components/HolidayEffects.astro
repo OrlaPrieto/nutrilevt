@@ -1,0 +1,586 @@
+---
+/**
+ * HolidayEffects.astro
+ * Componente modular de efectos navideños exclusivos para Nutrilev (Edición 2026)
+ * Incluye:
+ * - Nieve sutil y destellos dorados en HTML5 Canvas con requestAnimationFrame
+ * - Esferas navideñas artesanales en SVG inline con balanceo pendular en CSS
+ * - Trineo y renos en silueta dorada minimalista cruzando suavemente el Hero
+ * - Botón flotante accesible de control con persistencia en localStorage
+ * - Cero bloqueo de clics (pointer-events-none) y compatibilidad total con impresión (no-print)
+ */
+---
+
+<!-- 1. LIENZO DE NIEVE Y DESTELLOS DORADOS (CANVAS FLOTANTE) -->
+<canvas
+  id="holiday-snow-canvas"
+  class="holiday-fx-element fixed inset-0 pointer-events-none z-[12] no-print"
+  aria-hidden="true"
+></canvas>
+
+<!-- 2. ESFERAS COLGANTES Y SILUETA DEL TRINEO EN EL HERO -->
+<div
+  id="holiday-decorative-layer"
+  class="holiday-fx-element absolute top-0 left-0 right-0 h-[480px] pointer-events-none overflow-hidden z-[15] no-print"
+  aria-hidden="true"
+>
+  <!-- SILUETA MINIMALISTA DE RENOS Y TRINEO DORADO (Cruza periódicamente el cielo del Hero) -->
+  <div class="sleigh-flight-track absolute top-6 sm:top-10 left-0 w-full pointer-events-none">
+    <div class="sleigh-flight-vehicle">
+      <svg
+        class="w-64 sm:w-80 h-auto text-[#F5D061] drop-shadow-[0_0_12px_rgba(245,208,97,0.45)]"
+        viewBox="0 0 340 70"
+        fill="currentColor"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <!-- Estela de destellos dorados / Polvo de estrellas mágicas -->
+        <g opacity="0.75">
+          <circle cx="8" cy="46" r="1.5" fill="#FFF4D0" />
+          <circle cx="20" cy="42" r="1.2" fill="#F5D061" />
+          <circle cx="34" cy="50" r="1.8" fill="#FFF4D0" />
+          <circle cx="48" cy="44" r="1.4" fill="#F5D061" />
+          <path d="M14 43 Q15 40 16 43 Q19 44 16 45 Q15 48 14 45 Q11 44 14 43 Z" fill="#FFF4D0" />
+          <path d="M38 48 Q39 45 40 48 Q43 49 40 50 Q39 53 38 50 Q35 49 38 48 Z" fill="#F5D061" />
+        </g>
+
+        <!-- Trineo clásico editorial -->
+        <g>
+          <!-- Patín del trineo -->
+          <path
+            d="M 52 56 C 75 56, 105 56, 120 56 C 128 56, 134 52, 136 46 C 137 42, 134 40, 130 40 C 127 40, 126 43, 128 45 C 129 47, 126 51, 118 51 L 62 51 C 58 51, 56 47, 58 43 L 60 41"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.2"
+            stroke-linecap="round"
+          />
+          <!-- Tirantes del patín -->
+          <line x1="72" y1="51" x2="75" y2="44" stroke="currentColor" stroke-width="1.8" />
+          <line x1="104" y1="51" x2="101" y2="44" stroke="currentColor" stroke-width="1.8" />
+          <!-- Carrocería del trineo -->
+          <path
+            d="M 58 42 C 55 35, 62 30, 70 30 C 76 30, 80 34, 86 34 L 110 34 C 118 34, 124 38, 126 44 C 124 45, 116 45, 110 44 L 68 44 C 62 44, 59 43, 58 42 Z"
+            fill="currentColor"
+          />
+          <!-- Saco de regalos -->
+          <path
+            d="M 66 32 C 63 24, 72 18, 80 20 C 86 21, 90 27, 88 33 Z"
+            fill="currentColor"
+            opacity="0.9"
+          />
+          <!-- Silueta de Santa -->
+          <path
+            d="M 88 32 C 86 26, 92 21, 98 22 C 103 23, 106 28, 104 33 Z"
+            fill="currentColor"
+          />
+          <!-- Gorro de Santa -->
+          <path d="M 95 21 C 92 18, 90 14, 86 16 C 85 17, 86 19, 88 19 Z" fill="currentColor" />
+          <circle cx="85" cy="16" r="1.5" fill="#FFF4D0" />
+        </g>
+
+        <!-- Riendas finas -->
+        <path
+          d="M 104 27 Q 150 25, 195 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1"
+          stroke-dasharray="3,2"
+          opacity="0.65"
+        />
+        <path
+          d="M 104 29 Q 200 28, 280 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1"
+          stroke-dasharray="3,2"
+          opacity="0.5"
+        />
+
+        <!-- Reno 1 (Trasero) -->
+        <g transform="translate(180, 10)">
+          <!-- Cuernos -->
+          <path
+            d="M 28 3 C 27 0, 24 -2, 23 1 M 26 1 C 25 -3, 29 -5, 32 -4 M 29 -3 L 28 1"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.3"
+            stroke-linecap="round"
+          />
+          <!-- Cuerpo saltando -->
+          <path
+            d="M 10 18 C 14 15, 20 16, 25 12 C 27 10, 29 6, 30 7 C 31 8, 29 11, 28 13 C 26 15, 25 17, 24 20 L 28 26 C 29 27, 28 28, 27 28 L 22 22 L 18 21 L 14 27 C 13 28, 11 27, 12 25 L 14 19 C 11 19, 9 20, 7 22 L 4 25 C 3 26, 2 25, 3 24 L 6 18 C 7 17, 8 18, 10 18 Z"
+            fill="currentColor"
+          />
+        </g>
+
+        <!-- Reno 2 (Delantero guía) -->
+        <g transform="translate(265, 4)">
+          <!-- Cuernos estilizados -->
+          <path
+            d="M 28 3 C 27 0, 24 -2, 23 1 M 26 1 C 25 -3, 29 -5, 32 -4 M 29 -3 L 28 1"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.3"
+            stroke-linecap="round"
+          />
+          <!-- Nariz de Rudolph con brillo sutil -->
+          <circle cx="33" cy="8" r="1.3" fill="#FFF4D0" />
+          <!-- Cuerpo saltando estirado hacia adelante -->
+          <path
+            d="M 10 18 C 14 15, 20 16, 25 12 C 27 10, 29 6, 30 7 C 31 8, 29 11, 28 13 C 26 15, 25 17, 24 20 L 30 25 C 31 26, 30 27, 29 27 L 23 21 L 19 20 L 15 28 C 14 29, 12 28, 13 26 L 15 19 C 12 19, 10 20, 8 22 L 3 25 C 2 26, 1 25, 2 24 L 6 18 C 7 17, 8 18, 10 18 Z"
+            fill="currentColor"
+          />
+        </g>
+      </svg>
+    </div>
+  </div>
+
+  <!-- RACIMO DE ESFERAS IZQUIERDO (Dorado y Vino Tinto) -->
+  <div class="absolute -top-3 sm:top-0 left-2 sm:left-6 lg:left-12 flex items-start gap-3 sm:gap-5">
+    
+    <!-- Esfera A: Vino Tinto Imperial con hilo largo -->
+    <div class="bauble-swing-left-1 flex flex-col items-center">
+      <!-- Hilo dorado -->
+      <div class="w-[1px] h-20 sm:h-28 bg-gradient-to-b from-[#E6A635]/80 via-[#F5D061]/60 to-[#E6A635]"></div>
+      <!-- Casquillo dorado -->
+      <div class="w-3.5 h-2 bg-gradient-to-r from-[#D49522] via-[#F5D061] to-[#B37B1B] rounded-t-sm shadow-sm"></div>
+      <!-- Esfera SVG -->
+      <svg class="w-12 h-12 sm:w-16 sm:h-16 drop-shadow-[0_8px_16px_rgba(0,0,0,0.6)]" viewBox="0 0 60 60">
+        <defs>
+          <radialGradient id="wineBaubleGrad" cx="35%" cy="30%" r="65%">
+            <stop offset="0%" stop-color="#C72C48" />
+            <stop offset="35%" stop-color="#800F24" />
+            <stop offset="75%" stop-color="#3B0510" />
+            <stop offset="100%" stop-color="#190206" />
+          </radialGradient>
+        </defs>
+        <!-- Cuerpo de la esfera -->
+        <circle cx="30" cy="30" r="28" fill="url(#wineBaubleGrad)" stroke="#E6A635" stroke-width="1" stroke-opacity="0.4" />
+        <!-- Detalle de estrella de nieve central en dorado -->
+        <g stroke="#F5D061" stroke-width="1" stroke-linecap="round" opacity="0.65">
+          <line x1="30" y1="18" x2="30" y2="42" />
+          <line x1="18" y1="30" x2="42" y2="30" />
+          <line x1="22" y1="22" x2="38" y2="38" />
+          <line x1="22" y1="38" x2="38" y2="22" />
+          <circle cx="30" cy="30" r="2" fill="#F5D061" />
+        </g>
+        <!-- Brillo especular superior -->
+        <ellipse cx="23" cy="20" rx="6" ry="3.5" transform="rotate(-30 23 20)" fill="#FFFFFF" opacity="0.35" />
+      </svg>
+    </div>
+
+    <!-- Esfera B: Oro Metálico Festivo con hilo medio -->
+    <div class="bauble-swing-left-2 flex flex-col items-center">
+      <!-- Hilo dorado -->
+      <div class="w-[1px] h-12 sm:h-16 bg-gradient-to-b from-[#E6A635]/80 via-[#F5D061]/60 to-[#E6A635]"></div>
+      <!-- Casquillo dorado -->
+      <div class="w-3 h-1.5 bg-gradient-to-r from-[#D49522] via-[#F5D061] to-[#B37B1B] rounded-t-sm shadow-sm"></div>
+      <!-- Esfera SVG -->
+      <svg class="w-9 h-9 sm:w-12 sm:h-12 drop-shadow-[0_6px_14px_rgba(0,0,0,0.5)]" viewBox="0 0 50 50">
+        <defs>
+          <radialGradient id="goldBaubleGrad1" cx="35%" cy="30%" r="65%">
+            <stop offset="0%" stop-color="#FFF8E0" />
+            <stop offset="25%" stop-color="#F5D061" />
+            <stop offset="70%" stop-color="#C68A24" />
+            <stop offset="100%" stop-color="#5E3E09" />
+          </radialGradient>
+        </defs>
+        <circle cx="25" cy="25" r="23" fill="url(#goldBaubleGrad1)" stroke="#FFF0C0" stroke-width="0.8" stroke-opacity="0.6" />
+        <!-- Filigrana geométrica -->
+        <circle cx="25" cy="25" r="14" fill="none" stroke="#2B050D" stroke-width="0.8" opacity="0.3" stroke-dasharray="2,2" />
+        <ellipse cx="19" cy="17" rx="5" ry="2.5" transform="rotate(-28 19 17)" fill="#FFFFFF" opacity="0.5" />
+      </svg>
+    </div>
+
+  </div>
+
+  <!-- RACIMO DE ESFERAS DERECHO (Verde Esmeralda y Champagne Oro) -->
+  <div class="absolute -top-3 sm:top-0 right-2 sm:right-6 lg:right-12 flex items-start gap-3 sm:gap-5">
+    
+    <!-- Esfera C: Champagne Oro pequeño con hilo corto (Oculto en móviles muy pequeños para no obstruir) -->
+    <div class="bauble-swing-right-1 hidden xs:flex flex-col items-center">
+      <!-- Hilo dorado -->
+      <div class="w-[1px] h-14 sm:h-20 bg-gradient-to-b from-[#E6A635]/80 via-[#F5D061]/60 to-[#E6A635]"></div>
+      <!-- Casquillo -->
+      <div class="w-3 h-1.5 bg-gradient-to-r from-[#D49522] via-[#F5D061] to-[#B37B1B] rounded-t-sm shadow-sm"></div>
+      <!-- Esfera SVG -->
+      <svg class="w-9 h-9 sm:w-11 sm:h-11 drop-shadow-[0_6px_14px_rgba(0,0,0,0.5)]" viewBox="0 0 50 50">
+        <defs>
+          <radialGradient id="champagneBaubleGrad" cx="35%" cy="30%" r="65%">
+            <stop offset="0%" stop-color="#FFFFFF" />
+            <stop offset="30%" stop-color="#FCEAB3" />
+            <stop offset="75%" stop-color="#D49522" />
+            <stop offset="100%" stop-color="#734B0B" />
+          </radialGradient>
+        </defs>
+        <circle cx="25" cy="25" r="23" fill="url(#champagneBaubleGrad)" stroke="#FFF" stroke-width="0.8" stroke-opacity="0.5" />
+        <ellipse cx="19" cy="17" rx="5" ry="2.5" transform="rotate(-28 19 17)" fill="#FFFFFF" opacity="0.6" />
+      </svg>
+    </div>
+
+    <!-- Esfera D: Verde Esmeralda Clínico Festivo con hilo largo -->
+    <div class="bauble-swing-right-2 flex flex-col items-center">
+      <!-- Hilo dorado -->
+      <div class="w-[1px] h-20 sm:h-26 bg-gradient-to-b from-[#E6A635]/80 via-[#F5D061]/60 to-[#E6A635]"></div>
+      <!-- Casquillo dorado -->
+      <div class="w-3.5 h-2 bg-gradient-to-r from-[#D49522] via-[#F5D061] to-[#B37B1B] rounded-t-sm shadow-sm"></div>
+      <!-- Esfera SVG -->
+      <svg class="w-12 h-12 sm:w-15 sm:h-15 drop-shadow-[0_8px_16px_rgba(0,0,0,0.6)]" viewBox="0 0 60 60">
+        <defs>
+          <radialGradient id="emeraldBaubleGrad" cx="35%" cy="30%" r="65%">
+            <stop offset="0%" stop-color="#5EEAD4" />
+            <stop offset="25%" stop-color="#157347" />
+            <stop offset="75%" stop-color="#0B3E25" />
+            <stop offset="100%" stop-color="#031A0F" />
+          </radialGradient>
+        </defs>
+        <circle cx="30" cy="30" r="28" fill="url(#emeraldBaubleGrad)" stroke="#F5D061" stroke-width="1" stroke-opacity="0.45" />
+        <!-- Guirnalda fina en dorado -->
+        <path d="M 12 30 Q 30 42, 48 30" fill="none" stroke="#F5D061" stroke-width="1.2" opacity="0.6" stroke-dasharray="2,2" />
+        <path d="M 16 24 Q 30 36, 44 24" fill="none" stroke="#F5D061" stroke-width="1" opacity="0.4" />
+        <ellipse cx="23" cy="20" rx="6" ry="3.5" transform="rotate(-30 23 20)" fill="#FFFFFF" opacity="0.35" />
+      </svg>
+    </div>
+
+  </div>
+</div>
+
+<!-- 3. BOTÓN FLOTANTE DE CONTROL (Activar / Desactivar efectos) -->
+<div class="fixed bottom-5 right-5 z-40 no-print font-sans-recetario">
+  <button
+    id="btn-toggle-holiday-fx"
+    type="button"
+    class="group relative h-11 px-3.5 sm:px-4 rounded-full bg-[#2B050D]/95 hover:bg-[#3D0A15] active:scale-95 border border-[#E6A635]/60 hover:border-[#F5D061] text-[#F5D061] shadow-[0_6px_25px_rgba(0,0,0,0.6)] backdrop-blur-md flex items-center gap-2 transition-all duration-300 cursor-pointer"
+    aria-label="Activar o desactivar efectos navideños"
+    title="Efectos festivos activos (Clic para pausar)"
+  >
+    <!-- Ícono festivo interactivo -->
+    <span id="holiday-fx-icon" class="text-base sm:text-lg transition-transform duration-300 group-hover:rotate-45">
+      ✨
+    </span>
+    <span id="holiday-fx-label" class="text-[11px] font-bold tracking-wide text-amber-100 hidden sm:inline">
+      Navidad
+    </span>
+    <!-- Indicador de estado (luz de encendido/apagado) -->
+    <span
+      id="holiday-fx-status-dot"
+      class="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]"
+    ></span>
+  </button>
+</div>
+
+<!-- ESTILOS CSS PUROS PARA ANIMACIONES SUAVES Y AISLAMIENTO -->
+<style is:inline>
+  /* 1. BALANCEO PENDULAR SUAVE DE LAS ESFERAS (GPU-Accelerated) */
+  .bauble-swing-left-1 {
+    transform-origin: top center;
+    animation: baubleSwingLeft1 6.5s ease-in-out infinite alternate;
+  }
+  .bauble-swing-left-2 {
+    transform-origin: top center;
+    animation: baubleSwingLeft2 5.2s ease-in-out infinite alternate;
+  }
+  .bauble-swing-right-1 {
+    transform-origin: top center;
+    animation: baubleSwingRight1 7.1s ease-in-out infinite alternate;
+  }
+  .bauble-swing-right-2 {
+    transform-origin: top center;
+    animation: baubleSwingRight2 5.8s ease-in-out infinite alternate;
+  }
+
+  @keyframes baubleSwingLeft1 {
+    0% {
+      transform: rotate(-3deg);
+    }
+    100% {
+      transform: rotate(3.2deg);
+    }
+  }
+
+  @keyframes baubleSwingLeft2 {
+    0% {
+      transform: rotate(2.8deg);
+    }
+    100% {
+      transform: rotate(-2.4deg);
+    }
+  }
+
+  @keyframes baubleSwingRight1 {
+    0% {
+      transform: rotate(-2.2deg);
+    }
+    100% {
+      transform: rotate(2.6deg);
+    }
+  }
+
+  @keyframes baubleSwingRight2 {
+    0% {
+      transform: rotate(3.5deg);
+    }
+    100% {
+      transform: rotate(-3deg);
+    }
+  }
+
+  /* 2. SILUETA DEL TRINEO VOLADOR (Cruza cada ~40s con gracia) */
+  .sleigh-flight-vehicle {
+    will-change: transform, opacity;
+    animation: sleighFlyCycle 42s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  }
+
+  @keyframes sleighFlyCycle {
+    0% {
+      transform: translate3d(-340px, 18px, 0) scale(0.8);
+      opacity: 0;
+    }
+    2% {
+      opacity: 0.35;
+    }
+    18% {
+      transform: translate3d(calc(50vw - 120px), -6px, 0) scale(0.85);
+      opacity: 0.38;
+    }
+    34% {
+      opacity: 0.35;
+    }
+    38% {
+      transform: translate3d(calc(100vw + 240px), 24px, 0) scale(0.9);
+      opacity: 0;
+    }
+    100% {
+      transform: translate3d(calc(100vw + 240px), 24px, 0) scale(0.9);
+      opacity: 0;
+    }
+  }
+
+  /* 3. ESTADO DESACTIVADO (Por el usuario o por accesibilidad) */
+  .holiday-effects-disabled .holiday-fx-element {
+    display: none !important;
+  }
+
+  /* 4. ACCESIBILIDAD: Respeta si el usuario solicita reducción de movimiento */
+  @media (prefers-reduced-motion: reduce) {
+    .bauble-swing-left-1,
+    .bauble-swing-left-2,
+    .bauble-swing-right-1,
+    .bauble-swing-right-2,
+    .sleigh-flight-vehicle {
+      animation: none !important;
+    }
+  }
+</style>
+
+<!-- CLIENT SCRIPT PARA CANVAS NIEVE, DESTELLOS Y CONTROL DE ESTADO -->
+<script is:inline>
+  (function () {
+    const STORAGE_KEY = "nutrilev_holiday_effects";
+
+    // Detectar preferencia inicial (localStorage o prefers-reduced-motion)
+    function getInitialState() {
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved !== null) {
+          return saved === "true";
+        }
+      } catch (e) {}
+
+      // Si no hay preferencia guardada, verificar si el sistema solicita reducción de movimiento
+      const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      return !prefersReducedMotion;
+    }
+
+    let isEffectsActive = getInitialState();
+
+    // Canvas Engine State
+    const canvas = document.getElementById("holiday-snow-canvas");
+    let ctx = canvas ? canvas.getContext("2d") : null;
+    let animFrameId = null;
+    let particles = [];
+    let width = 0;
+    let height = 0;
+    let isTabVisible = !document.hidden;
+
+    // Configuración de partículas según dispositivo
+    function createParticles() {
+      particles = [];
+      const isMobile = window.innerWidth < 768;
+      // 22 partículas en móvil para cero sobrecarga, 50 en desktop para elegancia
+      const count = isMobile ? 22 : 50;
+
+      for (let i = 0; i < count; i++) {
+        // 65% copos de nieve blancos, 35% destellos dorados sutiles
+        const isGold = Math.random() < 0.35;
+        particles.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          radius: isGold ? Math.random() * 1.4 + 0.8 : Math.random() * 1.8 + 1.1,
+          speedY: Math.random() * 0.55 + 0.35,
+          speedX: Math.random() * 0.4 - 0.2,
+          swayAngle: Math.random() * Math.PI * 2,
+          swaySpeed: Math.random() * 0.02 + 0.01,
+          opacity: isGold ? Math.random() * 0.45 + 0.35 : Math.random() * 0.5 + 0.25,
+          isGold: isGold,
+          twinkleSpeed: Math.random() * 0.03 + 0.015,
+          twinkleVal: Math.random() * Math.PI
+        });
+      }
+    }
+
+    function resizeCanvas() {
+      if (!canvas) return;
+      const dpr = window.devicePixelRatio || 1;
+      width = window.innerWidth;
+      height = window.innerHeight;
+
+      canvas.width = width * dpr;
+      canvas.height = height * dpr;
+      canvas.style.width = width + "px";
+      canvas.style.height = height + "px";
+
+      if (ctx) {
+        ctx.scale(dpr, dpr);
+      }
+      createParticles();
+    }
+
+    function renderSnow() {
+      if (!ctx || !isEffectsActive || !isTabVisible) return;
+
+      ctx.clearRect(0, 0, width, height);
+
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
+
+        // Actualizar oscilación y posición
+        p.swayAngle += p.swaySpeed;
+        p.y += p.speedY;
+        p.x += p.speedX + Math.sin(p.swayAngle) * 0.4;
+
+        // Reiniciar cuando sale de la pantalla
+        if (p.y > height + 8) {
+          p.y = -8;
+          p.x = Math.random() * width;
+        }
+        if (p.x < -10) p.x = width + 10;
+        if (p.x > width + 10) p.x = -10;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+
+        if (p.isGold) {
+          // Destello dorado sutil con titileo orgánico
+          p.twinkleVal += p.twinkleSpeed;
+          const currentAlpha = p.opacity * (0.7 + 0.3 * Math.sin(p.twinkleVal));
+          ctx.fillStyle = "rgba(245, 208, 97, " + currentAlpha + ")";
+          ctx.shadowBlur = 4;
+          ctx.shadowColor = "rgba(230, 166, 53, 0.4)";
+        } else {
+          // Copo blanco suave de profundidad
+          ctx.fillStyle = "rgba(255, 250, 245, " + p.opacity + ")";
+          ctx.shadowBlur = 0;
+        }
+
+        ctx.fill();
+      }
+
+      animFrameId = requestAnimationFrame(renderSnow);
+    }
+
+    function startAnimation() {
+      if (!animFrameId && isEffectsActive && isTabVisible) {
+        animFrameId = requestAnimationFrame(renderSnow);
+      }
+    }
+
+    function stopAnimation() {
+      if (animFrameId) {
+        cancelAnimationFrame(animFrameId);
+        animFrameId = null;
+      }
+      if (ctx) {
+        ctx.clearRect(0, 0, width, height);
+      }
+    }
+
+    // Actualizar interfaz visual y clases según estado
+    function updateEffectsUI() {
+      const btn = document.getElementById("btn-toggle-holiday-fx");
+      const icon = document.getElementById("holiday-fx-icon");
+      const dot = document.getElementById("holiday-fx-status-dot");
+      const label = document.getElementById("holiday-fx-label");
+
+      if (isEffectsActive) {
+        document.documentElement.classList.remove("holiday-effects-disabled");
+        if (btn) {
+          btn.title = "Efectos festivos activos (Clic para pausar)";
+          btn.classList.remove("border-zinc-700", "bg-[#1E0308]/90", "text-zinc-400");
+          btn.classList.add("border-[#E6A635]/60", "text-[#F5D061]", "bg-[#2B050D]/95");
+        }
+        if (icon) icon.textContent = "✨";
+        if (label) label.textContent = "Navidad";
+        if (dot) {
+          dot.className = "w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]";
+        }
+        startAnimation();
+      } else {
+        document.documentElement.classList.add("holiday-effects-disabled");
+        if (btn) {
+          btn.title = "Efectos festivos pausados (Clic para activar)";
+          btn.classList.remove("border-[#E6A635]/60", "text-[#F5D061]", "bg-[#2B050D]/95");
+          btn.classList.add("border-zinc-700", "bg-[#1E0308]/90", "text-zinc-400");
+        }
+        if (icon) icon.textContent = "❄️";
+        if (label) label.textContent = "Pausado";
+        if (dot) {
+          dot.className = "w-2 h-2 rounded-full bg-zinc-600";
+        }
+        stopAnimation();
+      }
+    }
+
+    function toggleEffects() {
+      isEffectsActive = !isEffectsActive;
+      try {
+        localStorage.setItem(STORAGE_KEY, String(isEffectsActive));
+      } catch (e) {}
+      updateEffectsUI();
+    }
+
+    // Inicialización al cargar el documento
+    function init() {
+      resizeCanvas();
+      window.addEventListener("resize", () => {
+        resizeCanvas();
+      });
+
+      // Pausar animación cuando la pestaña esté oculta para ahorrar batería/CPU
+      document.addEventListener("visibilitychange", () => {
+        isTabVisible = !document.hidden;
+        if (isTabVisible && isEffectsActive) {
+          startAnimation();
+        } else {
+          stopAnimation();
+        }
+      });
+
+      // Escuchar clic en botón flotante
+      const btn = document.getElementById("btn-toggle-holiday-fx");
+      if (btn) {
+        btn.addEventListener("click", toggleEffects);
+      }
+
+      updateEffectsUI();
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", init);
+    } else {
+      init();
+    }
+
+    // Compatibilidad con transiciones de Astro (View Transitions / ClientRouter)
+    document.addEventListener("astro:page-load", init);
+  })();
+</script>

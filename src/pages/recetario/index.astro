@@ -3,6 +3,7 @@ import Layout from "../../layouts/Layout.astro";
 import Navbar from "../../components/sections/Navbar.astro";
 import Footer from "../../components/sections/Footer.astro";
 import recipesData from "../../data/recipes.json";
+import HolidayEffects from "../../components/HolidayEffects.astro";
 
 // Free preview sample recipe IDs (one per major chapter)
 const FREE_SAMPLE_IDS = [
@@ -169,6 +170,9 @@ function getCategoryContour(slug: string) {
   <!-- CONTENEDOR PRINCIPAL CON EL FONDO NAVIDEÑO DE LA IMAGEN (VINO PROFUNDO Y DESTELLOS DORADOS) -->
   <div class="bg-holiday-canvas text-white pt-24 sm:pt-32 pb-20 min-h-screen relative overflow-hidden font-sans-recetario selection:bg-[#E6A635] selection:text-[#2E060E]">
     
+    <!-- EFECTOS NAVIDEÑOS MODULARES 2026 (NIEVE, ESFERAS, TRINEO Y CONTROL) -->
+    <HolidayEffects />
+
     <!-- Ambient Christmas botanical glowing lights -->
     <div class="absolute top-20 left-1/4 w-[500px] h-[500px] bg-red-600/15 rounded-full blur-[140px] pointer-events-none"></div>
     <div class="absolute top-80 right-10 w-[450px] h-[450px] bg-amber-500/10 rounded-full blur-[130px] pointer-events-none"></div>
