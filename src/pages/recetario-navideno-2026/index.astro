@@ -1495,11 +1495,12 @@ function getCategoryContour(slug: string) {
     function checkAuth() {
       try {
         const stored = localStorage.getItem(STORAGE_KEY);
-        if (stored === "true") {
-          isVip = true;
-        }
-      } catch (e) {}
+        isVip = stored === "true";
+      } catch (e) {
+        isVip = false;
+      }
       updateAuthUI();
+      applyFilters();
     }
 
     function setAuth(status) {
