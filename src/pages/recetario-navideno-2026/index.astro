@@ -514,7 +514,7 @@ function getCategoryContour(slug: string) {
         class="hidden mb-6 p-4 bg-[#28050D] border border-[#E6A635]/40 rounded-2xl flex items-center justify-between text-xs font-semibold text-amber-100 shadow-md"
       >
         <div class="flex items-center gap-2">
-          <span class="w-2.5 h-2.5 rounded-full bg-[#F5D061] animate-ping"></span>
+          <span class="w-2.5 h-2.5 rounded-full bg-[#F5D061] animate-ping motion-reduce:animate-none"></span>
           <span id="filter-feedback-text">Filtros activos</span>
         </div>
         <button
@@ -570,7 +570,8 @@ function getCategoryContour(slug: string) {
               data-title={recipe.title.toLowerCase()}
               data-ingredients={recipe.ingredients.join(" ").toLowerCase()}
               data-free={isFree ? "true" : "false"}
-              class={`recetario-card bg-[#28050D] rounded-2xl overflow-hidden border ${style.border} ${style.glow} flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 group relative cursor-pointer ${!isFree ? "hidden" : ""}`}
+              tabindex="0"
+              class={`recetario-card bg-[#28050D] rounded-2xl overflow-hidden border ${style.border} ${style.glow} flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:translate-y-0 group relative cursor-pointer ${!isFree ? "hidden" : ""}`}
             >
               <!-- Top Dish Photo (Ocupa todo el ancho superior sin marco grueso exterior) -->
               <div
@@ -582,9 +583,12 @@ function getCategoryContour(slug: string) {
                   <img
                     src={recipe.image}
                     alt={recipe.title}
+                    width="640"
+                    height="448"
                     loading="lazy"
                     decoding="async"
-                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+                    onerror="this.onerror=null;this.src='/images/recetas/001-champurrado-ligero.webp';"
+                    class="w-full h-full object-cover group-hover:scale-105 motion-reduce:group-hover:scale-100 transition-transform duration-500 ease-out motion-reduce:transition-none"
                   />
                 ) : (
                   <div class="w-full h-full flex items-center justify-center text-amber-200/50 text-xs">
@@ -833,6 +837,7 @@ function getCategoryContour(slug: string) {
     class="fixed inset-0 z-[60] hidden bg-black/80 backdrop-blur-md p-3 sm:p-6 lg:p-10 flex items-center justify-center overflow-y-auto font-sans-recetario"
     role="dialog"
     aria-modal="true"
+    aria-labelledby="modal-title"
   >
     <div
       id="recipe-modal-dialog"
@@ -854,6 +859,7 @@ function getCategoryContour(slug: string) {
         <button
           id="btn-close-modal"
           type="button"
+          aria-label="Cerrar ficha de receta"
           class="w-9 h-9 rounded-full bg-[#1E0308] hover:bg-[#E6A635] text-[#F5D061] hover:text-[#28050D] flex items-center justify-center font-bold text-sm transition-all border border-[#E6A635]/40 hover:rotate-90 cursor-pointer"
         >
           ✕
@@ -1049,6 +1055,7 @@ function getCategoryContour(slug: string) {
     class="fixed inset-0 z-[60] hidden bg-black/80 backdrop-blur-md p-4 flex items-center justify-center font-sans-recetario"
     role="dialog"
     aria-modal="true"
+    aria-labelledby="unlock-modal-title"
   >
     <div class="w-full max-w-md rounded-2xl border border-[#E6A635]/35 bg-[#2B050D] p-6 sm:p-8 shadow-2xl relative text-white">
       <div class="flex items-center justify-between pb-3 mb-4 border-b border-[#E6A635]/20">
@@ -1071,13 +1078,14 @@ function getCategoryContour(slug: string) {
         <button
           id="btn-close-unlock-modal"
           type="button"
+          aria-label="Cerrar ventana de acceso"
           class="w-8 h-8 rounded-full bg-[#1E0308] hover:bg-[#E6A635] text-[#F5D061] hover:text-[#28050D] flex items-center justify-center font-bold text-xs transition-colors cursor-pointer"
         >
           ✕
         </button>
       </div>
 
-      <h3 class="font-display text-2xl text-white font-bold leading-snug mb-2">
+      <h3 id="unlock-modal-title" class="font-display text-2xl text-white font-bold leading-snug mb-2">
         Ingresa tu código de acceso VIP
       </h3>
       <p class="text-xs text-amber-100/70 leading-relaxed mb-6 font-light">
@@ -1148,6 +1156,7 @@ function getCategoryContour(slug: string) {
     class="fixed inset-0 z-[60] hidden bg-black/80 backdrop-blur-md p-4 flex items-center justify-center font-sans-recetario"
     role="dialog"
     aria-modal="true"
+    aria-labelledby="logout-modal-title"
   >
     <div class="w-full max-w-sm rounded-2xl border border-[#E6A635]/35 bg-[#2B050D] p-6 sm:p-7 shadow-2xl text-center text-white relative">
       <div class="w-12 h-12 rounded-xl bg-[#E6A635]/10 border border-[#E6A635]/30 text-[#F5D061] flex items-center justify-center mx-auto mb-4">
@@ -1165,7 +1174,7 @@ function getCategoryContour(slug: string) {
           />
         </svg>
       </div>
-      <h3 class="font-display text-xl text-white font-bold mb-2">
+      <h3 id="logout-modal-title" class="font-display text-xl text-white font-bold mb-2">
         ¿Cerrar sesión VIP?
       </h3>
       <p class="text-xs text-amber-100/70 leading-relaxed mb-6 font-light">
@@ -1417,7 +1426,8 @@ function getCategoryContour(slug: string) {
       <button
         type="button"
         id="btn-close-toast"
-        class="text-amber-200/50 hover:text-white text-xs font-bold p-1 cursor-pointer"
+        aria-label="Cerrar notificación"
+        class="text-amber-200/70 hover:text-white text-xs font-bold p-1 cursor-pointer"
       >
         ✕
       </button>
@@ -1487,15 +1497,28 @@ function getCategoryContour(slug: string) {
 
     // Logout Modal Logic
     const logoutModal = document.getElementById("logout-modal");
+    let lastFocusedElement = null;
+
+    function restoreFocus() {
+      if (lastFocusedElement && typeof lastFocusedElement.focus === "function") {
+        lastFocusedElement.focus();
+      }
+      lastFocusedElement = null;
+    }
 
     function openLogoutModal() {
+      lastFocusedElement = document.activeElement;
       logoutModal?.classList.remove("hidden");
       document.body.style.overflow = "hidden";
+      setTimeout(() => {
+        document.getElementById("btn-cancel-logout")?.focus();
+      }, 30);
     }
 
     function closeLogoutModal() {
       logoutModal?.classList.add("hidden");
       document.body.style.overflow = "";
+      restoreFocus();
     }
 
     document
@@ -1649,7 +1672,13 @@ function getCategoryContour(slug: string) {
           const div = document.createElement("div");
           div.className =
             "p-3 bg-[#1E0308] border border-[#E6A635]/35 rounded-2xl text-xs flex justify-between items-center";
-          div.innerHTML = `<span class="text-amber-200/80 font-medium">${eq.group}:</span><span class="text-[#F5D061] font-bold font-mono-recetario text-sm">${eq.count}</span>`;
+          const grpSpan = document.createElement("span");
+          grpSpan.className = "text-amber-200/80 font-medium";
+          grpSpan.textContent = `${eq.group}:`;
+          const cntSpan = document.createElement("span");
+          cntSpan.className = "text-[#F5D061] font-bold font-mono-recetario text-sm";
+          cntSpan.textContent = String(eq.count);
+          div.append(grpSpan, cntSpan);
           eqList.appendChild(div);
         });
         eqSec.classList.remove("hidden");
@@ -1664,17 +1693,20 @@ function getCategoryContour(slug: string) {
         const li = document.createElement("li");
         li.className =
           "flex items-start gap-2.5 cursor-pointer py-1.5 select-none";
-        li.innerHTML = `
-          <input type="checkbox" id="ing-${i}" class="mt-0.5 rounded border-[#E6A635]/50 accent-[#E6A635] cursor-pointer" />
-          <label for="ing-${i}" class="cursor-pointer leading-tight text-amber-100/90 font-medium">${ing}</label>
-        `;
+        const cb = document.createElement("input");
+        cb.type = "checkbox";
+        cb.id = `ing-${i}`;
+        cb.className = "mt-0.5 rounded border-[#E6A635]/50 accent-[#E6A635] cursor-pointer";
+        const label = document.createElement("label");
+        label.htmlFor = `ing-${i}`;
+        label.className = "cursor-pointer leading-tight text-amber-100/90 font-medium";
+        label.textContent = ing;
+        li.append(cb, label);
         li.addEventListener("click", (e) => {
-          if (e.target.tagName !== "INPUT") {
-            const cb = li.querySelector("input");
+          if (e.target !== cb) {
             cb.checked = !cb.checked;
           }
-          const label = li.querySelector("label");
-          if (li.querySelector("input").checked) {
+          if (cb.checked) {
             label.classList.add("line-through", "text-amber-200/40");
           } else {
             label.classList.remove("line-through", "text-amber-200/40");
@@ -1689,12 +1721,14 @@ function getCategoryContour(slug: string) {
       recipe.instructions.forEach((step) => {
         const li = document.createElement("li");
         li.className = "flex items-start gap-3 py-1";
-        li.innerHTML = `
-          <span class="w-6 h-6 rounded-full bg-[#E6A635]/20 border border-[#E6A635]/50 text-[#F5D061] font-bold text-xs flex items-center justify-center shrink-0 mt-0.5 font-mono-recetario">
-            ${step.step}
-          </span>
-          <span class="leading-relaxed text-amber-100 text-sm font-normal">${step.text}</span>
-        `;
+        const numSpan = document.createElement("span");
+        numSpan.className =
+          "w-6 h-6 rounded-full bg-[#E6A635]/20 border border-[#E6A635]/50 text-[#F5D061] font-bold text-xs flex items-center justify-center shrink-0 mt-0.5 font-mono-recetario";
+        numSpan.textContent = String(step.step);
+        const textSpan = document.createElement("span");
+        textSpan.className = "leading-relaxed text-amber-100 text-sm font-normal";
+        textSpan.textContent = step.text;
+        li.append(numSpan, textSpan);
         instList.appendChild(li);
       });
 
@@ -1708,18 +1742,25 @@ function getCategoryContour(slug: string) {
         tipBox.classList.add("hidden");
       }
 
+      lastFocusedElement = document.activeElement;
       recipeModal.classList.remove("hidden");
       const modalDialog = document.getElementById("recipe-modal-dialog");
       if (modalDialog) modalDialog.scrollTop = 0;
       document.body.style.overflow = "hidden";
+      setTimeout(() => {
+        document.getElementById("btn-close-modal")?.focus();
+      }, 30);
     }
 
     function closeRecipeModal() {
+      if (recipeModal.classList.contains("hidden")) return;
       recipeModal.classList.add("hidden");
       document.body.style.overflow = "";
+      restoreFocus();
     }
 
     function openUnlockModal() {
+      lastFocusedElement = document.activeElement;
       const err = document.getElementById("unlock-error");
       if (err) err.classList.add("hidden");
       unlockModal.classList.remove("hidden");
@@ -1730,8 +1771,10 @@ function getCategoryContour(slug: string) {
     }
 
     function closeUnlockModal() {
+      if (unlockModal.classList.contains("hidden")) return;
       unlockModal.classList.add("hidden");
       document.body.style.overflow = "";
+      restoreFocus();
     }
 
     // Filter Drawer Logic
@@ -2222,17 +2265,18 @@ function getCategoryContour(slug: string) {
         ?.addEventListener("click", resetFilters);
 
       // Sincronización del offset sticky del buscador respecto al header fijo
+      updateStickyOffset();
+      window.removeEventListener("resize", updateStickyOffset);
+      window.addEventListener("resize", updateStickyOffset, { passive: true });
+    }
+
+    function updateStickyOffset() {
       const filterBar = document.getElementById("search-filter-bar");
       const fixedHeader = document.querySelector("header.fixed");
-      function updateStickyOffset() {
-        if (fixedHeader && filterBar) {
-          const h = fixedHeader.getBoundingClientRect().height;
-          filterBar.style.top = `${Math.round(h)}px`;
-        }
+      if (fixedHeader && filterBar) {
+        const h = fixedHeader.getBoundingClientRect().height;
+        filterBar.style.top = `${Math.round(h)}px`;
       }
-      updateStickyOffset();
-      window.addEventListener("resize", updateStickyOffset, { passive: true });
-      window.addEventListener("scroll", updateStickyOffset, { passive: true });
     }
 
     function handleDocumentClick(e) {
@@ -2249,6 +2293,16 @@ function getCategoryContour(slug: string) {
         closeUnlockModal();
         closeLogoutModal();
         closeFilterDrawer();
+        return;
+      }
+      if (
+        (e.key === "Enter" || e.key === " ") &&
+        e.target instanceof HTMLElement &&
+        e.target.classList.contains("recetario-card")
+      ) {
+        e.preventDefault();
+        const recipeId = e.target.getAttribute("data-recipe-id");
+        if (recipeId) openRecipeModal(recipeId);
       }
     }
 

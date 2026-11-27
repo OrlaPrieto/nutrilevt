@@ -268,7 +268,7 @@
   <button
     id="btn-toggle-holiday-fx"
     type="button"
-    class="w-10 h-10 rounded-full bg-[#2B050D]/90 hover:bg-[#3D0A15] active:scale-95 border border-[#E6A635]/40 hover:border-[#F5D061] text-[#F5D061] shadow-[0_4px_16px_rgba(0,0,0,0.6)] backdrop-blur-md flex items-center justify-center transition-all duration-300 cursor-pointer"
+    class="w-11 h-11 rounded-full bg-[#2B050D]/90 hover:bg-[#3D0A15] active:scale-95 border border-[#E6A635]/40 hover:border-[#F5D061] text-[#F5D061] shadow-[0_4px_16px_rgba(0,0,0,0.6)] backdrop-blur-md flex items-center justify-center transition-all duration-300 cursor-pointer"
     aria-label="Activar o desactivar efectos navideños"
     title="Efectos festivos activos (Clic para pausar)"
   >
@@ -458,6 +458,7 @@
     function resizeCanvas() {
       if (!canvas) return;
       const dpr = window.devicePixelRatio || 1;
+      const prevWidth = width;
       width = window.innerWidth;
       height = window.innerHeight;
 
@@ -467,9 +468,11 @@
       canvas.style.height = height + "px";
 
       if (ctx) {
-        ctx.scale(dpr, dpr);
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       }
-      createParticles();
+      if (particles.length === 0 || width !== prevWidth) {
+        createParticles();
+      }
     }
 
     function renderSnow() {
@@ -501,12 +504,9 @@
           p.twinkleVal += p.twinkleSpeed;
           const currentAlpha = p.opacity * (0.7 + 0.3 * Math.sin(p.twinkleVal));
           ctx.fillStyle = "rgba(245, 208, 97, " + currentAlpha + ")";
-          ctx.shadowBlur = 4;
-          ctx.shadowColor = "rgba(230, 166, 53, 0.4)";
         } else {
           // Copo blanco suave de profundidad
           ctx.fillStyle = "rgba(255, 250, 245, " + p.opacity + ")";
-          ctx.shadowBlur = 0;
         }
 
         ctx.fill();
@@ -564,6 +564,15 @@
       updateEffectsUI();
     }
 
+    function onVisibilityChange() {
+      isTabVisible = !document.hidden;
+      if (isTabVisible && isEffectsActive) {
+        startAnimation();
+      } else {
+        stopAnimation();
+      }
+    }
+
     // Inicialización al cargar el documento o navegar con ClientRouter
     function init() {
       // Re-obtener el elemento canvas en el DOM actual (vital en navegación ClientRouter)
@@ -579,16 +588,8 @@
       resizeCanvas();
 
       window.removeEventListener("resize", resizeCanvas);
-      window.addEventListener("resize", resizeCanvas);
+      window.addEventListener("resize", resizeCanvas, { passive: true });
 
-      const onVisibilityChange = () => {
-        isTabVisible = !document.hidden;
-        if (isTabVisible && isEffectsActive) {
-          startAnimation();
-        } else {
-          stopAnimation();
-        }
-      };
       document.removeEventListener("visibilitychange", onVisibilityChange);
       document.addEventListener("visibilitychange", onVisibilityChange);
 
