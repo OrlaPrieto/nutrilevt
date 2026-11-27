@@ -200,7 +200,7 @@ function getCategoryContour(slug: string) {
   <Navbar />
 
   <!-- CONTENEDOR PRINCIPAL CON EL FONDO NAVIDEÑO DE LA IMAGEN (VINO PROFUNDO Y DESTELLOS DORADOS) -->
-  <div class="bg-holiday-canvas text-white pt-32 sm:pt-36 md:pt-44 lg:pt-48 pb-20 min-h-screen relative overflow-x-clip font-sans-recetario selection:bg-[#E6A635] selection:text-[#2E060E]">
+  <div class="bg-holiday-canvas text-white pt-28 sm:pt-36 md:pt-44 lg:pt-48 pb-20 min-h-screen relative overflow-x-clip font-sans-recetario selection:bg-[#E6A635] selection:text-[#2E060E]">
     <!-- EFECTOS NAVIDEÑOS MODULARES 2026 (NIEVE, ESFERAS, TRINEO Y CONTROL) -->
     <HolidayEffects />
 
@@ -210,8 +210,8 @@ function getCategoryContour(slug: string) {
     <div class="absolute bottom-40 left-10 w-[550px] h-[550px] bg-emerald-600/10 rounded-full blur-[150px] pointer-events-none"></div>
 
     <!-- HERO EDITORIAL FESTIVO -->
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 sm:pt-8 md:pt-10 pb-12 sm:pb-16 relative z-20">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 sm:pt-8 md:pt-10 pb-8 sm:pb-16 relative z-20">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-center">
         <!-- Left: Headline & Manifesto -->
         <div class="lg:col-span-7">
           <!-- Holiday Festive Tag (Sin emojis) -->
@@ -239,9 +239,9 @@ function getCategoryContour(slug: string) {
           </p>
         </div>
 
-        <!-- Right: VIP Card refinada (Sin caja dentro de caja, borde fino elegante) -->
-        <div class="lg:col-span-5 rounded-2xl border border-[#E6A635]/35 bg-[#2B050D]/90 backdrop-blur-md p-6 sm:p-8 shadow-[0_10px_40px_rgba(0,0,0,0.4)]">
-          <div class="flex items-center justify-between mb-4 pb-3 border-b border-[#E6A635]/20">
+        <!-- Right: VIP Card refinada (Compacta en móvil cuando ya está desbloqueada) -->
+        <div class="lg:col-span-5 rounded-2xl border border-[#E6A635]/35 bg-[#2B050D]/90 backdrop-blur-md p-5 sm:p-8 shadow-[0_10px_40px_rgba(0,0,0,0.4)]">
+          <div class="flex items-center justify-between mb-3 sm:mb-4 pb-2.5 sm:pb-3 border-b border-[#E6A635]/20">
             <span class="text-xs font-semibold uppercase tracking-wider text-[#F5D061]">
               Recetario Navideño Completo
             </span>
@@ -304,7 +304,7 @@ function getCategoryContour(slug: string) {
           </div>
 
           <div id="hero-vip-unlocked" class="hidden">
-            <div class="inline-flex items-center gap-1.5 px-3 py-1 bg-emerald-500/15 border border-emerald-400/35 text-emerald-300 rounded-full text-xs font-semibold mb-3">
+            <div class="inline-flex items-center gap-1.5 px-3 py-1 bg-emerald-500/15 border border-emerald-400/35 text-emerald-300 rounded-full text-xs font-semibold mb-2.5 sm:mb-3">
               <svg
                 class="w-3.5 h-3.5 text-emerald-400"
                 fill="none"
@@ -320,15 +320,15 @@ function getCategoryContour(slug: string) {
               </svg>
               <span>SESIÓN VIP AUTORIZADA</span>
             </div>
-            <h2 class="font-display text-2xl text-white font-bold mb-2">
+            <h2 class="font-display text-xl sm:text-2xl text-white font-bold mb-2 sm:mb-2">
               ¡Bienvenido a tu Recetario Completo!
             </h2>
-            <p class="text-amber-100/75 text-sm mb-6 font-light">
+            <p class="hidden lg:block text-amber-100/75 text-sm mb-6 font-light">
               Tienes acceso total a las 185 recetas con fotografías en alta
               definición, tabla de equivalentes clínicos del SMAE y buscador
               interactivo.
             </p>
-            <div class="p-3.5 bg-[#1E0308] border border-[#E6A635]/30 rounded-xl text-xs font-semibold text-white flex items-center justify-between gap-2">
+            <div class="p-3 sm:p-3.5 bg-[#1E0308] border border-[#E6A635]/30 rounded-xl text-xs font-semibold text-white flex items-center justify-between gap-2 mt-2 lg:mt-0">
               <div class="flex items-center gap-2">
                 <span class="text-[#E6A635]">ESTADO:</span>
                 <span class="text-emerald-400 font-bold font-mono-recetario">
@@ -353,14 +353,14 @@ function getCategoryContour(slug: string) {
       id="search-filter-bar"
       class="border-y border-[#E6A635]/25 bg-[#2B050D]/95 backdrop-blur-xl sticky top-[112px] sm:top-[116px] z-30 shadow-xl transition-all"
     >
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5 sm:py-3.5">
-        <!-- Top Row: Compact Search + Mobile Filter Trigger + Desktop Quick Chips -->
-        <div class="flex items-center gap-2.5 sm:gap-3.5 mb-2.5">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 sm:py-3">
+        <!-- Top Row: Compact Pill Search + Mobile VIP Pill + Desktop Quick Chips -->
+        <div class="flex items-center gap-2 sm:gap-3.5 mb-2 sm:mb-2.5">
           <!-- Search Input with Clear Button -->
           <div class="relative flex-1 group">
             <div class="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#8B1A2B] group-focus-within:text-[#B87A1E] pointer-events-none transition-colors">
               <svg
-                class="w-4.5 h-4.5"
+                class="w-4 h-4 sm:w-4.5 sm:h-4.5"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -377,7 +377,7 @@ function getCategoryContour(slug: string) {
               id="recipe-search"
               type="search"
               placeholder="Buscar receta o ingrediente..."
-              class="w-full h-11 sm:h-12 pl-10 sm:pl-11 pr-10 bg-[#FFFDF7] hover:bg-white focus:bg-white border-2 border-[#E6A635] focus:border-[#C48825] focus:ring-4 focus:ring-[#E6A635]/25 rounded-xl sm:rounded-2xl text-xs sm:text-sm text-[#28050D] font-medium placeholder-[#8C6D48] focus:outline-none transition-all shadow-md [&::-webkit-search-cancel-button]:hidden [&::-webkit-search-decoration]:hidden"
+              class="w-full h-10 sm:h-11 pl-10 sm:pl-11 pr-9 bg-[#FFFDF7] hover:bg-white focus:bg-white border-2 border-[#E6A635] focus:border-[#C48825] focus:ring-4 focus:ring-[#E6A635]/25 rounded-full text-xs sm:text-sm text-[#28050D] font-medium placeholder-[#8C6D48] focus:outline-none transition-all shadow-md [&::-webkit-search-cancel-button]:hidden [&::-webkit-search-decoration]:hidden"
             />
             <button
               id="clear-search-btn"
@@ -455,9 +455,9 @@ function getCategoryContour(slug: string) {
           <button
             id="btn-vip-mobile-pill"
             type="button"
-            class="lg:hidden h-11 px-3 bg-[#E6A635]/15 hover:bg-[#E6A635]/25 border border-[#E6A635]/40 text-[#F5D061] text-[11px] font-bold rounded-xl transition-colors cursor-pointer shrink-0 whitespace-nowrap"
+            class="lg:hidden h-10 px-3.5 bg-[#E6A635]/15 hover:bg-[#E6A635]/25 border border-[#E6A635]/40 text-[#F5D061] text-[11px] font-bold rounded-full transition-colors cursor-pointer shrink-0 whitespace-nowrap"
           >
-            <span id="btn-vip-mobile-pill-text">Ingresar Código</span>
+            <span id="btn-vip-mobile-pill-text">Código VIP</span>
           </button>
         </div>
 
@@ -790,7 +790,7 @@ function getCategoryContour(slug: string) {
         if (mobilePillText) mobilePillText.textContent = "VIP";
         if (mobilePillBtn)
           mobilePillBtn.className =
-            "lg:hidden h-11 px-3 bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-400/50 text-emerald-300 text-[11px] font-bold rounded-xl transition-colors cursor-pointer shrink-0 whitespace-nowrap";
+            "lg:hidden h-10 px-3.5 bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-400/50 text-emerald-300 text-[11px] font-bold rounded-full transition-colors cursor-pointer shrink-0 whitespace-nowrap";
         if (heroLocked) heroLocked.classList.add("hidden");
         if (heroUnlocked) heroUnlocked.classList.remove("hidden");
         if (lockedBanner) lockedBanner.classList.add("hidden");
@@ -802,7 +802,7 @@ function getCategoryContour(slug: string) {
         if (mobilePillText) mobilePillText.textContent = "Código VIP";
         if (mobilePillBtn)
           mobilePillBtn.className =
-            "lg:hidden h-11 px-3 bg-[#E6A635]/15 hover:bg-[#E6A635]/25 border border-[#E6A635]/40 text-[#F5D061] text-[11px] font-bold rounded-xl transition-colors cursor-pointer shrink-0 whitespace-nowrap";
+            "lg:hidden h-10 px-3.5 bg-[#E6A635]/15 hover:bg-[#E6A635]/25 border border-[#E6A635]/40 text-[#F5D061] text-[11px] font-bold rounded-full transition-colors cursor-pointer shrink-0 whitespace-nowrap";
         if (heroLocked) heroLocked.classList.remove("hidden");
         if (heroUnlocked) heroUnlocked.classList.add("hidden");
         if (lockedBanner) lockedBanner.classList.remove("hidden");
