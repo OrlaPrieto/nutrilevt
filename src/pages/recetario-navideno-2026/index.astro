@@ -152,6 +152,12 @@ function getCategoryContour(slug: string) {
         #350811 50%,
         #20040a 100%
       );
+      overflow-anchor: none;
+    }
+
+    html,
+    body {
+      overflow-anchor: none;
     }
 
     /* Asegurar fondo vino festivo y título dorado permanentemente visible en tarjetas */
@@ -1250,7 +1256,13 @@ function getCategoryContour(slug: string) {
 
     // Event Listeners setup
     function initRecetario() {
+      if ("scrollRestoration" in history) {
+        history.scrollRestoration = "manual";
+      }
       checkAuth();
+      if (!window.location.hash) {
+        window.scrollTo({ top: 0, behavior: "instant" });
+      }
 
       // VIP Toggle in header & mobile pill
       const handleVipPillClick = () => {
