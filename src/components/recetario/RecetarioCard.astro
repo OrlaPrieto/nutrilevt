@@ -42,9 +42,9 @@ const { recipe, isFree, contour } = Astro.props;
   tabindex="0"
   class={`recetario-card bg-[#28050D] rounded-2xl overflow-hidden border border-[#E6A635]/20 hover:border-[#F5D061]/55 hover:shadow-[0_14px_34px_rgba(0,0,0,0.6),0_0_24px_rgba(230,166,53,0.12)] flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:translate-y-0 group relative cursor-pointer ${!isFree ? "hidden" : ""}`}
 >
-  <!-- Top Dish Photo (Fusión suave con el cuerpo de la tarjeta) -->
+  <!-- Top Dish Photo (Fusión suave con el cuerpo de la tarjeta sin línea subpixel en hover) -->
   <div
-    class="relative w-full h-52 sm:h-56 overflow-hidden bg-[#1E0308] cursor-pointer shrink-0"
+    class="relative w-full h-52 sm:h-56 overflow-hidden bg-[#28050D] cursor-pointer shrink-0 transform-gpu"
     data-action="open-recipe"
     data-recipe-id={recipe.id}
   >
@@ -57,7 +57,7 @@ const { recipe, isFree, contour } = Astro.props;
         loading="lazy"
         decoding="async"
         onerror="this.onerror=null;this.src='/images/recetas/001-champurrado-ligero.webp';"
-        class="w-full h-full object-cover group-hover:scale-105 motion-reduce:group-hover:scale-100 transition-transform duration-500 ease-out motion-reduce:transition-none"
+        class="w-full h-full object-cover transform-gpu will-change-transform group-hover:scale-105 motion-reduce:group-hover:scale-100 transition-transform duration-500 ease-out motion-reduce:transition-none"
       />
     ) : (
       <div class="w-full h-full flex items-center justify-center text-amber-200/70 text-xs">
@@ -66,7 +66,7 @@ const { recipe, isFree, contour } = Astro.props;
     )}
 
     <!-- Overlay degradado que funde suavemente la foto hacia el fondo #28050D -->
-    <div class="absolute inset-0 bg-gradient-to-t from-[#28050D] via-[#28050D]/15 to-black/25 pointer-events-none"></div>
+    <div class="absolute inset-x-0 top-0 -bottom-px bg-gradient-to-t from-[#28050D] from-5% via-[#28050D]/20 to-black/25 pointer-events-none"></div>
 
     <!-- Badges sobrios en vidrio oscuro sobre la fotografía -->
     <div class="absolute top-3 left-3 flex flex-wrap items-center gap-1.5 z-10">
