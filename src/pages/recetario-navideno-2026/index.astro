@@ -156,15 +156,15 @@ function getCategoryContour(slug: string) {
     }
 
     /* Asegurar fondo vino festivo y título dorado permanentemente visible en tarjetas */
-    .recipe-card {
-      background-color: #28050d !important;
-      color: #ffffff !important;
+    .recetario-card {
+      background-color: #28050d;
+      color: #ffffff;
     }
-    .recipe-card h3 {
-      color: #f5d061 !important;
+    .recetario-card h3 {
+      color: #f5d061;
     }
-    .recipe-card:hover h3 {
-      color: #ffffff !important;
+    .recetario-card:hover h3 {
+      color: #ffffff;
     }
 
     /* Custom print styles for recipe detail */
@@ -220,7 +220,7 @@ function getCategoryContour(slug: string) {
             <span>Edición Navideña 2026</span>
           </div>
 
-          <h1 class="font-display text-3xl sm:text-5xl lg:text-5.5xl text-white font-bold leading-[1.12] tracking-tight mb-5">
+          <h1 class="font-display text-3xl sm:text-5xl lg:text-[54px] text-white font-bold leading-[1.12] tracking-tight mb-5">
             El arte de celebrar con bienestar:{" "}
             <span class="font-script text-4xl sm:text-6xl lg:text-7xl text-[#F5D061] block font-normal mt-1">
               185 recetas navideñas
@@ -267,7 +267,7 @@ function getCategoryContour(slug: string) {
               <button
                 type="button"
                 id="btn-hero-unlock"
-                class="w-full py-3.5 px-5 bg-gradient-to-r from-[#E6A635] to-[#D49522] hover:from-[#F5D061] hover:to-[#E6A635] text-[#28050D] font-bold text-xs uppercase tracking-wider rounded-xl transition-all duration-200 shadow-md hover:shadow-[0_4px_20px_rgba(230,166,53,0.35)] active:scale-98 cursor-pointer flex items-center justify-center gap-2"
+                class="w-full py-3.5 px-5 bg-gradient-to-r from-[#E6A635] to-[#D49522] hover:from-[#F5D061] hover:to-[#E6A635] text-[#28050D] font-bold text-xs uppercase tracking-wider rounded-xl transition-all duration-200 shadow-md hover:shadow-[0_4px_20px_rgba(230,166,53,0.35)] active:scale-[0.98] cursor-pointer flex items-center justify-center gap-2"
               >
                 <svg
                   class="w-4 h-4 text-[#28050D]"
@@ -290,7 +290,7 @@ function getCategoryContour(slug: string) {
                 href="https://wa.me/526143958598?text=Hola%20Nutri%C3%B3loga%20Velvet,%20me%20interesa%20adquirir%20el%20Recetario%20Navide%C3%B1o%202026%20completo%20(185%20recetas)."
                 target="_blank"
                 rel="noopener noreferrer"
-                class="w-full py-3.5 px-5 bg-[#25D366] hover:bg-[#20ba59] text-white font-bold text-xs uppercase tracking-wider rounded-xl transition-all duration-200 shadow-md hover:shadow-[0_4px_20px_rgba(37,211,102,0.35)] active:scale-98 text-center flex items-center justify-center gap-2"
+                class="w-full py-3.5 px-5 bg-[#25D366] hover:bg-[#20ba59] text-white font-bold text-xs uppercase tracking-wider rounded-xl transition-all duration-200 shadow-md hover:shadow-[0_4px_20px_rgba(37,211,102,0.35)] active:scale-[0.98] text-center flex items-center justify-center gap-2"
               >
                 <svg
                   class="w-4 h-4 fill-current shrink-0"
@@ -329,11 +329,20 @@ function getCategoryContour(slug: string) {
               definición, tabla de equivalentes clínicos del SMAE y buscador
               interactivo.
             </p>
-            <div class="p-3.5 bg-[#1E0308] border border-[#E6A635]/30 rounded-xl text-xs font-semibold text-white flex items-center justify-between">
-              <span class="text-[#E6A635]">ESTADO:</span>
-              <span class="text-emerald-400 font-bold font-mono-recetario">
-                185 RECETAS ACTIVAS
-              </span>
+            <div class="p-3.5 bg-[#1E0308] border border-[#E6A635]/30 rounded-xl text-xs font-semibold text-white flex items-center justify-between gap-2">
+              <div class="flex items-center gap-2">
+                <span class="text-[#E6A635]">ESTADO:</span>
+                <span class="text-emerald-400 font-bold font-mono-recetario">
+                  185 RECETAS ACTIVAS
+                </span>
+              </div>
+              <button
+                type="button"
+                id="btn-hero-logout"
+                class="text-[11px] font-semibold text-amber-200/75 hover:text-white underline underline-offset-2 cursor-pointer transition-colors shrink-0"
+              >
+                Cerrar sesión
+              </button>
             </div>
           </div>
         </div>
@@ -437,11 +446,20 @@ function getCategoryContour(slug: string) {
               type="button"
               data-filter-free="true"
               id="filter-free-btn"
-              class="text-xs font-medium px-3.5 py-2 bg-emerald-950/70 border border-emerald-400/40 text-emerald-300 hover:bg-emerald-600 hover:text-white rounded-full whitespace-nowrap cursor-pointer transition-all shadow-sm active:scale-95"
+              class="text-xs font-bold px-3.5 py-2.5 bg-emerald-950/80 border border-emerald-400/60 text-emerald-300 hover:bg-emerald-600 hover:text-white rounded-full whitespace-nowrap cursor-pointer transition-all shadow-sm active:scale-95"
             >
               Muestras gratuitas (6)
             </button>
           </div>
+
+          <!-- Botón VIP visible en móvil y tablet (< lg) -->
+          <button
+            id="btn-vip-mobile-pill"
+            type="button"
+            class="lg:hidden h-11 px-3 bg-[#E6A635]/15 hover:bg-[#E6A635]/25 border border-[#E6A635]/40 text-[#F5D061] text-[11px] font-bold rounded-xl transition-colors cursor-pointer shrink-0 whitespace-nowrap"
+          >
+            <span id="btn-vip-mobile-pill-text">Ingresar Código</span>
+          </button>
         </div>
 
         <!-- Bottom Row: Category Tabs con cinta única de scroll táctil fluido -->
@@ -552,7 +570,7 @@ function getCategoryContour(slug: string) {
               data-title={recipe.title.toLowerCase()}
               data-ingredients={recipe.ingredients.join(" ").toLowerCase()}
               data-free={isFree ? "true" : "false"}
-              class={`recipe-card bg-[#28050D] rounded-2xl overflow-hidden border ${style.border} ${style.glow} flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 group relative cursor-pointer ${!isFree ? "hidden" : ""}`}
+              class={`recetario-card bg-[#28050D] rounded-2xl overflow-hidden border ${style.border} ${style.glow} flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 group relative cursor-pointer ${!isFree ? "hidden" : ""}`}
             >
               <!-- Top Dish Photo (Ocupa todo el ancho superior sin marco grueso exterior) -->
               <div
@@ -615,7 +633,7 @@ function getCategoryContour(slug: string) {
                   <h3
                     data-action="open-recipe"
                     data-recipe-id={recipe.id}
-                    class="font-script text-2.5xl sm:text-3xl text-[#F5D061] hover:text-white font-bold leading-tight mb-3 cursor-pointer transition-colors line-clamp-2"
+                    class="font-script text-[26px] sm:text-3xl text-[#F5D061] hover:text-white font-bold leading-tight mb-3 cursor-pointer transition-colors line-clamp-2 min-h-[3.5rem] sm:min-h-[4rem]"
                   >
                     {recipe.title}
                   </h3>
@@ -652,21 +670,23 @@ function getCategoryContour(slug: string) {
                     </div>
                   </div>
 
-                  <!-- Etiquetas Saludables: outline sutil sin texto redundante ni emojis -->
-                  {recipe.tags && recipe.tags.length > 0 && (
-                    <div class="flex flex-wrap gap-1.5 my-2.5">
-                      {recipe.tags.slice(0, 3).map((tag) => (
-                        <span class="text-[11px] font-normal px-2.5 py-0.5 rounded-full bg-transparent border border-[#E6A635]/30 text-amber-100/80">
-                          {tag}
-                        </span>
-                      ))}
-                      {recipe.tags.length > 3 && (
-                        <span class="text-[11px] text-amber-200/50 font-mono-recetario self-center px-1">
-                          +{recipe.tags.length - 3}
-                        </span>
-                      )}
-                    </div>
-                  )}
+                  <!-- Etiquetas Saludables: altura mínima uniforme para alinear filas -->
+                  <div class="flex flex-wrap items-center gap-1.5 my-2.5 min-h-[26px]">
+                    {recipe.tags && recipe.tags.length > 0 && (
+                      <>
+                        {recipe.tags.slice(0, 3).map((tag) => (
+                          <span class="text-[11px] font-normal px-2.5 py-0.5 rounded-full bg-transparent border border-[#E6A635]/30 text-amber-100/80">
+                            {tag}
+                          </span>
+                        ))}
+                        {recipe.tags.length > 3 && (
+                          <span class="text-[11px] text-amber-200/70 font-mono-recetario self-center px-1">
+                            +{recipe.tags.length - 3}
+                          </span>
+                        )}
+                      </>
+                    )}
+                  </div>
                 </div>
 
                 <!-- Card Action Button estilizado con alta visibilidad y contraste -->
@@ -676,7 +696,7 @@ function getCategoryContour(slug: string) {
                       type="button"
                       data-action="open-recipe"
                       data-recipe-id={recipe.id}
-                      class="w-full py-3 px-4 bg-gradient-to-r from-[#E6A635] via-[#F5D061] to-[#D49522] hover:from-[#F5D061] hover:to-[#E6A635] text-[#28050D] font-extrabold text-xs sm:text-sm uppercase tracking-wider rounded-xl transition-all duration-200 shadow-[0_4px_16px_rgba(230,166,53,0.35)] hover:shadow-[0_6px_22px_rgba(245,208,97,0.5)] active:scale-98 cursor-pointer flex items-center justify-center gap-2 group/btn"
+                      class="w-full py-3 px-4 bg-gradient-to-r from-[#E6A635] via-[#F5D061] to-[#D49522] hover:from-[#F5D061] hover:to-[#E6A635] text-[#28050D] font-extrabold text-xs sm:text-sm uppercase tracking-wider rounded-xl transition-all duration-200 shadow-[0_4px_16px_rgba(230,166,53,0.35)] hover:shadow-[0_6px_22px_rgba(245,208,97,0.5)] active:scale-[0.98] cursor-pointer flex items-center justify-center gap-2 group/btn"
                     >
                       <span>Ver Receta Completa</span>
                       <svg
@@ -766,7 +786,7 @@ function getCategoryContour(slug: string) {
           <button
             type="button"
             id="btn-banner-unlock"
-            class="w-full sm:w-auto py-3.5 px-7 bg-gradient-to-r from-[#E6A635] to-[#D49522] hover:from-[#F5D061] hover:to-[#E6A635] text-[#28050D] font-bold text-xs uppercase tracking-wider rounded-xl transition-all shadow-md active:scale-98 cursor-pointer flex items-center justify-center gap-2"
+            class="w-full sm:w-auto py-3.5 px-7 bg-gradient-to-r from-[#E6A635] to-[#D49522] hover:from-[#F5D061] hover:to-[#E6A635] text-[#28050D] font-bold text-xs uppercase tracking-wider rounded-xl transition-all shadow-md active:scale-[0.98] cursor-pointer flex items-center justify-center gap-2"
           >
             <svg
               class="w-4 h-4 text-[#28050D]"
@@ -788,7 +808,7 @@ function getCategoryContour(slug: string) {
             href="https://wa.me/526143958598?text=Hola%20Nutri%C3%B3loga%20Velvet,%20me%20interesa%20adquirir%20el%20Recetario%20Navide%C3%B1o%202026%20completo%20(185%20recetas)."
             target="_blank"
             rel="noopener noreferrer"
-            class="w-full sm:w-auto py-3.5 px-7 bg-[#25D366] hover:bg-[#20ba59] text-white font-bold text-xs uppercase tracking-wider rounded-xl transition-all shadow-md hover:shadow-[0_4px_20px_rgba(37,211,102,0.35)] active:scale-98 text-center flex items-center justify-center gap-2"
+            class="w-full sm:w-auto py-3.5 px-7 bg-[#25D366] hover:bg-[#20ba59] text-white font-bold text-xs uppercase tracking-wider rounded-xl transition-all shadow-md hover:shadow-[0_4px_20px_rgba(37,211,102,0.35)] active:scale-[0.98] text-center flex items-center justify-center gap-2"
           >
             <svg
               class="w-4 h-4 fill-current shrink-0"
@@ -856,7 +876,7 @@ function getCategoryContour(slug: string) {
         <div class="md:col-span-7">
           <h2
             id="modal-title"
-            class="font-script text-3xl sm:text-4.5xl lg:text-5xl text-[#F5D061] font-bold leading-tight mb-4"
+            class="font-script text-3xl sm:text-[42px] lg:text-5xl text-[#F5D061] font-bold leading-tight mb-4"
           ></h2>
 
           <!-- Metrics Grid -->
@@ -1093,7 +1113,7 @@ function getCategoryContour(slug: string) {
 
         <button
           type="submit"
-          class="w-full py-3.5 px-4 bg-gradient-to-r from-[#E6A635] to-[#D49522] hover:from-[#F5D061] hover:to-[#E6A635] text-[#28050D] font-bold text-xs uppercase tracking-wider rounded-xl transition-all shadow-md cursor-pointer active:scale-98"
+          class="w-full py-3.5 px-4 bg-gradient-to-r from-[#E6A635] to-[#D49522] hover:from-[#F5D061] hover:to-[#E6A635] text-[#28050D] font-bold text-xs uppercase tracking-wider rounded-xl transition-all shadow-md cursor-pointer active:scale-[0.98]"
         >
           Activar Acceso Completo
         </button>
@@ -1235,7 +1255,7 @@ function getCategoryContour(slug: string) {
           <button
             type="button"
             id="drawer-free-toggle"
-            class="w-full p-3 rounded-2xl border flex items-center justify-between transition-all bg-[#1E0308] border-[#E6A635]/30 text-amber-100 cursor-pointer active:scale-98"
+            class="w-full p-3 rounded-2xl border flex items-center justify-between transition-all bg-[#1E0308] border-[#E6A635]/30 text-amber-100 cursor-pointer active:scale-[0.98]"
           >
             <div class="flex items-center gap-2.5">
               <span
@@ -1354,7 +1374,7 @@ function getCategoryContour(slug: string) {
         <button
           type="button"
           id="btn-drawer-apply"
-          class="flex-1 py-3 px-5 rounded-xl bg-gradient-to-r from-[#E6A635] to-[#D49522] hover:from-[#F5D061] hover:to-[#E6A635] text-[#28050D] font-extrabold text-xs uppercase tracking-wider transition-all shadow-lg active:scale-98 cursor-pointer text-center"
+          class="flex-1 py-3 px-5 rounded-xl bg-gradient-to-r from-[#E6A635] to-[#D49522] hover:from-[#F5D061] hover:to-[#E6A635] text-[#28050D] font-extrabold text-xs uppercase tracking-wider transition-all shadow-lg active:scale-[0.98] cursor-pointer text-center"
         >
           Aplicar Filtros (<span id="drawer-apply-count">185</span>)
         </button>
@@ -1519,6 +1539,8 @@ function getCategoryContour(slug: string) {
     function updateAuthUI() {
       const pillBtn = document.getElementById("btn-vip-header-pill");
       const pillText = document.getElementById("btn-vip-pill-text");
+      const mobilePillBtn = document.getElementById("btn-vip-mobile-pill");
+      const mobilePillText = document.getElementById("btn-vip-mobile-pill-text");
       const heroLocked = document.getElementById("hero-vip-locked");
       const heroUnlocked = document.getElementById("hero-vip-unlocked");
 
@@ -1529,6 +1551,10 @@ function getCategoryContour(slug: string) {
         if (pillBtn)
           pillBtn.className =
             "px-3 py-1 bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-400/50 text-emerald-300 text-[11px] font-medium rounded-full transition-colors cursor-pointer";
+        if (mobilePillText) mobilePillText.textContent = "VIP";
+        if (mobilePillBtn)
+          mobilePillBtn.className =
+            "lg:hidden h-11 px-3 bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-400/50 text-emerald-300 text-[11px] font-bold rounded-xl transition-colors cursor-pointer shrink-0 whitespace-nowrap";
         if (heroLocked) heroLocked.classList.add("hidden");
         if (heroUnlocked) heroUnlocked.classList.remove("hidden");
         if (lockedBanner) lockedBanner.classList.add("hidden");
@@ -1537,6 +1563,10 @@ function getCategoryContour(slug: string) {
         if (pillBtn)
           pillBtn.className =
             "px-3 py-1 bg-[#E6A635]/15 hover:bg-[#E6A635]/25 border border-[#E6A635]/40 text-[#F5D061] text-[11px] font-medium rounded-full transition-colors cursor-pointer";
+        if (mobilePillText) mobilePillText.textContent = "Código VIP";
+        if (mobilePillBtn)
+          mobilePillBtn.className =
+            "lg:hidden h-11 px-3 bg-[#E6A635]/15 hover:bg-[#E6A635]/25 border border-[#E6A635]/40 text-[#F5D061] text-[11px] font-bold rounded-xl transition-colors cursor-pointer shrink-0 whitespace-nowrap";
         if (heroLocked) heroLocked.classList.remove("hidden");
         if (heroUnlocked) heroUnlocked.classList.add("hidden");
         if (lockedBanner) lockedBanner.classList.remove("hidden");
@@ -1551,7 +1581,7 @@ function getCategoryContour(slug: string) {
             btnAction.innerHTML =
               '<span>Ver Receta Completa</span> <svg class="w-4 h-4 text-[#28050D] transition-transform" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>';
             btnAction.className =
-              "card-vip-btn w-full py-3 px-4 bg-gradient-to-r from-[#E6A635] via-[#F5D061] to-[#D49522] hover:from-[#F5D061] hover:to-[#E6A635] text-[#28050D] font-extrabold text-xs sm:text-sm uppercase tracking-wider rounded-xl transition-all duration-200 shadow-[0_4px_16px_rgba(230,166,53,0.35)] hover:shadow-[0_6px_22px_rgba(245,208,97,0.5)] active:scale-98 cursor-pointer flex items-center justify-center gap-2 group/btn";
+              "card-vip-btn w-full py-3 px-4 bg-gradient-to-r from-[#E6A635] via-[#F5D061] to-[#D49522] hover:from-[#F5D061] hover:to-[#E6A635] text-[#28050D] font-extrabold text-xs sm:text-sm uppercase tracking-wider rounded-xl transition-all duration-200 shadow-[0_4px_16px_rgba(230,166,53,0.35)] hover:shadow-[0_6px_22px_rgba(245,208,97,0.5)] active:scale-[0.98] cursor-pointer flex items-center justify-center gap-2 group/btn";
           }
         } else {
           if (btnAction) {
@@ -1679,6 +1709,8 @@ function getCategoryContour(slug: string) {
       }
 
       recipeModal.classList.remove("hidden");
+      const modalDialog = document.getElementById("recipe-modal-dialog");
+      if (modalDialog) modalDialog.scrollTop = 0;
       document.body.style.overflow = "hidden";
     }
 
@@ -1794,7 +1826,7 @@ function getCategoryContour(slug: string) {
             "w-2.5 h-2.5 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]";
         } else {
           drawerFreeToggle.className =
-            "w-full p-3 rounded-2xl border flex items-center justify-between transition-all bg-[#1E0308] border-[#E6A635]/30 text-amber-100 cursor-pointer active:scale-98";
+            "w-full p-3 rounded-2xl border flex items-center justify-between transition-all bg-[#1E0308] border-[#E6A635]/30 text-amber-100 cursor-pointer active:scale-[0.98]";
           drawerFreeDot.className = "w-2.5 h-2.5 rounded-full bg-slate-500";
         }
       }
@@ -1826,7 +1858,7 @@ function getCategoryContour(slug: string) {
 
     // Filter Logic
     function applyFilters() {
-      const articles = document.querySelectorAll(".recipe-card");
+      const articles = document.querySelectorAll(".recetario-card");
       let visibleCount = 0;
 
       articles.forEach((card) => {
@@ -1964,16 +1996,24 @@ function getCategoryContour(slug: string) {
     function initRecetario() {
       checkAuth();
 
-      // VIP Toggle in header
+      // VIP Toggle in header & mobile pill
+      const handleVipPillClick = () => {
+        if (isVip) {
+          openLogoutModal();
+        } else {
+          openUnlockModal();
+        }
+      };
+
       document
         .getElementById("btn-vip-header-pill")
-        ?.addEventListener("click", () => {
-          if (isVip) {
-            openLogoutModal();
-          } else {
-            openUnlockModal();
-          }
-        });
+        ?.addEventListener("click", handleVipPillClick);
+      document
+        .getElementById("btn-vip-mobile-pill")
+        ?.addEventListener("click", handleVipPillClick);
+      document
+        .getElementById("btn-hero-logout")
+        ?.addEventListener("click", openLogoutModal);
 
       document
         .getElementById("btn-hero-unlock")
